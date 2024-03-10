@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import myImg from "../public/myImg.jpg";
 import { Piano, Bike, Braces } from "lucide-react";
+import GitCalendar from "@/features/GitCalendar/components/GitCalendar";
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -33,10 +34,9 @@ export default function Home() {
                 <p>Portfolio</p>
               </CardContent>
             </Card>
-
             <ScrollArea className="... col-span-1 row-span-2 row-start-1 flex  items-center justify-center rounded-md border p-0">
               <div className="p-4">
-                <h4 className="mb-4 text-sm font-medium leading-none">
+                <h4 className="mb-4 text-lg font-medium leading-none">
                   Notice
                 </h4>
                 {tags.map((tag) => (
@@ -49,7 +49,6 @@ export default function Home() {
                 ))}
               </div>
             </ScrollArea>
-
             <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center p-0">
               <CardContent className="flex flex-row p-0">
                 <Image
@@ -83,7 +82,7 @@ export default function Home() {
             </Card>
             <Card className="... col-span-2 col-start-1 row-start-4">
               <CardHeader className="p-4 pb-3">
-                <CardTitle>Hobby</CardTitle>
+                <CardTitle className="text-lg">Hobby</CardTitle>
               </CardHeader>
               <CardContent className="flex h-3/5 items-center justify-center p-0">
                 <div className="grid size-full grid-flow-col grid-cols-3 grid-rows-1 gap-3 px-4">
@@ -108,9 +107,12 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-            <div className="... col-span-1 row-span-1 row-start-4 bg-red-600">
-              05
-            </div>
+            <Card className="... col-span-1 row-span-1 row-start-4 flex items-center justify-center p-0">
+              <CardContent className="p-0">
+                <GitCalendar />
+              </CardContent>
+            </Card>
+
             <div className="... col-span-3 col-start-1 row-start-5 bg-blue-500">
               06
             </div>
