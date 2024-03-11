@@ -1,8 +1,15 @@
 "use client";
+
 import { useTheme } from "next-themes";
 import React from "react";
 import type { ThemeInput } from "react-github-calendar";
 import GitHubCalendar from "react-github-calendar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface Activity {
   date: string;
@@ -27,17 +34,31 @@ const explicitTheme: ThemeInput = {
 const GitCalendar = () => {
   const { theme } = useTheme();
   return (
-    <GitHubCalendar
-      username="273Do"
-      transformData={selectLastSevenWeeks}
-      blockMargin={7}
-      blockSize={13}
-      hideColorLegend={true}
-      hideMonthLabels={true}
-      hideTotalCount={true}
-      theme={explicitTheme}
-      colorScheme={theme as "light" | "dark" | undefined}
-    />
+    <div>
+      <GitHubCalendar
+        username="273Do"
+        transformData={selectLastSevenWeeks}
+        blockMargin={7}
+        blockSize={13}
+        hideColorLegend={true}
+        hideMonthLabels={true}
+        hideTotalCount={true}
+        theme={explicitTheme}
+        colorScheme={theme as "light" | "dark" | undefined}
+        renderBlock={(block, activity) => (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>{block}</TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  {activity.count} activities on {activity.date}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
+      />
+    </div>
   );
 };
 
