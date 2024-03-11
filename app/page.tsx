@@ -12,6 +12,7 @@ import Image from "next/image";
 import myImg from "../public/myImg.jpg";
 import { Piano, Bike, Braces } from "lucide-react";
 import GitCalendar from "@/features/GitCalendar/components/GitCalendar";
+import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -34,6 +35,7 @@ export default function Home() {
                 <p>Portfolio</p>
               </CardContent>
             </Card>
+
             <ScrollArea className="... col-span-1 row-span-2 row-start-1 flex  items-center justify-center rounded-md border p-0">
               <div className="p-4">
                 <h4 className="mb-4 text-lg font-medium leading-none">
@@ -49,6 +51,7 @@ export default function Home() {
                 ))}
               </div>
             </ScrollArea>
+
             <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center p-0">
               <CardContent className="flex flex-row p-0">
                 <Image
@@ -80,6 +83,7 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
+
             <Card className="... col-span-2 col-start-1 row-start-4">
               <CardHeader className="p-4 pb-3">
                 <CardTitle className="text-lg">Hobby</CardTitle>
@@ -116,15 +120,18 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
+
             <Card className="... col-span-1 row-span-1 row-start-4 flex items-center justify-center p-0">
               <CardContent className="p-0">
                 <GitCalendar />
               </CardContent>
             </Card>
 
-            <div className="... col-span-3 col-start-1 row-start-5 bg-blue-500">
-              06
-            </div>
+            <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden p-0 py-8">
+              <CardContent className="p-0">
+                <MarqueeWidget />
+              </CardContent>
+            </Card>
 
             {/* <div className="grid h-[1000px] w-[600px] grid-flow-col grid-cols-3 grid-rows-5 gap-4">
               <div className="... col-span-2 row-span-2 row-start-1 bg-red-600">
