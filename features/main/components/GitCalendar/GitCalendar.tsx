@@ -43,6 +43,7 @@ const GitCalendar = () => {
         hideColorLegend={true}
         hideMonthLabels={true}
         hideTotalCount={true}
+        loading={false}
         theme={explicitTheme}
         colorScheme={theme as "light" | "dark" | undefined}
         renderBlock={(block, activity) => (
