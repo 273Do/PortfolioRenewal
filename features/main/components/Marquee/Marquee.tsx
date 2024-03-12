@@ -65,7 +65,7 @@ const icons = [
   },
 ];
 
-export default function MarqueeWidget() {
+const MarqueeWidget = () => {
   const { theme } = useTheme();
   return (
     <>
@@ -82,4 +82,6 @@ export default function MarqueeWidget() {
       </Marquee>
     </>
   );
-}
+};
+
+export default MarqueeWidget;

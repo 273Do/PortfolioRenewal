@@ -6,17 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import myImg from "../public/myImg.jpg";
 import { Piano, Bike, Braces } from "lucide-react";
-import GitCalendar from "@/features/GitCalendar/components/GitCalendar";
-import MarqueeWidget from "@/features/Marquee/components/Marquee";
-
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
-);
+import * as Main from "@/features/main/components/index";
 
 export default function Home() {
   return (
@@ -27,7 +22,7 @@ export default function Home() {
             <CardTitle>About</CardTitle>
           </CardHeader>
           <CardContent className="grid h-[920px] w-[570px] grid-flow-col grid-cols-3 grid-rows-5 gap-4">
-            <Card className="... col-span-2 row-span-2 row-start-1 flex items-center justify-center p-0">
+            <Card className="... col-span-2 col-start-2 row-span-2 row-start-1 flex items-center justify-center p-0">
               <CardContent className="p-0 text-7xl">
                 <p>Welcome</p>
                 <p>to</p>
@@ -37,19 +32,7 @@ export default function Home() {
             </Card>
 
             <ScrollArea className="... col-span-1 row-span-2 row-start-1 flex  items-center justify-center rounded-md border p-0">
-              <div className="p-4">
-                <h4 className="mb-4 text-lg font-medium leading-none">
-                  Notice
-                </h4>
-                {tags.map((tag) => (
-                  <>
-                    <div key={tag} className="text-sm">
-                      {tag}
-                    </div>
-                    <Separator className="my-2" />
-                  </>
-                ))}
-              </div>
+              <Main.Notice />
             </ScrollArea>
 
             <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center p-0">
@@ -123,13 +106,13 @@ export default function Home() {
 
             <Card className="... col-span-1 row-span-1 row-start-4 flex items-center justify-center p-0">
               <CardContent className="p-0">
-                <GitCalendar />
+                <Main.GitCalendar />
               </CardContent>
             </Card>
 
             <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden p-0 py-8">
               <CardContent className="p-0">
-                <MarqueeWidget />
+                <Main.MarqueeWidget />
               </CardContent>
             </Card>
 
