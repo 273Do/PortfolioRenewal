@@ -1,0 +1,13 @@
+[
+  { "icon": "SiNextdotjs", "label": "Next.js" },
+  { "icon": "SiBun", "label": "Bun" },
+  { "icon": "SiPlanetscale", "label": "PlanetScale" },
+  { "icon": "SiReact", "label": "React" },
+  { "icon": "SiTailwindcss", "label": "Tailwind CSS" },
+  { "icon": "SiRadixui", "label": "Radix UI" },
+  { "icon": "SiVercel", "label": "Vercel" },
+  { "icon": "SiGithub", "label": "GitHub" },
+  { "icon": "SiCloudflare", "label": "Cloudflare R2" },
+  { "icon": "SiPrisma", "label": "Prisma" },
+  { "icon": "SiStripe", "label": "Stripe" }
+]

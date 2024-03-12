@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import MarqueeWidget from "@/features/main/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 
 export default function Home() {
@@ -49,7 +50,7 @@ export default function Home() {
 
           <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden p-0 py-8">
             <CardContent className="p-0">
-              <Main.MarqueeWidget />
+              <MarqueeWidget />
             </CardContent>
           </Card>
         </CardContent>
