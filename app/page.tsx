@@ -10,7 +10,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import myImg from "../public/myImg.jpg";
-import { Piano, Bike, Braces } from "lucide-react";
 import * as Main from "@/features/main/components/index";
 
 export default function Home() {
@@ -72,7 +71,8 @@ export default function Home() {
                 <CardTitle className="text-lg">Hobby</CardTitle>
               </CardHeader>
               <CardContent className="flex h-3/5 items-center justify-center p-0">
-                <div className="grid size-full grid-flow-col grid-cols-3 grid-rows-1 gap-3 px-4">
+                <Main.Hobby />
+                {/* <div className="grid size-full grid-flow-col grid-cols-3 grid-rows-1 gap-3 px-4">
                   <Card>
                     <CardContent className="flex flex-col items-center p-0 text-center">
                       <Braces
@@ -100,7 +100,7 @@ export default function Home() {
                       <p className="text-sm">Cycling</p>
                     </CardContent>
                   </Card>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
 
