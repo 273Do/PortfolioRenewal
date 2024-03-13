@@ -28,12 +28,11 @@ const selectLastSevenWeeks = (contributions: Array<Activity>) => {
 };
 const explicitTheme: ThemeInput = {
   light: ["#eeeeee", "#27272a"],
-  dark: ["#27272a", "#fafafa"],
+  dark: ["#27272a", "#eeeeee"],
 };
 
 const GitCalendar = () => {
   const { theme } = useTheme();
-  console.log(theme);
   return (
     <div>
       <GitHubCalendar

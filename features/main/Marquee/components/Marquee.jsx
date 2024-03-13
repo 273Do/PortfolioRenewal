@@ -1,19 +1,18 @@
-"use client";
-
 import * as Icons from "@icons-pack/react-simple-icons";
 import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 import Marquee from "react-fast-marquee";
-import { useTheme } from "next-themes";
 import iconsData from "./iconData.json";
+import tailwindConfig from "@/tailwind.config";
 
 const MarqueeWidget = () => {
-  const { theme } = useTheme();
+  // tailwindConfigから直接カラーを取得
+  const gradientColor = tailwindConfig.theme.extend.colors["background"];
   return (
     <>
       <Marquee
         gradient
-        gradientColor={`${theme === "dark" ? "#0a0a0b" : "#ffffff"}`}
+        gradientColor={gradientColor}
         className="text-muted-foreground"
       >
         {iconsData.map(({ icon, label }) => {
