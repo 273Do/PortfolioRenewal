@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import MarqueeWidget from "@/features/main/Marquee/components/Marquee";
+import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 
 export default function Home() {

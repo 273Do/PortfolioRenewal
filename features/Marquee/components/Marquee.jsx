@@ -8,6 +8,7 @@ import tailwindConfig from "@/tailwind.config";
 const MarqueeWidget = () => {
   // tailwindConfigから直接カラーを取得
   const gradientColor = tailwindConfig.theme.extend.colors["background"];
+  console.log(gradientColor);
   return (
     <>
       <Marquee

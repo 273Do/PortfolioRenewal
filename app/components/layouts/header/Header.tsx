@@ -22,6 +22,8 @@ import {
 } from "@icons-pack/react-simple-icons";
 import Image from "next/image";
 import myImg from "@/public/myImg.jpg";
+import siteLogo from "@/public/273*Logo.png";
+import { useTheme } from "next-themes";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -62,10 +64,18 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 const Header = () => {
+  const theme = useTheme();
   return (
     <div className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="w-ful mx-12 flex h-14 items-center justify-between">
-        <p>Header</p>
+        {/* <p>Header</p> */}
+        <Image
+          src={siteLogo}
+          width={70}
+          height={70}
+          alt="siteLogo"
+          className={`${theme.theme === "light" && "icon_light"}`}
+        />
         <div className="flex">
           <NavigationMenu>
             <NavigationMenuList>
@@ -96,16 +106,21 @@ const Header = () => {
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/docs" title="Movie">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
+                    <ListItem href="/movie" title="Movie">
+                      制作した映像作品を紹介しています．YouTubeにて公開しています．
                     </ListItem>
-                    <ListItem href="/docs/installation" title="Other">
-                      How to install dependencies and structure your app.
+                    <ListItem href="/other" title="Other">
+                      私の趣味や活動の記録を写真で紹介しています．
                     </ListItem>
-                    <ListItem href="/docs/primitives/typography" title="Qiita">
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
+                    <a
+                      href="https://qiita.com/273Do"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ListItem title="Qiita">
+                        開発したものは，Qiitaにて記事を書いて投稿しています．
+                      </ListItem>
+                    </a>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -126,7 +141,7 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
+                <Link href="/faq" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     FAQ
                   </NavigationMenuLink>
@@ -135,10 +150,34 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
           <nav className="ml-7 flex items-center justify-end gap-6">
-            <SiGithub className="size-[1.2rem] duration-150 hover:opacity-50" />
-            <SiX className="size-[1.2rem] duration-150 hover:opacity-50" />
-            <SiYoutube className="size-[1.2rem] duration-150 hover:opacity-50" />
-            <SiInstagram className="size-[1.2rem] duration-150 hover:opacity-50" />
+            <a
+              href="https://github.com/273Do"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiGithub className="size-[1.2rem] duration-150 hover:opacity-50" />
+            </a>
+            <a
+              href="https://twitter.com/ktu_na3do"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiX className="size-[1.2rem] duration-150 hover:opacity-50" />
+            </a>
+            <a
+              href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiInstagram className="size-[1.2rem] duration-150 hover:opacity-50" />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SiYoutube className="size-[1.2rem] duration-150 hover:opacity-50" />
+            </a>
           </nav>
         </div>
       </div>

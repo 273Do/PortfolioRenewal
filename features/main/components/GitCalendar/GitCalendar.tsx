@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { ThemeInput } from "react-github-calendar";
 import GitHubCalendar from "react-github-calendar";
 import {
@@ -33,8 +33,16 @@ const explicitTheme: ThemeInput = {
 
 const GitCalendar = () => {
   const { theme } = useTheme();
+  const [isLoad, setIsLoad] = useState<boolean>(true);
+
+  useEffect(() => {
+    window.setTimeout(() => {
+      setIsLoad(!isLoad);
+    }, 1050);
+  }, []);
+
   return (
-    <div>
+    <div className={`${!isLoad ? "" : "hidden"}`}>
       <GitHubCalendar
         username="273Do"
         transformData={selectLastSevenWeeks}
