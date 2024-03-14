@@ -12,6 +12,7 @@ import * as Main from "@/features/main/components/index";
 export default function Home() {
   return (
     <main className="p-12">
+      <div className="h-14"></div>
       <Card className="w-[570px]">
         <CardHeader>
           <CardTitle>About</CardTitle>

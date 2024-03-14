@@ -28,7 +28,7 @@ import { useTheme } from "next-themes";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    href: "/tool/primitives",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
@@ -66,7 +66,7 @@ const components: { title: string; href: string; description: string }[] = [
 const Header = () => {
   const theme = useTheme();
   return (
-    <div className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="w-ful mx-12 flex h-14 items-center justify-between">
         {/* <p>Header</p> */}
         <Image
