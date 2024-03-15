@@ -40,16 +40,14 @@ export function Three({ three_text, three_color }) {
     distortionScale: { value: 0.1, min: 0.01, max: 1, step: 0.01 },
     temporalDistortion: { value: 0.0, min: 0, max: 1, step: 0.01 },
     ior: { value: 1.5, min: 0, max: 2, step: 0.01 },
-    color: three_color[0],
-    gColor: three_color[1],
-
+    color: three_color,
+    gColor: "#ffffff",
     autoRotate: true,
   });
 
   useEffect(() => {
     config.text = three_text;
-    config.color = three_color[0];
-    config.gColor = three_color[1];
+    config.color = three_color;
   }, [three_text, three_color, BGColor]);
 
   //デバイスによってカメラ倍率を変更

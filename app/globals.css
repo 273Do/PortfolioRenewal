@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .icon_light {
-  -webkit-filter: brightness(0) invert(1) !important;
+  -webkit-filter: brightness(0) invert(1);
   /* filter: invert(2%) sepia(38%) saturate(137%) hue-rotate(202deg)
     brightness(97%) contrast(97%) !important; */
-  filter: brightness(0) invert(0.05) !important;
+  filter: brightness(0) invert(0.05);
 }
 
 @layer base {
