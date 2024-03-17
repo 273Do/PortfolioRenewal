@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import three_font from "@/public/Inter_Medium_Regular.json";
 
-export function Three({ three_text, three_color }) {
+const Three = ({ three_text, three_color }) => {
   const Theme = useTheme();
   const BGColor = Theme.theme === "dark" ? "#0a0a0b" : "#ffffff";
 
@@ -143,7 +143,7 @@ export function Three({ three_text, three_color }) {
       </AccumulativeShadows>
     </Canvas>
   );
-}
+};
 
 const Grid = ({ number = 23, lineWidth = 0.026, height = 0.5 }) => (
   // Renders a grid and crosses as instances
@@ -202,3 +202,5 @@ function Text({ children, config, font = three_font, ...props }) {
     </>
   );
 }
+
+export default Three;

@@ -5,7 +5,8 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "2ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["Web", "Frontend"]
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "1ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["Web", "Backend", "CL"]
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "2ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["Tool"]
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "5ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["Frontend", "Hardware"]
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "3ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["AI", "Hardware"]
   },
   {
     "id": 6,
@@ -45,6 +50,7 @@
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "1ヶ月",
-    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"]
+    "tools": ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    "genre": ["Frontend", "Backend"]
   }
 ]
