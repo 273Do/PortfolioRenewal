@@ -16,7 +16,7 @@ const MarqueeWidget = () => {
         className="text-muted-foreground"
       >
         {iconsData.map(({ icon, label }) => {
-          const IconComponent = Icons[icon]; //ここで型エラーが出るため，jsxにしています．
+          const IconComponent = Icons[`Si${icon}`]; //ここで型エラーが出るため，jsxにしています．
           return (
             <div key={label} className="px-3">
               <Slot className="h-10 w-full">

@@ -9,6 +9,17 @@
   filter: brightness(0) invert(0.05);
 }
 
+.iframe-rounded {
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  border-color: var(--background);
+}
+
+.tool-detail-rounded {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

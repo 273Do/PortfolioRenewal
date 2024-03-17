@@ -1,12 +1,12 @@
 [
-  { "icon": "SiBun", "label": "Bun" },
-  { "icon": "SiTypescript", "label": "Typescript" },
-  { "icon": "SiNextdotjs", "label": "Next.js" },
-  { "icon": "SiPrisma", "label": "Prisma" },
-  { "icon": "SiTailwindcss", "label": "Tailwind CSS" },
-  { "icon": "SiLaravel", "label": "Laravel" },
-  { "icon": "SiPython", "label": "Python" },
-  { "icon": "SiGithub", "label": "GitHub" },
-  { "icon": "SiDocker", "label": "Docker" },
-  { "icon": "SiBlender", "label": "Blender" }
+  { "icon": "Bun", "label": "Bun" },
+  { "icon": "Typescript", "label": "Typescript" },
+  { "icon": "Nextdotjs", "label": "Next.js" },
+  { "icon": "Prisma", "label": "Prisma" },
+  { "icon": "Tailwindcss", "label": "Tailwind CSS" },
+  { "icon": "Laravel", "label": "Laravel" },
+  { "icon": "Python", "label": "Python" },
+  { "icon": "Github", "label": "GitHub" },
+  { "icon": "Docker", "label": "Docker" },
+  { "icon": "Blender", "label": "Blender" }
 ]

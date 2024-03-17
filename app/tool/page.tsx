@@ -9,10 +9,16 @@ import {
 } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Tool from "@/features/tool/components/index";
+import Link from "next/link";
 import React from "react";
 
-const page = () => {
+const page = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   const params = "primitive";
+  console.log(searchParams.id);
   return (
     <main className="h-screen">
       {/* <Tool.Three three_text={params} three_color="#bfcde8" /> */}
@@ -25,19 +31,26 @@ const page = () => {
             </CardHeader>
             <CardContent className="size-full">
               <div className="grid size-full grid-flow-col grid-cols-5 grid-rows-5 gap-4">
-                <div className="... col-span-2 row-span-2 row-start-1 bg-red-600">
+                {/* <div className="... col-span-2 row-span-2 row-start-1 bg-red-600">
                   01
                 </div>
                 <div className="... col-span-1 row-span-2 row-start-1 bg-green-500">
                   02
-                </div>
+                </div> */}
                 <div className="... col-span-5 col-start-1 row-start-3 flex items-center justify-between">
-                  <Button
+                  {/* <Button
                     variant="outline"
                     className="pointer-events-auto bg-transparent p-7"
-                  >
-                    {"<"}
-                  </Button>
+                  > */}
+                  <Link href="/tool/primitive">
+                    <Button
+                      variant="outline"
+                      className="pointer-events-auto bg-transparent p-7"
+                    >
+                      {"<"}
+                    </Button>
+                  </Link>
+                  {/* </Button> */}
                   <Button
                     variant="outline"
                     className="pointer-events-auto bg-transparent p-7"
@@ -45,9 +58,9 @@ const page = () => {
                     {">"}
                   </Button>
                 </div>
-                <div className="... col-span-2 col-start-1 row-start-4 bg-green-500">
+                {/* <div className="... col-span-2 col-start-1 row-start-4 bg-green-500">
                   04
-                </div>
+                </div> */}
                 <div className="... col-span-2 col-start-4 row-span-1 row-start-1 flex items-start justify-end">
                   <Card className="bg-transparent">
                     <CardHeader className="p-3 pb-0">
@@ -59,7 +72,6 @@ const page = () => {
                   </Card>
                 </div>
                 <div className="... col-span-2 col-start-1 row-start-5 ">
-                  {/* <div className="h-full w-[522px] bg-slate-500">test</div> */}
                   <Card className="flex h-full w-[522px] items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                     <CardContent className="p-0">
                       <MarqueeWidget />

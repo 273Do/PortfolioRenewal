@@ -24,40 +24,45 @@ import Image from "next/image";
 import myImg from "@/public/myImg.jpg";
 import siteLogo from "@/public/273*Logo.png";
 import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
-const components: { title: string; href: string; description: string }[] = [
+const components: {
+  id: number;
+  title: string;
+  description: string;
+}[] = [
   {
+    id: 1,
     title: "Alert Dialog",
-    href: "/tool/primitives",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
+    id: 2,
     title: "Hover Card",
-    href: "/docs/primitives/hover-card",
     description:
       "For sighted users to preview content available behind a link.",
   },
   {
+    id: 3,
     title: "Progress",
-    href: "/docs/primitives/progress",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
   {
+    id: 4,
     title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
     description: "Visually or semantically separates content.",
   },
   {
+    id: 5,
     title: "Tabs",
-    href: "/docs/primitives/tabs",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
+    id: 6,
     title: "Tooltip",
-    href: "/docs/primitives/tooltip",
     description:
       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   },
@@ -81,7 +86,7 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>My activities</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[480px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
@@ -126,12 +131,12 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Tools</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[500px] ">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {components.map((component) => (
                       <ListItem
                         key={component.title}
                         title={component.title}
-                        href={component.href}
+                        href={`/tool?id=${component.id}`}
                       >
                         {component.description}
                       </ListItem>
@@ -148,35 +153,43 @@ const Header = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <nav className="ml-7 flex items-center justify-end gap-6">
-            <a
-              href="https://github.com/273Do"
-              target="_blank"
-              rel="noopener noreferrer"
+          <nav className=" flex items-center justify-end">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => window.open("https://github.com/273Do")}
             >
-              <SiGithub className="size-[1.2rem] duration-150 hover:opacity-50" />
-            </a>
-            <a
-              href="https://twitter.com/ktu_na3do"
-              target="_blank"
-              rel="noopener noreferrer"
+              <SiGithub className="size-[1.0rem]" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => window.open("https://twitter.com/ktu_na3do")}
             >
-              <SiX className="size-[1.2rem] duration-150 hover:opacity-50" />
-            </a>
-            <a
-              href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
-              target="_blank"
-              rel="noopener noreferrer"
+              <SiX className="size-[1.0rem]" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                window.open(
+                  "https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
+                )
+              }
             >
-              <SiInstagram className="size-[1.2rem] duration-150 hover:opacity-50" />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
-              target="_blank"
-              rel="noopener noreferrer"
+              <SiInstagram className="size-[1.0rem]" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                window.open(
+                  "https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+                )
+              }
             >
-              <SiYoutube className="size-[1.2rem] duration-150 hover:opacity-50" />
-            </a>
+              <SiYoutube className="size-[1.0rem]" />
+            </Button>
           </nav>
         </div>
       </div>

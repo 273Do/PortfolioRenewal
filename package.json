@@ -30,6 +30,7 @@
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.4",
     "react-github-calendar": "^4.1.2",
+    "react-resizable-panels": "^2.0.13",
     "suspend-react": "^0.1.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
