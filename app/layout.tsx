@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import * as layout from "@/app/components/index";
+import * as Layout from "@/app/components/index";
 import { ThemeProvider } from "@/components/theme-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -26,9 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <layout.Header />
+          <Layout.Header />
           {children}
-          <layout.Footer />
+          <Layout.Footer />
         </ThemeProvider>
       </body>
     </html>

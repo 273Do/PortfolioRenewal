@@ -1,0 +1,12 @@
+[
+  { "icon": "Bun", "label": "Bun" },
+  { "icon": "Typescript", "label": "Typescript" },
+  { "icon": "Nextdotjs", "label": "Next.js" },
+  { "icon": "Prisma", "label": "Prisma" },
+  { "icon": "Tailwindcss", "label": "Tailwind CSS" },
+  { "icon": "Laravel", "label": "Laravel" },
+  { "icon": "Python", "label": "Python" },
+  { "icon": "Github", "label": "GitHub" },
+  { "icon": "Docker", "label": "Docker" },
+  { "icon": "Blender", "label": "Blender" }
+]

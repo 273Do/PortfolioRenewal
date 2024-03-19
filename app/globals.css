@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+.icon_light {
+  -webkit-filter: brightness(0) invert(1);
+  /* filter: invert(2%) sepia(38%) saturate(137%) hue-rotate(202deg)
+    brightness(97%) contrast(97%) !important; */
+  filter: brightness(0) invert(0.05);
+}
+
+.iframe-rounded {
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  border-color: var(--background);
+}
+
+.tool-detail-rounded {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* scroll */
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  /* background: #373737; */
+  background: hsl(var(--card-foreground));
+  /* background: hsl(var(--border)); */
+  border-radius: 20px;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
