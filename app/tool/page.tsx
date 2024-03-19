@@ -21,7 +21,7 @@ const page = ({
   console.log(searchParams.id);
   return (
     <main className="h-screen">
-      {/* <Tool.Three three_text={params} three_color="#bfcde8" /> */}
+      <Tool.Three three_text={params} three_color="#bfcde8" />
       <div className="pointer-events-none fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
         <div className="flex h-full items-center justify-center bg-transparent">
           <Card className="flex size-full flex-col bg-transparent">
@@ -30,7 +30,7 @@ const page = ({
               <CardDescription>ここにツールの説明を入れます．</CardDescription>
             </CardHeader>
             <CardContent className="size-full">
-              <div className="grid size-full grid-flow-col grid-cols-5 grid-rows-5 gap-4">
+              <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
                 {/* <div className="... col-span-2 row-span-2 row-start-1 bg-red-600">
                   01
                 </div>
@@ -71,14 +71,19 @@ const page = ({
                     </CardContent>
                   </Card>
                 </div>
-                <div className="... col-span-2 col-start-1 row-start-5 ">
-                  <Card className="flex h-full w-[522px] items-center justify-center overflow-hidden bg-transparent p-0 py-8">
+                <div className="... col-span-2 col-start-1 row-start-5 flex h-full w-[522px] items-end">
+                  <Card className="flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                     <CardContent className="p-0">
                       <MarqueeWidget />
                     </CardContent>
                   </Card>
                 </div>
-                <div className="... col-span-2 col-start-4 row-start-5 flex items-end justify-end">
+                <div className="... col-span-2 col-start-4 row-start-5 flex flex-col items-end justify-end gap-4">
+                  <Card className="bg-transparent p-4">
+                    <CardContent className="p-0">
+                      <p>1/n</p>
+                    </CardContent>
+                  </Card>
                   <Card className="bg-transparent p-4">
                     <CardContent className="p-0">
                       <Tool.Annotation />

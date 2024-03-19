@@ -14,6 +14,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 const page = ({ params }: { params: { name: string } }) => {
@@ -29,8 +30,8 @@ const page = ({ params }: { params: { name: string } }) => {
                 direction="horizontal"
                 className="flex size-full flex-col"
               >
-                <ResizablePanel>
-                  <Card className="tool-detail-rounded flex size-full flex-col">
+                <ResizablePanel defaultSize={65}>
+                  <Card className="tool-detail-rounded flex size-full min-w-[570px] flex-col">
                     <CardHeader>
                       <div className="flex justify-between">
                         <div>
@@ -44,25 +45,48 @@ const page = ({ params }: { params: { name: string } }) => {
                         </Link>
                       </div>
                     </CardHeader>
-                    <CardContent className="size-full">
-                      <div className="grid size-full grid-flow-col grid-cols-5 grid-rows-5 gap-4">
-                        <div className="... col-span-2 row-span-2 row-start-1 bg-red-600">
-                          01
-                        </div>
-                        <div className="... col-span-1 row-span-2 row-start-1 bg-green-500">
-                          02
-                        </div>
-                        <div className="... col-span-5 col-start-1 row-start-3 bg-blue-800">
-                          03
-                        </div>
-                        <div className="... col-span-2 col-start-1 row-start-4 bg-green-500">
-                          04
-                        </div>
-                        <div className="... col-span-2 col-start-4 row-span-1 bg-red-600">
-                          05
-                        </div>
-                        <div className="... col-span-3 col-start-1 row-start-5 ">
-                          <Card className="flex h-full w-[522px] items-center justify-center overflow-hidden bg-transparent p-0 py-8">
+                    <CardContent className="size-full overflow-y-scroll">
+                      <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
+                        <Card className="... col-span-5 row-span-4 row-start-1 size-full ">
+                          <CardContent className="grid size-full grid-flow-col grid-rows-3 gap-4">
+                            <div className="... col-span-3 col-start-1 row-start-1">
+                              <CardContent className="size-full p-0 pt-6">
+                                <CardTitle>背景</CardTitle>
+                                <CardContent className="flex h-full items-center justify-center p-0">
+                                  <p>
+                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                  </p>
+                                </CardContent>
+                              </CardContent>
+                              <Separator className="mt-5" />
+                            </div>
+                            <div className="... col-span-3 col-start-1 row-start-2">
+                              <CardContent className="size-full p-0 pt-6">
+                                <CardTitle>工夫</CardTitle>
+                                <CardContent className="flex h-full items-center justify-center p-0">
+                                  <p>
+                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                  </p>
+                                </CardContent>
+                              </CardContent>
+                              <Separator className="mt-5" />
+                            </div>
+                            <div className="... col-span-3 col-start-1 row-start-3">
+                              <CardContent className="size-full p-0 pt-6">
+                                <CardTitle>課題</CardTitle>
+                                <CardContent className="flex h-full items-center justify-center p-0">
+                                  <p>
+                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                  </p>
+                                </CardContent>
+                              </CardContent>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <div className="... col-span-3 col-start-1 row-start-5 flex h-full w-[522px] items-end">
+                          <Card className=" flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
+                            {/* mb-6 画面の高さが小さくなったらこれをつける*/}
                             <CardContent className="p-0">
                               <MarqueeWidget />
                             </CardContent>

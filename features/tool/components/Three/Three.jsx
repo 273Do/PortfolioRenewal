@@ -17,6 +17,7 @@ import {
 import { useControls } from "leva";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 import three_font from "@/public/Inter_Medium_Regular.json";
 
 const Three = ({ three_text, three_color }) => {
@@ -65,6 +66,7 @@ const Three = ({ three_text, three_color }) => {
       <color attach="background" args={[BGColor]} />
       {/** The text and the grid */}
       <Text
+        toolName={three_text}
         config={config}
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, -1, 5]}
@@ -169,7 +171,8 @@ const Grid = ({ number = 23, lineWidth = 0.026, height = 0.5 }) => (
   </Instances>
 );
 
-function Text({ children, config, font = three_font, ...props }) {
+function Text({ toolName, children, config, font = three_font, ...props }) {
+  const router = useRouter();
   const texture = useLoader(
     RGBELoader,
     "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr"
@@ -191,7 +194,7 @@ function Text({ children, config, font = three_font, ...props }) {
             bevelSegments={10}
             curveSegments={128}
             bevelThickness={0.01}
-            onClick={() => console.log("clicked")}
+            onClick={() => router.push(`/tool/${toolName}`)}
           >
             {children}
             <MeshTransmissionMaterial {...config} background={texture} />
