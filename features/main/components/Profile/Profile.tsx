@@ -5,7 +5,7 @@ import myImg from "@/public/myImg.jpg";
 
 const Profile = () => {
   return (
-    <div className="flex flex-row ">
+    <div className="flex flex-row">
       <Image
         src={myImg}
         width={90}
