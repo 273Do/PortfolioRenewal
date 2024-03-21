@@ -10,6 +10,7 @@ import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Tool from "@/features/tool/components/index";
 import Link from "next/link";
 import React from "react";
+import { Separator } from "@/components/ui/separator";
 
 const page = ({
   searchParams,
@@ -28,7 +29,8 @@ const page = ({
               <CardTitle>Tools</CardTitle>
               <CardDescription>ここにツールの説明を入れます．</CardDescription>
             </CardHeader>
-            <CardContent className="size-full">
+            <Separator />
+            <CardContent className="size-full p-6">
               <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
                 <div className="... col-span-5 col-start-1 row-start-3 flex items-center justify-between">
                   <Link href="/tool/primitive">

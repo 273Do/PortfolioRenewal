@@ -35,7 +35,7 @@ export default function Home() {
           </Card>
 
           <Card className="... col-span-2 col-start-1 row-start-4">
-            <CardHeader className="p-4 pb-3">
+            <CardHeader className="p-4 pb-2">
               <CardTitle className="text-lg">Hobby</CardTitle>
             </CardHeader>
             <CardContent className="flex h-3/5 items-center justify-center p-0">

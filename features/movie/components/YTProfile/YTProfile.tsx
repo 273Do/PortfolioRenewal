@@ -3,10 +3,11 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import YTIcon from "@/public/YTIcon.png";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const YTProfile = () => {
   return (
-    <div className="flex size-full items-center justify-center gap-16 p-4">
+    <div className="flex size-full items-center justify-center gap-16">
       <div className="flex flex-row">
         <Image
           src={YTIcon}
@@ -28,15 +29,14 @@ const YTProfile = () => {
           </div>
         </div>
       </div>
-      <Button>
-        <a
-          href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Subscribe {">"}
-        </a>
-      </Button>
+
+      <Link
+        href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button>Subscribe {">"}</Button>
+      </Link>
     </div>
   );
 };

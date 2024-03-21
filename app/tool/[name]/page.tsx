@@ -43,7 +43,8 @@ const page = ({ params }: { params: { name: string } }) => {
                         </Link>
                       </div>
                     </CardHeader>
-                    <CardContent className="size-full overflow-y-scroll">
+                    <Separator />
+                    <CardContent className="size-full overflow-y-scroll p-6">
                       <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
                         <Card className="... col-span-5 row-span-4 row-start-1 size-full ">
                           <CardContent className="grid size-full grid-flow-col grid-rows-3 gap-4">
@@ -83,8 +84,7 @@ const page = ({ params }: { params: { name: string } }) => {
                         </Card>
 
                         <div className="... col-span-3 col-start-1 row-start-5 flex h-full w-[522px] items-end">
-                          <Card className=" flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
-                            {/* mb-6 画面の高さが小さくなったらこれをつける*/}
+                          <Card className="mb-6 flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                             <CardContent className="p-0">
                               <MarqueeWidget />
                             </CardContent>
