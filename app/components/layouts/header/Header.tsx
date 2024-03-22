@@ -70,6 +70,7 @@ const components: {
 
 const Header = () => {
   const theme = useTheme();
+  console.log(theme);
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-12 flex h-14 items-center justify-between">
@@ -114,7 +115,7 @@ const Header = () => {
                     <ListItem href="/movie" title="Movie">
                       制作した映像作品を紹介しています．YouTubeにて公開しています．
                     </ListItem>
-                    <ListItem href="/other" title="Other">
+                    <ListItem href="/gallery" title="Gallery">
                       私の趣味や活動の記録を写真で紹介しています．
                     </ListItem>
                     <a

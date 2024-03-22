@@ -29,7 +29,6 @@ const YTProfile = () => {
           </div>
         </div>
       </div>
-
       <Link
         href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
         target="_blank"

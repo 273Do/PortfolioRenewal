@@ -17,58 +17,6 @@ import {
 
 const page = () => {
   return (
-    // <main className="h-screen">
-    //   <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
-    //     <div className="flex h-full items-center justify-center">
-    //       <Card className="flex size-full flex-col ">
-    //         <CardHeader>
-    //           <CardTitle>Movie</CardTitle>
-    //           <CardDescription>
-    //             制作した映像作品を紹介しています．YouTubeにて公開しています．
-    //           </CardDescription>
-    //         </CardHeader>
-    //         <Separator />
-    //         <CardContent className="size-full p-0">
-    //           <div className="flex h-full">
-    //             <div className="flex h-full w-2/5 min-w-[450px] flex-col gap-4 overflow-y-scroll p-6">
-    //               {/* <div className="h-full min-h-[695px] overflow-y-scroll"> */}
-    //               <div className="grid h-full grid-flow-col grid-rows-5 gap-4">
-    //                 <Card className="... row-span-2 row-start-1">
-    //                   <CardContent className="h-full p-4">
-    //                     <Movie.Profile />
-    //                   </CardContent>
-    //                 </Card>
-    //                 <Card className="... row-span-1 row-start-3 flex items-center justify-center p-0">
-    //                   <CardContent className="size-full p-0">
-    //                     <Movie.YTProfile />
-    //                   </CardContent>
-    //                 </Card>
-    //                 <div className="... row-span-2 row-start-4 bg-blue-500">
-    //                   03
-    //                 </div>
-    //               </div>
-    //               {/* </div> */}
-    //               {/* <Card className="h-56">
-    //                 <CardContent className="h-full p-4">
-    //                   <Movie.Profile />
-    //                 </CardContent>
-    //               </Card>
-    //               <Card className="h-28">
-    //                 <CardContent className="size-full p-0">
-    //                   <Movie.YTProfile />
-    //                 </CardContent>
-    //               </Card> */}
-    //             </div>
-    //             <Separator orientation="vertical" />
-    //             <div className="w-auto">
-    //               <p>test</p>
-    //             </div>
-    //           </div>
-    //         </CardContent>
-    //       </Card>
-    //     </div>
-    //   </div>
-    // </main>
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
         <div className="flex h-full items-center justify-center">
@@ -104,7 +52,7 @@ const page = () => {
                             </Card>
                             <Card className="... col-span-3 col-start-1 row-span-2 row-start-4">
                               <CardContent className="size-full p-0">
-                                <CardContent className="flex h-full items-center justify-center p-0">
+                                <CardContent className="flex h-full items-center justify-center p-4">
                                   <Movie.YTProfile />
                                 </CardContent>
                               </CardContent>
@@ -136,7 +84,7 @@ const page = () => {
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel>
-                  <div>test</div>
+                  <Movie.MovieList />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </CardContent>
