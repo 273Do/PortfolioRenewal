@@ -20,18 +20,44 @@
   border-bottom-right-radius: 0;
 }
 
+.movie-iframe-rounded {
+  border-radius: var(--radius);
+  border-color: var(--background);
+}
+
 /* scroll */
 
+/* 垂直スクロールバー */
 ::-webkit-scrollbar {
   width: 1px;
+  height: 1px;
 }
+
+/* 垂直スクロールバーのトラック */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* 垂直スクロールバーのスクロール部分 */
 ::-webkit-scrollbar-thumb {
-  /* background: #373737; */
   background: hsl(var(--card-foreground));
-  /* background: hsl(var(--border)); */
+  border-radius: 20px;
+}
+
+/* 横スクロールバー */
+::-webkit-scrollbar-x {
+  width: 1px;
+  height: 1px;
+}
+
+/* 横スクロールバーのトラック */
+::-webkit-scrollbar-x-track {
+  background: transparent;
+}
+
+/* 横スクロールバーのスクロール部分 */
+::-webkit-scrollbar-x-thumb {
+  background: hsl(var(--card-foreground));
   border-radius: 20px;
 }
 

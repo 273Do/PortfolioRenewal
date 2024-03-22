@@ -70,6 +70,7 @@ const components: {
 
 const Header = () => {
   const theme = useTheme();
+  console.log(theme);
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-12 flex h-14 items-center justify-between">
@@ -84,7 +85,9 @@ const Header = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>My activities</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent">
+                  My activities
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[480px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
@@ -93,7 +96,6 @@ const Header = () => {
                           className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
                           href="/"
                         >
-                          {/* <Icons.logo className="size-6" /> */}
                           <Image
                             src={myImg}
                             width={70}
@@ -113,7 +115,7 @@ const Header = () => {
                     <ListItem href="/movie" title="Movie">
                       制作した映像作品を紹介しています．YouTubeにて公開しています．
                     </ListItem>
-                    <ListItem href="/other" title="Other">
+                    <ListItem href="/gallery" title="Gallery">
                       私の趣味や活動の記録を写真で紹介しています．
                     </ListItem>
                     <a
@@ -129,7 +131,9 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Tools</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent">
+                  Tools
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {components.map((component) => (
@@ -153,7 +157,7 @@ const Header = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <nav className=" flex items-center justify-end">
+          <nav className="flex items-center justify-end">
             <Button
               variant="ghost"
               size="icon"
