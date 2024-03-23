@@ -12,7 +12,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
 
@@ -70,7 +70,13 @@ const page = () => {
                   >
                     <HoverCard>
                       <HoverCardTrigger>
-                        <img className="rounded-lg" src={data.url} />
+                        <Image
+                          className="rounded-lg"
+                          src={data.url}
+                          alt="img"
+                          width={1000}
+                          height={1000}
+                        />
                       </HoverCardTrigger>
                       <HoverCardContent>
                         <p>{data.title}</p>
