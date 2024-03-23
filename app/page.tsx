@@ -9,6 +9,12 @@ import {
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "273* Portfolio | About",
+};
+
 export default function Home() {
   return (
     <main className="p-12">

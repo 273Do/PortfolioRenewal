@@ -16,8 +16,19 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { name: string };
+}) {
+  return {
+    title: `273* Portfolio | ${params.name}`,
+  };
+}
+
 const page = ({ params }: { params: { name: string } }) => {
   console.log(params.name);
+
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
