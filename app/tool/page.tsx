@@ -12,6 +12,12 @@ import Link from "next/link";
 import React from "react";
 import { Separator } from "@/components/ui/separator";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "273* Portfolio | Tool",
+};
+
 const page = ({
   searchParams,
 }: {

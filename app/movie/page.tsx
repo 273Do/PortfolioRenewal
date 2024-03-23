@@ -15,6 +15,12 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "273* Portfolio | Movie",
+};
+
 const page = () => {
   return (
     <main className="h-screen">

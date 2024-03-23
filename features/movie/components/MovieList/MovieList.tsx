@@ -12,10 +12,6 @@ const MovieList = () => {
             className="movie-iframe-rounded"
             width="500"
             height="280"
-            // width="560"
-            // height="315"
-            // width="373"
-            // height="210"
             src={data.url}
             title={data.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
