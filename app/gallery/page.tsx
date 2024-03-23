@@ -7,11 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
@@ -68,23 +63,25 @@ const page = () => {
                     className="mb-4 duration-150 hover:scale-[1.025]"
                     key={data.id}
                   >
-                    <HoverCard>
-                      <HoverCardTrigger>
-                        <Image
-                          className="rounded-lg"
-                          src={data.url}
-                          alt="img"
-                          width={1000}
-                          height={1000}
-                        />
-                      </HoverCardTrigger>
-                      <HoverCardContent>
-                        <p>{data.title}</p>
-                        <p className="text-muted-foreground">
-                          {data.description}
-                        </p>
-                      </HoverCardContent>
-                    </HoverCard>
+                    <div className="relative mb-4 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-['']">
+                      <Image
+                        className="rounded-lg"
+                        src={data.url}
+                        alt="img"
+                        width={1000}
+                        height={1000}
+                      />
+                      <div className="test__body absolute inset-0 flex flex-col p-4 text-white">
+                        <div className="relative">
+                          <h1 className="test__title mb-1 text-3xl font-bold">
+                            {data.title}
+                          </h1>
+                          <p className="test__author font-sm font-light">
+                            {data.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
