@@ -62,6 +62,7 @@ export default function Home() {
           </Card>
         </CardContent>
       </Card>
+      <div className="h-14"></div>
     </main>
   );
 }
