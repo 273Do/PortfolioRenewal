@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import type { galleryObj } from "../types";
+import type { galleryObj } from "../../types";
 
 // 10個のオブジェクトを格納するための空の配列を作成
 const galleryData: galleryObj[] = [];

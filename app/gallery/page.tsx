@@ -36,7 +36,6 @@ const page = () => {
                   </CardContent>
                   <Separator className="mt-1" />
                 </Card>
-
                 <Gallery.ImageList />
               </div>
             </CardContent>
