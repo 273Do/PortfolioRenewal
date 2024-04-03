@@ -7,8 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import * as FAQ from "@/features/faq/components/index";
+
+export const metadata: Metadata = {
+  title: "273* Portfolio | FAQ",
+};
 
 const page = () => {
   return (

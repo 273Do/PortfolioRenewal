@@ -23,7 +23,7 @@ const page = () => {
           <Card className="flex size-full flex-col">
             <CardContent className="size-full overflow-y-scroll p-0">
               <div className="m-4 columns-2 lg:columns-3 xl:columns-4">
-                <Card className="mb-4 border-none p-2">
+                <Card className="mb-4 border-none p-2 shadow-none">
                   <CardHeader className="p-0">
                     <CardTitle>Gallery</CardTitle>
                     <CardDescription>
@@ -34,7 +34,7 @@ const page = () => {
                     趣味でピアノやサイクリング，カラーグレーディングなどを楽しんでいます．
                     数人の友人とマイコンを用いてプラモデルの無線化に取り組んだんりしています．
                   </CardContent>
-                  <Separator className="mt-1" />
+                  <Separator className="-mb-2 mt-3" />
                 </Card>
                 <Gallery.ImageList />
               </div>
