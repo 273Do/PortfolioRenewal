@@ -70,7 +70,6 @@ const components: {
 
 const Header = () => {
   const theme = useTheme();
-  console.log(theme);
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-12 flex h-14 items-center justify-between">

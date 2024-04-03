@@ -15,10 +15,10 @@ const MarqueeWidget = () => {
         gradientColor={gradientColor}
         className="text-muted-foreground"
       >
-        {iconsData.map(({ icon, label }) => {
+        {iconsData.map(({ icon }) => {
           const IconComponent = Icons[`Si${icon}`]; //ここで型エラーが出るため，jsxにしています．
           return (
-            <div key={label} className="px-3">
+            <div key={icon} className="px-3">
               <Slot className="h-10 w-full">
                 <IconComponent />
               </Slot>
