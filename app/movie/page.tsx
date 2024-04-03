@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import * as Movie from "@/features/movie/index";
+import * as Movie from "@/features/movie/components/index";
 import {
   ResizableHandle,
   ResizablePanel,
