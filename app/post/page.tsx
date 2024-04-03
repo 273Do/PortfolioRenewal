@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/card";
 import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
-import * as FAQ from "@/features/faq/components/index";
+import * as PostTabs from "@/features/post/components/PostTabs/PostTabs";
+
 export const metadata: Metadata = {
-  title: "273* Portfolio | FAQ",
+  title: "273* Portfolio | Post",
 };
 
 const page = () => {
@@ -20,20 +21,20 @@ const page = () => {
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
         <div className="flex h-full items-center justify-center">
           <Card className="flex size-full flex-col">
-            <CardContent className="size-full overflow-y-hidden p-0">
+            <CardContent className="p-0">
               <CardHeader>
                 <div className="flex justify-between">
                   <div>
-                    <CardTitle>Frequently Asked Question</CardTitle>
+                    <CardTitle>Post</CardTitle>
                     <CardDescription className="mt-[6px]">
-                      よくある質問をまとめました．
+                      ツールや実績の投稿，編集，更新，削除を行います．
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <Separator />
-              <FAQ.FAQList />
             </CardContent>
+            <PostTabs.default />
           </Card>
         </div>
       </div>
