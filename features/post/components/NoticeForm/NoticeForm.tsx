@@ -12,30 +12,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import DataTable from "../DataTable/DataTable";
 
-const FAQForm = () => {
+const NoticeForm = () => {
   return (
     <>
       <DataTable />
       <Card className="mt-3">
         <CardHeader>
-          <CardTitle>FAQ</CardTitle>
-          <CardDescription>質問と回答を投稿します．</CardDescription>
+          <CardTitle>Notice</CardTitle>
+          <CardDescription>お知らせや実績を投稿します．</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">
-            <Label htmlFor="question">Question</Label>
-            <Input id="question" placeholder="質問" />
+            <Label htmlFor="name">Notice</Label>
+            <Input id="name" placeholder="お知らせ内容" />
           </div>
           <div className="space-y-1">
-            <Label htmlFor="answer">Answer</Label>
-            <Input id="answer" placeholder="回答" />
+            <Label htmlFor="date">Date</Label>
+            <Input id="date" defaultValue="date" />
           </div>
         </CardContent>
         <CardFooter className="flex flex-col items-start ">
           <Label htmlFor="password">Password</Label>
           <div className="mt-2 flex w-full flex-row gap-4">
             <Input id="password" type="password" />
-            <Button>Save FAQ</Button>
+            <Button>Save Notice</Button>
           </div>
         </CardFooter>
       </Card>
@@ -44,4 +44,4 @@ const FAQForm = () => {
   );
 };
 
-export default FAQForm;
+export default NoticeForm;

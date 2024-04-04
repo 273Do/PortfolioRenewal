@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -18,6 +20,7 @@ import {
   TableFooter,
 } from "@/components/ui/table";
 import { Pencil, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const invoices = [
   {
@@ -86,6 +89,7 @@ const DataTable = () => {
                     <TableHead>{head}</TableHead>
                   </>
                 ))}
+                <TableHead>Edit</TableHead>
                 {/* <TableHead className="w-[100px]">Invoice</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Method</TableHead>
@@ -111,8 +115,20 @@ const DataTable = () => {
                     <TableCell key={value}>{value}</TableCell>
                   ))}
                   <div className="flex items-center gap-3 p-4">
-                    <Pencil className="size-[1.2rem]" />
-                    <Trash2 className="size-[1.2rem]" />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => console.log("click edit")}
+                    >
+                      <Pencil className="size-[1.2rem] cursor-pointer" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => console.log("click delete")}
+                    >
+                      <Trash2 className="size-[1.2rem] cursor-pointer" />
+                    </Button>
                   </div>
                 </TableRow>
               ))}
