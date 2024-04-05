@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -21,12 +21,30 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import DataTable from "../DataTable/DataTable";
+import { getNoticeAllData } from "@/app/utils/api/Notice/NoticeApi";
+import type { NoticeObj } from "@/features/main/types";
 
 const NoticeForm = () => {
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = useState<Date>();
+  const [postData, setPostData] = useState<NoticeObj[]>([]);
+
+  useEffect(() => {
+    const fetchPostData = async () => {
+      try {
+        const post_data = await getNoticeAllData();
+        setPostData(post_data);
+      } catch (error) {
+        // エラーハンドリング
+        console.log(error);
+      }
+    };
+
+    fetchPostData();
+  }, []);
+
   return (
     <>
-      <DataTable />
+      <DataTable postData={postData} />
       <Card className="mt-3">
         <CardHeader>
           <CardTitle>Notice</CardTitle>

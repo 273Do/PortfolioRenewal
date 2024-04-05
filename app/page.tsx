@@ -8,14 +8,17 @@ import {
 } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
-
 import type { Metadata } from "next";
+import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
 };
 
-export default function Home() {
+export default async function Home() {
+  const NoticeAllData = await getNoticeAllData();
+  console.log(NoticeAllData);
+
   return (
     <main className="p-12">
       <div className="h-14"></div>
@@ -31,7 +34,7 @@ export default function Home() {
           </Card>
 
           <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-            <Main.Notice />
+            <Main.Notice noticeData={NoticeAllData} />
           </div>
 
           <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center p-0">
