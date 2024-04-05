@@ -32,6 +32,10 @@ const ToolForm = () => {
             <Input id="genre" placeholder="ジャンル" />
           </div>
           <div className="space-y-1">
+            <Label htmlFor="technology">Technology</Label>
+            <Input id="technology" placeholder="技術：最大10個まで" />
+          </div>
+          <div className="space-y-1">
             <Label htmlFor="color">Color</Label>
             <Input id="color" placeholder="色を指定" />
           </div>
