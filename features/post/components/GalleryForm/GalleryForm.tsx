@@ -27,7 +27,7 @@ const GalleryForm = () => {
   const [date, setDate] = React.useState<Date>();
   return (
     <>
-      <DataTable />
+      <DataTable postData={[]} />
       <Card className="mt-3">
         <CardHeader>
           <CardTitle>Gallery</CardTitle>
