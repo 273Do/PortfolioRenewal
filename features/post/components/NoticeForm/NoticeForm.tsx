@@ -34,7 +34,7 @@ import { getNoticeAllData } from "@/app/utils/api/Notice/NoticeApi";
 import type { NoticeObj } from "@/features/main/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { noticeFormSchema } from "../../types";
+import { noticeFormSchema } from "../../types/validation";
 
 const NoticeForm = () => {
   const [date, setDate] = useState<Date>();
@@ -127,7 +127,7 @@ const NoticeForm = () => {
                 />
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col items-start pb-0">
+            <CardFooter className="flex flex-col items-start">
               <FormField
                 control={form.control}
                 name="password"
@@ -152,15 +152,6 @@ const NoticeForm = () => {
             </CardFooter>
           </form>
         </Form>
-        <CardFooter className="flex flex-col items-start">
-          <Label htmlFor="technology" className="mt-4">
-            Technology
-          </Label>
-          <div className="mt-2 flex w-full flex-row gap-4">
-            <Input id="technology" placeholder="技術：最大10個まで" />
-            <Button>Save Technology</Button>
-          </div>
-        </CardFooter>
       </Card>
       <div className="h-4"></div>
     </>

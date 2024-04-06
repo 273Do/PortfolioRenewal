@@ -1,20 +1,24 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import * as PostForm from "@/features/post/components/index";
+import * as PostForm from "@/features/post/types/index";
 
 const PostTabs = () => {
   return (
     <div className="flex size-full justify-center overflow-y-scroll">
       <Tabs defaultValue="notice" className="w-[800px]">
-        <TabsList className="mt-4 grid w-full grid-cols-4">
+        <TabsList className="mt-4 grid w-full grid-cols-5">
           <TabsTrigger value="notice">Notice</TabsTrigger>
+          <TabsTrigger value="technology">Technology</TabsTrigger>
           <TabsTrigger value="gallery">Gallery</TabsTrigger>
           <TabsTrigger value="tool">Tool</TabsTrigger>
           <TabsTrigger value="faq">FAQ</TabsTrigger>
         </TabsList>
-        <div></div>
+
         <TabsContent value="notice">
           <PostForm.NoticeForm />
+        </TabsContent>
+        <TabsContent value="technology">
+          <PostForm.TechnologyForm />
         </TabsContent>
         <TabsContent value="gallery">
           <PostForm.GalleryForm />
