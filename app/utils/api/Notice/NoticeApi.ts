@@ -1,6 +1,8 @@
 import type { NoticeObj } from "@/features/main/types";
+import type { noticeFormSchema } from "@/features/post/types/validation";
+import type { z } from "zod";
 
-// 全てのお知らせデータを取得する
+// 全てのお知らせを取得する
 async function getNoticeAllData() {
   const response = await fetch("http://localhost:3000/api/notice", {
     cache: "no-store",
@@ -9,4 +11,27 @@ async function getNoticeAllData() {
   return NoticeAllData;
 }
 
-export { getNoticeAllData };
+// お知らせを作成する
+async function postNoticeData(value: z.infer<typeof noticeFormSchema>) {
+  const { event_date, content } = value;
+  await fetch("http://localhost:3000/api/notice", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event_date, content }),
+  });
+}
+
+// お知らせを更新する
+async function updateNoticeData(
+  id: string,
+  value: z.infer<typeof noticeFormSchema>
+) {
+  const { event_date, content } = value;
+  await fetch(`http://localhost:3000/api/notice/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event_date, content }),
+  });
+}
+
+export { getNoticeAllData, postNoticeData, updateNoticeData };

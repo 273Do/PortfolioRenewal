@@ -30,14 +30,21 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import DataTable from "../DataTable/DataTable";
-import { getNoticeAllData } from "@/app/utils/api/Notice/NoticeApi";
+import {
+  getNoticeAllData,
+  postNoticeData,
+  updateNoticeData,
+} from "@/app/utils/api/Notice/NoticeApi";
 import type { NoticeObj } from "@/features/main/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { noticeFormSchema } from "../../types/validation";
+import type { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const NoticeForm = () => {
-  const [date, setDate] = useState<Date>();
+  const router = useRouter();
+  // const [date, setDate] = useState<Date>();
   const [postData, setPostData] = useState<NoticeObj[]>([]);
 
   useEffect(() => {
@@ -47,7 +54,7 @@ const NoticeForm = () => {
         setPostData(post_data);
       } catch (error) {
         // エラーハンドリング
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -57,14 +64,30 @@ const NoticeForm = () => {
   // フォームの設定
   const form = useForm({
     resolver: zodResolver(noticeFormSchema),
-    defaultValues: { content: "" },
+    defaultValues: { content: "", event_date: "" },
   });
 
-  async function onSubmit() {}
+  // お知らせの送信
+  async function onSubmit(value: z.infer<typeof noticeFormSchema>) {
+    try {
+      await postNoticeData(value);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
-      <DataTable postData={postData} />
+      <DataTable
+        postData={postData}
+        categoryData={{
+          categoryName: "notice",
+          form,
+          updateFunc: updateNoticeData,
+          deleteFunc: "関数",
+        }}
+      />
       <Card className="mt-3">
         <CardHeader>
           <CardTitle>Notice</CardTitle>
@@ -128,22 +151,23 @@ const NoticeForm = () => {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start">
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem className="w-full space-y-1">
                     <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <div className="flex w-full flex-row gap-4">
-                        <Input id="password" type="password" {...field} />
-                        <Button>Save Notice</Button>
-                      </div>
-                    </FormControl>
+                    <FormControl> */}
+              <Label htmlFor="password">Password</Label>
+              <div className="mt-2 flex w-full flex-row gap-4">
+                <Input type="password" />
+                <Button type="submit">Save Notice</Button>
+              </div>
+              {/* </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
               {/* <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
                 <Input id="password" type="password" />

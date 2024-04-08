@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -19,10 +18,9 @@ import {
   TableRow,
   TableFooter,
 } from "@/components/ui/table";
-import { Pencil, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import DataRow from "../DataRow/DataRow";
 
-const DataTable = ({ postData }) => {
+const DataTable = ({ postData, categoryData }) => {
   return (
     <>
       <Card className="h-[320px] overflow-scroll">
@@ -48,38 +46,10 @@ const DataTable = ({ postData }) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {/* {postData.map((data) => (
-                <TableRow key={data.id}>
-                  {Object.values(data).map((value) => (
-                    <TableCell key={value}>{value}</TableCell>
-                  ))} */}
                 {postData.map((data) => (
                   <TableRow key={data.id}>
-                    {Object.entries(data).map(
-                      ([key, value]) =>
-                        key !== "createdAt" &&
-                        key !== "updatedAt" && (
-                          <TableCell key={key}>{value}</TableCell>
-                        )
-                    )}
-
-                    {/* ))} */}
-                    <span className="flex items-center gap-3 p-4">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => console.log(`click edit: ${data.id}`)}
-                      >
-                        <Pencil className="size-[1.2rem] cursor-pointer" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => console.log(`click delete: ${data.id}`)}
-                      >
-                        <Trash2 className="size-[1.2rem] cursor-pointer" />
-                      </Button>
-                    </span>
+                    {/* UDFuncはデータの更新と削除を行う関数 */}
+                    <DataRow data={data} categoryData={categoryData} />
                   </TableRow>
                 ))}
               </TableBody>

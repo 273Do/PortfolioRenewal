@@ -16,7 +16,7 @@ import DataTable from "../DataTable/DataTable";
 const ToolForm = () => {
   return (
     <>
-      <DataTable />
+      <DataTable postData={[]} />
       <Card className="mt-3">
         <CardHeader>
           <CardTitle>Tool</CardTitle>

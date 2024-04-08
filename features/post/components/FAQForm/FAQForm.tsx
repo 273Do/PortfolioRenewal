@@ -15,7 +15,7 @@ import DataTable from "../DataTable/DataTable";
 const FAQForm = () => {
   return (
     <>
-      <DataTable />
+      <DataTable postData={[]} />
       <Card className="mt-3">
         <CardHeader>
           <CardTitle>FAQ</CardTitle>

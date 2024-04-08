@@ -11,14 +11,6 @@ const noticeFormSchema = z.object({
   event_date: z.date({
     required_error: "必須項目です．",
   }),
-  password: z
-    .string({
-      required_error: "必須項目です．",
-    })
-    .min(8, { message: "8桁以上のパスワードを入力してください" })
-    .regex(/^[a-zA-Z0-9.?/-]+$/, {
-      message: "英大文字，英小文字，数字，記号(.?/-)で入力してください",
-    }),
 });
 
 export { noticeFormSchema };
