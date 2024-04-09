@@ -7,6 +7,7 @@ async function getNoticeAllData() {
   const response = await fetch("http://localhost:3000/api/notice", {
     cache: "no-store",
   });
+  console.log(response);
   const NoticeAllData: NoticeObj[] = await response.json();
   return NoticeAllData;
 }
@@ -34,4 +35,9 @@ async function updateNoticeData(
   });
 }
 
-export { getNoticeAllData, postNoticeData, updateNoticeData };
+// お知らせを削除する
+async function deleteNoticeData(id: string) {
+  await fetch(`http://localhost:3000/api/notice/${id}`, { method: "DELETE" });
+}
+
+export { getNoticeAllData, postNoticeData, updateNoticeData, deleteNoticeData };

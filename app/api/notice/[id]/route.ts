@@ -9,11 +9,19 @@ export async function PUT(
 ) {
   const id = Number(params.id);
   const { content, event_date } = await req.json();
-  const post = await prisma.notice.update({
+  await prisma.notice.update({
     where: { id },
     data: { event_date, content },
   });
-  return NextResponse.json(post);
 }
 
 // 削除処理
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id);
+  await prisma.notice.delete({
+    where: { id },
+  });
+}

@@ -31,6 +31,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import DataTable from "../DataTable/DataTable";
 import {
+  deleteNoticeData,
   getNoticeAllData,
   postNoticeData,
   updateNoticeData,
@@ -40,10 +41,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { noticeFormSchema } from "../../types/validation";
 import type { z } from "zod";
-import { useRouter } from "next/navigation";
 
 const NoticeForm = () => {
-  const router = useRouter();
   // const [date, setDate] = useState<Date>();
   const [postData, setPostData] = useState<NoticeObj[]>([]);
 
@@ -61,15 +60,25 @@ const NoticeForm = () => {
     fetchPostData();
   }, []);
 
-  // フォームの設定
+  // 投稿フォームの設定
   const form = useForm({
     resolver: zodResolver(noticeFormSchema),
     defaultValues: { content: "", event_date: "" },
   });
 
+  // 更新フォームの設定
+  // const editForm = useForm({
+  //   resolver: zodResolver(noticeFormSchema),
+  //   defaultValues: { content: "", event_date: "" },
+  // });
+
   // お知らせの送信
   async function onSubmit(value: z.infer<typeof noticeFormSchema>) {
     try {
+      // なぜか曜日が1日ズレるので修正
+      const modifiedDate = new Date(value.event_date);
+      modifiedDate.setDate(modifiedDate.getDate() + 1);
+      value.event_date = modifiedDate;
       await postNoticeData(value);
       window.location.reload();
     } catch (error) {
@@ -83,9 +92,8 @@ const NoticeForm = () => {
         postData={postData}
         categoryData={{
           categoryName: "notice",
-          form,
-          updateFunc: updateNoticeData,
-          deleteFunc: "関数",
+          updateNoticeData,
+          deleteNoticeData,
         }}
       />
       <Card className="mt-3">
@@ -127,7 +135,7 @@ const NoticeForm = () => {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            initialFocus
+                            // initialFocus
                           />
                         </PopoverContent>
                       </Popover>

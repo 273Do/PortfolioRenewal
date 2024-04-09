@@ -11,7 +11,8 @@ const Notice = ({ noticeData }: { noticeData: NoticeObj[] }) => {
         <h4 className="mb-4 text-lg font-medium leading-none">Notice</h4>
         <div className="flex flex-col">
           {noticeData.map((data: NoticeObj) => (
-            <div key={data.id} style={{ order: -data.id }}>
+            // <div key={data.id} style={{ order: -data.id }}>
+            <div key={data.id}>
               <p className="mb-1 text-xs text-muted-foreground">
                 {formatDate(data.event_date)}
               </p>

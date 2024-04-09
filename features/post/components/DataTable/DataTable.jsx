@@ -23,7 +23,7 @@ import DataRow from "../DataRow/DataRow";
 const DataTable = ({ postData, categoryData }) => {
   return (
     <>
-      <Card className="h-[320px] overflow-scroll">
+      <Card className="h-[320px] w-full overflow-scroll">
         {postData.length === 0 ? (
           <CardContent className="flex size-full items-center justify-center">
             <p>loading...</p>
@@ -48,7 +48,6 @@ const DataTable = ({ postData, categoryData }) => {
               <TableBody>
                 {postData.map((data) => (
                   <TableRow key={data.id}>
-                    {/* UDFuncはデータの更新と削除を行う関数 */}
                     <DataRow data={data} categoryData={categoryData} />
                   </TableRow>
                 ))}

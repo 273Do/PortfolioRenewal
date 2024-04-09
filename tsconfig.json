@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "features/tool/components/Three/Three.jsx",
     "features/tool/components/Three/Three.jsx",
-    "features/post/components/DataRow/DataRow.jsx"
+    "features/post/components/DataRow/DataRow.tsx"
   ],
   "exclude": ["node_modules"]
 }
