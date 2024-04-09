@@ -27,7 +27,7 @@ const page = () => {
                   <div>
                     <CardTitle>Post</CardTitle>
                     <CardDescription className="mt-[6px]">
-                      ツールや実績の投稿，編集，更新，削除を行います．
+                      実績やツールの投稿，編集，更新，削除を行います．
                     </CardDescription>
                   </div>
                 </div>

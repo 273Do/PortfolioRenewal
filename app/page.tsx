@@ -8,14 +8,29 @@ import {
 } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
-
 import type { Metadata } from "next";
+import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
+import type { NoticeObj } from "@/features/main/types";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
 };
 
-export default function Home() {
+export default async function Home() {
+  const NoticeAllData = await getNoticeAllData();
+
+  const sortedArray = (arr: NoticeObj[]): NoticeObj[] => {
+    return arr.sort((a, b) => {
+      const dateA = new Date(a.event_date);
+      const dateB = new Date(b.event_date);
+      return dateB.getTime() - dateA.getTime(); // 降順
+    });
+  };
+
+  const sortedData: NoticeObj[] = sortedArray(NoticeAllData);
+  // console.log(NoticeAllData);
+  // console.log(sortedArray(NoticeAllData));
+
   return (
     <main className="p-12">
       <div className="h-14"></div>
@@ -31,7 +46,7 @@ export default function Home() {
           </Card>
 
           <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-            <Main.Notice />
+            <Main.Notice noticeData={sortedData} />
           </div>
 
           <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center p-0">
