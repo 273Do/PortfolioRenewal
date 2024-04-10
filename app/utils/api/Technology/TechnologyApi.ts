@@ -6,7 +6,6 @@ async function getAvailableTechnologyData() {
     cache: "no-store",
   });
   const availableTechnologyData: TechnologyObj[] = await response.json();
-  console.log(availableTechnologyData);
   return availableTechnologyData;
 }
 

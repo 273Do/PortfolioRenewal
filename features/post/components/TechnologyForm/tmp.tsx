@@ -23,18 +23,41 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { technologyFormSchema } from "../../types/validation";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
-import type { TechnologyObj } from "@/features/main/types";
+import type { TechnologyObj, TechnologyOnlyObj } from "@/features/main/types";
 import { getAvailableTechnologyData } from "@/app/utils/api/Technology/TechnologyApi";
 import type { z } from "zod";
 
 const TechnologyForm = () => {
   const [technologyData, setTechnologyData] = useState<TechnologyObj[]>([]);
+  const [defaultFormValues, setDefaultFormValues] =
+    useState<TechnologyOnlyObj>();
+  // const iconsArray = Array(10)
+  //   .fill()
+  //   .map((_, index) => technologyData[0][`tech${index}`])
+  //   .filter((icon) => icon !== null);
+
+  // const defaultValues: TechnologyObj={};
 
   useEffect(() => {
     const fetchTechnologyData = async () => {
       try {
         const technology_data = await getAvailableTechnologyData();
         setTechnologyData(technology_data);
+
+        console.log("default", technology_data[0]);
+        setDefaultFormValues(technology_data[0]);
+        // setDefaultFormValues({
+        //   tech0: technology_data[0].tech0,
+        //   tech1: technology_data[0].tech1,
+        // });
+
+        // const techKeys = Object.keys(technology_data).filter((key) =>
+        //   key.startsWith("tech")
+        // ) as string[];
+
+        // const techValues = techKeys.map((key) => technology_data[key]);
+        // setDefaultValues(techValues);
+        // console.log(defaultFormValues);
       } catch (error) {
         console.error(error);
       }
@@ -43,29 +66,28 @@ const TechnologyForm = () => {
     fetchTechnologyData();
   }, []);
 
-  // 非同期に初期値を設定
-  useEffect(() => {
-    form.reset(technologyData[0]);
-  }, [technologyData[0]]);
-
+  // useEffect(() => {
+  //   console.log(defaultValues);
+  // }, [defaultValues]);
   // フォームの設定
   const form = useForm({
     resolver: zodResolver(technologyFormSchema),
+    defaultValues: {
+      // tech0,
+      // tech1,
+      // tech2,
+      // tech3,
+      // tech4,
+      // tech5,
+      // tech6,
+      // tech7,
+      // tech8,
+      // tech9,
+    },
   });
-
-  const handleInputChange = (e: React.FormEvent<HTMLFormElement>) => {
-    const { name, value } = e.target as HTMLInputElement;
-    setTechnologyData((prevData) => {
-      const newData = [...prevData];
-      newData[0] = { ...newData[0], [name]: value };
-      return newData;
-    });
-    // console.log(technologyData);
-  };
 
   async function onSubmit(value: z.infer<typeof technologyFormSchema>) {
     console.log(value);
-    // console.log(technologyData);
   }
 
   return (
@@ -78,16 +100,14 @@ const TechnologyForm = () => {
           </CardDescription>
         </CardHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            onChange={(e) => handleInputChange(e)}
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="flex flex-col items-center space-y-2">
               <Card className="... flex w-[522px] items-center justify-center overflow-hidden p-0 py-8">
                 <CardContent className="p-0">
                   <MarqueeWidget technologyData={technologyData} />
                 </CardContent>
               </Card>
+              {/* {defaultValues.length !== 0 && } */}
               <div>
                 <FormLabel>Technology</FormLabel>
                 <div className="flex w-full flex-row gap-4 pb-2">
@@ -97,7 +117,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術1" {...field} />
+                          <Input
+                            placeholder="技術1"
+                            {...field}
+                            // defaultValue={defaultValues.tech0}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -109,7 +133,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術2" {...field} />
+                          <Input
+                            placeholder="技術2"
+                            {...field}
+                            // defaultValue={defaultValues.tech1}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -121,7 +149,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術3" {...field} />
+                          <Input
+                            placeholder="技術3"
+                            {...field}
+                            // defaultValue={defaultValues.tech2}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -133,7 +165,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術4" {...field} />
+                          <Input
+                            placeholder="技術4"
+                            {...field}
+                            // defaultValue={defaultValues.tech3}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -145,7 +181,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術5" {...field} />
+                          <Input
+                            placeholder="技術5"
+                            {...field}
+                            // defaultValue={defaultValues.tech4}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -159,7 +199,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術6" {...field} />
+                          <Input
+                            placeholder="技術6"
+                            {...field}
+                            // defaultValue={defaultValues.tech5}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -171,7 +215,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術7" {...field} />
+                          <Input
+                            placeholder="技術7"
+                            {...field}
+                            // defaultValue={defaultValues.tech6}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -183,7 +231,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術8" {...field} />
+                          <Input
+                            placeholder="技術8"
+                            {...field}
+                            // defaultValue={defaultValues.tech7}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -195,7 +247,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術9" {...field} />
+                          <Input
+                            placeholder="技術9"
+                            {...field}
+                            // defaultValue={defaultValues.tech8}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -207,7 +263,11 @@ const TechnologyForm = () => {
                     render={({ field }) => (
                       <FormItem className="w-full space-y-1">
                         <FormControl>
-                          <Input placeholder="技術10" {...field} />
+                          <Input
+                            placeholder="技術10"
+                            {...field}
+                            // defaultValue={defaultValues.tech9}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

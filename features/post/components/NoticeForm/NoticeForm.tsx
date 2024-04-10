@@ -43,7 +43,6 @@ import { noticeFormSchema } from "../../types/validation";
 import type { z } from "zod";
 
 const NoticeForm = () => {
-  // const [date, setDate] = useState<Date>();
   const [postData, setPostData] = useState<NoticeObj[]>([]);
 
   useEffect(() => {
