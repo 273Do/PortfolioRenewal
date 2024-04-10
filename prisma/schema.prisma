@@ -13,10 +13,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// 通知テーブル
 model Notice {
   id Int @id @default(autoincrement())
   event_date DateTime
   content String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ツールテーブル
+model Tool{
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  technology Technology?
+}
+
+// 技術テーブル
+model Technology{
+  id Int @id @default(autoincrement())
+  tech0 String
+  tech1 String
+  tech2 String
+  tech3 String? //?(optional)をつけるとnullを許容
+  tech4 String?
+  tech5 String?
+  tech6 String?
+  tech7 String?
+  tech8 String?
+  tech9 String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // fields は自身のモデル(Technology)の項目，references にはTechnologyからみた参照先のモデル(Tool)の項目をいれる
+  // 主キーと外部キーの関係を示す(fields: [外部キー], references: [Toolの主キー])
+  tool Tool? @relation(fields: [toolId], references: [id])
+  toolId Int? @unique //FK
 }

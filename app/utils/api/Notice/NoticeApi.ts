@@ -7,9 +7,8 @@ async function getNoticeAllData() {
   const response = await fetch("http://localhost:3000/api/notice", {
     cache: "no-store",
   });
-  console.log(response);
-  const NoticeAllData: NoticeObj[] = await response.json();
-  return NoticeAllData;
+  const noticeAllData: NoticeObj[] = await response.json();
+  return noticeAllData;
 }
 
 // お知らせを作成する

@@ -10,26 +10,22 @@ import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 import type { Metadata } from "next";
 import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
-import type { NoticeObj } from "@/features/main/types";
+import type { NoticeObj, TechnologyObj } from "@/features/main/types";
+import { sortedArray } from "@/app/utils/function";
+import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
 };
 
 export default async function Home() {
-  const NoticeAllData = await getNoticeAllData();
+  // お知らせの取得
+  const noticeAllData = await getNoticeAllData();
+  const sortedData: NoticeObj[] = sortedArray(noticeAllData);
 
-  const sortedArray = (arr: NoticeObj[]): NoticeObj[] => {
-    return arr.sort((a, b) => {
-      const dateA = new Date(a.event_date);
-      const dateB = new Date(b.event_date);
-      return dateB.getTime() - dateA.getTime(); // 降順
-    });
-  };
-
-  const sortedData: NoticeObj[] = sortedArray(NoticeAllData);
-  // console.log(NoticeAllData);
-  // console.log(sortedArray(NoticeAllData));
+  // 使用可能技術の取得
+  const availableTechnologyData: TechnologyObj[] =
+    await getAvailableTechnologyData();
 
   return (
     <main className="p-12">
@@ -72,7 +68,7 @@ export default async function Home() {
 
           <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden p-0 py-8">
             <CardContent className="p-0">
-              <MarqueeWidget />
+              <MarqueeWidget technologyData={availableTechnologyData} />
             </CardContent>
           </Card>
         </CardContent>
