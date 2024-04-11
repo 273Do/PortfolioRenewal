@@ -8,3 +8,12 @@ export async function GET(req: Request) {
   });
   return NextResponse.json(availableTechnology);
 }
+
+// 使用可能な技術を更新する処理(id=1のもののみ)
+export async function PUT(req: Request) {
+  const { ...technologyData } = await req.json();
+  await prisma.technology.update({
+    where: { id: 1 },
+    data: technologyData,
+  });
+}

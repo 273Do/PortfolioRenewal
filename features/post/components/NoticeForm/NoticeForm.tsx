@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
@@ -81,6 +82,7 @@ const NoticeForm = () => {
       await postNoticeData(value);
       window.location.reload();
     } catch (error) {
+      toast("お知らせの作成に失敗しました．");
       console.error(error);
     }
   }

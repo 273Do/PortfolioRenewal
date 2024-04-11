@@ -5,6 +5,7 @@ export type NoticeObj = {
   content: string;
   createdAt: Date;
   updatedAt: Date;
+  technologyId?: number;
 };
 
 // 使用可能技術の型
@@ -22,7 +23,7 @@ export type TechnologyObj = {
   tech9?: string;
   createdAt: Date;
   updatedAt: Date;
-  toolId?: number; //FK
+  // toolId?: number; //FK
 };
 
 export type TechnologyOnlyObj = {

@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prismaClient";
 
 // 特定のお知らせに関する処理

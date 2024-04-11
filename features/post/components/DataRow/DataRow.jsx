@@ -37,6 +37,7 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
@@ -111,6 +112,7 @@ const DataRow = ({ data, categoryData }) => {
       // setIsEdit(!isEdit);
       window.location.reload();
     } catch (error) {
+      toast("お知らせの更新に失敗しました．");
       console.error(error);
     }
   };
@@ -120,6 +122,7 @@ const DataRow = ({ data, categoryData }) => {
       await deleteNoticeData(data.id);
       window.location.reload();
     } catch (error) {
+      toast("お知らせの削除に失敗しました．");
       console.error(error);
     }
   };

@@ -3,7 +3,7 @@ import type { noticeFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
 
 // 全てのお知らせを取得する
-async function getNoticeAllData() {
+export async function getNoticeAllData() {
   const response = await fetch("http://localhost:3000/api/notice", {
     cache: "no-store",
   });
@@ -12,7 +12,7 @@ async function getNoticeAllData() {
 }
 
 // お知らせを作成する
-async function postNoticeData(value: z.infer<typeof noticeFormSchema>) {
+export async function postNoticeData(value: z.infer<typeof noticeFormSchema>) {
   const { event_date, content } = value;
   await fetch("http://localhost:3000/api/notice", {
     method: "POST",
@@ -22,7 +22,7 @@ async function postNoticeData(value: z.infer<typeof noticeFormSchema>) {
 }
 
 // お知らせを更新する
-async function updateNoticeData(
+export async function updateNoticeData(
   id: string,
   value: z.infer<typeof noticeFormSchema>
 ) {
@@ -35,8 +35,6 @@ async function updateNoticeData(
 }
 
 // お知らせを削除する
-async function deleteNoticeData(id: string) {
+export async function deleteNoticeData(id: string) {
   await fetch(`http://localhost:3000/api/notice/${id}`, { method: "DELETE" });
 }
-
-export { getNoticeAllData, postNoticeData, updateNoticeData, deleteNoticeData };

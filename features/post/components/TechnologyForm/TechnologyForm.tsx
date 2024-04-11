@@ -19,12 +19,16 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { technologyFormSchema } from "../../types/validation";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { TechnologyObj } from "@/features/main/types";
-import { getAvailableTechnologyData } from "@/app/utils/api/Technology/TechnologyApi";
+import {
+  getAvailableTechnologyData,
+  updateTechnologyData,
+} from "@/app/utils/api/Technology/TechnologyApi";
 import type { z } from "zod";
 
 const TechnologyForm = () => {
@@ -66,6 +70,13 @@ const TechnologyForm = () => {
   async function onSubmit(value: z.infer<typeof technologyFormSchema>) {
     console.log(value);
     // console.log(technologyData);
+    try {
+      await updateTechnologyData(value);
+      toast("使用可能技術の更新をしました．");
+    } catch (error) {
+      toast("使用可能技術の更新に失敗しました．");
+      console.error(error);
+    }
   }
 
   return (
