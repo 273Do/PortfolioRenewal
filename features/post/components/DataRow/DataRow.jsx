@@ -54,27 +54,6 @@ const DataRow = ({ data, categoryData }) => {
 
   const Ref = useRef();
 
-  // const formValues = { content: "", event_date: "" };
-  // if (categoryName === "notice")
-  //   formValues = { content: data.content, event_date: data.event_date };
-
-  // useEffect(() => {
-  //   formValues = { content: data.content, event_date: data.event_date };
-  // }, [categoryName]);
-
-  // const editForm = useForm({
-  //   resolver: zodResolver(noticeFormSchema),
-  //   defaultValues: { content: "", event_date: "" },
-  // });
-
-  // useEffect(() => {
-  //   if (categoryName === "notice")
-  //     setFormValues(
-  //       (formValues.content = data.content),
-  //       (formValues.event_date = data.event_date)
-  //     );
-  // }, []);
-
   const editForm = useForm({
     resolver: zodResolver(categoryName === "notice" ? noticeFormSchema : {}),
     defaultValues:
@@ -82,21 +61,6 @@ const DataRow = ({ data, categoryData }) => {
         ? { content: data.content, event_date: data.event_date }
         : {},
   });
-
-  // async function onSubmit(value) {
-  //   try {
-  //     // なぜか曜日が1日ズレるので修正
-  //     const modifiedDate = new Date(date);
-  //     modifiedDate.setDate(modifiedDate.getDate() + 1);
-  //     value.event_date = modifiedDate;
-  //     console.log(value);
-  //     // await updateNoticeData(data.id, value);
-  //     setIsEdit(!isEdit);
-  //     // window.location.reload();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   // お知らせの更新
   const onSubmit = async () => {
