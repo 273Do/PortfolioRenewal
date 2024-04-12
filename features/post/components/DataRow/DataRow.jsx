@@ -37,6 +37,7 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
@@ -53,27 +54,6 @@ const DataRow = ({ data, categoryData }) => {
 
   const Ref = useRef();
 
-  // const formValues = { content: "", event_date: "" };
-  // if (categoryName === "notice")
-  //   formValues = { content: data.content, event_date: data.event_date };
-
-  // useEffect(() => {
-  //   formValues = { content: data.content, event_date: data.event_date };
-  // }, [categoryName]);
-
-  // const editForm = useForm({
-  //   resolver: zodResolver(noticeFormSchema),
-  //   defaultValues: { content: "", event_date: "" },
-  // });
-
-  // useEffect(() => {
-  //   if (categoryName === "notice")
-  //     setFormValues(
-  //       (formValues.content = data.content),
-  //       (formValues.event_date = data.event_date)
-  //     );
-  // }, []);
-
   const editForm = useForm({
     resolver: zodResolver(categoryName === "notice" ? noticeFormSchema : {}),
     defaultValues:
@@ -81,21 +61,6 @@ const DataRow = ({ data, categoryData }) => {
         ? { content: data.content, event_date: data.event_date }
         : {},
   });
-
-  // async function onSubmit(value) {
-  //   try {
-  //     // なぜか曜日が1日ズレるので修正
-  //     const modifiedDate = new Date(date);
-  //     modifiedDate.setDate(modifiedDate.getDate() + 1);
-  //     value.event_date = modifiedDate;
-  //     console.log(value);
-  //     // await updateNoticeData(data.id, value);
-  //     setIsEdit(!isEdit);
-  //     // window.location.reload();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   // お知らせの更新
   const onSubmit = async () => {
@@ -111,6 +76,7 @@ const DataRow = ({ data, categoryData }) => {
       // setIsEdit(!isEdit);
       window.location.reload();
     } catch (error) {
+      toast("お知らせの更新に失敗しました．");
       console.error(error);
     }
   };
@@ -120,6 +86,7 @@ const DataRow = ({ data, categoryData }) => {
       await deleteNoticeData(data.id);
       window.location.reload();
     } catch (error) {
+      toast("お知らせの削除に失敗しました．");
       console.error(error);
     }
   };

@@ -1,5 +1,5 @@
+import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
-import prisma from "../../../lib/prismaClient";
 
 // 全てのお知らせに関する処理
 export async function GET(req: Request) {
@@ -7,6 +7,7 @@ export async function GET(req: Request) {
   return NextResponse.json(allNotices);
 }
 
+// お知らせを投稿する処理
 export async function POST(req: Request) {
   const { content, event_date } = await req.json();
   const post = await prisma.notice.create({

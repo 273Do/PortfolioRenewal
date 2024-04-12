@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -19,19 +19,65 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { noticeFormSchema } from "../../types/validation";
+import { technologyFormSchema } from "../../types/validation";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
+import type { TechnologyObj } from "@/features/main/types";
+import {
+  getAvailableTechnologyData,
+  updateTechnologyData,
+} from "@/app/utils/api/Technology/TechnologyApi";
+import type { z } from "zod";
 
 const TechnologyForm = () => {
+  const [technologyData, setTechnologyData] = useState<TechnologyObj[]>([]);
+
+  useEffect(() => {
+    const fetchTechnologyData = async () => {
+      try {
+        const technology_data = await getAvailableTechnologyData();
+        setTechnologyData(technology_data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTechnologyData();
+  }, []);
+
+  // 非同期に初期値を設定
+  useEffect(() => {
+    form.reset(technologyData[0]);
+  }, [technologyData[0]]);
+
   // フォームの設定
   const form = useForm({
-    resolver: zodResolver(noticeFormSchema),
-    defaultValues: { technology: "" },
+    resolver: zodResolver(technologyFormSchema),
   });
 
-  async function onSubmit() {}
+  const handleInputChange = (e: React.FormEvent<HTMLFormElement>) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setTechnologyData((prevData) => {
+      const newData = [...prevData];
+      newData[0] = { ...newData[0], [name]: value };
+      return newData;
+    });
+    // console.log(technologyData);
+  };
+
+  async function onSubmit(value: z.infer<typeof technologyFormSchema>) {
+    console.log(value);
+    // console.log(technologyData);
+    try {
+      await updateTechnologyData(value);
+      toast("使用可能技術の更新をしました．");
+    } catch (error) {
+      toast("使用可能技術の更新に失敗しました．");
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -43,27 +89,142 @@ const TechnologyForm = () => {
           </CardDescription>
         </CardHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            onChange={(e) => handleInputChange(e)}
+          >
             <CardContent className="flex flex-col items-center space-y-2">
               <Card className="... flex w-[522px] items-center justify-center overflow-hidden p-0 py-8">
                 <CardContent className="p-0">
-                  <MarqueeWidget />
+                  <MarqueeWidget technologyData={technologyData} />
                 </CardContent>
               </Card>
-              <div className="flex w-full flex-row gap-4">
-                <FormField
-                  control={form.control}
-                  name="technology"
-                  render={({ field }) => (
-                    <FormItem className="w-full space-y-1">
-                      <FormLabel>Technology</FormLabel>
-                      <FormControl>
-                        <Input placeholder="技術：最大10個まで" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <div>
+                <FormLabel>Technology</FormLabel>
+                <div className="flex w-full flex-row gap-4 pb-2">
+                  <FormField
+                    control={form.control}
+                    name="tech0"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術1" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech1"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術2" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech2"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術3" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech3"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術4" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech4"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術5" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="flex w-full flex-row gap-4">
+                  <FormField
+                    control={form.control}
+                    name="tech5"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術6" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech6"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術7" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech7"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術8" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech8"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術9" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tech9"
+                    render={({ field }) => (
+                      <FormItem className="w-full space-y-1">
+                        <FormControl>
+                          <Input placeholder="技術10" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start">

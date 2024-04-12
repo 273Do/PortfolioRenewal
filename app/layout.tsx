@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import * as Layout from "@/app/components/index";
@@ -28,6 +29,7 @@ export default function RootLayout({
         >
           <Layout.Header />
           {children}
+          <Toaster />
           <Layout.Footer />
         </ThemeProvider>
       </body>

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // NoticeFormのバリデーションスキーマ
-const noticeFormSchema = z.object({
+export const noticeFormSchema = z.object({
   content: z
     .string({
       required_error: "必須項目です．",
@@ -13,4 +13,20 @@ const noticeFormSchema = z.object({
   }),
 });
 
-export { noticeFormSchema };
+// TechnologyFormのバリデーションスキーマ
+const techSchema = z
+  .string({ required_error: "必須項目です．" })
+  .max(20, { message: "20字以下で入力してください．" });
+
+export const technologyFormSchema = z.object({
+  tech0: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech1: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech2: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech3: techSchema.optional(),
+  tech4: techSchema.optional(),
+  tech5: techSchema.optional(),
+  tech6: techSchema.optional(),
+  tech7: techSchema.optional(),
+  tech8: techSchema.optional(),
+  tech9: techSchema.optional(),
+});
