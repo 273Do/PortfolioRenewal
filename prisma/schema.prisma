@@ -58,3 +58,12 @@ model Technology{
 // references: 親テーブルのどのカラムを見るか
 // onDelete: 親テーブルが削除された時にどのような挙動をさせるか
 // → Cascadeの場合、親のレコードが削除された場合は子のレコードも削除される
+
+// FAQテーブル
+model Faq{
+  id Int @id @default(autoincrement())
+  question String
+  answer String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
