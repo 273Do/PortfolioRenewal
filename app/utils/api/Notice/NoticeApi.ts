@@ -1,4 +1,3 @@
-import type { NoticeObj } from "@/features/main/types";
 import type { noticeFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
 
@@ -7,7 +6,7 @@ export async function getNoticeAllData() {
   const response = await fetch("http://localhost:3000/api/notice", {
     cache: "no-store",
   });
-  const noticeAllData: NoticeObj[] = await response.json();
+  const noticeAllData = await response.json();
   return noticeAllData;
 }
 

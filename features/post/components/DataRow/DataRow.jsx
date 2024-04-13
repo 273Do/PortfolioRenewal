@@ -42,27 +42,31 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { noticeFormSchema } from "../../types/validation";
+import { FAQFormSchema, noticeFormSchema } from "../../types/validation";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
-
-  const { categoryName, updateNoticeData, deleteNoticeData } = categoryData;
-  const [date, setDate_] = useState(
-    new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
-  );
-
   const Ref = useRef();
 
+  const { categoryName, ...editData } = categoryData;
+  // console.log(editData);
+
+  const [date, setDate_] = useState(
+    categoryName === "notice" &&
+      new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
+  );
+
   const editForm = useForm({
-    resolver: zodResolver(categoryName === "notice" ? noticeFormSchema : {}),
+    resolver: zodResolver(editData.FormSchema),
     defaultValues:
       categoryName === "notice"
         ? { content: data.content, event_date: data.event_date }
-        : {},
+        : categoryName === "faq"
+        ? { question: data.question, answer: data.answer }
+        : "aaa",
   });
 
-  // お知らせの更新
+  // 投稿の更新
   const onSubmit = async () => {
     // 手動でバリデーションチェック
     const value = { event_date: "", content: "" };
@@ -72,21 +76,23 @@ const DataRow = ({ data, categoryData }) => {
     value.event_date = modifiedDate;
 
     try {
-      await updateNoticeData(data.id, value);
-      // setIsEdit(!isEdit);
+      await editData.updateFunc(data.id, value);
       window.location.reload();
     } catch (error) {
-      toast("お知らせの更新に失敗しました．");
+      toast("更新に失敗しました．");
       console.error(error);
     }
   };
 
+  // 投稿の削除
   const onDelete = async () => {
     try {
-      await deleteNoticeData(data.id);
-      window.location.reload();
+      // if (categoryName === "notice")
+      await editData.deleteFunc(data.id);
+      // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
+      // window.location.reload();
     } catch (error) {
-      toast("お知らせの削除に失敗しました．");
+      toast("削除に失敗しました．");
       console.error(error);
     }
   };
@@ -98,7 +104,6 @@ const DataRow = ({ data, categoryData }) => {
           <>
             <TableCell>{data.id}</TableCell>
             <Form {...editForm}>
-              {/* <form onSubmit={editForm.handleSubmit(onSubmit)}> */}
               <TableCell>
                 <FormField
                   control={editForm.control}
@@ -183,9 +188,6 @@ const DataRow = ({ data, categoryData }) => {
               >
                 <Pencil className="size-[1.2rem] cursor-pointer" />
               </Button>
-              {/* <Button variant="ghost" size="icon" onClick={() => onDelete()}>
-                <Trash2 className="size-[1.2rem] cursor-pointer" />
-              </Button> */}
               <Dialog>
                 <DialogTrigger>
                   <Button variant="ghost" size="icon">
@@ -194,7 +196,7 @@ const DataRow = ({ data, categoryData }) => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>この投稿を削除しますか?</DialogTitle>
+                    <DialogTitle>このお知らせを削除しますか?</DialogTitle>
                     <DialogDescription>
                       この操作は取り消せません．
                     </DialogDescription>
@@ -206,9 +208,55 @@ const DataRow = ({ data, categoryData }) => {
                       Delete
                     </Button>
                   </DialogHeader>
-                  {/* <DialogFooter>
-                    <Button type="submit">Save changes</Button>
-                  </DialogFooter> */}
+                </DialogContent>
+              </Dialog>
+            </TableCell>
+          </>
+        )}
+      </>
+    );
+  } else if (categoryName === "faq") {
+    return (
+      <>
+        {isEdit ? (
+          <>
+            <TableCell>{data.id}</TableCell>
+          </>
+        ) : (
+          <>
+            {Object.entries(data).map(
+              ([key, value]) =>
+                key !== "createdAt" &&
+                key !== "updatedAt" && <TableCell key={key}>{value}</TableCell>
+            )}
+            <TableCell className="flex items-center gap-3 p-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEdit(!isEdit)}
+              >
+                <Pencil className="size-[1.2rem] cursor-pointer" />
+              </Button>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="ghost" size="icon">
+                    <Trash2 className="size-[1.2rem] cursor-pointer" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>このFAQを削除しますか?</DialogTitle>
+                    <DialogDescription>
+                      この操作は取り消せません．
+                    </DialogDescription>
+                    <Button
+                      variant="destructive"
+                      className="mt-3"
+                      onClick={() => onDelete()}
+                    >
+                      Delete
+                    </Button>
+                  </DialogHeader>
                 </DialogContent>
               </Dialog>
             </TableCell>

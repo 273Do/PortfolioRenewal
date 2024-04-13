@@ -1,4 +1,4 @@
-import prisma from "../../../../lib/prismaClient";
+import prisma from "@/lib/prismaClient";
 
 // 特定のお知らせに関する処理
 // 更新処理

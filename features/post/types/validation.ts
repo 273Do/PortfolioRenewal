@@ -7,7 +7,7 @@ export const noticeFormSchema = z.object({
       required_error: "必須項目です．",
     })
     .min(5, { message: "5文字以上で入力してください．" })
-    .max(40, { message: "40字以下で入力してください．" }),
+    .max(40, { message: "40文字以下で入力してください．" }),
   event_date: z.date({
     required_error: "必須項目です．",
   }),
@@ -16,7 +16,7 @@ export const noticeFormSchema = z.object({
 // TechnologyFormのバリデーションスキーマ
 const techSchema = z
   .string({ required_error: "必須項目です．" })
-  .max(20, { message: "20字以下で入力してください．" });
+  .max(20, { message: "20文字以下で入力してください．" });
 
 export const technologyFormSchema = z.object({
   tech0: techSchema.min(1, { message: "1文字以上で入力してください．" }),
@@ -29,4 +29,20 @@ export const technologyFormSchema = z.object({
   tech7: techSchema.optional(),
   tech8: techSchema.optional(),
   tech9: techSchema.optional(),
+});
+
+// FAQFormのバリデーションスキーマ
+export const FAQFormSchema = z.object({
+  question: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(5, { message: "5文字以上で入力してください．" })
+    .max(40, { message: "40字以下で入力してください．" }),
+  answer: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(5, { message: "5文字以上で入力してください．" })
+    .max(300, { message: "300字以下で入力してください．" }),
 });
