@@ -24,46 +24,39 @@ import { Label } from "@/components/ui/label";
 import DataTable from "../DataTable/DataTable";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FAQFormSchema } from "../../types/validation";
-import { Textarea } from "@/components/ui/textarea";
+import { MovieFormSchema } from "../../types/validation";
+import type { MovieObj } from "@/features/movie/types";
+import { getMovieData, postMovieData } from "@/app/utils/api/Movie/MovieApi";
 import type { z } from "zod";
-import {
-  deleteFAQData,
-  getFAQData,
-  postFAQData,
-  updateFAQData,
-} from "@/app/utils/api/FAQ/FAQApi";
-import type { FAQObj } from "@/features/faq/types";
 
-const FAQForm = () => {
-  const [faqData, setFaqData] = useState<FAQObj[]>([]);
+const MovieForm = () => {
+  const [movieData, setMovieData] = useState<MovieObj[]>([]);
 
   useEffect(() => {
-    const fetchFAQData = async () => {
+    const fetchMovieData = async () => {
       try {
-        const faq_data = await getFAQData();
-        setFaqData(faq_data);
+        const movie_data = await getMovieData();
+        setMovieData(movie_data);
       } catch (error) {
-        toast("FAQの取得に失敗しました．");
+        toast("映像投稿の取得に失敗しました．");
         console.error(error);
       }
     };
 
-    fetchFAQData();
+    fetchMovieData();
   }, []);
 
   // 投稿フォームの設定
   const form = useForm({
-    resolver: zodResolver(FAQFormSchema),
-    defaultValues: { question: "", answer: "" },
+    resolver: zodResolver(MovieFormSchema),
+    defaultValues: { title: "", description: "", url: "" },
   });
 
-  async function onSubmit(value: z.infer<typeof FAQFormSchema>) {
+  async function onSubmit(value: z.infer<typeof MovieFormSchema>) {
     try {
-      await postFAQData(value);
-      window.location.reload();
+      await postMovieData(value);
     } catch (error) {
-      toast("FAQの作成に失敗しました．");
+      toast("映像投稿の作成に失敗しました．");
       console.error(error);
     }
   }
@@ -71,30 +64,30 @@ const FAQForm = () => {
   return (
     <>
       <DataTable
-        postData={faqData}
+        postData={movieData}
         categoryData={{
-          categoryName: "faq",
-          FormSchema: FAQFormSchema,
-          updateFunc: updateFAQData,
-          deleteFunc: deleteFAQData,
+          categoryName: "movie",
+          FormSchema: MovieFormSchema,
+          updateFunc: "movie",
+          deleteFunc: "movie",
         }}
       />
       <Card className="mt-3">
         <CardHeader>
-          <CardTitle>FAQ</CardTitle>
-          <CardDescription>質問と回答を投稿します．</CardDescription>
+          <CardTitle>Movie</CardTitle>
+          <CardDescription>制作した映像を投稿します．</CardDescription>
         </CardHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <CardContent className="space-y-2">
               <FormField
                 control={form.control}
-                name="question"
+                name="title"
                 render={({ field }) => (
                   <FormItem className="w-full space-y-1">
-                    <FormLabel>Question</FormLabel>
+                    <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input placeholder="質問内容" {...field} />
+                      <Input placeholder="タイトル" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,12 +95,25 @@ const FAQForm = () => {
               />
               <FormField
                 control={form.control}
-                name="answer"
+                name="description"
                 render={({ field }) => (
                   <FormItem className="w-full space-y-1">
-                    <FormLabel>Answer</FormLabel>
+                    <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="回答" {...field} />
+                      <Input placeholder="映像の説明" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="url"
+                render={({ field }) => (
+                  <FormItem className="w-full space-y-1">
+                    <FormLabel>URL</FormLabel>
+                    <FormControl>
+                      <Input placeholder="動画URL" type="url" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -118,7 +124,7 @@ const FAQForm = () => {
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
                 <Input id="password" type="password" />
-                <Button>Save FAQ</Button>
+                <Button>Save Movie</Button>
               </div>
             </CardFooter>
           </form>
@@ -129,4 +135,4 @@ const FAQForm = () => {
   );
 };
 
-export default FAQForm;
+export default MovieForm;

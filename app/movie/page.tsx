@@ -16,12 +16,16 @@ import {
 } from "@/components/ui/resizable";
 
 import type { Metadata } from "next";
+import { getMovieData } from "../utils/api/Movie/MovieApi";
+import type { MovieObj } from "@/features/movie/types";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | Movie",
 };
 
-const page = () => {
+export default async function page() {
+  const movieData: MovieObj[] = await getMovieData();
+
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
@@ -90,7 +94,7 @@ const page = () => {
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel>
-                  <Movie.MovieList />
+                  <Movie.MovieList movieData={movieData} />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </CardContent>
@@ -99,6 +103,4 @@ const page = () => {
       </div>
     </main>
   );
-};
-
-export default page;
+}

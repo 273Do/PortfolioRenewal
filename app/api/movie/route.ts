@@ -1,0 +1,16 @@
+import prisma from "@/lib/prismaClient";
+import { NextResponse } from "next/server";
+
+// 全ての映像投稿を取得する処理
+export async function GET(req: Request) {
+  const allMovie = await prisma.movie.findMany();
+  return NextResponse.json(allMovie);
+}
+
+// 映像を投稿する処理
+export async function POST(req: Request) {
+  const { title, description, url } = await req.json();
+  await prisma.movie.create({
+    data: { title, description, url },
+  });
+}

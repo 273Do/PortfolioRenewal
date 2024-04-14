@@ -59,6 +59,16 @@ model Technology{
 // onDelete: 親テーブルが削除された時にどのような挙動をさせるか
 // → Cascadeの場合、親のレコードが削除された場合は子のレコードも削除される
 
+// Movieテーブル
+model Movie{
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  url String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // FAQテーブル
 model Faq{
   id Int @id @default(autoincrement())

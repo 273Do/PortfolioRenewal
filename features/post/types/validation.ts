@@ -31,6 +31,28 @@ export const technologyFormSchema = z.object({
   tech9: techSchema.optional(),
 });
 
+// MovieFormのバリデーションスキーマ
+export const MovieFormSchema = z.object({
+  title: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(5, { message: "5文字以上で入力してください．" })
+    .max(40, { message: "40字以下で入力してください．" }),
+  url: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(5, { message: "5文字以上で入力してください．" })
+    .max(100, { message: "100字以下で入力してください．" }),
+  description: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(5, { message: "5文字以上で入力してください．" })
+    .max(100, { message: "100字以下で入力してください．" }),
+});
+
 // FAQFormのバリデーションスキーマ
 export const FAQFormSchema = z.object({
   question: z

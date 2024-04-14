@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 // 全てのお知らせを取得する処理
 export async function GET(req: Request) {
-  const allNotices = await prisma.notice.findMany();
-  return NextResponse.json(allNotices);
+  const allNotice = await prisma.notice.findMany();
+  return NextResponse.json(allNotice);
 }
 
 // お知らせを投稿する処理
