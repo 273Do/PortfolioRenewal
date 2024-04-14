@@ -42,11 +42,11 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FAQFormSchema, noticeFormSchema } from "../../types/validation";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
   const Ref = useRef();
+  const Ref_sec = useRef();
 
   const { categoryName, ...editData } = categoryData;
   // console.log(editData);
@@ -60,7 +60,7 @@ const DataRow = ({ data, categoryData }) => {
     resolver: zodResolver(editData.FormSchema),
     defaultValues:
       categoryName === "notice"
-        ? { content: data.content, event_date: data.event_date }
+        ? { event_date: data.event_date, content: data.content }
         : categoryName === "faq"
         ? { question: data.question, answer: data.answer }
         : "aaa",
@@ -69,11 +69,22 @@ const DataRow = ({ data, categoryData }) => {
   // 投稿の更新
   const onSubmit = async () => {
     // 手動でバリデーションチェック
-    const value = { event_date: "", content: "" };
-    value.content = Ref.current.value;
-    const modifiedDate = new Date(date);
-    modifiedDate.setDate(modifiedDate.getDate() + 1);
-    value.event_date = modifiedDate;
+    const value =
+      categoryName === "notice"
+        ? { event_date: "", content: "" }
+        : categoryName === "faq"
+        ? { question: "", answer: "" }
+        : "";
+
+    if (categoryName === "notice") {
+      value.content = Ref.current.value;
+      const modifiedDate = new Date(date);
+      modifiedDate.setDate(modifiedDate.getDate() + 1);
+      value.event_date = modifiedDate;
+    } else if (categoryName === "faq") {
+      value.question = Ref.current.value;
+      value.answer = Ref_sec.current.value;
+    }
 
     try {
       await editData.updateFunc(data.id, value);
@@ -90,7 +101,7 @@ const DataRow = ({ data, categoryData }) => {
       // if (categoryName === "notice")
       await editData.deleteFunc(data.id);
       // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       toast("削除に失敗しました．");
       console.error(error);
@@ -221,6 +232,54 @@ const DataRow = ({ data, categoryData }) => {
         {isEdit ? (
           <>
             <TableCell>{data.id}</TableCell>
+            <Form {...editForm}>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="question"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="質問内容" {...field} ref={Ref} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="answer"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="回答" {...field} ref={Ref_sec} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell className="flex items-center gap-3 p-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsEdit(!isEdit)}
+                >
+                  <X className="size-[1.2rem] cursor-pointer" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  type="submit"
+                  onClick={() => onSubmit()}
+                >
+                  <Forward className="size-[1.2rem] cursor-pointer" />
+                </Button>
+              </TableCell>
+              {/* </form> */}
+            </Form>
           </>
         ) : (
           <>

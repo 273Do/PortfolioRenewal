@@ -31,6 +31,7 @@ import {
   deleteFAQData,
   getFAQData,
   postFAQData,
+  updateFAQData,
 } from "@/app/utils/api/FAQ/FAQApi";
 import type { FAQObj } from "@/features/faq/types";
 
@@ -73,7 +74,7 @@ const FAQForm = () => {
         categoryData={{
           categoryName: "faq",
           FormSchema: FAQFormSchema,
-          updateFunc: "updateFAQData",
+          updateFunc: updateFAQData,
           deleteFunc: deleteFAQData,
         }}
       />

@@ -5,10 +5,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import FAQData from "./faqData.json";
 import type { FAQObj } from "../../types";
 
-const FAQList = () => {
+const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
   return (
     <div className="flex size-full flex-row items-center justify-center">
       <div className="m-4 w-full max-w-[700px]">

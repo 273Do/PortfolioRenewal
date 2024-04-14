@@ -10,11 +10,14 @@ import {
 import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import * as FAQ from "@/features/faq/components/index";
+import { getFAQData } from "../utils/api/FAQ/FAQApi";
 export const metadata: Metadata = {
   title: "273* Portfolio | FAQ",
 };
 
-const page = () => {
+const page = async () => {
+  const FAQAllData = await getFAQData();
+
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
@@ -32,7 +35,7 @@ const page = () => {
                 </div>
               </CardHeader>
               <Separator />
-              <FAQ.FAQList />
+              <FAQ.FAQList FAQData={FAQAllData} />
             </CardContent>
           </Card>
         </div>
