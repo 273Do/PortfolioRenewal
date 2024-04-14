@@ -2,7 +2,7 @@ import type { TechnologyObj } from "@/features/main/types";
 import type { technologyFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
 
-//使用可能な技術を取得
+// 使用可能な技術を取得
 export async function getAvailableTechnologyData() {
   const response = await fetch("http://localhost:3000/api/technology", {
     cache: "no-store",
@@ -11,6 +11,7 @@ export async function getAvailableTechnologyData() {
   return availableTechnologyData;
 }
 
+// 使用可能な技術を更新
 export async function updateTechnologyData(
   value: z.infer<typeof technologyFormSchema>
 ) {

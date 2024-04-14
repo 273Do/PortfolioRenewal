@@ -1,16 +1,17 @@
 import prisma from "@/lib/prismaClient";
 
-// 特定のお知らせに関する処理
+// 特定のFAQに関する処理
+
 // 更新処理
 export async function PUT(
-  req: Request,
+  req: Response,
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
-  const { content, event_date } = await req.json();
-  await prisma.notice.update({
+  const { question, answer } = await req.json();
+  await prisma.faq.update({
     where: { id },
-    data: { event_date, content },
+    data: { question, answer },
   });
 }
 
@@ -20,7 +21,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
-  await prisma.notice.delete({
+  await prisma.faq.delete({
     where: { id },
   });
 }

@@ -42,51 +42,68 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { noticeFormSchema } from "../../types/validation";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const Ref = useRef();
+  const Ref_sec = useRef();
 
-  const { categoryName, updateNoticeData, deleteNoticeData } = categoryData;
+  const { categoryName, ...editData } = categoryData;
+  // console.log(editData);
+
   const [date, setDate_] = useState(
-    new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
+    categoryName === "notice" &&
+      new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
   );
 
-  const Ref = useRef();
-
   const editForm = useForm({
-    resolver: zodResolver(categoryName === "notice" ? noticeFormSchema : {}),
+    resolver: zodResolver(editData.FormSchema),
     defaultValues:
       categoryName === "notice"
-        ? { content: data.content, event_date: data.event_date }
-        : {},
+        ? { event_date: data.event_date, content: data.content }
+        : categoryName === "faq"
+        ? { question: data.question, answer: data.answer }
+        : "aaa",
   });
 
-  // お知らせの更新
+  // 投稿の更新
   const onSubmit = async () => {
     // 手動でバリデーションチェック
-    const value = { event_date: "", content: "" };
-    value.content = Ref.current.value;
-    const modifiedDate = new Date(date);
-    modifiedDate.setDate(modifiedDate.getDate() + 1);
-    value.event_date = modifiedDate;
+    const value =
+      categoryName === "notice"
+        ? { event_date: "", content: "" }
+        : categoryName === "faq"
+        ? { question: "", answer: "" }
+        : "";
+
+    if (categoryName === "notice") {
+      value.content = Ref.current.value;
+      const modifiedDate = new Date(date);
+      modifiedDate.setDate(modifiedDate.getDate() + 1);
+      value.event_date = modifiedDate;
+    } else if (categoryName === "faq") {
+      value.question = Ref.current.value;
+      value.answer = Ref_sec.current.value;
+    }
 
     try {
-      await updateNoticeData(data.id, value);
-      // setIsEdit(!isEdit);
+      await editData.updateFunc(data.id, value);
       window.location.reload();
     } catch (error) {
-      toast("お知らせの更新に失敗しました．");
+      toast("更新に失敗しました．");
       console.error(error);
     }
   };
 
+  // 投稿の削除
   const onDelete = async () => {
     try {
-      await deleteNoticeData(data.id);
+      // if (categoryName === "notice")
+      await editData.deleteFunc(data.id);
+      // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
       window.location.reload();
     } catch (error) {
-      toast("お知らせの削除に失敗しました．");
+      toast("削除に失敗しました．");
       console.error(error);
     }
   };
@@ -98,7 +115,6 @@ const DataRow = ({ data, categoryData }) => {
           <>
             <TableCell>{data.id}</TableCell>
             <Form {...editForm}>
-              {/* <form onSubmit={editForm.handleSubmit(onSubmit)}> */}
               <TableCell>
                 <FormField
                   control={editForm.control}
@@ -183,9 +199,6 @@ const DataRow = ({ data, categoryData }) => {
               >
                 <Pencil className="size-[1.2rem] cursor-pointer" />
               </Button>
-              {/* <Button variant="ghost" size="icon" onClick={() => onDelete()}>
-                <Trash2 className="size-[1.2rem] cursor-pointer" />
-              </Button> */}
               <Dialog>
                 <DialogTrigger>
                   <Button variant="ghost" size="icon">
@@ -194,7 +207,7 @@ const DataRow = ({ data, categoryData }) => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>この投稿を削除しますか?</DialogTitle>
+                    <DialogTitle>このお知らせを削除しますか?</DialogTitle>
                     <DialogDescription>
                       この操作は取り消せません．
                     </DialogDescription>
@@ -206,9 +219,103 @@ const DataRow = ({ data, categoryData }) => {
                       Delete
                     </Button>
                   </DialogHeader>
-                  {/* <DialogFooter>
-                    <Button type="submit">Save changes</Button>
-                  </DialogFooter> */}
+                </DialogContent>
+              </Dialog>
+            </TableCell>
+          </>
+        )}
+      </>
+    );
+  } else if (categoryName === "faq") {
+    return (
+      <>
+        {isEdit ? (
+          <>
+            <TableCell>{data.id}</TableCell>
+            <Form {...editForm}>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="question"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="質問内容" {...field} ref={Ref} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="answer"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="回答" {...field} ref={Ref_sec} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell className="flex items-center gap-3 p-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsEdit(!isEdit)}
+                >
+                  <X className="size-[1.2rem] cursor-pointer" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  type="submit"
+                  onClick={() => onSubmit()}
+                >
+                  <Forward className="size-[1.2rem] cursor-pointer" />
+                </Button>
+              </TableCell>
+              {/* </form> */}
+            </Form>
+          </>
+        ) : (
+          <>
+            {Object.entries(data).map(
+              ([key, value]) =>
+                key !== "createdAt" &&
+                key !== "updatedAt" && <TableCell key={key}>{value}</TableCell>
+            )}
+            <TableCell className="flex items-center gap-3 p-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEdit(!isEdit)}
+              >
+                <Pencil className="size-[1.2rem] cursor-pointer" />
+              </Button>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="ghost" size="icon">
+                    <Trash2 className="size-[1.2rem] cursor-pointer" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>このFAQを削除しますか?</DialogTitle>
+                    <DialogDescription>
+                      この操作は取り消せません．
+                    </DialogDescription>
+                    <Button
+                      variant="destructive"
+                      className="mt-3"
+                      onClick={() => onDelete()}
+                    >
+                      Delete
+                    </Button>
+                  </DialogHeader>
                 </DialogContent>
               </Dialog>
             </TableCell>

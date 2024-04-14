@@ -93,8 +93,9 @@ const NoticeForm = () => {
         postData={postData}
         categoryData={{
           categoryName: "notice",
-          updateNoticeData,
-          deleteNoticeData,
+          FormSchema: noticeFormSchema,
+          updateFunc: updateNoticeData,
+          deleteFunc: deleteNoticeData,
         }}
       />
       <Card className="mt-3">

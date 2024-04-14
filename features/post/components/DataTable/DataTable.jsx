@@ -41,8 +41,7 @@ const DataTable = ({ postData, categoryData }) => {
                         <TableHead key={head}>{head}</TableHead>
                       )
                   )}
-
-                  <TableHead>Edit</TableHead>
+                  <TableHead>edit</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
