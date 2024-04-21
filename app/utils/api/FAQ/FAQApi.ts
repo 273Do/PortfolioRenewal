@@ -12,11 +12,10 @@ export async function getFAQData() {
 
 // FAQを作成する
 export async function postFAQData(value: z.infer<typeof FAQFormSchema>) {
-  const { question, answer } = value;
   await fetch("http://localhost:3000/api/faq", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, answer }),
+    body: JSON.stringify(value),
   });
 }
 
@@ -25,11 +24,10 @@ export async function updateFAQData(
   id: string,
   value: z.infer<typeof FAQFormSchema>
 ) {
-  const { question, answer } = value;
   await fetch(`http://localhost:3000/api/faq/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, answer }),
+    body: JSON.stringify(value),
   });
 }
 

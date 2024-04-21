@@ -1,6 +1,6 @@
-export type movieObj = {
+export type MovieObj = {
   id: number;
+  url: string;
   title: string;
   description: string;
-  url: string;
 };

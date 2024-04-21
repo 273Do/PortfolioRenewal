@@ -53,6 +53,7 @@ const NoticeForm = () => {
         setPostData(post_data);
       } catch (error) {
         // エラーハンドリング
+        toast("お知らせの取得に失敗しました．");
         console.error(error);
       }
     };
