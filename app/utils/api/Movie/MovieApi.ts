@@ -12,13 +12,26 @@ export async function getMovieData() {
 
 // 映像投稿を作成
 export async function postMovieData(value: z.infer<typeof MovieFormSchema>) {
-  // const
-  console.log("postMovieData");
-  console.log(value);
-
   await fetch("http://localhost:3000/api/movie", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
   });
+}
+
+// 映像投稿を更新
+export async function updateMovieData(
+  id: string,
+  value: z.infer<typeof MovieFormSchema>
+) {
+  await fetch(`http://localhost:3000/api/movie/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(value),
+  });
+}
+
+// 映像投稿を削除
+export async function deleteMovieData(id: string) {
+  await fetch(`http://localhost:3000/api/movie/${id}`, { method: "DELETE" });
 }

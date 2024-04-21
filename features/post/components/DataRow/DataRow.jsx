@@ -86,6 +86,10 @@ const DataRow = ({ data, categoryData }) => {
       const modifiedDate = new Date(date);
       modifiedDate.setDate(modifiedDate.getDate() + 1);
       value.event_date = modifiedDate;
+    } else if (categoryName === "movie") {
+      value.title = Ref.current.value;
+      value.description = Ref_second.current.value;
+      value.url = Ref_third.current.value;
     } else if (categoryName === "faq") {
       value.question = Ref.current.value;
       value.answer = Ref_second.current.value;
@@ -281,7 +285,7 @@ const DataRow = ({ data, categoryData }) => {
                           placeholder="動画URL"
                           type="url"
                           {...field}
-                          ref={Ref_second}
+                          ref={Ref_third}
                         />
                       </FormControl>
                       <FormMessage />

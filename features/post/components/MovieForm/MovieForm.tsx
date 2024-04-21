@@ -26,7 +26,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MovieFormSchema } from "../../types/validation";
 import type { MovieObj } from "@/features/movie/types";
-import { getMovieData, postMovieData } from "@/app/utils/api/Movie/MovieApi";
+import {
+  deleteMovieData,
+  getMovieData,
+  postMovieData,
+  updateMovieData,
+} from "@/app/utils/api/Movie/MovieApi";
 import type { z } from "zod";
 
 const MovieForm = () => {
@@ -55,6 +60,7 @@ const MovieForm = () => {
   async function onSubmit(value: z.infer<typeof MovieFormSchema>) {
     try {
       await postMovieData(value);
+      window.location.reload();
     } catch (error) {
       toast("映像投稿の作成に失敗しました．");
       console.error(error);
@@ -68,8 +74,8 @@ const MovieForm = () => {
         categoryData={{
           categoryName: "movie",
           FormSchema: MovieFormSchema,
-          updateFunc: "movie",
-          deleteFunc: "movie",
+          updateFunc: updateMovieData,
+          deleteFunc: deleteMovieData,
         }}
       />
       <Card className="mt-3">

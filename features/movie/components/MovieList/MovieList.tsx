@@ -1,5 +1,6 @@
 import React from "react";
 import type { MovieObj } from "../../types";
+import Link from "next/link";
 
 const MovieList = ({ movieData }: { movieData: MovieObj[] }) => {
   return (
@@ -16,7 +17,9 @@ const MovieList = ({ movieData }: { movieData: MovieObj[] }) => {
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
-          <p className="mt-2">{data.title}</p>
+          <Link href={data.url} target="_blank" rel="noopener noreferrer">
+            <p className="mt-2">{data.title}</p>
+          </Link>
           <p className="text-muted-foreground">{data.description}</p>
         </div>
       ))}
