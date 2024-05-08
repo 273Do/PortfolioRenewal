@@ -1,7 +1,7 @@
 "use client";
 
 import type { ChangeEvent } from "react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -37,17 +37,36 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "@/app/utils/supabase/supabase";
 import type { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
-import { GalleryFormSchema } from "../../types/validation";
+import { galleryFormSchema } from "../../types/validation";
 import { toast } from "sonner";
+import {
+  getGalleryData,
+  postGalleryData,
+} from "@/app/utils/api/Gallery/GalleryApi";
+import type { GalleryObj } from "@/features/gallery/types";
 
 const GalleryForm = () => {
-  const [date, setDate] = useState<Date>();
+  const [galleryData, setGalleryData] = useState<GalleryObj[]>([]);
   const [fileData, setFileData] = useState<File | null>(null);
   const [filePath, setFilePath] = useState<string>("");
 
+  useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        const gallery_data = await getGalleryData();
+        setGalleryData(gallery_data);
+      } catch (error) {
+        toast("Galleryの取得に失敗しました．");
+        console.error(error);
+      }
+    };
+
+    fetchGalleryData();
+  }, []);
+
   // 投稿フォームの設定
   const form = useForm({
-    resolver: zodResolver(GalleryFormSchema),
+    resolver: zodResolver(galleryFormSchema),
     defaultValues: { title: "", description: "", event_date: "", url: "" },
   });
 
@@ -68,7 +87,8 @@ const GalleryForm = () => {
     console.log(filePath);
   };
 
-  async function onSubmit(value: z.infer<typeof GalleryFormSchema>) {
+  async function onSubmit(value: z.infer<typeof galleryFormSchema>) {
+    console.log("onSubmit");
     try {
       if (!fileData) {
         toast("画像が選択されていません．");
@@ -80,21 +100,20 @@ const GalleryForm = () => {
         .upload(filePath, fileData);
 
       if (error) {
+        toast("画像の保存に失敗しました．");
         console.error(error);
       } else {
         // TODO 画像へのurlを使いたい場合
         const url = supabase.storage.from("gallery").getPublicUrl(filePath);
-        console.log(url);
-
-        //投稿処理
 
         // なぜか曜日が1日ズレるので修正
         const modifiedDate = new Date(value.event_date);
         modifiedDate.setDate(modifiedDate.getDate() + 1);
         value.event_date = modifiedDate;
         value.url = url.data.publicUrl;
-        // await postMovieData(value);
-        // window.location.reload();
+
+        await postGalleryData(value);
+        window.location.reload();
       }
     } catch (error) {
       toast("ギャラリー投稿の作成に失敗しました．");
@@ -105,7 +124,7 @@ const GalleryForm = () => {
   return (
     <>
       <DataTable
-        postData={[]}
+        postData={galleryData}
         categoryData={{
           categoryName: "gallery",
           FormSchema: "GFormSchema",
@@ -186,13 +205,6 @@ const GalleryForm = () => {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
-                  control={form.control}
-                  name="file" //url
-                  render={({ field }) => (
-                    <FormItem className="w-full space-y-1">
-                      <FormLabel>Image</FormLabel>
-                      <FormControl> */}
                 <div className="w-full space-y-1">
                   <Label>Image</Label>
                   <Input
@@ -203,11 +215,6 @@ const GalleryForm = () => {
                     onChange={handleImageChange}
                   />
                 </div>
-                {/* </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start ">

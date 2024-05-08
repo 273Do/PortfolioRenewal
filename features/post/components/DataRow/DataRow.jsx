@@ -42,6 +42,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -64,6 +65,13 @@ const DataRow = ({ data, categoryData }) => {
         ? { event_date: data.event_date, content: data.content }
         : categoryName === "movie"
         ? { title: data.title, description: data.description, url: data.url }
+        : categoryName === "gallery"
+        ? {
+            event_date: data.event_date,
+            title: data.title,
+            description: data.description,
+            url: data.url,
+          }
         : categoryName === "faq"
         ? { question: data.question, answer: data.answer }
         : "aaa",
@@ -77,6 +85,8 @@ const DataRow = ({ data, categoryData }) => {
         ? { event_date: "", content: "" }
         : categoryName === "movie"
         ? { title: "", description: "", url: "" }
+        : categoryName === "movie"
+        ? { event_date: "", title: "", description: "", url: "" }
         : categoryName === "faq"
         ? { question: "", answer: "" }
         : "";
@@ -361,6 +371,116 @@ const DataRow = ({ data, categoryData }) => {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>この映像投稿を削除しますか?</DialogTitle>
+                    <DialogDescription>
+                      この操作は取り消せません．
+                    </DialogDescription>
+                    <Button
+                      variant="destructive"
+                      className="mt-3"
+                      onClick={() => onDelete()}
+                    >
+                      Delete
+                    </Button>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </TableCell>
+          </>
+        )}
+      </>
+    );
+  } else if (categoryName === "gallery") {
+    return (
+      <>
+        {isEdit ? (
+          <>
+            <TableCell>{data.id}</TableCell>
+            <Form {...editForm}>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="question"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="質問内容" {...field} ref={Ref} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="answer"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="回答" {...field} ref={Ref_second} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell className="flex items-center gap-3 p-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsEdit(!isEdit)}
+                >
+                  <X className="size-[1.2rem] cursor-pointer" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  type="submit"
+                  onClick={() => onSubmit()}
+                >
+                  <Forward className="size-[1.2rem] cursor-pointer" />
+                </Button>
+              </TableCell>
+              {/* </form> */}
+            </Form>
+          </>
+        ) : (
+          <>
+            {/* {Object.entries(data).map(
+              ([key, value]) =>
+                key !== "createdAt" &&
+                key !== "updatedAt" && <TableCell key={key}>{value}</TableCell>
+            )} */}
+            {Object.entries(data).map(([key, value]) => {
+              if (key === "createdAt" || key === "updatedAt") {
+                return null;
+              } else if (key === "url") {
+                return (
+                  <TableCell key={key}>
+                    <Image src={`${value}`} width={100} height={45} alt="" />
+                  </TableCell>
+                );
+              } else {
+                return <TableCell key={key}>{value}</TableCell>;
+              }
+            })}
+            <TableCell className="flex items-center gap-3 p-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEdit(!isEdit)}
+              >
+                <Pencil className="size-[1.2rem] cursor-pointer" />
+              </Button>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="ghost" size="icon">
+                    <Trash2 className="size-[1.2rem] cursor-pointer" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>この写真を削除しますか?</DialogTitle>
                     <DialogDescription>
                       この操作は取り消せません．
                     </DialogDescription>

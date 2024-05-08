@@ -24,7 +24,7 @@ import { Label } from "@/components/ui/label";
 import DataTable from "../DataTable/DataTable";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MovieFormSchema } from "../../types/validation";
+import { movieFormSchema } from "../../types/validation";
 import type { MovieObj } from "@/features/movie/types";
 import {
   deleteMovieData,
@@ -53,11 +53,11 @@ const MovieForm = () => {
 
   // 投稿フォームの設定
   const form = useForm({
-    resolver: zodResolver(MovieFormSchema),
+    resolver: zodResolver(movieFormSchema),
     defaultValues: { title: "", description: "", url: "" },
   });
 
-  async function onSubmit(value: z.infer<typeof MovieFormSchema>) {
+  async function onSubmit(value: z.infer<typeof movieFormSchema>) {
     try {
       await postMovieData(value);
       window.location.reload();
@@ -73,7 +73,7 @@ const MovieForm = () => {
         postData={movieData}
         categoryData={{
           categoryName: "movie",
-          FormSchema: MovieFormSchema,
+          FormSchema: movieFormSchema,
           updateFunc: updateMovieData,
           deleteFunc: deleteMovieData,
         }}

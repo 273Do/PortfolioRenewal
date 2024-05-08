@@ -32,7 +32,7 @@ export const technologyFormSchema = z.object({
 });
 
 // MovieFormのバリデーションスキーマ
-export const MovieFormSchema = z.object({
+export const movieFormSchema = z.object({
   title: z
     .string({
       required_error: "必須項目です．",
@@ -54,7 +54,7 @@ export const MovieFormSchema = z.object({
 });
 
 // GalleryFormのバリデーションスキーマ
-export const GalleryFormSchema = z.object({
+export const galleryFormSchema = z.object({
   title: z
     .string({
       required_error: "必須項目です．",
@@ -70,12 +70,12 @@ export const GalleryFormSchema = z.object({
   event_date: z.date({
     required_error: "必須項目です．",
   }),
-  url: z
-    .string({
-      required_error: "必須項目です．",
-    })
-    .min(5)
-    .max(200),
+  // url: z
+  //   .string({
+  //     required_error: "必須項目です．",
+  //   })
+  //   .min(5)
+  //   .max(200),
 });
 
 // FAQFormのバリデーションスキーマ

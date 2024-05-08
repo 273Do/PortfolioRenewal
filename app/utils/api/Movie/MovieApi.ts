@@ -1,4 +1,4 @@
-import type { MovieFormSchema } from "@/features/post/types/validation";
+import type { movieFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
 
 // 全ての映像投稿を取得
@@ -11,7 +11,7 @@ export async function getMovieData() {
 }
 
 // 映像投稿を作成
-export async function postMovieData(value: z.infer<typeof MovieFormSchema>) {
+export async function postMovieData(value: z.infer<typeof movieFormSchema>) {
   await fetch("http://localhost:3000/api/movie", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -22,7 +22,7 @@ export async function postMovieData(value: z.infer<typeof MovieFormSchema>) {
 // 映像投稿を更新
 export async function updateMovieData(
   id: string,
-  value: z.infer<typeof MovieFormSchema>
+  value: z.infer<typeof movieFormSchema>
 ) {
   await fetch(`http://localhost:3000/api/movie/${id}`, {
     method: "PUT",
