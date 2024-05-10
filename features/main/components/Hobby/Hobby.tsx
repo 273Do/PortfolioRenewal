@@ -7,14 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Piano, Bike, Braces } from "lucide-react";
+import { Piano, Bike, CodeXml } from "lucide-react";
 
 const Hobby = () => {
   return (
     <div className="grid size-full grid-flow-col grid-cols-3 grid-rows-1 gap-3 px-4">
       <Card>
         <CardContent className="flex flex-col items-center p-0 text-center">
-          <Braces
+          <CodeXml
             strokeWidth={1.5}
             className="m-4 size-[2.0rem] transition-all"
           />

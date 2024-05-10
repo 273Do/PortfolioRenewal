@@ -85,7 +85,7 @@ const DataRow = ({ data, categoryData }) => {
         ? { event_date: "", content: "" }
         : categoryName === "movie"
         ? { title: "", description: "", url: "" }
-        : categoryName === "movie"
+        : categoryName === "gallery"
         ? { event_date: "", title: "", description: "", url: "" }
         : categoryName === "faq"
         ? { question: "", answer: "" }
@@ -98,6 +98,13 @@ const DataRow = ({ data, categoryData }) => {
       value.event_date = modifiedDate;
     } else if (categoryName === "movie") {
       value.title = Ref.current.value;
+      value.description = Ref_second.current.value;
+      value.url = Ref_third.current.value;
+    } else if (categoryName === "gallery") {
+      value.title = Ref.current.value;
+      const modifiedDate = new Date(date);
+      modifiedDate.setDate(modifiedDate.getDate() + 1);
+      value.event_date = modifiedDate;
       value.description = Ref_second.current.value;
       value.url = Ref_third.current.value;
     } else if (categoryName === "faq") {
