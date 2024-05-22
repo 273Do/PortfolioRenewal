@@ -167,7 +167,7 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => window.open("https://twitter.com/ktu_na3do")}
+              onClick={() => window.open("https://twitter.com/273Do")}
             >
               <SiX className="size-[1.0rem]" />
             </Button>

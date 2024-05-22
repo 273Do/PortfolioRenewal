@@ -67,7 +67,7 @@ const page = ({
                 <div className="... col-span-2 col-start-1 row-start-5 flex h-full w-[522px] items-end">
                   <Card className="flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                     <CardContent className="p-0">
-                      <MarqueeWidget />
+                      {/* <MarqueeWidget /> */}
                     </CardContent>
                   </Card>
                 </div>

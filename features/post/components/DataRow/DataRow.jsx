@@ -42,6 +42,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { supabase } from "@/app/utils/supabase/supabase";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -53,7 +55,7 @@ const DataRow = ({ data, categoryData }) => {
   // categoryDataからcategoryNameとそれ以外をeditDataとして取得
 
   const [date, setDate_] = useState(
-    categoryName === "notice" &&
+    (categoryName === "notice" || categoryName === "gallery") &&
       new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
   );
 
@@ -64,6 +66,13 @@ const DataRow = ({ data, categoryData }) => {
         ? { event_date: data.event_date, content: data.content }
         : categoryName === "movie"
         ? { title: data.title, description: data.description, url: data.url }
+        : categoryName === "gallery"
+        ? {
+            event_date: data.event_date,
+            title: data.title,
+            description: data.description,
+            url: data.url,
+          }
         : categoryName === "faq"
         ? { question: data.question, answer: data.answer }
         : "aaa",
@@ -77,6 +86,8 @@ const DataRow = ({ data, categoryData }) => {
         ? { event_date: "", content: "" }
         : categoryName === "movie"
         ? { title: "", description: "", url: "" }
+        : categoryName === "gallery"
+        ? { event_date: "", title: "", description: "", url: "" }
         : categoryName === "faq"
         ? { question: "", answer: "" }
         : "";
@@ -88,6 +99,13 @@ const DataRow = ({ data, categoryData }) => {
       value.event_date = modifiedDate;
     } else if (categoryName === "movie") {
       value.title = Ref.current.value;
+      value.description = Ref_second.current.value;
+      value.url = Ref_third.current.value;
+    } else if (categoryName === "gallery") {
+      value.title = Ref.current.value;
+      const modifiedDate = new Date(date);
+      modifiedDate.setDate(modifiedDate.getDate() + 1);
+      value.event_date = modifiedDate;
       value.description = Ref_second.current.value;
       value.url = Ref_third.current.value;
     } else if (categoryName === "faq") {
@@ -109,6 +127,12 @@ const DataRow = ({ data, categoryData }) => {
     try {
       // if (categoryName === "notice")
       await editData.deleteFunc(data.id);
+
+      // galleryの削除
+      if (categoryName === "gallery") {
+        const image_name = data.url.match(/[^/]+$/)[0];
+        await supabase.storage.from("gallery").remove([`images/${image_name}`]);
+      }
       // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
       window.location.reload();
     } catch (error) {
@@ -361,6 +385,166 @@ const DataRow = ({ data, categoryData }) => {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>この映像投稿を削除しますか?</DialogTitle>
+                    <DialogDescription>
+                      この操作は取り消せません．
+                    </DialogDescription>
+                    <Button
+                      variant="destructive"
+                      className="mt-3"
+                      onClick={() => onDelete()}
+                    >
+                      Delete
+                    </Button>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </TableCell>
+          </>
+        )}
+      </>
+    );
+  } else if (categoryName === "gallery") {
+    return (
+      <>
+        {isEdit ? (
+          <>
+            <TableCell>{data.id}</TableCell>
+            <Form {...editForm}>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="event_date"
+                  render={({ field }) => (
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !date && "text-muted-foreground"
+                            )}
+                          >
+                            {date ? format(date, "PPP") : <span>日を選択</span>}
+                            <CalendarIcon className="ml-auto size-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={new Date(date)}
+                          onSelect={setDate_}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="タイトル" {...field} ref={Ref} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input placeholder="説明" {...field} ref={Ref_second} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="url"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input
+                          placeholder="説明"
+                          {...field}
+                          ref={Ref_third}
+                          disabled
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell className="flex items-center gap-3 p-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsEdit(!isEdit)}
+                >
+                  <X className="size-[1.2rem] cursor-pointer" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  type="submit"
+                  onClick={() => onSubmit()}
+                >
+                  <Forward className="size-[1.2rem] cursor-pointer" />
+                </Button>
+              </TableCell>
+              {/* </form> */}
+            </Form>
+          </>
+        ) : (
+          <>
+            {/* {Object.entries(data).map(
+              ([key, value]) =>
+                key !== "createdAt" &&
+                key !== "updatedAt" && <TableCell key={key}>{value}</TableCell>
+            )} */}
+            {Object.entries(data).map(([key, value]) => {
+              if (key === "createdAt" || key === "updatedAt") {
+                return null;
+              } else if (key === "url") {
+                return (
+                  <TableCell key={key}>
+                    <Image src={`${value}`} width={100} height={45} alt="" />
+                  </TableCell>
+                );
+              } else {
+                return <TableCell key={key}>{value}</TableCell>;
+              }
+            })}
+            <TableCell className="flex items-center gap-3 p-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEdit(!isEdit)}
+              >
+                <Pencil className="size-[1.2rem] cursor-pointer" />
+              </Button>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="ghost" size="icon">
+                    <Trash2 className="size-[1.2rem] cursor-pointer" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>この写真を削除しますか?</DialogTitle>
                     <DialogDescription>
                       この操作は取り消せません．
                     </DialogDescription>

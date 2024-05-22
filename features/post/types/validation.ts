@@ -6,7 +6,7 @@ export const noticeFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(40, { message: "40文字以下で入力してください．" }),
   event_date: z.date({
     required_error: "必須項目です．",
@@ -32,18 +32,18 @@ export const technologyFormSchema = z.object({
 });
 
 // MovieFormのバリデーションスキーマ
-export const MovieFormSchema = z.object({
+export const movieFormSchema = z.object({
   title: z
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(40, { message: "40字以下で入力してください．" }),
   url: z
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(100, { message: "100字以下で入力してください．" }),
   description: z
     .string({
@@ -51,6 +51,31 @@ export const MovieFormSchema = z.object({
     })
     .min(5, { message: "5文字以上で入力してください．" })
     .max(100, { message: "100字以下で入力してください．" }),
+});
+
+// GalleryFormのバリデーションスキーマ
+export const galleryFormSchema = z.object({
+  title: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(40, { message: "40字以下で入力してください．" }),
+  description: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(100, { message: "30字以下で入力してください．" }),
+  event_date: z.date({
+    required_error: "必須項目です．",
+  }),
+  // url: z
+  //   .string({
+  //     required_error: "必須項目です．",
+  //   })
+  //   .min(5)
+  //   .max(200),
 });
 
 // FAQFormのバリデーションスキーマ

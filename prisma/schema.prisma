@@ -69,6 +69,17 @@ model Movie{
   updatedAt DateTime @updatedAt
 }
 
+// Gallery
+model Gallery{
+  id Int @id @default(autoincrement())
+  event_date DateTime
+  title String
+  description String
+  url String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // FAQテーブル
 model Faq{
   id Int @id @default(autoincrement())
