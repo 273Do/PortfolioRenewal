@@ -43,6 +43,7 @@ import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
+import { supabase } from "@/app/utils/supabase/supabase";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -54,7 +55,7 @@ const DataRow = ({ data, categoryData }) => {
   // categoryDataからcategoryNameとそれ以外をeditDataとして取得
 
   const [date, setDate_] = useState(
-    categoryName === "notice" &&
+    (categoryName === "notice" || categoryName === "gallery") &&
       new Date(data.event_date).toISOString().replace(/T.*/, "T00:00:00.000Z")
   );
 
@@ -126,6 +127,12 @@ const DataRow = ({ data, categoryData }) => {
     try {
       // if (categoryName === "notice")
       await editData.deleteFunc(data.id);
+
+      // galleryの削除
+      if (categoryName === "gallery") {
+        const image_name = data.url.match(/[^/]+$/)[0];
+        await supabase.storage.from("gallery").remove([`images/${image_name}`]);
+      }
       // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
       window.location.reload();
     } catch (error) {
@@ -406,11 +413,42 @@ const DataRow = ({ data, categoryData }) => {
               <TableCell>
                 <FormField
                   control={editForm.control}
-                  name="question"
+                  name="event_date"
+                  render={({ field }) => (
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !date && "text-muted-foreground"
+                            )}
+                          >
+                            {date ? format(date, "PPP") : <span>日を選択</span>}
+                            <CalendarIcon className="ml-auto size-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={new Date(date)}
+                          onSelect={setDate_}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="title"
                   render={({ field }) => (
                     <FormItem className="w-full space-y-1">
                       <FormControl>
-                        <Input placeholder="質問内容" {...field} ref={Ref} />
+                        <Input placeholder="タイトル" {...field} ref={Ref} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -420,11 +458,30 @@ const DataRow = ({ data, categoryData }) => {
               <TableCell>
                 <FormField
                   control={editForm.control}
-                  name="answer"
+                  name="description"
                   render={({ field }) => (
                     <FormItem className="w-full space-y-1">
                       <FormControl>
-                        <Input placeholder="回答" {...field} ref={Ref_second} />
+                        <Input placeholder="説明" {...field} ref={Ref_second} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="url"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input
+                          placeholder="説明"
+                          {...field}
+                          ref={Ref_third}
+                          disabled
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

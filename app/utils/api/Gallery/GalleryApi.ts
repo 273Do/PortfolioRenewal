@@ -20,3 +20,22 @@ export async function postGalleryData(
     body: JSON.stringify(value),
   });
 }
+
+// galleryを更新
+export async function updateGalleryData(
+  id: string,
+  value: z.infer<typeof galleryFormSchema>
+) {
+  await fetch(`http://localhost:3000/api/gallery/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(value),
+  });
+}
+
+// galleryを削除
+export async function deleteGalleryData(id: string) {
+  await fetch(`http://localhost:3000/api/gallery/${id}`, {
+    method: "DELETE",
+  });
+}

@@ -1,25 +1,26 @@
 import React from "react";
 import Image from "next/image";
-import type { galleryObj } from "../../types";
+import type { GalleryObj } from "../../types";
+import { formatDate } from "@/app/utils/function";
 
 // 10個のオブジェクトを格納するための空の配列を作成
-const galleryData: galleryObj[] = [];
+// const galleryData: GalleryObj[] = [];
 
 // 10回のループでオブジェクトを生成して配列に追加
-for (let i = 1; i <= 10; i++) {
-  const obj = {
-    id: i,
-    title: `タイトル${i}`,
-    url: `https://source.unsplash.com/random/${i}`,
-    description: `説明をここに入れる${i}`,
-  };
-  galleryData.push(obj);
-}
+// for (let i = 1; i <= 10; i++) {
+//   const obj = {
+//     id: i,
+//     title: `タイトル${i}`,
+//     url: `https://source.unsplash.com/random/${i}`,
+//     description: `説明をここに入れる${i}`,
+//   };
+//   galleryData.push(obj);
+// }
 
-const ImageList = () => {
+const ImageList = ({ galleryData }: { galleryData: GalleryObj[] }) => {
   return (
     <>
-      {galleryData.map((data: galleryObj) => (
+      {galleryData.map((data: GalleryObj) => (
         <div className="mb-4 duration-150 hover:scale-[1.025]" key={data.id}>
           <div className="relative mb-4 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-['']">
             <Image
@@ -36,7 +37,9 @@ const ImageList = () => {
                   {data.description}
                 </p>
               </div>
-              <p className="test__author text-xs  font-light">20yy/mm/dd</p>
+              <p className="test__author text-xs  font-light">
+                {formatDate(data.event_date)}
+              </p>
             </div>
           </div>
         </div>

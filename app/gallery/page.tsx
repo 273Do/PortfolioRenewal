@@ -10,12 +10,18 @@ import {
 import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
 import * as Gallery from "@/features/gallery/components/index";
+import type { GalleryObj } from "@/features/gallery/types";
+import { getGalleryData } from "../utils/api/Gallery/GalleryApi";
+import { shuffleArray } from "../utils/function";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | Gallery",
 };
 
-const page = () => {
+export default async function page() {
+  const galleryData: GalleryObj[] = await getGalleryData();
+  const shuffleGalleryData = shuffleArray(galleryData);
+
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
@@ -36,7 +42,7 @@ const page = () => {
                   </CardContent>
                   <Separator className="-mb-2 mt-3" />
                 </Card>
-                <Gallery.ImageList />
+                <Gallery.ImageList galleryData={shuffleGalleryData} />
               </div>
             </CardContent>
           </Card>
@@ -44,6 +50,4 @@ const page = () => {
       </div>
     </main>
   );
-};
-
-export default page;
+}

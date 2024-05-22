@@ -6,7 +6,7 @@ export const noticeFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(40, { message: "40文字以下で入力してください．" }),
   event_date: z.date({
     required_error: "必須項目です．",
@@ -37,13 +37,13 @@ export const movieFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(40, { message: "40字以下で入力してください．" }),
   url: z
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(100, { message: "100字以下で入力してください．" }),
   description: z
     .string({
@@ -59,13 +59,13 @@ export const galleryFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(40, { message: "40字以下で入力してください．" }),
   description: z
     .string({
       required_error: "必須項目です．",
     })
-    .min(5, { message: "5文字以上で入力してください．" })
+    .min(1, { message: "1文字以上で入力してください．" })
     .max(100, { message: "30字以下で入力してください．" }),
   event_date: z.date({
     required_error: "必須項目です．",

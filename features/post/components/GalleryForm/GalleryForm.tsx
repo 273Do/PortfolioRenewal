@@ -40,8 +40,10 @@ import { v4 as uuidv4 } from "uuid";
 import { galleryFormSchema } from "../../types/validation";
 import { toast } from "sonner";
 import {
+  deleteGalleryData,
   getGalleryData,
   postGalleryData,
+  updateGalleryData,
 } from "@/app/utils/api/Gallery/GalleryApi";
 import type { GalleryObj } from "@/features/gallery/types";
 
@@ -83,8 +85,8 @@ const GalleryForm = () => {
 
     setFileData(file);
     setFilePath(filePath);
-    console.log(file);
-    console.log(filePath);
+    // console.log(file);
+    // console.log(filePath);
   };
 
   async function onSubmit(value: z.infer<typeof galleryFormSchema>) {
@@ -127,9 +129,9 @@ const GalleryForm = () => {
         postData={galleryData}
         categoryData={{
           categoryName: "gallery",
-          FormSchema: "GFormSchema",
-          updateFunc: "updateGData",
-          deleteFunc: "deleteGData",
+          FormSchema: galleryFormSchema,
+          updateFunc: updateGalleryData,
+          deleteFunc: deleteGalleryData,
         }}
       />
       <Card className="mt-3">
