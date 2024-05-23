@@ -37,8 +37,8 @@ export default async function page() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-0 pt-3">
-                    趣味でピアノやサイクリング，カラーグレーディングなどを楽しんでいます．
-                    数人の友人とマイコンを用いてプラモデルの無線化に取り組んだんりしています．
+                    趣味でピアノやサイクリング，アウトドアなどを楽しんでいます．
+                    他にも，ものづくりやチーム開発に取り組んでいます
                   </CardContent>
                   <Separator className="-mb-2 mt-3" />
                 </Card>
