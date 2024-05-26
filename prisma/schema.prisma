@@ -26,18 +26,25 @@ model Notice {
 model Tool{
   id Int @id @default(autoincrement()) 
   name String
+  period String
+  color String
+  description String
+  background String
+  ingenuity String
+  point String
+  url String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   // fields は自身のモデル(Technology)の項目，references にはTechnologyからみた参照先のモデル(Tool)の項目をいれる
   // 主キーと外部キーの関係を示す(fields: [Tool内の外部キー], references: [Technologyの主キー])
   technology Technology? @relation(fields: [technologyId], references: [id])
   technologyId Int? @unique //FK
-  tag Tag? @relation(fields: [tagId], references: [id])
-  tagId Int? @unique //FK
+  genre Genre? @relation(fields: [genreId], references: [id])
+  genreId Int? @unique //FK
 }
 
-// タグテーブル
-model Tag{
+// ジャンルテーブル
+model Genre{
   id Int @id @default(autoincrement())
   name String
   createdAt DateTime @default(now())
