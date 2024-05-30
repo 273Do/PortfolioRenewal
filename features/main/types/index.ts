@@ -27,6 +27,7 @@ export type TechnologyObj = {
 };
 
 export type TechnologyOnlyObj = {
+  id: number;
   tech0: string;
   tech1: string;
   tech2: string;

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Tool1",
+    "name": "primitive",
     "color": "#bfcde8",
     "description": "ここに説明文を入れる．",
     "development_period": "2ヶ月",

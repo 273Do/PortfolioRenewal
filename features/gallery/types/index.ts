@@ -4,4 +4,5 @@ export type GalleryObj = {
   title: string;
   description: string;
   url: string;
+  blurDataURL: string;
 };

@@ -31,6 +31,61 @@ export const technologyFormSchema = z.object({
   tech9: techSchema.optional(),
 });
 
+// ToolFormのバリデーションスキーマ
+export const toolFormSchema = z.object({
+  name: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(40, { message: "40文字以下で入力してください．" }),
+  period: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(10, { message: "10文字以下で入力してください．" }),
+  color: z
+    .string({ required_error: "必須項目です．" })
+    .regex(/#([0-9a-fA-F]{6})/g)
+    .length(7),
+  description: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(300, { message: "300文字以下で入力してください．" }),
+  background: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(300, { message: "300文字以下で入力してください．" }),
+  ingenuity: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(300, { message: "300文字以下で入力してください．" }),
+  point: z
+    .string({ required_error: "必須項目です．" })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(300, { message: "300文字以下で入力してください．" }),
+  url: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .url()
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(100, { message: "100字以下で入力してください．" }),
+  genre: z
+    .string({
+      required_error: "必須項目です．",
+    })
+    .min(1, { message: "1文字以上で入力してください．" })
+    .max(100, { message: "100字以下で入力してください．" }),
+  tech0: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech1: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech2: techSchema.min(1, { message: "1文字以上で入力してください．" }),
+  tech3: techSchema.optional(),
+  tech4: techSchema.optional(),
+  tech5: techSchema.optional(),
+  tech6: techSchema.optional(),
+  tech7: techSchema.optional(),
+  tech8: techSchema.optional(),
+  tech9: techSchema.optional(),
+});
+
 // MovieFormのバリデーションスキーマ
 export const movieFormSchema = z.object({
   title: z
@@ -43,6 +98,7 @@ export const movieFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
+    .url()
     .min(1, { message: "1文字以上で入力してください．" })
     .max(100, { message: "100字以下で入力してください．" }),
   description: z
