@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
 import * as Gallery from "@/features/gallery/components/index";
 import type { GalleryObj } from "@/features/gallery/types";
-import { getGalleryData } from "../utils/api/Gallery/GalleryApi";
+import { getBlurGalleryData } from "../utils/api/Gallery/GalleryApi";
 import { shuffleArray } from "../utils/function";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function page() {
-  const galleryData: GalleryObj[] = await getGalleryData();
+  const galleryData: GalleryObj[] = await getBlurGalleryData();
   const shuffleGalleryData = shuffleArray(galleryData);
 
   return (

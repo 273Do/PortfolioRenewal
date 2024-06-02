@@ -23,15 +23,27 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toolFormSchema } from "../../types/validation";
 import type { z } from "zod";
 import { getAllToolData, postToolData } from "@/app/utils/api/Tool/ToolAPI";
+import type { ToolObj } from "@/features/tool/types";
 
 const ToolForm = () => {
   // const [toolData, setToolData] = useState<ToolObj[]>([]);
-  const [toolData, setToolData] = useState([]);
+  const [toolData, setToolData] = useState<ToolObj[]>([]);
+  // const [select, setSelect] = useState<number>(0);
+  const [nowData, setNowData] = useState<ToolObj | null | undefined>(null);
 
   useEffect(() => {
     // getAllToolData();
@@ -46,30 +58,87 @@ const ToolForm = () => {
     };
 
     fetchToolData();
-  }, []);
-  // 投稿フォームの設定
+  }, [nowData]);
+
+  // フォーム初期値
+  const defaultValues = {
+    name: "",
+    genre: "",
+    color: "",
+    description: "",
+    background: "",
+    ingenuity: "",
+    point: "",
+    url: "",
+    period: "",
+    tech0: "",
+    tech1: "",
+    tech2: "",
+    tech3: "",
+    tech4: "",
+    tech5: "",
+    tech6: "",
+    tech7: "",
+    tech8: "",
+    tech9: "",
+  };
   const form = useForm({
     resolver: zodResolver(toolFormSchema),
-    // defaultValues: {
-    //   name: "",
-    //   genre: "",
-    //   color: "",
-    //   technology: "",
-    //   description: "",
-    //   background: "",
-    //   ingenuity: "",
-    //   point: "",
-    //   url: "",
-    // },
+    defaultValues,
   });
 
+  const { reset } = form;
+
+  useEffect(() => {
+    if (nowData != null) {
+      reset({
+        name: nowData.name,
+        genre: nowData.genre.name,
+        color: nowData.color,
+        description: nowData.description,
+        background: nowData.background,
+        ingenuity: nowData.ingenuity,
+        point: nowData.point,
+        url: nowData.url,
+        period: nowData.period,
+        tech0: nowData.technology.tech0,
+        tech1: nowData.technology.tech1,
+        tech2: nowData.technology.tech2,
+        tech3: nowData.technology.tech3 || "",
+        tech4: nowData.technology.tech4 || "",
+        tech5: nowData.technology.tech5 || "",
+        tech6: nowData.technology.tech6 || "",
+        tech7: nowData.technology.tech7 || "",
+        tech8: nowData.technology.tech8 || "",
+        tech9: nowData.technology.tech9 || "",
+      });
+    } else {
+      reset(defaultValues);
+    }
+  }, [nowData, reset]);
+
+  // セレクターで選択したときの処理
+  async function handleSelect(e: React.ChangeEvent<HTMLSelectElement>) {
+    // setSelect(Number(e));
+    // console.log(e);
+    // if (select != 0)
+
+    if (Number(e) != 0) {
+      const selectData = toolData.find(
+        (item: ToolObj) => item.id === Number(e)
+      );
+      setNowData(selectData);
+    } else setNowData(null);
+  }
+
   async function onSubmit(value: z.infer<typeof toolFormSchema>) {
-    postToolData(value);
+    if (nowData) console.log("更新ボタン");
+    else postToolData(value);
   }
 
   return (
     <>
-      <DataTable
+      {/* <DataTable
         postData={toolData}
         categoryData={{
           categoryName: "tool",
@@ -77,11 +146,34 @@ const ToolForm = () => {
           updateFunc: "updateToolData",
           deleteFunc: "deleteToolData",
         }}
-      />
+      /> */}
       <Card className="mt-3">
-        <CardHeader>
-          <CardTitle>Tool</CardTitle>
-          <CardDescription>ツールを投稿します．</CardDescription>
+        <CardHeader className="flex flex-row justify-between">
+          <div>
+            <CardTitle>Tool</CardTitle>
+            <CardDescription>
+              ツールを{nowData ? "修正" : "投稿"}します．
+            </CardDescription>
+          </div>
+          <Select
+            onValueChange={(e: string) => handleSelect(e)}
+            defaultValue="0"
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a post" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {/* <SelectLabel>Post</SelectLabel> */}
+                <SelectItem value="0">Post Tool</SelectItem>
+                {toolData.map((item: ToolObj) => (
+                  <SelectItem value={String(item.id)} key={item.id}>
+                    {item.name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </CardHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

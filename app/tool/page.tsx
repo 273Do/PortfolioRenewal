@@ -33,7 +33,6 @@ const page = ({
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [nowData, setNowData] = useState<ToolObj>({});
 
-  const params = "primitive";
   console.log(searchParams.id);
   // eslint-disable-next-line react-hooks/rules-of-hooks
 

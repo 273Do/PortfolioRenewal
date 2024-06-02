@@ -22,13 +22,27 @@ export const technologyFormSchema = z.object({
   tech0: techSchema.min(1, { message: "1文字以上で入力してください．" }),
   tech1: techSchema.min(1, { message: "1文字以上で入力してください．" }),
   tech2: techSchema.min(1, { message: "1文字以上で入力してください．" }),
-  tech3: techSchema.optional(),
-  tech4: techSchema.optional(),
-  tech5: techSchema.optional(),
-  tech6: techSchema.optional(),
-  tech7: techSchema.optional(),
-  tech8: techSchema.optional(),
-  tech9: techSchema.optional(),
+  tech3: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech4: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech5: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech6: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech7: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech8: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
+  tech9: techSchema
+    .min(1, { message: "1文字以上で入力してください．" })
+    .optional(),
 });
 
 // ToolFormのバリデーションスキーマ

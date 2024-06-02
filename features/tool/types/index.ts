@@ -7,7 +7,7 @@ export type ToolObj = {
   period: string;
   color: string;
   description: string;
-  backgroundColor: string;
+  background: string;
   ingenuity: string;
   point: string;
   url: string;

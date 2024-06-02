@@ -1,6 +1,6 @@
 import type { galleryFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
-import { getPlaiceholder } from "plaiceholder";
+// import { getPlaiceholder } from "plaiceholder";
 import type { GalleryObj } from "@/features/gallery/types";
 
 // 全てのgalleryデータを取得
@@ -11,23 +11,43 @@ export const getGalleryData = async (): Promise<GalleryObj[]> => {
   const galleryData = await response.json(); // Await the response.json() call
   // return galleryData;
 
-  // 画像のブラー処理
-  const galleryDataWithBlur = await Promise.all(
-    galleryData.map(async (item: GalleryObj) => {
-      const { base64 } = await getPlaiceholder(
-        await fetch(item.url).then(async (res) =>
-          Buffer.from(await res.arrayBuffer())
-        )
-      ); // Convert base64 to Buffer
-      return {
-        ...item,
-        blurDataURL: base64,
-      };
-    })
-  );
-
-  return galleryDataWithBlur;
+  return galleryData;
 };
+
+// 全てのブラーgalleryデータを取得
+export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
+  const response = await fetch("http://localhost:3000/api/gallery/blur", {
+    cache: "no-store",
+  });
+  const blurGalleryData = await response.json(); // Await the response.json() call
+  // return galleryData;
+
+  return blurGalleryData;
+};
+// export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
+//   const response = await fetch("http://localhost:3000/api/gallery", {
+//     cache: "no-store",
+//   });
+//   const galleryData = await response.json(); // Await the response.json() call
+//   // return galleryData;
+
+//   // 画像のブラー処理
+//   const galleryDataWithBlur = await Promise.all(
+//     galleryData.map(async (item: GalleryObj) => {
+//       const { base64 } = await getPlaiceholder(
+//         await fetch(item.url).then(async (res) =>
+//           Buffer.from(await res.arrayBuffer())
+//         )
+//       ); // Convert base64 to Buffer
+//       return {
+//         ...item,
+//         blurDataURL: base64,
+//       };
+//     })
+//   );
+
+//   return galleryDataWithBlur;
+// };
 
 // galleryを作成
 export async function postGalleryData(
