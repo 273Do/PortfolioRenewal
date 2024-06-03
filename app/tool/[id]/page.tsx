@@ -15,19 +15,18 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { getToolData } from "@/app/utils/api/Tool/ToolAPI";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { name: string };
-}) {
+export async function generateMetadata() {
   return {
-    title: `273* Portfolio | ${params.name}`,
+    title: `273* Portfolio | Tool Detail`,
   };
 }
 
-const page = ({ params }: { params: { name: string } }) => {
-  console.log(params.name);
+const page = async ({ params }: { params: { id: string } }) => {
+  // console.log(params.id);
+  const toolData = await getToolData(params.id);
+  console.log(toolData);
 
   return (
     <main className="h-screen">
@@ -44,12 +43,12 @@ const page = ({ params }: { params: { name: string } }) => {
                     <CardHeader>
                       <div className="flex justify-between">
                         <div>
-                          <CardTitle>Tools</CardTitle>
+                          <CardTitle>{toolData.name}</CardTitle>
                           <CardDescription className="mt-[6px]">
-                            ここにツールの説明を入れます．
+                            {toolData.description}
                           </CardDescription>
                         </div>
-                        <Link href="/tool?id=1">
+                        <Link href={`/tool?id=${toolData.id}`}>
                           <Button variant="secondary">close</Button>
                         </Link>
                       </div>
@@ -64,7 +63,8 @@ const page = ({ params }: { params: { name: string } }) => {
                                 <CardTitle>背景</CardTitle>
                                 <CardContent className="flex h-full items-center justify-center p-0">
                                   <p>
-                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                    {toolData.background}
                                   </p>
                                 </CardContent>
                               </CardContent>
@@ -75,7 +75,8 @@ const page = ({ params }: { params: { name: string } }) => {
                                 <CardTitle>工夫</CardTitle>
                                 <CardContent className="flex h-full items-center justify-center p-0">
                                   <p>
-                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                    {toolData.ingenuity}
                                   </p>
                                 </CardContent>
                               </CardContent>
@@ -86,7 +87,8 @@ const page = ({ params }: { params: { name: string } }) => {
                                 <CardTitle>課題</CardTitle>
                                 <CardContent className="flex h-full items-center justify-center p-0">
                                   <p>
-                                    私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました．
+                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                    {toolData.point}
                                   </p>
                                 </CardContent>
                               </CardContent>
@@ -97,7 +99,9 @@ const page = ({ params }: { params: { name: string } }) => {
                         <div className="... col-span-3 col-start-1 row-start-5 flex h-full w-[522px] items-end">
                           <Card className="mb-6 flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                             <CardContent className="p-0">
-                              <MarqueeWidget />
+                              <MarqueeWidget
+                                technologyData={[toolData.technology]}
+                              />
                             </CardContent>
                           </Card>
                         </div>
@@ -108,7 +112,7 @@ const page = ({ params }: { params: { name: string } }) => {
                 <ResizableHandle withHandle />
                 <ResizablePanel>
                   <iframe
-                    src="https://273doworks.com/"
+                    src={toolData.url}
                     className="iframe-rounded size-full"
                   ></iframe>
                 </ResizablePanel>

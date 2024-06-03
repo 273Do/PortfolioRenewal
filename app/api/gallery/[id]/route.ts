@@ -17,7 +17,7 @@ export async function PUT(
 
 // 削除処理
 export async function DELETE(
-  req: Response,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);

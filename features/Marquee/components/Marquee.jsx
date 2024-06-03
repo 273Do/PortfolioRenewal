@@ -7,6 +7,7 @@ import { CircleX } from "lucide-react";
 
 const MarqueeWidget = ({ technologyData }) => {
   // tailwindConfigから直接カラーを取得
+  console.log(technologyData);
   const gradientColor = tailwindConfig.theme.extend.colors["background"];
   let iconsData;
   if (technologyData.length === 0) {

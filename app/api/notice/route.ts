@@ -2,7 +2,7 @@ import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
 
 // 全てのお知らせを取得する処理
-export async function GET(req: Request) {
+export async function GET() {
   const allNotice = await prisma.notice.findMany();
   return NextResponse.json(allNotice);
 }
