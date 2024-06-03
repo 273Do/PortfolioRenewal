@@ -9,10 +9,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+
 import DataTable from "../DataTable/DataTable";
 import {
   Form,
@@ -37,12 +47,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toolFormSchema } from "../../types/validation";
 import type { z } from "zod";
 import {
+  deleteToolData,
   getAllToolData,
   postToolData,
   updateToolData,
 } from "@/app/utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
 import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
 
 const ToolForm = () => {
   // const [toolData, setToolData] = useState<ToolObj[]>([]);
@@ -136,6 +148,7 @@ const ToolForm = () => {
     } else setNowData(null);
   }
 
+  // 投稿の更新
   async function onSubmit(value: z.infer<typeof toolFormSchema>) {
     if (nowData) {
       try {
@@ -157,6 +170,17 @@ const ToolForm = () => {
       }
     }
   }
+
+  // 投稿の削除
+  const onDelete = async () => {
+    try {
+      await deleteToolData(String(nowData?.id));
+      window.location.reload();
+    } catch (error) {
+      toast("削除に失敗しました．");
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -458,7 +482,33 @@ const ToolForm = () => {
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
                 <Input id="password" type="password" />
-                <Button>Save Tool</Button>
+                <Button>{nowData ? "Update" : "Save"} Tool</Button>
+                {nowData ? (
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button variant="outline" size="icon">
+                        <Trash2 className="size-[1.2rem] cursor-pointer" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>このToolを削除しますか?</DialogTitle>
+                        <DialogDescription>
+                          この操作は取り消せません．
+                        </DialogDescription>
+                        <Button
+                          variant="destructive"
+                          className="mt-3"
+                          onClick={() => onDelete()}
+                        >
+                          Delete
+                        </Button>
+                      </DialogHeader>
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <></>
+                )}
               </div>
             </CardFooter>
           </form>

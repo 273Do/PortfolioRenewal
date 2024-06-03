@@ -16,7 +16,10 @@ export async function PUT(
 }
 
 // 削除処理
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   const id = Number(params.id);
   await prisma.movie.delete({
     where: { id },

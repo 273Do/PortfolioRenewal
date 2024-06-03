@@ -69,3 +69,14 @@ export async function PUT(
     },
   });
 }
+
+// 特定のtoolを削除する処理
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = Number(params.id);
+  await prisma.tool.delete({
+    where: { id },
+  });
+}

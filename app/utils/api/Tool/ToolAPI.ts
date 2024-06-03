@@ -39,3 +39,10 @@ export async function updateToolData(
     body: JSON.stringify(value),
   });
 }
+
+// Toolを削除する
+export async function deleteToolData(id: string) {
+  await fetch(`http://localhost:3000/api/tool/${id}`, {
+    method: "DELETE",
+  });
+}
