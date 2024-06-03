@@ -6,12 +6,10 @@ import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
@@ -26,6 +24,7 @@ import siteLogo from "@/public/273*Logo.png";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { getAllToolData } from "@/app/utils/api/Tool/ToolAPI";
+import { sortedToolArray } from "@/app/utils/function";
 
 // const components: {
 //   id: number;
@@ -152,9 +151,9 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
-                    {components.map(
+                    {sortedToolArray(components).map(
                       (component: {
-                        id: string;
+                        id: number;
                         name: string;
                         description: string;
                       }) => (

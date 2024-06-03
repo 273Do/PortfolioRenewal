@@ -37,9 +37,9 @@ model Tool{
   updatedAt DateTime @updatedAt
   // fields は自身のモデル(Technology)の項目，references にはTechnologyからみた参照先のモデル(Tool)の項目をいれる
   // 主キーと外部キーの関係を示す(fields: [Tool内の外部キー], references: [Technologyの主キー])
-  technology Technology? @relation(fields: [technologyId], references: [id])
+  technology Technology? @relation(fields: [technologyId], references: [id], onDelete: Cascade)
   technologyId Int? @unique //FK
-  genre Genre? @relation(fields: [genreId], references: [id])
+  genre Genre? @relation(fields: [genreId], references: [id], onDelete: Cascade)
   genreId Int? @unique //FK
 }
 

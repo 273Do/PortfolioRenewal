@@ -4,7 +4,7 @@ import { getPlaiceholder } from "plaiceholder";
 import type { GalleryObj } from "@/features/gallery/types";
 
 // galleryに関する処理
-export async function GET(req: Request) {
+export async function GET() {
   const allGallery = await prisma.gallery.findMany();
 
   // 画像のブラー処理

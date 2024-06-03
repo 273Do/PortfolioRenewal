@@ -27,3 +27,15 @@ export async function postToolData(value: z.infer<typeof toolFormSchema>) {
     body: JSON.stringify(value),
   });
 }
+
+// Toolを更新する
+export async function updateToolData(
+  id: string,
+  value: z.infer<typeof toolFormSchema>
+) {
+  await fetch(`http://localhost:3000/api/tool/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(value),
+  });
+}

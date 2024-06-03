@@ -2,7 +2,7 @@ import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
 
 // 全ての映像投稿を取得する処理
-export async function GET(req: Request) {
+export async function GET() {
   const allMovie = await prisma.movie.findMany();
   return NextResponse.json(allMovie);
 }

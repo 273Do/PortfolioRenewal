@@ -4,7 +4,7 @@ import prisma from "@/lib/prismaClient";
 
 // 更新処理
 export async function PUT(
-  req: Response,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
@@ -16,10 +16,7 @@ export async function PUT(
 }
 
 // 削除処理
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE({ params }: { params: { id: string } }) {
   const id = Number(params.id);
   await prisma.faq.delete({
     where: { id },

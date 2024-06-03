@@ -36,8 +36,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toolFormSchema } from "../../types/validation";
 import type { z } from "zod";
-import { getAllToolData, postToolData } from "@/app/utils/api/Tool/ToolAPI";
+import {
+  getAllToolData,
+  postToolData,
+  updateToolData,
+} from "@/app/utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
+import { toast } from "sonner";
 
 const ToolForm = () => {
   // const [toolData, setToolData] = useState<ToolObj[]>([]);
@@ -118,7 +123,7 @@ const ToolForm = () => {
   }, [nowData, reset]);
 
   // セレクターで選択したときの処理
-  async function handleSelect(e: React.ChangeEvent<HTMLSelectElement>) {
+  async function handleSelect(e: string) {
     // setSelect(Number(e));
     // console.log(e);
     // if (select != 0)
@@ -132,8 +137,25 @@ const ToolForm = () => {
   }
 
   async function onSubmit(value: z.infer<typeof toolFormSchema>) {
-    if (nowData) console.log("更新ボタン");
-    else postToolData(value);
+    if (nowData) {
+      try {
+        console.log(value);
+        console.log("更新ボタン");
+        await updateToolData(String(nowData.id), value);
+        window.location.reload();
+      } catch (error) {
+        toast("更新に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      try {
+        await postToolData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("投稿に失敗しました．");
+        console.error(error);
+      }
+    }
   }
 
   return (
