@@ -4,8 +4,10 @@ import Image from "next/image";
 import YTIcon from "@/public/YTIcon.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import type { YTProfileObj } from "../../types";
 
-const YTProfile = () => {
+const YTProfile = ({ YTProfileData }: { YTProfileData: YTProfileObj }) => {
+  console.log(YTProfileData);
   return (
     <div className="flex size-full items-center justify-center gap-16">
       <div className="flex flex-row">
@@ -18,14 +20,26 @@ const YTProfile = () => {
         />
         <div className="ml-3">
           <div className="space-y-1">
-            <h4 className="text-sm font-medium leading-none">name</h4>
-            <p className="text-sm text-muted-foreground">n subscribe</p>
+            <h4 className="text-sm font-medium leading-none">imperiRwrath</h4>
+            <div className="flex gap-3">
+              <p className="text-sm text-muted-foreground">
+                {YTProfileData.statistics.subscriberCount} subscribers
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {YTProfileData.statistics.videoCount} videos
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {YTProfileData.statistics.viewCount} views
+              </p>
+            </div>
           </div>
           <Separator className="my-4" />
           <div className="flex h-5 items-center space-x-4 text-sm">
             <div>MoGraph</div>
             <Separator orientation="vertical" />
             <div>3DCG</div>
+            <Separator orientation="vertical" />
+            <div>LEGO</div>
           </div>
         </div>
       </div>

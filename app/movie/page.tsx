@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/resizable";
 
 import type { Metadata } from "next";
-import { getMovieData } from "../utils/api/Movie/MovieApi";
+import { getMovieData, getYTProfileData } from "../utils/api/Movie/MovieApi";
 import type { MovieObj } from "@/features/movie/types";
 
 export const metadata: Metadata = {
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
 
 export default async function page() {
   const movieData: MovieObj[] = await getMovieData();
+  const YTProfileData = await getYTProfileData();
+  // console.log(YTProfileData.items);
 
   return (
     <main className="h-screen">
@@ -37,7 +39,7 @@ export default async function page() {
                 className="flex size-full flex-col"
               >
                 <ResizablePanel defaultSize={42}>
-                  <Card className="tool-detail-rounded flex size-full min-w-[470px] flex-col">
+                  <Card className="tool-detail-rounded flex size-full min-w-[650px] flex-col">
                     <CardHeader>
                       <div className="flex justify-between">
                         <div>
@@ -63,7 +65,9 @@ export default async function page() {
                             <Card className="... col-span-3 col-start-1 row-span-2 row-start-4">
                               <CardContent className="size-full p-0">
                                 <CardContent className="flex h-full items-center justify-center p-4">
-                                  <Movie.YTProfile />
+                                  <Movie.YTProfile
+                                    YTProfileData={YTProfileData.items[0]}
+                                  />
                                 </CardContent>
                               </CardContent>
                             </Card>
@@ -80,7 +84,7 @@ export default async function page() {
                                   </CardContent>
                                   <CardFooter>
                                     <p>
-                                      モーショングラフィックスはAviUtl，3D映像はBlenderを用いて制作しています．
+                                      モーショングラフィックスはAviUtl，3D映像はBlenderで制作しています．
                                     </p>
                                   </CardFooter>
                                 </CardContent>

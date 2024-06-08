@@ -13,7 +13,7 @@ export const formatDate = (dateString: Date) => {
   return `${year}/${month}/${day}`;
 };
 
-//降順にソートする関数
+// 降順にソートする関数
 export const sortedNoticeArray = (arr: NoticeObj[]): NoticeObj[] => {
   return arr.sort((a, b) => {
     const dateA = new Date(a.event_date);
@@ -22,7 +22,7 @@ export const sortedNoticeArray = (arr: NoticeObj[]): NoticeObj[] => {
   });
 };
 
-//降順にソートする関数
+// 降順にソートする関数
 export const sortedToolArray = (arr: ToolObj[]): ToolObj[] => {
   return arr.sort((a, b) => {
     const dateA = new Date(a.createdAt);
@@ -31,7 +31,15 @@ export const sortedToolArray = (arr: ToolObj[]): ToolObj[] => {
   });
 };
 
-//ランダムに順番を入れ替える関数
+// ランダムに順番を入れ替える関数
 export const shuffleArray = (arr: GalleryObj[]): GalleryObj[] => {
   return arr.sort(() => Math.random() - 0.5);
+};
+
+// データとidを入力すると，そのidが何番目なのか，前と次のidは何かを返す関数
+export const getNextId = (arr: ToolObj[], id: number) => {
+  const index = sortedToolArray(arr).findIndex((item) => item.id === id);
+  console.log(arr);
+  console.log(index);
+  return [];
 };

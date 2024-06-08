@@ -5,6 +5,7 @@
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
+  // 基本は上の設定でok
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "rules": {

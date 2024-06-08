@@ -18,6 +18,7 @@ model Notice {
   id Int @id @default(autoincrement()) //@idはPKを表す
   event_date DateTime
   content String
+  url String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

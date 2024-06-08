@@ -268,7 +268,7 @@ const ToolForm = () => {
                   control={form.control}
                   name="color"
                   render={({ field }) => (
-                    <FormItem className="w-48 space-y-1">
+                    <FormItem className=" w-48 space-y-1">
                       <FormLabel>Color</FormLabel>
                       <FormControl>
                         <Input placeholder="カラーコード" {...field} />

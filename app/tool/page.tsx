@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
 import type { TechnologyObj } from "@/features/main/types";
+import { getNextId } from "../utils/function";
 
 // export const metadata: Metadata = {
 //   title: "273* Portfolio | Tool",
@@ -32,6 +33,8 @@ const page = ({
   const [toolData, setToolData] = useState<ToolObj[]>([]);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [nowData, setNowData] = useState<ToolObj>({});
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [state, setState] = useState([]);
 
   console.log(searchParams.id);
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -47,6 +50,7 @@ const page = ({
             (item: ToolObj) => item.id === Number(searchParams.id)
           )
         );
+        getNextId(AllToolData, Number(searchParams.id));
       } catch (error) {
         // エラーハンドリング
         toast("toolの取得に失敗しました．");
@@ -56,7 +60,7 @@ const page = ({
 
     fetchToolData();
   }, [searchParams]);
-  console.log(nowData);
+  console.log(toolData);
 
   return (
     <main className="h-screen">
@@ -73,12 +77,12 @@ const page = ({
       ) : nowData.name == undefined ? (
         <></>
       ) : (
-        <Tool.Three
-          tool_id={nowData.id}
-          three_text={nowData.name}
-          three_color={nowData.color}
-        />
-        // <></>
+        // <Tool.Three
+        //   tool_id={nowData.id}
+        //   three_text={nowData.name}
+        //   three_color={nowData.color}
+        // />
+        <></>
       )}
       <div className="pointer-events-none fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
         <div className="flex h-full items-center justify-center bg-transparent">
