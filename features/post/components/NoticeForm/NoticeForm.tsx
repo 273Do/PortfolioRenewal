@@ -42,6 +42,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { noticeFormSchema } from "../../types/validation";
 import type { z } from "zod";
+import { url } from "inspector";
 
 const NoticeForm = () => {
   const [postData, setPostData] = useState<NoticeObj[]>([]);
@@ -64,7 +65,7 @@ const NoticeForm = () => {
   // 投稿フォームの設定
   const form = useForm({
     resolver: zodResolver(noticeFormSchema),
-    defaultValues: { content: "", event_date: "" },
+    defaultValues: { content: "", event_date: "", url: "" },
   });
 
   // 更新フォームの設定
@@ -160,6 +161,19 @@ const NoticeForm = () => {
                   )}
                 />
               </div>
+              <FormField
+                control={form.control}
+                name="url"
+                render={({ field }) => (
+                  <FormItem className="w-full space-y-1">
+                    <FormLabel>URL</FormLabel>
+                    <FormControl>
+                      <Input placeholder="url" type="url" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </CardContent>
             <CardFooter className="flex flex-col items-start">
               {/* <FormField

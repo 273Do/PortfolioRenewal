@@ -34,7 +34,11 @@ const page = ({
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [nowData, setNowData] = useState<ToolObj>({});
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [state, setState] = useState([]);
+  const [state, setState] = useState({
+    targetIndex: -1,
+    previousId: -1,
+    nextId: -1,
+  });
 
   console.log(searchParams.id);
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -50,7 +54,8 @@ const page = ({
             (item: ToolObj) => item.id === Number(searchParams.id)
           )
         );
-        getNextId(AllToolData, Number(searchParams.id));
+        const nav_state = getNextId(AllToolData, Number(searchParams.id));
+        setState(nav_state);
       } catch (error) {
         // エラーハンドリング
         toast("toolの取得に失敗しました．");
@@ -113,7 +118,7 @@ const page = ({
                         ? ""
                         : nowData.technology == undefined
                         ? ""
-                        : `${Number(nowData.id) - 1}`
+                        : `${state.previousId}`
                     }`}
                   >
                     <Button
@@ -124,10 +129,8 @@ const page = ({
                           : nowData.technology == undefined
                           ? ""
                           : `${
-                              toolData.findIndex(
-                                (item) => item.id === Number(nowData.id) - 1
-                              ) === -1
-                                ? "pointer-events-none"
+                              state.previousId === -1
+                                ? "pointer-events-none text-muted-foreground"
                                 : ""
                             }`
                       }
@@ -142,7 +145,7 @@ const page = ({
                         ? ""
                         : nowData.technology == undefined
                         ? ""
-                        : `${Number(nowData.id) + 1}`
+                        : `${state.nextId}`
                     }`}
                   >
                     <Button
@@ -153,10 +156,8 @@ const page = ({
                           : nowData.technology == undefined
                           ? ""
                           : `${
-                              toolData.findIndex(
-                                (item) => item.id === Number(nowData.id) + 1
-                              ) === -1
-                                ? "pointer-events-none"
+                              state.nextId === -1
+                                ? "pointer-events-none text-muted-foreground"
                                 : ""
                             }`
                       }
@@ -209,11 +210,7 @@ const page = ({
                           ? "no data"
                           : nowData.technology == undefined
                           ? "loading..."
-                          : `${
-                              toolData.findIndex(
-                                (item) => item.id === nowData.id
-                              ) + 1
-                            }/${toolData.length}`}
+                          : `${state.targetIndex + 1}/${toolData.length}`}
                       </p>
                     </CardContent>
                   </Card>

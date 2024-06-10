@@ -18,6 +18,7 @@ import {
 import type { Metadata } from "next";
 import { getMovieData, getYTProfileData } from "../utils/api/Movie/MovieApi";
 import type { MovieObj } from "@/features/movie/types";
+import { shuffleArray } from "../utils/function";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | Movie",
@@ -98,7 +99,7 @@ export default async function page() {
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel>
-                  <Movie.MovieList movieData={movieData} />
+                  <Movie.MovieList movieData={shuffleArray(movieData)} />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </CardContent>

@@ -3,6 +3,8 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { NoticeObj } from "../../types";
 import { formatDate } from "@/app/utils/function";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 const Notice = ({ noticeData }: { noticeData: NoticeObj[] }) => {
   return (
@@ -16,7 +18,16 @@ const Notice = ({ noticeData }: { noticeData: NoticeObj[] }) => {
               <p className="mb-1 text-xs text-muted-foreground">
                 {formatDate(data.event_date)}
               </p>
-              <div className="text-sm">{data.content}</div>
+              {data.url !== undefined && data.url !== "" ? (
+                <Link href={data.url} target="_blank" rel="noopener noreferrer">
+                  <div className="text-sm underline duration-200 hover:opacity-75">
+                    <p>{data.content}</p>
+                    {/* <ExternalLink size={15} /> */}
+                  </div>
+                </Link>
+              ) : (
+                <div className="text-sm">{data.content}</div>
+              )}
               <Separator className="my-2" />
             </div>
           ))}

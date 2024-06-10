@@ -486,7 +486,7 @@ const ToolForm = () => {
                 {nowData ? (
                   <Dialog>
                     <DialogTrigger>
-                      <Button variant="outline" size="icon">
+                      <Button type="button" variant="outline" size="icon">
                         <Trash2 className="size-[1.2rem] cursor-pointer" />
                       </Button>
                     </DialogTrigger>

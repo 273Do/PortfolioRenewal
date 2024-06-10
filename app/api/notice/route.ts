@@ -9,8 +9,8 @@ export async function GET() {
 
 // お知らせを投稿する処理
 export async function POST(req: Request) {
-  const { content, event_date } = await req.json();
+  const { content, event_date, url } = await req.json();
   await prisma.notice.create({
-    data: { event_date, content },
+    data: { event_date, content, url },
   });
 }

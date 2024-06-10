@@ -63,7 +63,7 @@ const DataRow = ({ data, categoryData }) => {
     resolver: zodResolver(editData.FormSchema),
     defaultValues:
       categoryName === "notice"
-        ? { event_date: data.event_date, content: data.content }
+        ? { event_date: data.event_date, content: data.content, url: data.url }
         : categoryName === "movie"
         ? { title: data.title, description: data.description, url: data.url }
         : categoryName === "gallery"
@@ -83,7 +83,7 @@ const DataRow = ({ data, categoryData }) => {
     // 手動でバリデーションチェック
     const value =
       categoryName === "notice"
-        ? { event_date: "", content: "" }
+        ? { event_date: "", content: "", url: "" }
         : categoryName === "movie"
         ? { title: "", description: "", url: "" }
         : categoryName === "gallery"
@@ -97,6 +97,7 @@ const DataRow = ({ data, categoryData }) => {
       const modifiedDate = new Date(date);
       modifiedDate.setDate(modifiedDate.getDate() + 1);
       value.event_date = modifiedDate;
+      value.url = Ref_second.current.value;
     } else if (categoryName === "movie") {
       value.title = Ref.current.value;
       value.description = Ref_second.current.value;
@@ -190,6 +191,25 @@ const DataRow = ({ data, categoryData }) => {
                           placeholder="お知らせ内容"
                           {...field}
                           ref={Ref}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </TableCell>
+              <TableCell>
+                <FormField
+                  control={editForm.control}
+                  name="url"
+                  render={({ field }) => (
+                    <FormItem className="w-full space-y-1">
+                      <FormControl>
+                        <Input
+                          placeholder="URL"
+                          type="url"
+                          {...field}
+                          ref={Ref_second}
                         />
                       </FormControl>
                       <FormMessage />

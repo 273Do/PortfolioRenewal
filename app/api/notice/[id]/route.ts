@@ -7,10 +7,10 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
-  const { content, event_date } = await req.json();
+  const { content, event_date, url } = await req.json();
   await prisma.notice.update({
     where: { id },
-    data: { event_date, content },
+    data: { event_date, content, url },
   });
 }
 

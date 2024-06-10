@@ -3,9 +3,9 @@ export type NoticeObj = {
   id: number;
   event_date: Date;
   content: string;
+  url?: string;
   createdAt: Date;
   updatedAt: Date;
-  technologyId?: number;
 };
 
 // 使用可能技術の型

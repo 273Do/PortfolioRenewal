@@ -12,11 +12,10 @@ export async function getNoticeAllData() {
 
 // お知らせを作成する
 export async function postNoticeData(value: z.infer<typeof noticeFormSchema>) {
-  const { event_date, content } = value;
   await fetch("http://localhost:3000/api/notice", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ event_date, content }),
+    body: JSON.stringify(value),
   });
 }
 
@@ -25,11 +24,10 @@ export async function updateNoticeData(
   id: string,
   value: z.infer<typeof noticeFormSchema>
 ) {
-  const { event_date, content } = value;
   await fetch(`http://localhost:3000/api/notice/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ event_date, content }),
+    body: JSON.stringify(value),
   });
 }
 
