@@ -159,7 +159,7 @@ const Header = () => {
                       }) => (
                         <ListItem
                           key={component.id}
-                          title={component.name}
+                          title={component.name.replace("\\n", " ")}
                           href={`/tool?id=${component.id}`}
                         >
                           {component.description}

@@ -87,9 +87,10 @@ export const toolFormSchema = z.object({
     .string({
       required_error: "必須項目です．",
     })
-    .url()
-    .min(1, { message: "1文字以上で入力してください．" })
-    .max(100, { message: "100字以下で入力してください．" }),
+    // .url()
+    // .min(1, { message: "1文字以上で入力してください．" })
+    .max(100, { message: "100字以下で入力してください．" })
+    .optional(),
   genre: z
     .string({
       required_error: "必須項目です．",

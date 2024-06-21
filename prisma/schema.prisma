@@ -33,7 +33,7 @@ model Tool{
   background String
   ingenuity String
   point String
-  url String
+  url String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   // fields は自身のモデル(Technology)の項目，references にはTechnologyからみた参照先のモデル(Tool)の項目をいれる
