@@ -183,6 +183,7 @@ function Text({ toolId, children, config, font = three_font, ...props }) {
       <group>
         <Center scale={[0.8, 1, 1]} front top {...props}>
           <Text3D
+            className="cursor-pointer"
             castShadow
             bevelEnabled
             font={font}

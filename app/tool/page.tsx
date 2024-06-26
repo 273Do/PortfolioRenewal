@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
 import type { TechnologyObj } from "@/features/main/types";
+import { getNextId, sortedToolArray } from "../utils/function";
 
 // export const metadata: Metadata = {
 //   title: "273* Portfolio | Tool",
@@ -32,6 +33,12 @@ const page = ({
   const [toolData, setToolData] = useState<ToolObj[]>([]);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [nowData, setNowData] = useState<ToolObj>({});
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [state, setState] = useState({
+    targetIndex: -1,
+    previousId: -1,
+    nextId: -1,
+  });
 
   console.log(searchParams.id);
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -41,12 +48,14 @@ const page = ({
     const fetchToolData = async () => {
       try {
         const AllToolData = await getAllToolData();
-        setToolData(AllToolData);
+        setToolData(sortedToolArray(AllToolData));
         setNowData(
           AllToolData.find(
             (item: ToolObj) => item.id === Number(searchParams.id)
           )
         );
+        const nav_state = getNextId(AllToolData, Number(searchParams.id));
+        setState(nav_state);
       } catch (error) {
         // エラーハンドリング
         toast("toolの取得に失敗しました．");
@@ -56,7 +65,10 @@ const page = ({
 
     fetchToolData();
   }, [searchParams]);
-  console.log(nowData);
+  console.log(toolData);
+  const str = "test\ntest";
+  console.log("置き換え");
+  // console.log(nowData.name.replace("\\n", ""));
 
   return (
     <main className="h-screen">
@@ -75,10 +87,10 @@ const page = ({
       ) : (
         <Tool.Three
           tool_id={nowData.id}
-          three_text={nowData.name}
+          three_text={nowData.name.replace("\\n", "\n")}
           three_color={nowData.color}
         />
-        // <></>
+        // <p className="mt-60">{nowData.name.replace("\\n", "")}</p>
       )}
       <div className="pointer-events-none fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
         <div className="flex h-full items-center justify-center bg-transparent">
@@ -89,7 +101,7 @@ const page = ({
                   ? "no data"
                   : nowData.name == undefined
                   ? "loading.."
-                  : nowData.name}
+                  : nowData.name.replace("\\n", " ")}
               </CardTitle>
               <CardDescription>
                 {JSON.stringify(nowData) === undefined
@@ -109,7 +121,7 @@ const page = ({
                         ? ""
                         : nowData.technology == undefined
                         ? ""
-                        : `${Number(nowData.id) - 1}`
+                        : `${state.previousId}`
                     }`}
                   >
                     <Button
@@ -120,10 +132,8 @@ const page = ({
                           : nowData.technology == undefined
                           ? ""
                           : `${
-                              toolData.findIndex(
-                                (item) => item.id === Number(nowData.id) - 1
-                              ) === -1
-                                ? "pointer-events-none"
+                              state.previousId === -1
+                                ? "pointer-events-none text-muted-foreground"
                                 : ""
                             }`
                       }
@@ -138,7 +148,7 @@ const page = ({
                         ? ""
                         : nowData.technology == undefined
                         ? ""
-                        : `${Number(nowData.id) + 1}`
+                        : `${state.nextId}`
                     }`}
                   >
                     <Button
@@ -149,10 +159,8 @@ const page = ({
                           : nowData.technology == undefined
                           ? ""
                           : `${
-                              toolData.findIndex(
-                                (item) => item.id === Number(nowData.id) + 1
-                              ) === -1
-                                ? "pointer-events-none"
+                              state.nextId === -1
+                                ? "pointer-events-none text-muted-foreground"
                                 : ""
                             }`
                       }
@@ -205,11 +213,7 @@ const page = ({
                           ? "no data"
                           : nowData.technology == undefined
                           ? "loading..."
-                          : `${
-                              toolData.findIndex(
-                                (item) => item.id === nowData.id
-                              ) + 1
-                            }/${toolData.length}`}
+                          : `${state.targetIndex + 1}/${toolData.length}`}
                       </p>
                     </CardContent>
                   </Card>

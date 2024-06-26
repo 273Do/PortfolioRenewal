@@ -16,6 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { getToolData } from "@/app/utils/api/Tool/ToolAPI";
+import { ExternalLink } from "lucide-react";
 
 export async function generateMetadata() {
   return {
@@ -43,7 +44,24 @@ const page = async ({ params }: { params: { id: string } }) => {
                     <CardHeader>
                       <div className="flex justify-between">
                         <div>
-                          <CardTitle>{toolData.name}</CardTitle>
+                          {toolData.url === "" ? (
+                            <CardTitle className="flex items-end gap-2">
+                              {toolData.name.replace("\\n", " ")}
+                            </CardTitle>
+                          ) : (
+                            <CardTitle className="cursor-pointer underline duration-200 hover:opacity-75">
+                              <Link
+                                className="flex items-end"
+                                href={toolData.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {toolData.name.replace("\\n", " ")}
+                                <ExternalLink size={15} />
+                              </Link>
+                            </CardTitle>
+                          )}
+
                           <CardDescription className="mt-[6px]">
                             {toolData.description}
                           </CardDescription>
@@ -109,13 +127,19 @@ const page = async ({ params }: { params: { id: string } }) => {
                     </CardContent>
                   </Card>
                 </ResizablePanel>
-                <ResizableHandle withHandle />
-                <ResizablePanel>
-                  <iframe
-                    src={toolData.url}
-                    className="iframe-rounded size-full"
-                  ></iframe>
-                </ResizablePanel>
+                {toolData.url === "" || toolData.url.includes("github") ? (
+                  <></>
+                ) : (
+                  <>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel>
+                      <iframe
+                        src={toolData.url}
+                        className="iframe-rounded size-full"
+                      ></iframe>
+                    </ResizablePanel>
+                  </>
+                )}
               </ResizablePanelGroup>
             </CardContent>
           </Card>

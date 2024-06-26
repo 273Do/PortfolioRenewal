@@ -268,7 +268,7 @@ const ToolForm = () => {
                   control={form.control}
                   name="color"
                   render={({ field }) => (
-                    <FormItem className="w-48 space-y-1">
+                    <FormItem className=" w-48 space-y-1">
                       <FormLabel>Color</FormLabel>
                       <FormControl>
                         <Input placeholder="カラーコード" {...field} />
@@ -486,7 +486,7 @@ const ToolForm = () => {
                 {nowData ? (
                   <Dialog>
                     <DialogTrigger>
-                      <Button variant="outline" size="icon">
+                      <Button type="button" variant="outline" size="icon">
                         <Trash2 className="size-[1.2rem] cursor-pointer" />
                       </Button>
                     </DialogTrigger>

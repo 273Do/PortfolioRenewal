@@ -76,7 +76,26 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
+
+  // onDelete: Cascadeが効かないので手動で削除
+  const tool = await prisma.tool.findUnique({
+    where: { id },
+    include: {
+      technology: true,
+      genre: true,
+    },
+  });
+
   await prisma.tool.delete({
     where: { id },
+  });
+
+  // 関連するtechnologyとgenreを削除
+  await prisma.technology.delete({
+    where: { id: tool.technologyId },
+  });
+
+  await prisma.genre.delete({
+    where: { id: tool.genreId },
   });
 }
