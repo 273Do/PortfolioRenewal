@@ -4,9 +4,12 @@ import type { z } from "zod";
 
 // 使用可能な技術を取得
 export async function getAvailableTechnologyData() {
-  const response = await fetch("http://localhost:3000/api/technology", {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/technology`,
+    {
+      cache: "no-store",
+    }
+  );
   const availableTechnologyData: TechnologyObj[] = await response.json();
   return availableTechnologyData;
 }
@@ -15,7 +18,7 @@ export async function getAvailableTechnologyData() {
 export async function updateTechnologyData(
   value: z.infer<typeof technologyFormSchema>
 ) {
-  await fetch("http://localhost:3000/api/technology", {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/technology`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
