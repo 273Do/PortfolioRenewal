@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Card,
   CardContent,
@@ -23,7 +23,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Calendar } from "@/components/ui/calendar";
@@ -42,10 +42,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { noticeFormSchema } from "../../types/validation";
 import type { z } from "zod";
-import { url } from "inspector";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
+import { Input } from "@/components/ui/input";
 
 const NoticeForm = () => {
   const [postData, setPostData] = useState<NoticeObj[]>([]);
+  const Ref_password = useRef(null);
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -74,18 +76,28 @@ const NoticeForm = () => {
   //   defaultValues: { content: "", event_date: "" },
   // });
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   // お知らせの送信
   async function onSubmit(value: z.infer<typeof noticeFormSchema>) {
-    try {
-      // なぜか曜日が1日ズレるので修正
-      const modifiedDate = new Date(value.event_date);
-      modifiedDate.setDate(modifiedDate.getDate() + 1);
-      value.event_date = modifiedDate;
-      await postNoticeData(value);
-      window.location.reload();
-    } catch (error) {
-      toast("お知らせの作成に失敗しました．");
-      console.error(error);
+    // validatePassword(Ref_password.current.value);
+    console.log(isValid);
+
+    if (isValid) {
+      try {
+        // なぜか曜日が1日ズレるので修正
+        const modifiedDate = new Date(value.event_date);
+        modifiedDate.setDate(modifiedDate.getDate() + 1);
+        value.event_date = modifiedDate;
+        // await postNoticeData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("お知らせの作成に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -185,7 +197,10 @@ const NoticeForm = () => {
                     <FormControl> */}
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input type="password" />
+                <Input
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button type="submit">Save Notice</Button>
               </div>
               {/* </FormControl>
