@@ -132,20 +132,29 @@ const DataRow = ({ data, categoryData }) => {
 
   // 投稿の削除
   const onDelete = async () => {
-    try {
-      // if (categoryName === "notice")
-      await editData.deleteFunc(data.id);
+    if (
+      document.getElementById("password").value ==
+      process.env.NEXT_PUBLIC_POST_PASSWORD
+    ) {
+      try {
+        // if (categoryName === "notice")
+        await editData.deleteFunc(data.id);
 
-      // galleryの削除
-      if (categoryName === "gallery") {
-        const image_name = data.url.match(/[^/]+$/)[0];
-        await supabase.storage.from("gallery").remove([`images/${image_name}`]);
+        // galleryの削除
+        if (categoryName === "gallery") {
+          const image_name = data.url.match(/[^/]+$/)[0];
+          await supabase.storage
+            .from("gallery")
+            .remove([`images/${image_name}`]);
+        }
+        // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
+        window.location.reload();
+      } catch (error) {
+        toast("削除に失敗しました．");
+        console.error(error);
       }
-      // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
-      window.location.reload();
-    } catch (error) {
-      toast("削除に失敗しました．");
-      console.error(error);
+    } else {
+      toast("パスワードが違います．");
     }
   };
 
