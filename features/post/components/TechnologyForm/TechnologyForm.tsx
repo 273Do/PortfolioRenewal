@@ -30,6 +30,8 @@ import {
   updateTechnologyData,
 } from "@/app/utils/api/Technology/TechnologyApi";
 import type { z } from "zod";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
+import { Label } from "@/components/ui/label";
 
 const TechnologyForm = () => {
   const [technologyData, setTechnologyData] = useState<TechnologyObj[]>([]);
@@ -67,15 +69,21 @@ const TechnologyForm = () => {
     // console.log(technologyData);
   };
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
+  // 使用技術の送信
   async function onSubmit(value: z.infer<typeof technologyFormSchema>) {
-    console.log(value);
-    // console.log(technologyData);
-    try {
-      await updateTechnologyData(value);
-      toast("使用可能技術の更新をしました．");
-    } catch (error) {
-      toast("使用可能技術の更新に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await updateTechnologyData(value);
+        toast("使用可能技術の更新をしました．");
+      } catch (error) {
+        toast("使用可能技術の更新に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -228,22 +236,32 @@ const TechnologyForm = () => {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start">
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem className="w-full space-y-1">
                     <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <div className="flex w-full flex-row gap-4">
-                        <Input id="password" type="password" {...field} />
-                        <Button>Save Technology</Button>
-                      </div>
-                    </FormControl>
+                    <FormControl> */}
+              <Label htmlFor="password">Password</Label>
+              <div className="mt-2 flex w-full flex-row gap-4">
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
+                <Button type="submit">Save Notice</Button>
+              </div>
+              {/* </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
+              {/* <Label htmlFor="password">Password</Label>
+              <div className="mt-2 flex w-full flex-row gap-4">
+                <Input id="password" type="password" />
+                <Button>Save Notice</Button>
+              </div> */}
             </CardFooter>
           </form>
         </Form>

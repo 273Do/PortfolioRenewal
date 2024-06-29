@@ -34,6 +34,7 @@ import {
   updateFAQData,
 } from "@/app/utils/api/FAQ/FAQApi";
 import type { FAQObj } from "@/features/faq/types";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
 
 const FAQForm = () => {
   const [faqData, setFaqData] = useState<FAQObj[]>([]);
@@ -58,13 +59,20 @@ const FAQForm = () => {
     defaultValues: { question: "", answer: "" },
   });
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   async function onSubmit(value: z.infer<typeof FAQFormSchema>) {
-    try {
-      await postFAQData(value);
-      window.location.reload();
-    } catch (error) {
-      toast("FAQの作成に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await postFAQData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("FAQの作成に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -117,7 +125,11 @@ const FAQForm = () => {
             <CardFooter className="flex flex-col items-start ">
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input id="password" type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button>Save FAQ</Button>
               </div>
             </CardFooter>

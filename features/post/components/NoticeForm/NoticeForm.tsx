@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -47,7 +47,6 @@ import { Input } from "@/components/ui/input";
 
 const NoticeForm = () => {
   const [postData, setPostData] = useState<NoticeObj[]>([]);
-  const Ref_password = useRef(null);
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -81,16 +80,13 @@ const NoticeForm = () => {
 
   // お知らせの送信
   async function onSubmit(value: z.infer<typeof noticeFormSchema>) {
-    // validatePassword(Ref_password.current.value);
-    console.log(isValid);
-
     if (isValid) {
       try {
         // なぜか曜日が1日ズレるので修正
         const modifiedDate = new Date(value.event_date);
         modifiedDate.setDate(modifiedDate.getDate() + 1);
         value.event_date = modifiedDate;
-        // await postNoticeData(value);
+        await postNoticeData(value);
         window.location.reload();
       } catch (error) {
         toast("お知らせの作成に失敗しました．");
@@ -198,6 +194,7 @@ const NoticeForm = () => {
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
                 <Input
+                  id="password"
                   type="password"
                   onChange={(e) => validatePassword(e.target.value)}
                 />

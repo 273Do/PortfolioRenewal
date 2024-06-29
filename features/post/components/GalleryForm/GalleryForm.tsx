@@ -46,6 +46,7 @@ import {
   updateGalleryData,
 } from "@/app/utils/api/Gallery/GalleryApi";
 import type { GalleryObj } from "@/features/gallery/types";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
 
 const GalleryForm = () => {
   const [galleryData, setGalleryData] = useState<GalleryObj[]>([]);
@@ -89,37 +90,43 @@ const GalleryForm = () => {
     // console.log(filePath);
   };
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   async function onSubmit(value: z.infer<typeof galleryFormSchema>) {
-    console.log("onSubmit");
-    try {
-      if (!fileData) {
-        toast("画像が選択されていません．");
-        return;
-      }
-      // 画像をsupabaseに保存する処理
-      const { data, error } = await supabase.storage
-        .from("gallery")
-        .upload(filePath, fileData);
+    if (isValid) {
+      try {
+        if (!fileData) {
+          toast("画像が選択されていません．");
+          return;
+        }
+        // 画像をsupabaseに保存する処理
+        const { data, error } = await supabase.storage
+          .from("gallery")
+          .upload(filePath, fileData);
 
-      if (error) {
-        toast("画像の保存に失敗しました．");
+        if (error) {
+          toast("画像の保存に失敗しました．");
+          console.error(error);
+        } else {
+          // TODO 画像へのurlを使いたい場合
+          const url = supabase.storage.from("gallery").getPublicUrl(filePath);
+
+          // なぜか曜日が1日ズレるので修正
+          const modifiedDate = new Date(value.event_date);
+          modifiedDate.setDate(modifiedDate.getDate() + 1);
+          value.event_date = modifiedDate;
+          value.url = url.data.publicUrl;
+
+          await postGalleryData(value);
+          window.location.reload();
+        }
+      } catch (error) {
+        toast("ギャラリー投稿の作成に失敗しました．");
         console.error(error);
-      } else {
-        // TODO 画像へのurlを使いたい場合
-        const url = supabase.storage.from("gallery").getPublicUrl(filePath);
-
-        // なぜか曜日が1日ズレるので修正
-        const modifiedDate = new Date(value.event_date);
-        modifiedDate.setDate(modifiedDate.getDate() + 1);
-        value.event_date = modifiedDate;
-        value.url = url.data.publicUrl;
-
-        await postGalleryData(value);
-        window.location.reload();
       }
-    } catch (error) {
-      toast("ギャラリー投稿の作成に失敗しました．");
-      console.error(error);
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -222,7 +229,11 @@ const GalleryForm = () => {
             <CardFooter className="flex flex-col items-start ">
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input id="password" type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button type="submit">Save Gallery</Button>
               </div>
             </CardFooter>

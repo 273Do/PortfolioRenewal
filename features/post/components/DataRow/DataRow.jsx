@@ -114,12 +114,19 @@ const DataRow = ({ data, categoryData }) => {
       value.answer = Ref_second.current.value;
     }
 
-    try {
-      await editData.updateFunc(data.id, value);
-      window.location.reload();
-    } catch (error) {
-      toast("更新に失敗しました．");
-      console.error(error);
+    if (
+      document.getElementById("password").value ==
+      process.env.NEXT_PUBLIC_POST_PASSWORD
+    ) {
+      try {
+        await editData.updateFunc(data.id, value);
+        window.location.reload();
+      } catch (error) {
+        toast("更新に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   };
 

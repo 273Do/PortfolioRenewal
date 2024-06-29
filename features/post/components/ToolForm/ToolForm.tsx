@@ -55,6 +55,7 @@ import {
 import type { ToolObj } from "@/features/tool/types";
 import { toast } from "sonner";
 import { Trash2 } from "lucide-react";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
 
 const ToolForm = () => {
   // const [toolData, setToolData] = useState<ToolObj[]>([]);
@@ -148,37 +149,51 @@ const ToolForm = () => {
     } else setNowData(null);
   }
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   // 投稿の更新
   async function onSubmit(value: z.infer<typeof toolFormSchema>) {
     if (nowData) {
-      try {
-        console.log(value);
-        console.log("更新ボタン");
-        await updateToolData(String(nowData.id), value);
-        window.location.reload();
-      } catch (error) {
-        toast("更新に失敗しました．");
-        console.error(error);
+      if (isValid) {
+        try {
+          console.log("更新ボタン");
+          await updateToolData(String(nowData.id), value);
+          window.location.reload();
+        } catch (error) {
+          toast("更新に失敗しました．");
+          console.error(error);
+        }
+      } else {
+        toast("パスワードが違います．");
       }
     } else {
-      try {
-        await postToolData(value);
-        window.location.reload();
-      } catch (error) {
-        toast("投稿に失敗しました．");
-        console.error(error);
+      if (isValid) {
+        try {
+          await postToolData(value);
+          window.location.reload();
+        } catch (error) {
+          toast("投稿に失敗しました．");
+          console.error(error);
+        }
+      } else {
+        toast("パスワードが違います．");
       }
     }
   }
 
   // 投稿の削除
   const onDelete = async () => {
-    try {
-      await deleteToolData(String(nowData?.id));
-      window.location.reload();
-    } catch (error) {
-      toast("削除に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await deleteToolData(String(nowData?.id));
+        window.location.reload();
+      } catch (error) {
+        toast("削除に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   };
 
@@ -481,7 +496,11 @@ const ToolForm = () => {
             <CardFooter className="flex flex-col items-start ">
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input id="password" type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button>{nowData ? "Update" : "Save"} Tool</Button>
                 {nowData ? (
                   <Dialog>

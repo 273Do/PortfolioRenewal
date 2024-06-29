@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// パスワードのバリデーションを行うhooks
 export const useValidatePassword = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
 

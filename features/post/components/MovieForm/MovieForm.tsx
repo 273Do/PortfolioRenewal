@@ -33,6 +33,7 @@ import {
   updateMovieData,
 } from "@/app/utils/api/Movie/MovieApi";
 import type { z } from "zod";
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
 
 const MovieForm = () => {
   const [movieData, setMovieData] = useState<MovieObj[]>([]);
@@ -57,13 +58,20 @@ const MovieForm = () => {
     defaultValues: { title: "", description: "", url: "" },
   });
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   async function onSubmit(value: z.infer<typeof movieFormSchema>) {
-    try {
-      await postMovieData(value);
-      window.location.reload();
-    } catch (error) {
-      toast("映像投稿の作成に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await postMovieData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("映像投稿の作成に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -129,7 +137,11 @@ const MovieForm = () => {
             <CardFooter className="flex flex-col items-start ">
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input id="password" type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button>Save Movie</Button>
               </div>
             </CardFooter>
