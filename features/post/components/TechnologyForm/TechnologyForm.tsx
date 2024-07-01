@@ -250,7 +250,7 @@ const TechnologyForm = () => {
                   type="password"
                   onChange={(e) => validatePassword(e.target.value)}
                 />
-                <Button type="submit">Save Notice</Button>
+                <Button type="submit">Save Technology</Button>
               </div>
               {/* </FormControl>
                     <FormMessage />
