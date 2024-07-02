@@ -1,5 +1,6 @@
-import type { FAQFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
+
+import type { FAQFormSchema } from "@/features/post/types/validation";
 
 // 全てのFAQを取得
 export async function getFAQData() {

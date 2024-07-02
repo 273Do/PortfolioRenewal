@@ -1,12 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import {
   SiArc,
   SiDiscord,
@@ -24,8 +19,16 @@ import {
   SiWarp,
   SiZenn,
 } from "@icons-pack/react-simple-icons";
-import type { FAQObj } from "../../types";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
+
+import type { FAQObj } from "../../types";
 
 const chat_tool_icon = [
   {

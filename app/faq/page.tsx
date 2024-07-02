@@ -1,15 +1,17 @@
 import React from "react";
+
+import type { Metadata } from "next";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import * as FAQ from "@/features/faq/components/index";
+
 import { getFAQData } from "../utils/api/FAQ/FAQApi";
 export const metadata: Metadata = {
   title: "273* Portfolio | FAQ",
