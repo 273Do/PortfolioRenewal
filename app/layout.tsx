@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+
 import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
+
 import "./globals.css";
 import * as Layout from "@/app/components/index";
 import { ThemeProvider } from "@/components/theme-provider";

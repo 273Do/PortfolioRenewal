@@ -1,9 +1,11 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import type { ThemeInput } from "react-github-calendar";
 import GitHubCalendar from "react-github-calendar";
+
+import { useTheme } from "next-themes";
+
 import {
   Tooltip,
   TooltipContent,

@@ -1,5 +1,6 @@
-import type { noticeFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
+
+import type { noticeFormSchema } from "@/features/post/types/validation";
 
 // 全てのお知らせを取得する
 export async function getNoticeAllData() {

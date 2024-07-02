@@ -1,8 +1,21 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+
+import {
+  SiX,
+  SiGithub,
+  SiYoutube,
+  SiInstagram,
+} from "@icons-pack/react-simple-icons";
+import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+
+import { useAllTool } from "@/app/hooks/tool/useAllTool";
+import { sortedToolArray } from "@/app/utils/function";
+import { Button } from "@/components/ui/button";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,80 +24,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import {
-  SiX,
-  SiGithub,
-  SiYoutube,
-  SiInstagram,
-} from "@icons-pack/react-simple-icons";
-import Image from "next/image";
-import myImg from "@/public/myImg.jpg";
+import { cn } from "@/lib/utils";
 import siteLogo from "@/public/273*Logo.png";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { getAllToolData } from "@/app/utils/api/Tool/ToolAPI";
-import { sortedToolArray } from "@/app/utils/function";
-
-// const components: {
-//   id: number;
-//   title: string;
-//   description: string;
-// }[] = [
-//   {
-//     id: 1,
-//     title: "Alert Dialog",
-//     description:
-//       "A modal dialog that interrupts the user with important content and expects a response.",
-//   },
-//   {
-//     id: 2,
-//     title: "Hover Card",
-//     description:
-//       "For sighted users to preview content available behind a link.",
-//   },
-//   {
-//     id: 3,
-//     title: "Progress",
-//     description:
-//       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-//   },
-//   {
-//     id: 4,
-//     title: "Scroll-area",
-//     description: "Visually or semantically separates content.",
-//   },
-//   {
-//     id: 5,
-//     title: "Tabs",
-//     description:
-//       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-//   },
-//   {
-//     id: 6,
-//     title: "Tooltip",
-//     description:
-//       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-//   },
-// ];
+import myImg from "@/public/myImg.jpg";
 
 const Header = () => {
   const theme = useTheme();
-  const [components, setComponents] = useState([]);
 
-  useEffect(() => {
-    // getAllToolData();
-    const fetchToolData = async () => {
-      try {
-        const tool_data = await getAllToolData();
-        setComponents(tool_data);
-        // console.log(tool_data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchToolData();
-  }, []);
+  const { tools, isError, isLoading } = useAllTool();
 
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -151,20 +98,26 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
-                    {sortedToolArray(components).map(
-                      (component: {
-                        id: number;
-                        name: string;
-                        description: string;
-                      }) => (
-                        <ListItem
-                          key={component.id}
-                          title={component.name.replace("\\n", " ")}
-                          href={`/tool?id=${component.id}`}
-                        >
-                          {component.description}
-                        </ListItem>
-                      )
+                    {isLoading ? (
+                      <div>Loading...</div>
+                    ) : (
+                      <>
+                        {sortedToolArray(tools).map(
+                          (component: {
+                            id: number;
+                            name: string;
+                            description: string;
+                          }) => (
+                            <ListItem
+                              key={component.id}
+                              title={component.name.replace("\\n", " ")}
+                              href={`/tool?id=${component.id}`}
+                            >
+                              {component.description}
+                            </ListItem>
+                          )
+                        )}
+                      </>
                     )}
                   </ul>
                 </NavigationMenuContent>

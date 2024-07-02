@@ -1,5 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import type { z } from "zod";
+
+import { useValidatePassword } from "@/app/hooks/useValidatePassword";
+import {
+  getAvailableTechnologyData,
+  updateTechnologyData,
+} from "@/app/utils/api/Technology/TechnologyApi";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,27 +23,17 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { technologyFormSchema } from "../../types/validation";
+import { Label } from "@/components/ui/label";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { TechnologyObj } from "@/features/main/types";
-import {
-  getAvailableTechnologyData,
-  updateTechnologyData,
-} from "@/app/utils/api/Technology/TechnologyApi";
-import type { z } from "zod";
-import { useValidatePassword } from "@/app/hooks/useValidatePassword";
-import { Label } from "@/components/ui/label";
+
+import { technologyFormSchema } from "../../types/validation";
 
 const TechnologyForm = () => {
   const [technologyData, setTechnologyData] = useState<TechnologyObj[]>([]);

@@ -1,4 +1,9 @@
 "use client";
+import React, { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,17 +12,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Tool from "@/features/tool/components/index";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Separator } from "@/components/ui/separator";
-
-import type { Metadata } from "next";
-import { toast } from "sonner";
-import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
-import type { TechnologyObj } from "@/features/main/types";
+
+import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import { getNextId, sortedToolArray } from "../utils/function";
 
 // export const metadata: Metadata = {
@@ -65,9 +65,7 @@ const page = ({
 
     fetchToolData();
   }, [searchParams]);
-  console.log(toolData);
-  const str = "test\ntest";
-  console.log("置き換え");
+
   // console.log(nowData.name.replace("\\n", ""));
 
   return (
