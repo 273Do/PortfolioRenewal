@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { Separator } from "@/components/ui/separator";
-import { useTheme } from "next-themes";
+
 import Image from "next/image";
+import { useTheme } from "next-themes";
+
+import { Separator } from "@/components/ui/separator";
 import iRwImg from "@/public/iRwLogo.png";
 
 const Profile = () => {

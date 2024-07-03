@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Badge } from "@/components/ui/badge";
 
 const Label = ({ label }: { label: string }) => {

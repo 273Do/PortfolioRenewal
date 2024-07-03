@@ -1,13 +1,16 @@
 import React from "react";
-import { Separator } from "@/components/ui/separator";
+
 import Image from "next/image";
-import YTIcon from "@/public/YTIcon.png";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import YTIcon from "@/public/YTIcon.png";
+
 import type { YTProfileObj } from "../../types";
 
 const YTProfile = ({ YTProfileData }: { YTProfileData: YTProfileObj }) => {
-  console.log(YTProfileData);
+  // console.log(YTProfileData);
   return (
     <div className="flex size-full items-center justify-center gap-16">
       <div className="flex flex-row">
