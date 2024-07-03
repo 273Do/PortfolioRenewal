@@ -1,5 +1,6 @@
-import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
+
+import prisma from "@/lib/prismaClient";
 
 // 使用可能な技術を取得する処理(id=1のもののみ)
 export async function GET() {
