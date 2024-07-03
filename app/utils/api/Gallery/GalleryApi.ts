@@ -1,7 +1,8 @@
-import type { galleryFormSchema } from "@/features/post/types/validation";
 import type { z } from "zod";
+
 // import { getPlaiceholder } from "plaiceholder";
 import type { GalleryObj } from "@/features/gallery/types";
+import type { galleryFormSchema } from "@/features/post/types/validation";
 
 // 全てのgalleryデータを取得
 export const getGalleryData = async (): Promise<GalleryObj[]> => {

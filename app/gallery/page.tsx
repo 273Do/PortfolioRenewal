@@ -1,16 +1,18 @@
 import React from "react";
+
+import type { Metadata } from "next";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { Metadata } from "next";
 import * as Gallery from "@/features/gallery/components/index";
 import type { GalleryObj } from "@/features/gallery/types";
+
 import { getBlurGalleryData } from "../utils/api/Gallery/GalleryApi";
 import { shuffleArray } from "../utils/function";
 
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
 
 export default async function page() {
   const galleryData: GalleryObj[] = await getBlurGalleryData();
-  const shuffleGalleryData = shuffleArray(galleryData);
+  const shuffleGalleryData = shuffleArray(galleryData) as GalleryObj[];
 
   return (
     <main className="h-screen">
@@ -38,7 +40,7 @@ export default async function page() {
                   </CardHeader>
                   <CardContent className="p-0 pt-3">
                     趣味でピアノやサイクリング，アウトドアなどを楽しんでいます．
-                    他にも，ものづくりやチーム開発に取り組んでいます
+                    また，ものづくりやチーム開発に取り組んでいます．
                   </CardContent>
                   <Separator className="-mb-2 mt-3" />
                 </Card>

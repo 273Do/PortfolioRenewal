@@ -1,7 +1,8 @@
-import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
 import { getPlaiceholder } from "plaiceholder";
+
 import type { GalleryObj } from "@/features/gallery/types";
+import prisma from "@/lib/prismaClient";
 
 // galleryに関する処理
 export async function GET() {
