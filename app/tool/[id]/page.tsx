@@ -1,3 +1,9 @@
+import React from "react";
+
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+
+import { getToolData } from "@/app/utils/api/Tool/ToolAPI";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,17 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import MarqueeWidget from "@/features/Marquee/components/Marquee";
-import React from "react";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { getToolData } from "@/app/utils/api/Tool/ToolAPI";
-import { ExternalLink } from "lucide-react";
+import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
 export async function generateMetadata() {
   return {
@@ -27,7 +29,6 @@ export async function generateMetadata() {
 const page = async ({ params }: { params: { id: string } }) => {
   // console.log(params.id);
   const toolData = await getToolData(params.id);
-  console.log(toolData);
 
   return (
     <main className="h-screen">
