@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import type { z } from "zod";
 
-import { useValidatePassword } from "@/app/hooks/useValidatePassword";
+import { useValidatePassword } from "@/app/hooks/post/useValidatePassword";
 import {
   getAvailableTechnologyData,
   updateTechnologyData,

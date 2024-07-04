@@ -1,49 +1,41 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  TableFooter,
-} from "@/components/ui/table";
+import React, { useRef, useState } from "react";
+
+// eslint-disable-next-line import/order
+import { cn } from "@/lib/utils";
+// eslint-disable-next-line import/order
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
+import Image from "next/image";
+import { toast } from "sonner";
+
+import { supabase } from "@/app/utils/supabase/supabase";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
-import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import { supabase } from "@/app/utils/supabase/supabase";
+import { TableCell } from "@/components/ui/table";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);

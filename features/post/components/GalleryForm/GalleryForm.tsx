@@ -2,6 +2,25 @@
 
 import type { ChangeEvent } from "react";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
+import type { z } from "zod";
+
+import { useValidatePassword } from "@/app/hooks/post/useValidatePassword";
+import {
+  deleteGalleryData,
+  getGalleryData,
+  postGalleryData,
+  updateGalleryData,
+} from "@/app/utils/api/Gallery/GalleryApi";
+import { supabase } from "@/app/utils/supabase/supabase";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
   CardContent,
@@ -11,42 +30,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import DataTable from "../DataTable/DataTable";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { supabase } from "@/app/utils/supabase/supabase";
-import type { z } from "zod";
-import { v4 as uuidv4 } from "uuid";
-import { galleryFormSchema } from "../../types/validation";
-import { toast } from "sonner";
 import {
-  deleteGalleryData,
-  getGalleryData,
-  postGalleryData,
-  updateGalleryData,
-} from "@/app/utils/api/Gallery/GalleryApi";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import type { GalleryObj } from "@/features/gallery/types";
-import { useValidatePassword } from "@/app/hooks/useValidatePassword";
+import { cn } from "@/lib/utils";
+
+import { galleryFormSchema } from "../../types/validation";
+import DataTable from "../DataTable/DataTable";
 
 const GalleryForm = () => {
   const [galleryData, setGalleryData] = useState<GalleryObj[]>([]);
@@ -70,7 +72,12 @@ const GalleryForm = () => {
   // 投稿フォームの設定
   const form = useForm({
     resolver: zodResolver(galleryFormSchema),
-    defaultValues: { title: "", description: "", event_date: "", url: "" },
+    defaultValues: {
+      title: "",
+      description: "",
+      event_date: new Date(),
+      url: "",
+    },
   });
 
   const handleImageChange = async (
@@ -93,7 +100,9 @@ const GalleryForm = () => {
   // パスワードが正しいか確認するhooks
   const { validatePassword, isValid } = useValidatePassword();
 
-  async function onSubmit(value: z.infer<typeof galleryFormSchema>) {
+  async function onSubmit(
+    value: z.infer<typeof galleryFormSchema> & { url: string }
+  ) {
     if (isValid) {
       try {
         if (!fileData) {
@@ -116,6 +125,9 @@ const GalleryForm = () => {
           const modifiedDate = new Date(value.event_date);
           modifiedDate.setDate(modifiedDate.getDate() + 1);
           value.event_date = modifiedDate;
+          // (value as z.infer<typeof galleryFormSchema> & { url: string }).url =
+          //   url.data.publicUrl;
+
           value.url = url.data.publicUrl;
 
           await postGalleryData(value);
@@ -206,7 +218,6 @@ const GalleryForm = () => {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            // initialFocus
                           />
                         </PopoverContent>
                       </Popover>
