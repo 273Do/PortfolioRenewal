@@ -7,7 +7,7 @@
   ],
   // 基本は上の設定でok
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "unused-imports"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
       "error",
@@ -35,6 +35,35 @@
         "html": false
       }
     ],
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": false },
+        "pathGroups": [
+          {
+            "pattern": "react**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@material-ui/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"]
+      }
+    ],
+    "unused-imports/no-unused-imports": "error"
   }
 }

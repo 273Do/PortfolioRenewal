@@ -1,7 +1,7 @@
 "use client";
 
-import { RGBELoader } from "three-stdlib";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { useEffect } from "react";
+
 import {
   Center,
   Text3D,
@@ -14,10 +14,12 @@ import {
   AccumulativeShadows,
   MeshTransmissionMaterial,
 } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useEffect } from "react";
-import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { RGBELoader } from "three-stdlib";
+
 import three_font from "@/public/Inter_Medium_Regular.json";
 
 const Three = ({ tool_id, three_text, three_color }) => {

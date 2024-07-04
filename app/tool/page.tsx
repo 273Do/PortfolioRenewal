@@ -1,4 +1,9 @@
 "use client";
+import React, { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,17 +12,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Tool from "@/features/tool/components/index";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Separator } from "@/components/ui/separator";
-
-import type { Metadata } from "next";
-import { toast } from "sonner";
-import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import type { ToolObj } from "@/features/tool/types";
-import type { TechnologyObj } from "@/features/main/types";
+
+import { getAllToolData } from "../utils/api/Tool/ToolAPI";
 import { getNextId, sortedToolArray } from "../utils/function";
 
 // export const metadata: Metadata = {
@@ -32,7 +32,7 @@ const page = ({
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [toolData, setToolData] = useState<ToolObj[]>([]);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [nowData, setNowData] = useState<ToolObj>({});
+  const [nowData, setNowData] = useState<ToolObj | null>(null);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [state, setState] = useState({
     targetIndex: -1,
@@ -40,7 +40,6 @@ const page = ({
     nextId: -1,
   });
 
-  console.log(searchParams.id);
   // eslint-disable-next-line react-hooks/rules-of-hooks
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -65,9 +64,7 @@ const page = ({
 
     fetchToolData();
   }, [searchParams]);
-  console.log(toolData);
-  const str = "test\ntest";
-  console.log("置き換え");
+
   // console.log(nowData.name.replace("\\n", ""));
 
   return (
@@ -82,7 +79,7 @@ const page = ({
       )} */}
       {JSON.stringify(nowData) === undefined ? (
         <></>
-      ) : nowData.name == undefined ? (
+      ) : nowData == null ? (
         <></>
       ) : (
         <Tool.Three
@@ -99,14 +96,14 @@ const page = ({
               <CardTitle>
                 {JSON.stringify(nowData) === undefined
                   ? "no data"
-                  : nowData.name == undefined
+                  : nowData == null
                   ? "loading.."
                   : nowData.name.replace("\\n", " ")}
               </CardTitle>
               <CardDescription>
                 {JSON.stringify(nowData) === undefined
                   ? "no data"
-                  : nowData.description == undefined
+                  : nowData == null
                   ? "loading.."
                   : nowData.description}
               </CardDescription>
@@ -119,7 +116,7 @@ const page = ({
                     href={`/tool?id=${
                       JSON.stringify(nowData) === undefined
                         ? ""
-                        : nowData.technology == undefined
+                        : nowData == null
                         ? ""
                         : `${state.previousId}`
                     }`}
@@ -129,7 +126,7 @@ const page = ({
                       className={`pointer-events-auto bg-transparent p-7 ${
                         JSON.stringify(nowData) === undefined
                           ? ""
-                          : nowData.technology == undefined
+                          : nowData == null
                           ? ""
                           : `${
                               state.previousId === -1
@@ -146,7 +143,7 @@ const page = ({
                     href={`/tool?id=${
                       JSON.stringify(nowData) === undefined
                         ? ""
-                        : nowData.technology == undefined
+                        : nowData == null
                         ? ""
                         : `${state.nextId}`
                     }`}
@@ -156,7 +153,7 @@ const page = ({
                       className={`pointer-events-auto bg-transparent p-7 ${
                         JSON.stringify(nowData) === undefined
                           ? ""
-                          : nowData.technology == undefined
+                          : nowData == null
                           ? ""
                           : `${
                               state.nextId === -1
@@ -179,7 +176,7 @@ const page = ({
                       {/* <Tool.Label label={now}/> */}
                       {JSON.stringify(nowData) === undefined ? (
                         "no data"
-                      ) : nowData.genre == undefined ? (
+                      ) : nowData == null ? (
                         "loading.."
                       ) : (
                         <Tool.Label label={nowData.genre.name} />
@@ -197,7 +194,7 @@ const page = ({
                       )} */}
                       {JSON.stringify(nowData) === undefined ? (
                         "no data"
-                      ) : nowData.technology == undefined ? (
+                      ) : nowData == null ? (
                         "loading.."
                       ) : (
                         <MarqueeWidget technologyData={[nowData.technology]} />
@@ -211,7 +208,7 @@ const page = ({
                       <p>
                         {JSON.stringify(nowData) === undefined
                           ? "no data"
-                          : nowData.technology == undefined
+                          : nowData == null
                           ? "loading..."
                           : `${state.targetIndex + 1}/${toolData.length}`}
                       </p>

@@ -1,5 +1,6 @@
-import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
+
+import prisma from "@/lib/prismaClient";
 
 // 全ての映像投稿を取得する処理
 export async function GET() {

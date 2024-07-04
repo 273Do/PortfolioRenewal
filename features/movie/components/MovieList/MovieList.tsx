@@ -1,6 +1,8 @@
 import React from "react";
-import type { MovieObj } from "../../types";
+
 import Link from "next/link";
+
+import type { MovieObj } from "../../types";
 
 const MovieList = ({ movieData }: { movieData: MovieObj[] }) => {
   return (

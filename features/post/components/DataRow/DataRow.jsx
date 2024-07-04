@@ -1,49 +1,41 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  TableFooter,
-} from "@/components/ui/table";
+import React, { useRef, useState } from "react";
+
+// eslint-disable-next-line import/order
+import { cn } from "@/lib/utils";
+// eslint-disable-next-line import/order
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
+import Image from "next/image";
+import { toast } from "sonner";
+
+import { supabase } from "@/app/utils/supabase/supabase";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
-import { Pencil, Trash2, X, Forward, CalendarIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import { supabase } from "@/app/utils/supabase/supabase";
+import { TableCell } from "@/components/ui/table";
 
 const DataRow = ({ data, categoryData }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -114,31 +106,47 @@ const DataRow = ({ data, categoryData }) => {
       value.answer = Ref_second.current.value;
     }
 
-    try {
-      await editData.updateFunc(data.id, value);
-      window.location.reload();
-    } catch (error) {
-      toast("更新に失敗しました．");
-      console.error(error);
+    if (
+      document.getElementById("password").value ==
+      process.env.NEXT_PUBLIC_POST_PASSWORD
+    ) {
+      try {
+        await editData.updateFunc(data.id, value);
+        window.location.reload();
+      } catch (error) {
+        toast("更新に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   };
 
   // 投稿の削除
   const onDelete = async () => {
-    try {
-      // if (categoryName === "notice")
-      await editData.deleteFunc(data.id);
+    if (
+      document.getElementById("password").value ==
+      process.env.NEXT_PUBLIC_POST_PASSWORD
+    ) {
+      try {
+        // if (categoryName === "notice")
+        await editData.deleteFunc(data.id);
 
-      // galleryの削除
-      if (categoryName === "gallery") {
-        const image_name = data.url.match(/[^/]+$/)[0];
-        await supabase.storage.from("gallery").remove([`images/${image_name}`]);
+        // galleryの削除
+        if (categoryName === "gallery") {
+          const image_name = data.url.match(/[^/]+$/)[0];
+          await supabase.storage
+            .from("gallery")
+            .remove([`images/${image_name}`]);
+        }
+        // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
+        window.location.reload();
+      } catch (error) {
+        toast("削除に失敗しました．");
+        console.error(error);
       }
-      // else if (categoryName === "faq") await editData.deleteFAQData(data.id);
-      window.location.reload();
-    } catch (error) {
-      toast("削除に失敗しました．");
-      console.error(error);
+    } else {
+      toast("パスワードが違います．");
     }
   };
 

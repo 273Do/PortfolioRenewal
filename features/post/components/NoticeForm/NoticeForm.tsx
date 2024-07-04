@@ -1,5 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { toast } from "sonner";
+import type { z } from "zod";
+
+import { useValidatePassword } from "@/app/hooks/post/useValidatePassword";
+import {
+  deleteNoticeData,
+  getNoticeAllData,
+  postNoticeData,
+  updateNoticeData,
+} from "@/app/utils/api/Notice/NoticeApi";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
   CardContent,
@@ -9,40 +26,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import DataTable from "../DataTable/DataTable";
 import {
-  deleteNoticeData,
-  getNoticeAllData,
-  postNoticeData,
-  updateNoticeData,
-} from "@/app/utils/api/Notice/NoticeApi";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import type { NoticeObj } from "@/features/main/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { cn } from "@/lib/utils";
+
 import { noticeFormSchema } from "../../types/validation";
-import type { z } from "zod";
-import { url } from "inspector";
+import DataTable from "../DataTable/DataTable";
 
 const NoticeForm = () => {
   const [postData, setPostData] = useState<NoticeObj[]>([]);
@@ -65,7 +67,7 @@ const NoticeForm = () => {
   // 投稿フォームの設定
   const form = useForm({
     resolver: zodResolver(noticeFormSchema),
-    defaultValues: { content: "", event_date: "", url: "" },
+    defaultValues: { content: "", event_date: new Date(), url: "" },
   });
 
   // 更新フォームの設定
@@ -74,18 +76,25 @@ const NoticeForm = () => {
   //   defaultValues: { content: "", event_date: "" },
   // });
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   // お知らせの送信
   async function onSubmit(value: z.infer<typeof noticeFormSchema>) {
-    try {
-      // なぜか曜日が1日ズレるので修正
-      const modifiedDate = new Date(value.event_date);
-      modifiedDate.setDate(modifiedDate.getDate() + 1);
-      value.event_date = modifiedDate;
-      await postNoticeData(value);
-      window.location.reload();
-    } catch (error) {
-      toast("お知らせの作成に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        // なぜか曜日が1日ズレるので修正
+        const modifiedDate = new Date(value.event_date);
+        modifiedDate.setDate(modifiedDate.getDate() + 1);
+        value.event_date = modifiedDate;
+        await postNoticeData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("お知らせの作成に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -185,7 +194,11 @@ const NoticeForm = () => {
                     <FormControl> */}
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button type="submit">Save Notice</Button>
               </div>
               {/* </FormControl>

@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import Image from "next/image";
-import NFImg from "@/public/GitHub NotFound.png";
 import Link from "next/link";
+
+import { Card, CardContent } from "@/components/ui/card";
+import NFImg from "@/public/GitHub NotFound.png";
 
 const notFound = () => {
   return (
@@ -24,15 +19,15 @@ const notFound = () => {
                   width={900}
                   height={900}
                   alt="myImg"
-                  className="rounded-full"
+                  className="pointer-events-none rounded-full"
                 />
                 <p className="mt-10 text-muted-foreground">
                   illustration by
                   <Link
                     href="https://twitter.com/sawaratsuki1004"
                     target="_blank"
-                    rer="noopener noreferrer"
-                    className="ml-1 text-primary"
+                    rel="noopener noreferrer"
+                    className="ml-1 text-primary "
                   >
                     @sawaratsuki1004
                   </Link>

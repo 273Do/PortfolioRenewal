@@ -1,23 +1,16 @@
 "use client";
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter,
 } from "@/components/ui/table";
+
 import DataRow from "../DataRow/DataRow";
 
 const DataTable = ({ postData, categoryData }) => {

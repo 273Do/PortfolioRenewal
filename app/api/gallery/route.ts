@@ -1,8 +1,9 @@
-import prisma from "@/lib/prismaClient";
 import { NextResponse } from "next/server";
 
+import prisma from "@/lib/prismaClient";
+
 // galleryに関する処理
-export async function GET(req: Request) {
+export async function GET() {
   const allGallery = await prisma.gallery.findMany();
   return NextResponse.json(allGallery);
 }

@@ -1,6 +1,8 @@
 import React from "react";
-import { Separator } from "@/components/ui/separator";
+
 import Image from "next/image";
+
+import { Separator } from "@/components/ui/separator";
 import myImg from "@/public/myImg.jpg";
 
 const Profile = () => {

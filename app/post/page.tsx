@@ -1,13 +1,14 @@
 import React from "react";
+
+import type { Metadata } from "next";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import * as PostTabs from "@/features/post/components/PostTabs/PostTabs";
 

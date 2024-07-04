@@ -1,9 +1,11 @@
-import * as Icons from "@icons-pack/react-simple-icons";
-import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 import Marquee from "react-fast-marquee";
-import tailwindConfig from "@/tailwind.config";
+
+import * as Icons from "@icons-pack/react-simple-icons";
+import { Slot } from "@radix-ui/react-slot";
 import { CircleX } from "lucide-react";
+
+import tailwindConfig from "@/tailwind.config";
 
 const MarqueeWidget = ({ technologyData }) => {
   // tailwindConfigから直接カラーを取得

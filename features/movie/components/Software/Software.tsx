@@ -1,8 +1,10 @@
 import React from "react";
-import { Film } from "lucide-react";
+
 import { SiBlender } from "@icons-pack/react-simple-icons";
-import { Button } from "@/components/ui/button";
+import { Film } from "lucide-react";
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 const Software = () => {
   return (

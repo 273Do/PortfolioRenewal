@@ -1,18 +1,13 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import type { Metadata } from "next";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
-import type { Metadata } from "next";
-import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 import type { NoticeObj, TechnologyObj } from "@/features/main/types";
-import { sortedNoticeArray } from "@/app/utils/function";
+
+import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
+import { sortedNoticeArray } from "./utils/function";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",

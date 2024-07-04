@@ -1,5 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import type { z } from "zod";
+
+import { useValidatePassword } from "@/app/hooks/post/useValidatePassword";
+import {
+  deleteFAQData,
+  getFAQData,
+  postFAQData,
+  updateFAQData,
+} from "@/app/utils/api/FAQ/FAQApi";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,29 +25,18 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
-import DataTable from "../DataTable/DataTable";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FAQFormSchema } from "../../types/validation";
 import { Textarea } from "@/components/ui/textarea";
-import type { z } from "zod";
-import {
-  deleteFAQData,
-  getFAQData,
-  postFAQData,
-  updateFAQData,
-} from "@/app/utils/api/FAQ/FAQApi";
 import type { FAQObj } from "@/features/faq/types";
+
+import { FAQFormSchema } from "../../types/validation";
+import DataTable from "../DataTable/DataTable";
 
 const FAQForm = () => {
   const [faqData, setFaqData] = useState<FAQObj[]>([]);
@@ -58,13 +61,20 @@ const FAQForm = () => {
     defaultValues: { question: "", answer: "" },
   });
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
   async function onSubmit(value: z.infer<typeof FAQFormSchema>) {
-    try {
-      await postFAQData(value);
-      window.location.reload();
-    } catch (error) {
-      toast("FAQの作成に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await postFAQData(value);
+        window.location.reload();
+      } catch (error) {
+        toast("FAQの作成に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -117,13 +127,18 @@ const FAQForm = () => {
             <CardFooter className="flex flex-col items-start ">
               <Label htmlFor="password">Password</Label>
               <div className="mt-2 flex w-full flex-row gap-4">
-                <Input id="password" type="password" />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
                 <Button>Save FAQ</Button>
               </div>
             </CardFooter>
           </form>
         </Form>
       </Card>
+
       <div className="h-4"></div>
     </>
   );

@@ -1,5 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import type { z } from "zod";
+
+import { useValidatePassword } from "@/app/hooks/post/useValidatePassword";
+import {
+  getAvailableTechnologyData,
+  updateTechnologyData,
+} from "@/app/utils/api/Technology/TechnologyApi";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,25 +23,17 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { technologyFormSchema } from "../../types/validation";
+import { Label } from "@/components/ui/label";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { TechnologyObj } from "@/features/main/types";
-import {
-  getAvailableTechnologyData,
-  updateTechnologyData,
-} from "@/app/utils/api/Technology/TechnologyApi";
-import type { z } from "zod";
+
+import { technologyFormSchema } from "../../types/validation";
 
 const TechnologyForm = () => {
   const [technologyData, setTechnologyData] = useState<TechnologyObj[]>([]);
@@ -67,15 +71,21 @@ const TechnologyForm = () => {
     // console.log(technologyData);
   };
 
+  // パスワードが正しいか確認するhooks
+  const { validatePassword, isValid } = useValidatePassword();
+
+  // 使用技術の送信
   async function onSubmit(value: z.infer<typeof technologyFormSchema>) {
-    console.log(value);
-    // console.log(technologyData);
-    try {
-      await updateTechnologyData(value);
-      toast("使用可能技術の更新をしました．");
-    } catch (error) {
-      toast("使用可能技術の更新に失敗しました．");
-      console.error(error);
+    if (isValid) {
+      try {
+        await updateTechnologyData(value);
+        toast("使用可能技術の更新をしました．");
+      } catch (error) {
+        toast("使用可能技術の更新に失敗しました．");
+        console.error(error);
+      }
+    } else {
+      toast("パスワードが違います．");
     }
   }
 
@@ -228,22 +238,32 @@ const TechnologyForm = () => {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col items-start">
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem className="w-full space-y-1">
                     <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <div className="flex w-full flex-row gap-4">
-                        <Input id="password" type="password" {...field} />
-                        <Button>Save Technology</Button>
-                      </div>
-                    </FormControl>
+                    <FormControl> */}
+              <Label htmlFor="password">Password</Label>
+              <div className="mt-2 flex w-full flex-row gap-4">
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                />
+                <Button type="submit">Save Technology</Button>
+              </div>
+              {/* </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
+              {/* <Label htmlFor="password">Password</Label>
+              <div className="mt-2 flex w-full flex-row gap-4">
+                <Input id="password" type="password" />
+                <Button>Save Notice</Button>
+              </div> */}
             </CardFooter>
           </form>
         </Form>

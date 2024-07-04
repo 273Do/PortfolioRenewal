@@ -1,21 +1,11 @@
+/* eslint-disable tailwindcss/migration-from-tailwind-2 */
 import React from "react";
+
 import Image from "next/image";
-import type { GalleryObj } from "../../types";
+
 import { formatDate } from "@/app/utils/function";
 
-// 10個のオブジェクトを格納するための空の配列を作成
-// const galleryData: GalleryObj[] = [];
-
-// 10回のループでオブジェクトを生成して配列に追加
-// for (let i = 1; i <= 10; i++) {
-//   const obj = {
-//     id: i,
-//     title: `タイトル${i}`,
-//     url: `https://source.unsplash.com/random/${i}`,
-//     description: `説明をここに入れる${i}`,
-//   };
-//   galleryData.push(obj);
-// }
+import type { GalleryObj } from "../../types";
 
 const ImageList = ({ galleryData }: { galleryData: GalleryObj[] }) => {
   return (

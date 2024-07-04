@@ -1,10 +1,12 @@
 import React from "react";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import type { NoticeObj } from "../../types";
-import { formatDate } from "@/app/utils/function";
+
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+
+import { formatDate } from "@/app/utils/function";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+
+import type { NoticeObj } from "../../types";
 
 const Notice = ({ noticeData }: { noticeData: NoticeObj[] }) => {
   return (

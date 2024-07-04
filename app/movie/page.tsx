@@ -1,4 +1,7 @@
 import React from "react";
+
+import type { Metadata } from "next";
+
 import {
   Card,
   CardContent,
@@ -7,17 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import * as Movie from "@/features/movie/components/index";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-
-import type { Metadata } from "next";
-import { getMovieData, getYTProfileData } from "../utils/api/Movie/MovieApi";
+import { Separator } from "@/components/ui/separator";
+import * as Movie from "@/features/movie/components/index";
 import type { MovieObj } from "@/features/movie/types";
+
+import { getMovieData, getYTProfileData } from "../utils/api/Movie/MovieApi";
 import { shuffleArray } from "../utils/function";
 
 export const metadata: Metadata = {
@@ -27,7 +29,6 @@ export const metadata: Metadata = {
 export default async function page() {
   const movieData: MovieObj[] = await getMovieData();
   const YTProfileData = await getYTProfileData();
-  // console.log(YTProfileData.items);
 
   return (
     <main className="h-screen">
