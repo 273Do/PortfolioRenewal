@@ -7,7 +7,7 @@ import type { galleryFormSchema } from "@/features/post/types/validation";
 // 全てのgalleryデータを取得
 export const getGalleryData = async (): Promise<GalleryObj[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/gallery`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery`,
     {
       cache: "no-store",
     }
@@ -21,7 +21,7 @@ export const getGalleryData = async (): Promise<GalleryObj[]> => {
 // 全てのブラーgalleryデータを取得
 export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/gallery/blur`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery/blur`,
     {
       cache: "no-store",
     }
@@ -32,7 +32,7 @@ export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
   return blurGalleryData;
 };
 // export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
-//   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery", {
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery", {
 //     cache: "no-store",
 //   });
 //   const galleryData = await response.json(); // Await the response.json() call
@@ -60,7 +60,7 @@ export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
 export async function postGalleryData(
   value: z.infer<typeof galleryFormSchema>
 ) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
@@ -72,7 +72,7 @@ export async function updateGalleryData(
   id: string,
   value: z.infer<typeof galleryFormSchema>
 ) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
@@ -81,7 +81,7 @@ export async function updateGalleryData(
 
 // galleryを削除
 export async function deleteGalleryData(id: string) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery/${id}`, {
     method: "DELETE",
   });
 }

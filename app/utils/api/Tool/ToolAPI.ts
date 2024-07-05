@@ -4,9 +4,12 @@ import type { toolFormSchema } from "@/features/post/types/validation";
 
 // 全てのToolを取得する
 export async function getAllToolData() {
-  const allTool = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tool`, {
-    cache: "no-store",
-  });
+  const allTool = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool`,
+    {
+      cache: "no-store",
+    }
+  );
   const allToolData = await allTool.json();
   return allToolData;
 }
@@ -14,7 +17,7 @@ export async function getAllToolData() {
 // // 特定のToolを取得する
 export async function getToolData(id: string) {
   const tool_data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/tool/${id}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool/${id}`,
     {
       cache: "no-store",
     }
@@ -25,7 +28,7 @@ export async function getToolData(id: string) {
 
 // Toolを投稿する
 export async function postToolData(value: z.infer<typeof toolFormSchema>) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tool`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
@@ -37,7 +40,7 @@ export async function updateToolData(
   id: string,
   value: z.infer<typeof toolFormSchema>
 ) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tool/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
@@ -46,7 +49,7 @@ export async function updateToolData(
 
 // Toolを削除する
 export async function deleteToolData(id: string) {
-  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tool/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool/${id}`, {
     method: "DELETE",
   });
 }
