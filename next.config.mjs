@@ -29,7 +29,7 @@ const nextConfig = {
           {
             // 許可するメソッド
             key: "Access-Control-Allow-Methods",
-            value: "GET,OPTIONS,POST",
+            value: "GET,OPTIONS,POST,PUT,DELETE",
           },
           {
             // 許可するリクエストヘッダ

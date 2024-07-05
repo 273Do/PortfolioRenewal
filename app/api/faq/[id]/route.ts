@@ -1,3 +1,6 @@
+import { NextResponse } from "next/server";
+
+import { corsHeaders } from "@/app/utils/api/corsHeaders";
 import prisma from "@/lib/prismaClient";
 
 // 特定のFAQに関する処理
@@ -13,6 +16,10 @@ export async function PUT(
     where: { id },
     data: { question, answer },
   });
+  return NextResponse.json(
+    { status: "success" },
+    { status: 200, headers: corsHeaders }
+  );
 }
 
 // 削除処理
@@ -24,4 +31,8 @@ export async function DELETE(
   await prisma.faq.delete({
     where: { id },
   });
+  return NextResponse.json(
+    { status: "success" },
+    { status: 200, headers: corsHeaders }
+  );
 }

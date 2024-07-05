@@ -14,4 +14,8 @@ export async function POST(req: Request) {
   await prisma.faq.create({
     data: { question, answer },
   });
+  return NextResponse.json(
+    { status: "success" },
+    { status: 200, headers: corsHeaders }
+  );
 }
