@@ -48,6 +48,7 @@ const page = ({
       try {
         const AllToolData = await getAllToolData();
         console.log(AllToolData);
+        console.log(searchParams);
         setToolData(sortedToolArray(AllToolData));
         setNowData(
           AllToolData.find(
