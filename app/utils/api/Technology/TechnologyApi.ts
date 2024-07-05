@@ -6,7 +6,7 @@ import type { technologyFormSchema } from "@/features/post/types/validation";
 // 使用可能な技術を取得
 export async function getAvailableTechnologyData() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/technology`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/technology`,
     {
       cache: "no-store",
     }
@@ -19,7 +19,7 @@ export async function getAvailableTechnologyData() {
 export async function updateTechnologyData(
   value: z.infer<typeof technologyFormSchema>
 ) {
-  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/technology`, {
+  await fetch(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/technology`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value),
