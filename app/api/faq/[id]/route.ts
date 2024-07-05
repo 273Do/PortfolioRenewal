@@ -36,3 +36,8 @@ export async function DELETE(
     { status: 200, headers: corsHeaders }
   );
 }
+
+// オプションメソッドの実装
+export async function OPTIONS(req: Request) {
+  return NextResponse.json(null, { status: 204, headers: corsHeaders });
+}
