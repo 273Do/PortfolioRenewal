@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getPlaiceholder } from "plaiceholder";
 
+import { corsHeaders } from "@/app/utils/api/corsHeaders";
 import type { GalleryObj } from "@/features/gallery/types";
 import prisma from "@/lib/prismaClient";
 
@@ -23,5 +24,8 @@ export async function GET() {
     })
   );
 
-  return NextResponse.json(galleryDataWithBlur);
+  return NextResponse.json(galleryDataWithBlur, {
+    status: 200,
+    headers: corsHeaders,
+  });
 }
