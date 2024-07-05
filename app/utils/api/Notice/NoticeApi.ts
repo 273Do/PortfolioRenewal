@@ -5,7 +5,7 @@ import type { noticeFormSchema } from "@/features/post/types/validation";
 // 全てのお知らせを取得する
 export async function getNoticeAllData() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.VERCEL_URL}/api/notice`,
+    `${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/notice`,
     {
       cache: "no-store",
     }
