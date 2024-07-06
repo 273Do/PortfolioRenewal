@@ -133,3 +133,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 3DUI */
+#leva__root {
+  display: none;
+}
