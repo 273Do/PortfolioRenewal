@@ -11,7 +11,11 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const { event_date, title, description, url } = await req.json();
-  await prisma.gallery.create({
+  const newGallery = await prisma.gallery.create({
     data: { event_date, title, description, url },
+  });
+  return NextResponse.json(newGallery, {
+    status: 201,
+    headers: corsHeaders,
   });
 }
