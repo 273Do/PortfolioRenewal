@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
+import { corsHeaders } from "@/app/utils/api/corsHeaders";
 import prisma from "@/lib/prismaClient";
 
 // faqに関する処理
 export async function GET() {
   const allFAQ = await prisma.faq.findMany();
-  return NextResponse.json(allFAQ);
+  return NextResponse.json(allFAQ, { status: 200, headers: corsHeaders });
 }
 
 export async function POST(req: Request) {
@@ -13,4 +14,13 @@ export async function POST(req: Request) {
   await prisma.faq.create({
     data: { question, answer },
   });
+  return NextResponse.json(
+    { status: "success" },
+    { status: 200, headers: corsHeaders }
+  );
+}
+
+// オプションメソッドの実装
+export async function OPTIONS(req: Request) {
+  return NextResponse.json(null, { status: 204, headers: corsHeaders });
 }

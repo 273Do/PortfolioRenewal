@@ -1,4 +1,6 @@
 // import { Inter } from "next/font/google";
+
+// eslint-disable-next-line import/order
 import { Toaster } from "@/components/ui/sonner";
 
 import { GeistSans } from "geist/font/sans";

@@ -4,7 +4,7 @@ import prisma from "@/lib/prismaClient";
 
 // 更新処理
 export async function PUT(
-  req: Response,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { corsHeaders } from "@/app/utils/api/corsHeaders";
 import prisma from "@/lib/prismaClient";
 
 // 特定のtoolを取得する処理
@@ -15,7 +16,7 @@ export async function GET(
       genre: true,
     },
   });
-  return NextResponse.json(toolData);
+  return NextResponse.json(toolData, { status: 200, headers: corsHeaders });
 }
 
 // 特定のtoolを更新する処理

@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
+import { corsHeaders } from "@/app/utils/api/corsHeaders";
 import prisma from "@/lib/prismaClient";
 
 // galleryに関する処理
 export async function GET() {
   const allGallery = await prisma.gallery.findMany();
-  return NextResponse.json(allGallery);
+  return NextResponse.json(allGallery, { status: 200, headers: corsHeaders });
 }
 
 export async function POST(req: Request) {

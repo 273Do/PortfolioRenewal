@@ -7,7 +7,7 @@ async function fetcher(key: string) {
 }
 export const useAllTool = () => {
   const { data, error, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/tool`,
+    `${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/tool`,
     fetcher
   );
   return { tools: data, isError: error, isLoading };
