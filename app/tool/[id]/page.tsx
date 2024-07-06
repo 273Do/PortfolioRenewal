@@ -20,9 +20,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const toolData = await getToolData(params.id);
   return {
-    title: `273* Portfolio | Tool Detail`,
+    // title: `273* Portfolio | Tool Detail`,
+    title: `273* Portfolio | ${toolData.name.replace("\\n", " ")}`,
   };
 }
 

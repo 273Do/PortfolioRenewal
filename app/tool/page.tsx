@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -24,10 +25,9 @@ import { getNextId, sortedToolArray } from "../utils/function";
 //   title: "273* Portfolio | Tool",
 // };
 
-const page = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
+const page = ({}: // searchParams,
+{
+  // searchParams: { [key: string]: string | string[] | undefined };
 }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [toolData, setToolData] = useState<ToolObj[]>([]);
@@ -41,6 +41,8 @@ const page = ({
   });
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const searchParams = useSearchParams();
+  const tool_id = searchParams.get("id");
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -48,14 +50,12 @@ const page = ({
       try {
         const AllToolData = await getAllToolData();
         console.log(AllToolData);
-        console.log(searchParams.id);
+        console.log(tool_id);
         setToolData(sortedToolArray(AllToolData));
         setNowData(
-          AllToolData.find(
-            (item: ToolObj) => item.id === Number(searchParams.id)
-          )
+          AllToolData.find((item: ToolObj) => item.id === Number(tool_id))
         );
-        const nav_state = getNextId(AllToolData, Number(searchParams.id));
+        const nav_state = getNextId(AllToolData, Number(tool_id));
         setState(nav_state);
       } catch (error) {
         // エラーハンドリング
