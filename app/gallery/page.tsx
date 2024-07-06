@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 export default async function page() {
   const galleryData: GalleryObj[] = await getBlurGalleryData();
   const shuffleGalleryData = shuffleArray(galleryData) as GalleryObj[];
+  console.log(shuffleGalleryData);
 
   return (
     <main className="h-screen">

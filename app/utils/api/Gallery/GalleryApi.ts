@@ -1,11 +1,10 @@
 import type { z } from "zod";
 
 // import { getPlaiceholder } from "plaiceholder";
-import type { GalleryObj } from "@/features/gallery/types";
 import type { galleryFormSchema } from "@/features/post/types/validation";
 
 // 全てのgalleryデータを取得
-export const getGalleryData = async (): Promise<GalleryObj[]> => {
+export async function getGalleryData() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery`,
     {
@@ -16,10 +15,10 @@ export const getGalleryData = async (): Promise<GalleryObj[]> => {
   // return galleryData;
 
   return galleryData;
-};
+}
 
 // 全てのブラーgalleryデータを取得
-export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
+export async function getBlurGalleryData() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery/blur`,
     {
@@ -30,7 +29,7 @@ export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
   // return galleryData;
 
   return blurGalleryData;
-};
+}
 // export const getBlurGalleryData = async (): Promise<GalleryObj[]> => {
 //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_PREFIX}${process.env.NEXT_PUBLIC_VERCEL_URL}/api/gallery", {
 //     cache: "no-store",

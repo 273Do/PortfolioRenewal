@@ -28,40 +28,6 @@ const page = async ({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const [toolData, setToolData] = useState<ToolObj[]>([]);
-  // // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const [nowData, setNowData] = useState<ToolObj | null>(null);
-  // // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const [state, setState] = useState({
-  //   targetIndex: -1,
-  //   previousId: -1,
-  //   nextId: -1,
-  // });
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  // useEffect(() => {
-  //   const fetchToolData = async () => {
-  //     try {
-  //       const AllToolData = await getAllToolData();
-  //       console.log(searchParams.id);
-  //       setToolData(sortedToolArray(AllToolData));
-  //       setNowData(
-  //         AllToolData.find(
-  //           (item: ToolObj) => item.id === Number(searchParams.id)
-  //         )
-  //       );
-  //       const nav_state = getNextId(AllToolData, Number(searchParams.id));
-  //       setState(nav_state);
-  //     } catch (error) {
-  //       // エラーハンドリング
-  //       toast("toolの取得に失敗しました．");
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchToolData();
-  // }, [searchParams]);
-
   const AllToolData = await getAllToolData();
   const toolData = sortedToolArray(AllToolData);
   const nowData = toolData.find(
