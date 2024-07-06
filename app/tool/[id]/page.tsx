@@ -23,13 +23,11 @@ import MarqueeWidget from "@/features/Marquee/components/Marquee";
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const toolData = await getToolData(params.id);
   return {
-    // title: `273* Portfolio | Tool Detail`,
     title: `273* Portfolio | ${toolData.name.replace("\\n", " ")}`,
   };
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-  // console.log(params.id);
   const toolData = await getToolData(params.id);
 
   return (
