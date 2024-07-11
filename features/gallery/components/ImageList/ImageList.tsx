@@ -15,12 +15,12 @@ const ImageList = ({ galleryData }: { galleryData: GalleryObj[] }) => {
           <div className="relative mb-4 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-['']">
             <Image
               className="rounded-lg"
-              placeholder="blur"
+              // placeholder="blur"
               src={data.url}
               alt="img"
               width={1000}
               height={1000}
-              blurDataURL={data.blurDataURL}
+              // blurDataURL={data.blurDataURL}
             />
             <div className="test__body absolute inset-0 flex flex-col justify-between p-3 text-white">
               <div className="relative">

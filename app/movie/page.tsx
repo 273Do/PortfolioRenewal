@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 export default async function page() {
   const movieData: MovieObj[] = await getMovieData();
   const YTProfileData = await getYTProfileData();
+  // console.log(YTProfileData);
 
   return (
     <main className="h-screen">
