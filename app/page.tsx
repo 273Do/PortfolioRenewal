@@ -25,6 +25,9 @@ export default async function Home() {
   return (
     <main className="p-12">
       <div className="h-14"></div>
+      {/* <main className="h-screen">
+      <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
+      <div className="flex h-full items-center justify-center"> */}
       <Card className="w-[570px]">
         <CardHeader>
           <CardTitle>About</CardTitle>
@@ -69,6 +72,8 @@ export default async function Home() {
         </CardContent>
       </Card>
       <div className="h-14"></div>
+      {/* </div>
+      </div> */}
     </main>
   );
 }
