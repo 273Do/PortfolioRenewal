@@ -35,6 +35,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -96,7 +97,7 @@ const Header = () => {
                     <ListItem href="/gallery" title="Gallery">
                       私の趣味や活動の記録を写真で紹介しています．
                     </ListItem>
-                    <a
+                    <Link
                       href="https://qiita.com/273Do"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -104,7 +105,7 @@ const Header = () => {
                       <ListItem title="Qiita">
                         開発したものは，Qiitaにて記事を書いて投稿しています．
                       </ListItem>
-                    </a>
+                    </Link>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -148,41 +149,45 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu>
           <nav className="flex hidden items-center justify-end sm:block">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => window.open("https://github.com/273Do")}
-            >
-              <SiGithub className="size-[1.0rem]" />
+            <Button variant="ghost" size="icon">
+              <Link
+                href="https://github.com/273Do"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+              >
+                <SiGithub className="size-[1.0rem]" />
+              </Link>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => window.open("https://twitter.com/273Do")}
-            >
-              <SiX className="size-[1.0rem]" />
+            <Button variant="ghost" size="icon">
+              <Link
+                href="https://twitter.com/273Do"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+              >
+                <SiX className="size-[1.0rem]" />
+              </Link>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                window.open(
-                  "https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
-                )
-              }
-            >
-              <SiInstagram className="size-[1.0rem]" />
+            <Button variant="ghost" size="icon">
+              <Link
+                href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+              >
+                <SiInstagram className="size-[1.0rem]" />
+              </Link>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                window.open(
-                  "https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
-                )
-              }
-            >
-              <SiYoutube className="size-[1.0rem]" />
+            <Button variant="ghost" size="icon">
+              <Link
+                href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+              >
+                <SiYoutube className="size-[1.0rem]" />
+              </Link>
             </Button>
           </nav>
           <Sheet>
@@ -203,63 +208,71 @@ const Header = () => {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>My activities</AccordionTrigger>
                   <AccordionContent>
-                    <a
-                      className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
-                      href="/"
-                    >
-                      <Image
-                        src={myImg}
-                        width={70}
-                        height={70}
-                        alt="myImg"
-                        className="rounded-full"
-                      />
-                      <div className="my-2 text-lg font-medium">
-                        273* / Kei.
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        趣味でものづくりを楽しんでいる大学生．web開発や映像制作，ピアノやサイクリングを嗜む．
-                      </p>
-                    </a>
-                    <Link
-                      href="/movie"
-                      title="Movie"
-                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Movie
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        制作した映像作品を紹介しています．YouTubeにて公開しています．
-                      </p>
-                    </Link>
-                    <Link
-                      href="/gallery"
-                      title="Gallery"
-                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Gallery
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        私の趣味や活動の記録を写真で紹介しています．
-                      </p>
-                    </Link>
-                    <a
-                      href="https://qiita.com/273Do"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <Label title="Qiita">
+                    <SheetClose asChild>
+                      <a
+                        className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
+                        href="/"
+                      >
+                        <Image
+                          src={myImg}
+                          width={70}
+                          height={70}
+                          alt="myImg"
+                          className="rounded-full"
+                        />
+                        <div className="my-2 text-lg font-medium">
+                          273* / Kei.
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          趣味でものづくりを楽しんでいる大学生．web開発や映像制作，ピアノやサイクリングを嗜む．
+                        </p>
+                      </a>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/movie"
+                        title="Movie"
+                        className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
                         <div className="text-sm font-medium leading-none">
-                          Qiita
+                          Movie
                         </div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          開発したものは，Qiitaにて記事を書いて投稿しています．
+                          制作した映像作品を紹介しています．YouTubeにて公開しています．
                         </p>
-                      </Label>
-                    </a>
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="/gallery"
+                        title="Gallery"
+                        className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <div className="text-sm font-medium leading-none">
+                          Gallery
+                        </div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          私の趣味や活動の記録を写真で紹介しています．
+                        </p>
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        href="https://qiita.com/273Do"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <Label title="Qiita">
+                          <div className="text-sm font-medium leading-none">
+                            Qiita
+                          </div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            開発したものは，Qiitaにて記事を書いて投稿しています．
+                          </p>
+                        </Label>
+                      </Link>
+                    </SheetClose>
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -276,18 +289,19 @@ const Header = () => {
                               name: string;
                               description: string;
                             }) => (
-                              <Link
-                                key={component.id}
-                                href={`/tool?id=${component.id}`}
-                                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">
-                                  {component.name.replace("\\n", " ")}
-                                </div>
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                  {component.description}
-                                </p>
-                              </Link>
+                              <SheetClose asChild key={component.id}>
+                                <Link
+                                  href={`/tool?id=${component.id}`}
+                                  className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                >
+                                  <div className="text-sm font-medium leading-none">
+                                    {component.name.replace("\\n", " ")}
+                                  </div>
+                                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                    {component.description}
+                                  </p>
+                                </Link>
+                              </SheetClose>
                             )
                           )}
                         </>
@@ -295,52 +309,56 @@ const Header = () => {
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-                <Link href="/faq" legacyBehavior passHref>
-                  <Label
-                    className={cn(
-                      "border-b flex flex-1 text-md items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
-                    )}
-                  >
-                    FAQ
-                  </Label>
-                </Link>
               </Accordion>
+              <SheetClose asChild>
+                <Link
+                  href="/faq"
+                  title="faq"
+                  className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                >
+                  FAQ
+                </Link>
+              </SheetClose>
               <nav className="mt-2 flex items-center justify-center gap-4">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => window.open("https://github.com/273Do")}
-                >
-                  <SiGithub className="size-[1.0rem]" />
+                <Button variant="ghost" size="icon">
+                  <Link
+                    href="https://github.com/273Do"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <SiGithub className="size-[1.0rem]" />
+                  </Link>
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => window.open("https://twitter.com/273Do")}
-                >
-                  <SiX className="size-[1.0rem]" />
+                <Button variant="ghost" size="icon">
+                  <Link
+                    href="https://twitter.com/273Do"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <SiX className="size-[1.0rem]" />
+                  </Link>
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() =>
-                    window.open(
-                      "https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
-                    )
-                  }
-                >
-                  <SiInstagram className="size-[1.0rem]" />
+                <Button variant="ghost" size="icon">
+                  <Link
+                    href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <SiInstagram className="size-[1.0rem]" />
+                  </Link>
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() =>
-                    window.open(
-                      "https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
-                    )
-                  }
-                >
-                  <SiYoutube className="size-[1.0rem]" />
+                <Button variant="ghost" size="icon">
+                  <Link
+                    href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <SiYoutube className="size-[1.0rem]" />
+                  </Link>
                 </Button>
               </nav>
             </SheetContent>
