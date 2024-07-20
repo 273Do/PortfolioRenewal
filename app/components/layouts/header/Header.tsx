@@ -52,7 +52,7 @@ const Header = () => {
 
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-12 flex h-14 items-center justify-between">
+      <div className="mx-6 flex h-14 items-center justify-between sm:mx-12">
         <Image
           src={siteLogo}
           width={70}
@@ -314,7 +314,7 @@ const Header = () => {
                 <Link
                   href="/faq"
                   title="faq"
-                  className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all transition-colors hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   FAQ
                 </Link>
