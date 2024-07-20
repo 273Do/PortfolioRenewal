@@ -11,8 +11,11 @@ const ImageList = ({ galleryData }: { galleryData: GalleryObj[] }) => {
   return (
     <>
       {galleryData.map((data: GalleryObj) => (
-        <div className="mb-4 duration-150 hover:scale-[1.025]" key={data.id}>
-          <div className="relative mb-4 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-['']">
+        <div
+          className="mb-3 duration-150 hover:scale-[1.025] sm:mb-4"
+          key={data.id}
+        >
+          <div className="relative before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-[''] sm:mb-4">
             <Image
               className="rounded-lg"
               // placeholder="blur"
