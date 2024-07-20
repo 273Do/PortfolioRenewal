@@ -25,18 +25,18 @@ const YTProfile = ({ YTProfileData }: { YTProfileData: YTProfileObj }) => {
           <div className="space-y-1">
             <h4 className="text-sm font-medium leading-none">imperiRwrath</h4>
             <div className="flex gap-3">
-              <p className="text-sm text-muted-foreground">
+              <p className=" text-sm text-muted-foreground">
                 {YTProfileData.statistics.subscriberCount} subscribers
               </p>
               <p className="text-sm text-muted-foreground">
                 {YTProfileData.statistics.videoCount} videos
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className=" text-sm text-muted-foreground">
                 {YTProfileData.statistics.viewCount} views
               </p>
             </div>
           </div>
-          <Separator className="my-4" />
+          <Separator className="my-2 sm:my-4" />
           <div className="flex h-5 items-center space-x-4 text-sm">
             <div>MoGraph</div>
             <Separator orientation="vertical" />
@@ -51,7 +51,7 @@ const YTProfile = ({ YTProfileData }: { YTProfileData: YTProfileObj }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Button>Subscribe {">"}</Button>
+        <Button className="hidden sm:block">Subscribe {">"}</Button>
       </Link>
     </div>
   );
