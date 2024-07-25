@@ -75,8 +75,8 @@ const GitCalendar = () => {
         <GitHubCalendar
           username="273Do"
           transformData={selectLastSevenWeeks}
-          blockMargin={6}
-          blockSize={9}
+          blockMargin={6.5}
+          blockSize={8.5}
           hideColorLegend={true}
           hideMonthLabels={true}
           hideTotalCount={true}

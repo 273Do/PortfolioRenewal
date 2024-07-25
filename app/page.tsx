@@ -81,7 +81,7 @@ export default async function Home() {
                     <CardHeader className="p-3">
                       <CardTitle>About</CardTitle>
                     </CardHeader>
-                    <CardContent className="grid h-[720px] w-full grid-flow-col grid-cols-3 grid-rows-5 gap-2 px-3 py-0">
+                    <CardContent className="grid h-[720px] w-full grid-flow-col grid-cols-3 grid-rows-5 gap-2 px-3 pb-3 pt-0">
                       <Card className="... col-span-2 col-start-2 row-span-2 row-start-1 flex items-center justify-center p-0">
                         <CardContent className="p-0">
                           <Main.Welcome />
