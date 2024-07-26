@@ -31,122 +31,226 @@ const page = async ({ params }: { params: { id: string } }) => {
   const toolData = await getToolData(params.id);
 
   return (
-    <main className="h-screen">
-      <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
-        <div className="flex h-full items-center justify-center">
-          <Card className="flex size-full flex-col border-none">
-            <CardContent className="size-full p-0">
-              <ResizablePanelGroup
-                direction="horizontal"
-                className="flex size-full flex-col"
-              >
-                <ResizablePanel defaultSize={65}>
-                  <Card className="tool-detail-rounded flex size-full min-w-[570px] flex-col">
-                    <CardHeader>
-                      <div className="flex justify-between">
-                        <div>
-                          {toolData.url === "" ? (
-                            <CardTitle className="flex items-end gap-2">
-                              {toolData.name.replace("\\n", " ")}
-                            </CardTitle>
-                          ) : (
-                            <CardTitle className="cursor-pointer underline duration-200 hover:opacity-75">
-                              <Link
-                                className="flex items-end"
-                                href={toolData.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
+    <>
+      <main className="hidden h-screen sm:block">
+        <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-12 py-[104px]">
+          <div className="flex h-full items-center justify-center">
+            <Card className="flex size-full flex-col border-none">
+              <CardContent className="size-full p-0">
+                <ResizablePanelGroup
+                  direction="horizontal"
+                  className="flex size-full flex-col"
+                >
+                  <ResizablePanel defaultSize={65}>
+                    <Card className="tool-detail-rounded flex size-full min-w-[570px] flex-col">
+                      <CardHeader>
+                        <div className="flex justify-between">
+                          <div>
+                            {toolData.url === "" ? (
+                              <CardTitle className="flex items-end gap-2">
                                 {toolData.name.replace("\\n", " ")}
-                                <ExternalLink size={15} />
-                              </Link>
-                            </CardTitle>
-                          )}
+                              </CardTitle>
+                            ) : (
+                              <CardTitle className="cursor-pointer underline duration-200 hover:opacity-75">
+                                <Link
+                                  className="flex items-end"
+                                  href={toolData.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {toolData.name.replace("\\n", " ")}
+                                  <ExternalLink size={15} />
+                                </Link>
+                              </CardTitle>
+                            )}
 
-                          <CardDescription className="mt-[6px]">
-                            {toolData.description}
-                          </CardDescription>
+                            <CardDescription className="mt-[6px]">
+                              {toolData.description}
+                            </CardDescription>
+                          </div>
+                          <Link href={`/tool?id=${toolData.id}`}>
+                            <Button variant="secondary">close</Button>
+                          </Link>
                         </div>
-                        <Link href={`/tool?id=${toolData.id}`}>
-                          <Button variant="secondary">close</Button>
-                        </Link>
-                      </div>
-                    </CardHeader>
-                    <Separator />
-                    <CardContent className="size-full overflow-y-scroll p-6">
-                      <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
-                        <Card className="... col-span-5 row-span-4 row-start-1 size-full ">
-                          <CardContent className="grid size-full grid-flow-col grid-rows-3 gap-4">
-                            <div className="... col-span-3 col-start-1 row-start-1">
-                              <CardContent className="size-full p-0 pt-6">
-                                <CardTitle>背景</CardTitle>
-                                <CardContent className="flex h-full items-center justify-center p-0">
-                                  <p>
-                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
-                                    {toolData.background}
-                                  </p>
+                      </CardHeader>
+                      <Separator />
+                      <CardContent className="size-full overflow-y-scroll p-6">
+                        <div className="grid size-full grid-flow-col grid-cols-5 gap-4">
+                          <Card className="... col-span-5 row-span-4 row-start-1 size-full ">
+                            <CardContent className="grid size-full grid-flow-col grid-rows-3 gap-4">
+                              <div className="... col-span-3 col-start-1 row-start-1">
+                                <CardContent className="size-full p-0 pt-6">
+                                  <CardTitle>背景</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>
+                                      {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                      {toolData.background}
+                                    </p>
+                                  </CardContent>
                                 </CardContent>
-                              </CardContent>
-                              <Separator className="mt-5" />
-                            </div>
-                            <div className="... col-span-3 col-start-1 row-start-2">
-                              <CardContent className="size-full p-0 pt-6">
-                                <CardTitle>工夫</CardTitle>
-                                <CardContent className="flex h-full items-center justify-center p-0">
-                                  <p>
-                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
-                                    {toolData.ingenuity}
-                                  </p>
+                                <Separator className="mt-5" />
+                              </div>
+                              <div className="... col-span-3 col-start-1 row-start-2">
+                                <CardContent className="size-full p-0 pt-6">
+                                  <CardTitle>工夫</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>
+                                      {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                      {toolData.ingenuity}
+                                    </p>
+                                  </CardContent>
                                 </CardContent>
-                              </CardContent>
-                              <Separator className="mt-5" />
-                            </div>
-                            <div className="... col-span-3 col-start-1 row-start-3">
-                              <CardContent className="size-full p-0 pt-6">
-                                <CardTitle>課題</CardTitle>
-                                <CardContent className="flex h-full items-center justify-center p-0">
-                                  <p>
-                                    {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
-                                    {toolData.point}
-                                  </p>
+                                <Separator className="mt-5" />
+                              </div>
+                              <div className="... col-span-3 col-start-1 row-start-3">
+                                <CardContent className="size-full p-0 pt-6">
+                                  <CardTitle>課題</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>
+                                      {/* 私は趣味で友人とサイクリングやドライブによく行くのですが、経路を選定する際に他の人の経路を参考にしたいと感じたことが多々ありました．「経路を共有できるサービス」は既に存在しますが，私調べではただ経路を共有するだけのものばかりでした．そこで，独自のサービスを開発したいと思いました．走行時の感想や天候，移動手段なども併せて投稿できるようにすることで，より詳しく経路を選定することができるようになるのではないかと考えました．また，チャット機能を導入することにより，感想を伝えたり細かな情報を伝えてもらえたりすることができると考えました． */}
+                                      {toolData.point}
+                                    </p>
+                                  </CardContent>
                                 </CardContent>
-                              </CardContent>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <div className="... col-span-3 col-start-1 row-start-5 flex h-full w-[522px] items-end">
-                          <Card className="mb-6 flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
-                            <CardContent className="p-0">
-                              <MarqueeWidget
-                                technologyData={[toolData.technology]}
-                              />
+                              </div>
                             </CardContent>
                           </Card>
+
+                          <div className="... col-span-3 col-start-1 row-start-5 flex h-full w-[522px] items-end">
+                            <Card className="mb-6 flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
+                              <CardContent className="p-0">
+                                <MarqueeWidget
+                                  technologyData={[toolData.technology]}
+                                />
+                              </CardContent>
+                            </Card>
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </ResizablePanel>
-                {toolData.url === "" || toolData.url.includes("github") ? (
-                  <></>
-                ) : (
-                  <>
-                    <ResizableHandle withHandle />
-                    <ResizablePanel>
-                      <iframe
-                        src={toolData.url}
-                        className="iframe-rounded size-full"
-                      ></iframe>
-                    </ResizablePanel>
-                  </>
-                )}
-              </ResizablePanelGroup>
-            </CardContent>
-          </Card>
+                      </CardContent>
+                    </Card>
+                  </ResizablePanel>
+                  {!toolData.url.includes("github") && (
+                    <>
+                      <ResizableHandle withHandle />
+                      <ResizablePanel>
+                        <iframe
+                          src={toolData.url}
+                          className="iframe-rounded size-full"
+                        ></iframe>
+                      </ResizablePanel>
+                    </>
+                  )}
+                </ResizablePanelGroup>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <main className="block h-screen sm:hidden">
+        <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
+          <div className="flex h-full items-center justify-center">
+            <Card className="flex size-full flex-col border-none">
+              <CardContent className="size-full p-0">
+                <ResizablePanelGroup
+                  direction="horizontal"
+                  className="flex size-full flex-col"
+                >
+                  <ResizablePanel defaultSize={75}>
+                    <Card className="tool-detail-rounded flex size-full min-w-[350px] flex-col">
+                      <CardHeader className="p-3 sm:p-6">
+                        <div className="flex justify-between">
+                          <div>
+                            {toolData.url === "" ? (
+                              <CardTitle className="flex items-end gap-2">
+                                {toolData.name.replace("\\n", " ")}
+                              </CardTitle>
+                            ) : (
+                              <CardTitle className="cursor-pointer underline duration-200 hover:opacity-75">
+                                <Link
+                                  className="flex items-end"
+                                  href={toolData.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {toolData.name.replace("\\n", " ")}
+                                  <ExternalLink size={15} />
+                                </Link>
+                              </CardTitle>
+                            )}
+
+                            <CardDescription className="mt-[6px]">
+                              {toolData.description}
+                            </CardDescription>
+                          </div>
+                          <Link href={`/tool?id=${toolData.id}`}>
+                            <Button variant="secondary">close</Button>
+                          </Link>
+                        </div>
+                      </CardHeader>
+                      <Separator />
+                      <CardContent className="size-full overflow-y-scroll p-3 sm:p-6">
+                        <div className="grid size-full grid-flow-col grid-cols-2 gap-2 sm:gap-4">
+                          <Card className="... col-span-5 row-span-4 row-start-1 size-full">
+                            <CardContent className="grid size-full grid-flow-col grid-rows-3 gap-4 p-3 pt-0 sm:p-6">
+                              <div className="... col-span-3 col-start-1 row-start-1">
+                                <CardContent className="size-full p-0 pt-3 sm:pt-6">
+                                  <CardTitle>背景</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>{toolData.background}</p>
+                                  </CardContent>
+                                </CardContent>
+                                <Separator className="mt-5" />
+                              </div>
+                              <div className="... col-span-3 col-start-1 row-start-2">
+                                <CardContent className="size-full p-0 pt-3 sm:pt-6">
+                                  <CardTitle className="mt-1">工夫</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>{toolData.ingenuity}</p>
+                                  </CardContent>
+                                </CardContent>
+                                <Separator className="mt-5" />
+                              </div>
+                              <div className="... col-span-3 col-start-1 row-start-3">
+                                <CardContent className="size-full p-0 pt-3 sm:pt-6">
+                                  <CardTitle className="mt-1">課題</CardTitle>
+                                  <CardContent className="flex h-full items-center justify-center p-0">
+                                    <p>{toolData.point}</p>
+                                  </CardContent>
+                                </CardContent>
+                              </div>
+                            </CardContent>
+                          </Card>
+                          <div className="... col-span-5 col-start-1 row-start-5 flex size-full items-end">
+                            <Card className="mb-3 flex w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8 sm:mb-6">
+                              <CardContent className="p-0">
+                                <MarqueeWidget
+                                  technologyData={[toolData.technology]}
+                                />
+                              </CardContent>
+                            </Card>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </ResizablePanel>
+                  {!toolData.url.includes("github") && (
+                    <>
+                      <ResizableHandle withHandle />
+                      <ResizablePanel>
+                        <iframe
+                          src={toolData.url}
+                          className="iframe-rounded size-full"
+                        ></iframe>
+                      </ResizablePanel>
+                    </>
+                  )}
+                </ResizablePanelGroup>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+    </>
   );
 };
 

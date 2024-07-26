@@ -68,7 +68,7 @@ export const getNextId = (arr: ToolObj[], id: number) => {
   const previousId = targetIndex > 0 ? arr[targetIndex - 1].id : -1;
   const nextId = targetIndex < arr.length - 1 ? arr[targetIndex + 1].id : -1;
 
-  console.log({ targetIndex, previousId, nextId });
+  // console.log({ targetIndex, previousId, nextId });
   return {
     targetIndex,
     previousId,

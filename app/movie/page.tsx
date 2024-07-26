@@ -132,49 +132,6 @@ export default async function page() {
                         </div>
                       </CardHeader>
                       <Separator />
-                      {/* <CardContent className="size-full overflow-y-scroll p-3 sm:p-6">
-                        <div className="grid size-full">
-                          <div className="... col-span-5 row-span-4 row-start-1 size-full ">
-                            <div className="grid size-full grid-flow-col grid-rows-9 gap-4">
-                              <Card className="... col-span-3 col-start-1 row-span-3 row-start-1">
-                                <CardContent className="size-full p-0">
-                                  <CardContent className="flex size-full items-center justify-center p-0">
-                                    <Movie.Profile />
-                                  </CardContent>
-                                </CardContent>
-                              </Card>
-                              <Card className="... col-span-3 col-start-1 row-span-2 row-start-4">
-                                <CardContent className="size-full p-0">
-                                  <CardContent className="flex h-full items-center justify-center p-4">
-                                    <Movie.YTProfile
-                                      YTProfileData={YTProfileData.items[0]}
-                                    />
-                                  </CardContent>
-                                </CardContent>
-                              </Card>
-                              <div className="... col-span-3 col-start-1 row-span-4 row-start-6">
-                                <Card>
-                                  <CardContent className="size-full p-0">
-                                    <CardHeader className="p-4">
-                                      <CardTitle className="text-lg">
-                                        Software
-                                      </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="flex size-full items-center justify-center">
-                                      <Movie.Software />
-                                    </CardContent>
-                                    <CardFooter>
-                                      <p>
-                                        モーショングラフィックスはAviUtl，3D映像はBlenderで制作しています．
-                                      </p>
-                                    </CardFooter>
-                                  </CardContent>
-                                </Card>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent> */}
                       <CardContent className="size-full overflow-y-scroll rounded-md p-3 sm:p-6">
                         <div className="grid size-full">
                           <div className="... col-span-5 row-span-4 row-start-1 size-full ">

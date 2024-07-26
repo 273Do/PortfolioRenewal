@@ -184,67 +184,6 @@ const page = async ({
                   </Card>
                 </div>
               </CardContent>
-              {/* <CardContent className="size-full p-3 sm:p-6">
-                <div className="grid size-full grid-flow-col grid-cols-5 gap-2 sm:gap-4">
-                  <div className="... col-span-5 col-start-1 row-start-3 flex items-center justify-between">
-                    <Link href={`/tool?id=${previousId}`}>
-                      <Button
-                        variant="outline"
-                        className={`pointer-events-auto bg-transparent p-7 ${
-                          previousId === -1
-                            ? "pointer-events-none text-muted-foreground"
-                            : ""
-                        }`}
-                      >
-                        {"<"}
-                      </Button>
-                    </Link>
-                    <Link href={`/tool?id=${nextId}`}>
-                      <Button
-                        variant="outline"
-                        className={`pointer-events-auto bg-transparent p-7 ${
-                          nextId === -1
-                            ? "pointer-events-none text-muted-foreground"
-                            : ""
-                        }`}
-                      >
-                        {">a"}
-                      </Button>
-                    </Link>
-                  </div>
-                  <div className="... col-span-2 col-start-4 row-span-1 row-start-1 flex items-start justify-end">
-                    <Card className="bg-transparent">
-                      <CardHeader className="p-3 pb-0">
-                        <CardTitle>Genre</CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex flex-col items-center justify-end p-3">
-                        <Tool.Label label={nowData.genre.name} />
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className="... col-span-2 col-start-1 row-start-5 flex h-full w-[522px] items-end">
-                    <Card className="flex h-[166px] w-full items-center justify-center overflow-hidden bg-transparent p-0 py-8">
-                      <CardContent className="p-0">
-                        <MarqueeWidget technologyData={[nowData.technology]} />
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className="... col-span-2 col-start-4 row-start-5 flex flex-col items-end justify-end gap-2">
-                    <Card className="bg-transparent p-4">
-                      <CardContent className="p-0">
-                        <p>
-                          {targetIndex + 1}/{toolData.length}
-                        </p>
-                      </CardContent>
-                    </Card>
-                    <Card className="bg-transparent p-4">
-                      <CardContent className="p-0">
-                        <Tool.Annotation />
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              </CardContent> */}
             </Card>
           </div>
         </div>
