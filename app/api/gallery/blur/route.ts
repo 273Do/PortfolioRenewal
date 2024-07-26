@@ -13,9 +13,9 @@ export async function GET() {
   const galleryDataWithBlur = await Promise.all(
     allGallery.map(async (item: GalleryObj) => {
       const { base64 } = await getPlaiceholder(
-        await fetch(item.url).then(async (res) =>
-          Buffer.from(await res.arrayBuffer())
-        )
+        await fetch(item.url, {
+          cache: "no-store",
+        }).then(async (res) => Buffer.from(await res.arrayBuffer()))
       ); // Convert base64 to Buffer
       return {
         ...item,

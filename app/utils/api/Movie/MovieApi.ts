@@ -55,12 +55,12 @@ export async function deleteMovieData(id: string) {
 export async function getYTProfileData() {
   // アカウント情報を取得
   // const fetchYTData = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_PREFIX}www.googleapis.com/youtube/v3/channels?part=snippet&id=UCh4boc9_9Dxiz9QP_VkwGww&key=${process.env.YOUTUBE_API_KEY}`
+  //   `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=UCh4boc9_9Dxiz9QP_VkwGww&key=${process.env.YOUTUBE_API_KEY}`
   // );
   // 登録者数を取得
   // SSR
   const fetchSubscribe = await fetch(
-    `${process.env.NEXT_PUBLIC_API_PREFIX}www.googleapis.com/youtube/v3/channels?part=statistics&id=UCh4boc9_9Dxiz9QP_VkwGww&key=${process.env.YOUTUBE_API_KEY}`,
+    `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCh4boc9_9Dxiz9QP_VkwGww&key=${process.env.YOUTUBE_API_KEY}`,
     { cache: "no-store" }
   );
   // const YTData = await fetchYTData.json();

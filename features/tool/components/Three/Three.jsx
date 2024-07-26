@@ -71,7 +71,7 @@ const Three = ({ tool_id, three_text, three_color }) => {
         toolId={tool_id}
         config={config}
         rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -1, 5]}
+        position={three_text.indexOf("\n") !== -1 ? [0, -1, 5] : [0, -1, 3]}
       >
         {three_text}
       </Text>

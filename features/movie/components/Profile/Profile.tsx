@@ -11,7 +11,7 @@ import iRwImg from "@/public/iRwLogo.png";
 const Profile = () => {
   const theme = useTheme();
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4 px-4">
+    <div className="flex h-full flex-col items-center justify-center gap-1 p-3 sm:gap-4 sm:p-4">
       <Image
         src={iRwImg}
         height={70}

@@ -155,7 +155,7 @@ const ToolForm = () => {
     if (nowData) {
       if (isValid) {
         try {
-          console.log("更新ボタン");
+          // console.log("更新ボタン");
           await updateToolData(String(nowData.id), value);
           window.location.reload();
         } catch (error) {
@@ -500,7 +500,7 @@ const ToolForm = () => {
                   onChange={(e) => validatePassword(e.target.value)}
                 />
                 <Button>{nowData ? "Update" : "Save"} Tool</Button>
-                {nowData ? (
+                {nowData && (
                   <Dialog>
                     <DialogTrigger>
                       <Button type="button" variant="outline" size="icon">
@@ -516,15 +516,13 @@ const ToolForm = () => {
                         <Button
                           variant="destructive"
                           className="mt-3"
-                          onClick={() => onDelete()}
+                          onClick={onDelete}
                         >
                           Delete
                         </Button>
                       </DialogHeader>
                     </DialogContent>
                   </Dialog>
-                ) : (
-                  <></>
                 )}
               </div>
             </CardFooter>

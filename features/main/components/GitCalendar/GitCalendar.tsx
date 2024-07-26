@@ -45,30 +45,58 @@ const GitCalendar = () => {
 
   return (
     <div className={`${!isLoad ? "" : "hidden"}`}>
-      <GitHubCalendar
-        username="273Do"
-        transformData={selectLastSevenWeeks}
-        blockMargin={7}
-        blockSize={13}
-        hideColorLegend={true}
-        hideMonthLabels={true}
-        hideTotalCount={true}
-        loading={false}
-        theme={explicitTheme}
-        colorScheme={theme as "light" | "dark" | undefined}
-        renderBlock={(block, activity) => (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>{block}</TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  {activity.count} activities on {activity.date}
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        )}
-      />
+      <div className="hidden sm:block">
+        <GitHubCalendar
+          username="273Do"
+          transformData={selectLastSevenWeeks}
+          blockMargin={7}
+          blockSize={13}
+          hideColorLegend={true}
+          hideMonthLabels={true}
+          hideTotalCount={true}
+          loading={false}
+          theme={explicitTheme}
+          colorScheme={theme as "light" | "dark" | undefined}
+          renderBlock={(block, activity) => (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>{block}</TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    {activity.count} activities on {activity.date}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+        />
+      </div>
+      <div className="block sm:hidden">
+        <GitHubCalendar
+          username="273Do"
+          transformData={selectLastSevenWeeks}
+          blockMargin={6.5}
+          blockSize={8.5}
+          hideColorLegend={true}
+          hideMonthLabels={true}
+          hideTotalCount={true}
+          loading={false}
+          theme={explicitTheme}
+          colorScheme={theme as "light" | "dark" | undefined}
+          renderBlock={(block, activity) => (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>{block}</TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    {activity.count} activities on {activity.date}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+        />
+      </div>
     </div>
   );
 };

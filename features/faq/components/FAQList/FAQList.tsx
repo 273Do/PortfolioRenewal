@@ -106,12 +106,12 @@ const knowledge_tool_icon = [
 ];
 const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
   return (
-    <div className="flex size-full flex-row items-center justify-center">
-      <div className="m-4 w-full max-w-[700px]">
+    <div className="flex size-full flex-row items-start justify-center">
+      <div className="m-3 w-full max-w-[700px] sm:m-4">
         <Accordion type="single" collapsible className="w-full">
           {FAQData.map((data: FAQObj) => (
             <AccordionItem value={`item-${data.id}`} key={data.id}>
-              <AccordionTrigger className="text-lg">
+              <AccordionTrigger className="text-start text-lg">
                 {data.question}
               </AccordionTrigger>
               <AccordionContent>{data.answer}</AccordionContent>
@@ -120,8 +120,8 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
           <AccordionItem value="test">
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>
-              <div className="mb-2 flex justify-center">
-                <div className="flex">
+              <div className="mb-2 flex w-full flex-wrap justify-center">
+                <div className="mb-2 flex">
                   <div>
                     <p className="text-center text-muted-foreground">
                       チャットツール
@@ -134,7 +134,7 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                   </div>
                   <Separator orientation="vertical" className="m-3" />
                 </div>
-                <div className="flex">
+                <div className="mb-2 flex">
                   <div>
                     <p className="text-center text-muted-foreground">
                       ブラウザ
@@ -147,7 +147,7 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                   </div>
                   <Separator orientation="vertical" className="m-3" />
                 </div>
-                <div className="flex">
+                <div className="mb-2 flex">
                   <div>
                     <p className="text-center text-muted-foreground">
                       タスク管理
@@ -160,7 +160,7 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                   </div>
                   <Separator orientation="vertical" className="m-3" />
                 </div>
-                <div className="flex">
+                <div className="mb-2 flex">
                   <div>
                     <p className="text-center text-muted-foreground">開発</p>
                     <div className="mt-1 flex gap-2">
@@ -171,7 +171,7 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                   </div>
                   <Separator orientation="vertical" className="m-3" />
                 </div>
-                <div className="flex">
+                <div className="mb-2 flex">
                   <div>
                     <p className="text-center text-muted-foreground">
                       ナレッジ
