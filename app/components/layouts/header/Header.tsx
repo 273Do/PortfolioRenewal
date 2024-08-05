@@ -9,6 +9,7 @@ import {
   SiYoutube,
   SiInstagram,
 } from "@icons-pack/react-simple-icons";
+import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,7 +52,17 @@ const Header = () => {
   const { tools, isError, isLoading } = useAllTool();
 
   return (
-    <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.div
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{
+        type: "spring",
+        duration: 0.3,
+        delay: 0,
+        stiffness: 100,
+      }}
+      className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
       <div className="mx-6 flex h-14 items-center justify-between sm:mx-12">
         <Image
           src={siteLogo}
@@ -365,7 +376,7 @@ const Header = () => {
           </Sheet>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
