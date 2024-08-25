@@ -1,3 +1,36 @@
+<p align="center">
+<img width="1506" alt="スクリーンショット 2024-08-25 11 16 52" src="https://github.com/user-attachments/assets/9b55b543-c158-45a1-b7be-25edfd95e12f">
+</p>
+
+# Portfolio
+
+273*のポートフォリオサイト
+
+## 📇 開発環境・使用技術・ツール
+
+<H3>開発期間：5ヶ月</H3>
+
+<H3>FE
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=typescript,nextjs,tailwindcss,threejs"/>
+</a>
+<h3>BE
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=prisma,supabase"/>
+  </a>
+<h3>インフラ
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=bun,docker,github,git,vscode"/>
+</a>
+<h3>デプロイ
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=vercel"/>
+</a>
+<h3>UI・ロゴ
+<a href="https://skillicons.dev">
+   <img src="https://skillicons.dev/icons?i=blender,figma,photoshop"/>
+</a>
+
 <hr>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
