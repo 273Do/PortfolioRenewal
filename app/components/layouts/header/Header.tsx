@@ -114,7 +114,7 @@ const Header = () => {
                   Tools
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
+                  <ul className="grid h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {isLoading ? (
                       <div>Loading...</div>
                     ) : (
