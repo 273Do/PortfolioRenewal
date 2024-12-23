@@ -7,7 +7,7 @@ import type { NoticeObj, TechnologyObj } from "@/features/main/types";
 
 import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
-import { sortedNoticeArray } from "./utils/function";
+import { sortedDataArray } from "./utils/function";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   // お知らせの取得
   const noticeAllData = await getNoticeAllData();
-  const sortedData: NoticeObj[] = sortedNoticeArray(noticeAllData);
+  const sortedData: NoticeObj[] = sortedDataArray(noticeAllData) as NoticeObj[];
 
   // 使用可能技術の取得
   const availableTechnologyData: TechnologyObj[] =

@@ -23,8 +23,8 @@ import { RGBELoader } from "three-stdlib";
 import three_font from "@/public/Inter_Medium_Regular.json";
 
 const Three = ({ tool_id, three_text, three_color }) => {
-  const Theme = useTheme();
-  const BGColor = Theme.theme === "dark" ? "#0a0a0b" : "#ffffff";
+  const { theme } = useTheme();
+  const BGColor = theme === "dark" ? "#0a0a0b" : "#ffffff";
 
   const { autoRotate, text, shadow, ...config } = useControls({
     text: three_text,

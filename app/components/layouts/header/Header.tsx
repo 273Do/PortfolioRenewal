@@ -46,7 +46,7 @@ import siteLogo from "@/public/273*Logo.png";
 import myImg from "@/public/myImg.jpg";
 
 const Header = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const { tools, isError, isLoading } = useAllTool();
 
@@ -58,7 +58,7 @@ const Header = () => {
           width={70}
           height={70}
           alt="siteLogo"
-          className={`${theme.theme === "light" && "icon_light"}`}
+          className={`${theme === "light" && "icon_light"}`}
         />
         <div className="flex">
           <NavigationMenu className="hidden sm:block">
@@ -114,7 +114,7 @@ const Header = () => {
                   Tools
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
+                  <ul className="grid h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {isLoading ? (
                       <div>Loading...</div>
                     ) : (

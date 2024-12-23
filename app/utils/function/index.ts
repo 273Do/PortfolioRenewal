@@ -1,3 +1,4 @@
+import type { FAQObj } from "@/features/faq/types";
 import type { GalleryObj } from "@/features/gallery/types";
 import type { NoticeObj } from "@/features/main/types";
 import type { MovieObj } from "@/features/movie/types";
@@ -15,7 +16,9 @@ export const formatDate = (dateString: Date) => {
 };
 
 // 降順にソートする関数
-export const sortedNoticeArray = (arr: NoticeObj[]): NoticeObj[] => {
+export const sortedDataArray = (
+  arr: NoticeObj[] | FAQObj[]
+): NoticeObj[] | FAQObj[] => {
   return arr.sort((a, b) => {
     const dateA = new Date(a.event_date);
     const dateB = new Date(b.event_date);

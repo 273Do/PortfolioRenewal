@@ -9,14 +9,14 @@ import { Separator } from "@/components/ui/separator";
 import iRwImg from "@/public/iRwLogo.png";
 
 const Profile = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   return (
     <div className="flex h-full flex-col items-center justify-center gap-1 p-3 sm:gap-4 sm:p-4">
       <Image
         src={iRwImg}
         height={70}
         alt="iRwImg"
-        className={`${theme.theme === "light" && "icon_light"}`}
+        className={`${theme === "light" && "icon_light"}`}
       />
       <Separator className="my-3" />
       <p>
