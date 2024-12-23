@@ -11,14 +11,17 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import * as FAQ from "@/features/faq/components/index";
+import type { FAQObj } from "@/features/faq/types";
 
 import { getFAQData } from "../utils/api/FAQ/FAQApi";
+import { sortedDataArray } from "../utils/function";
 export const metadata: Metadata = {
   title: "273* Portfolio | FAQ",
 };
 
 const page = async () => {
-  const FAQAllData = await getFAQData();
+  const faqAllData = await getFAQData();
+  const sortedData: FAQObj[] = sortedDataArray(faqAllData) as FAQObj[];
 
   return (
     <main className="h-screen">
@@ -37,7 +40,7 @@ const page = async () => {
                 </div>
               </CardHeader>
               <Separator />
-              <FAQ.FAQList FAQData={FAQAllData} />
+              <FAQ.FAQList FAQData={sortedData} />
             </CardContent>
           </Card>
         </div>

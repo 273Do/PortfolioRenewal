@@ -3,6 +3,7 @@
 import React from "react";
 
 import {
+  SiAdobexd,
   SiArc,
   SiDiscord,
   SiFigma,
@@ -10,13 +11,12 @@ import {
   SiGithubcopilot,
   SiGooglechrome,
   SiLine,
-  SiMicrosoftteams,
   SiNotion,
+  SiObsidian,
   SiQiita,
   SiSlack,
   SiTodoist,
   SiVisualstudiocode,
-  SiWarp,
   SiZenn,
 } from "@icons-pack/react-simple-icons";
 
@@ -43,10 +43,6 @@ const chat_tool_icon = [
     icon: <SiSlack className="size-8" />,
     label: "slack",
   },
-  {
-    icon: <SiMicrosoftteams className="size-8" />,
-    label: "microsftteams",
-  },
 ];
 
 const browser_tool_icon = [
@@ -61,6 +57,10 @@ const browser_tool_icon = [
 ];
 
 const task_tool_icon = [
+  {
+    icon: <SiObsidian className="size-8" />,
+    label: "obsidian",
+  },
   {
     icon: <SiNotion className="size-8" />,
     label: "notion",
@@ -77,10 +77,6 @@ const editor_tool_icon = [
     label: "visualstudiocode",
   },
   {
-    icon: <SiWarp className="size-8" />,
-    label: "warp",
-  },
-  {
     icon: <SiGithub className="size-8" />,
     label: "github",
   },
@@ -88,9 +84,16 @@ const editor_tool_icon = [
     icon: <SiGithubcopilot className="size-8" />,
     label: "githubcopilot",
   },
+];
+
+const design_tool_icon = [
   {
     icon: <SiFigma className="size-8" />,
     label: "figma",
+  },
+  {
+    icon: <SiAdobexd className="size-8" />,
+    label: "adobexd",
   },
 ];
 
@@ -103,6 +106,14 @@ const knowledge_tool_icon = [
     icon: <SiZenn className="size-8" />,
     label: "zenn",
   },
+];
+const toolCategories = [
+  { title: "チャットツール", icons: chat_tool_icon },
+  { title: "ブラウザ", icons: browser_tool_icon },
+  { title: "タスク管理", icons: task_tool_icon },
+  { title: "開発", icons: editor_tool_icon },
+  { title: "デザイン", icons: design_tool_icon },
+  { title: "ナレッジ", icons: knowledge_tool_icon },
 ];
 const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
   return (
@@ -121,68 +132,23 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>
               <div className="mb-2 flex w-full flex-wrap justify-center">
-                <div className="mb-2 flex">
-                  <div>
-                    <p className="text-center text-muted-foreground">
-                      チャットツール
-                    </p>
-                    <div className="mt-1 flex gap-2">
-                      {chat_tool_icon.map((icon) => (
-                        <div key={icon.label}>{icon.icon}</div>
-                      ))}
+                {toolCategories.map((category, index) => (
+                  <div key={category.title} className="mb-2 flex">
+                    <div>
+                      <p className="text-center text-muted-foreground">
+                        {category.title}
+                      </p>
+                      <div className="mt-1 flex gap-2">
+                        {category.icons.map((icon) => (
+                          <div key={icon.label}>{icon.icon}</div>
+                        ))}
+                      </div>
                     </div>
+                    {index < toolCategories.length - 1 && (
+                      <Separator orientation="vertical" className="m-3" />
+                    )}
                   </div>
-                  <Separator orientation="vertical" className="m-3" />
-                </div>
-                <div className="mb-2 flex">
-                  <div>
-                    <p className="text-center text-muted-foreground">
-                      ブラウザ
-                    </p>
-                    <div className="mt-1 flex gap-2">
-                      {browser_tool_icon.map((icon) => (
-                        <div key={icon.label}>{icon.icon}</div>
-                      ))}
-                    </div>
-                  </div>
-                  <Separator orientation="vertical" className="m-3" />
-                </div>
-                <div className="mb-2 flex">
-                  <div>
-                    <p className="text-center text-muted-foreground">
-                      タスク管理
-                    </p>
-                    <div className="mt-1 flex gap-2">
-                      {task_tool_icon.map((icon) => (
-                        <div key={icon.label}>{icon.icon}</div>
-                      ))}
-                    </div>
-                  </div>
-                  <Separator orientation="vertical" className="m-3" />
-                </div>
-                <div className="mb-2 flex">
-                  <div>
-                    <p className="text-center text-muted-foreground">開発</p>
-                    <div className="mt-1 flex gap-2">
-                      {editor_tool_icon.map((icon) => (
-                        <div key={icon.label}>{icon.icon}</div>
-                      ))}
-                    </div>
-                  </div>
-                  <Separator orientation="vertical" className="m-3" />
-                </div>
-                <div className="mb-2 flex">
-                  <div>
-                    <p className="text-center text-muted-foreground">
-                      ナレッジ
-                    </p>
-                    <div className="mt-1 flex gap-2">
-                      {knowledge_tool_icon.map((icon) => (
-                        <div key={icon.label}>{icon.icon}</div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </AccordionContent>
           </AccordionItem>
