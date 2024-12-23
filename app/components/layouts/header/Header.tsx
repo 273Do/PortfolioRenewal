@@ -46,7 +46,7 @@ import siteLogo from "@/public/273*Logo.png";
 import myImg from "@/public/myImg.jpg";
 
 const Header = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const { tools, isError, isLoading } = useAllTool();
 
@@ -58,7 +58,7 @@ const Header = () => {
           width={70}
           height={70}
           alt="siteLogo"
-          className={`${theme.theme === "light" && "icon_light"}`}
+          className={`${theme === "light" && "icon_light"}`}
         />
         <div className="flex">
           <NavigationMenu className="hidden sm:block">
