@@ -33,7 +33,7 @@ const MyCard = () => {
               alt="myImg"
               className="rounded-full"
             />
-            <div className="">
+            <div>
               <div>
                 <Image
                   src={siteLogo}
@@ -57,23 +57,68 @@ const MyCard = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <SiGithub />
-                    <p>273Do</p>
+                    <p>@273Do</p>
                   </li>
                   <li className="flex items-center gap-3">
                     <SiDiscord />
-                    <p>273</p>
+                    <p>@273</p>
                   </li>
                   <li className="flex items-center gap-3">
                     <SiX />
-                    <p>273Do</p>
+                    <p>@273Do</p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div className="block size-full h-[200px] w-[334px] cursor-pointer rounded-2xl border border-border sm:hidden">
-          my_card
+        <div className="block size-full h-[200px] w-[334px] cursor-pointer rounded-2xl border border-border text-[11px] sm:hidden">
+          <div className="pointer-events-none flex size-full items-center justify-between p-3">
+            <Image
+              src={myImg}
+              width={110}
+              height={110}
+              alt="myImg"
+              className="rounded-full"
+            />
+            <div>
+              <div>
+                <Image
+                  src={siteLogo}
+                  width={70}
+                  height={70}
+                  alt="siteLogo"
+                  className={`${theme === "light" && "icon_light"} -mt-3`}
+                />
+                <div className="my-1">
+                  <p className="-mt-2">273* (tuna-sand) / kei.</p>
+                  <p className="text-muted-foreground">
+                    Web Dev / Sensor Analysis / Design
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2">
+                <ul className="flex flex-col gap-1">
+                  <li className="flex items-center gap-2">
+                    <Link size={15} />
+                    <p>https://273doworks.com</p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <SiGithub size={15} />
+                    <p>@273Do</p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <SiDiscord size={15} />
+                    <p>@273</p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <SiX size={15} />
+                    <p>@273Do</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </Tilt>
     </>
