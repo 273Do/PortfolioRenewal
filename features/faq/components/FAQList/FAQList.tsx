@@ -125,7 +125,9 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
               <AccordionTrigger className="text-start text-lg">
                 {data.question}
               </AccordionTrigger>
-              <AccordionContent>{data.answer}</AccordionContent>
+              <AccordionContent className="whitespace-pre-wrap">
+                {data.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
           <AccordionItem value="test">
