@@ -8,6 +8,7 @@ import {
   SiGithub,
   SiYoutube,
   SiInstagram,
+  SiDiscord,
 } from "@icons-pack/react-simple-icons";
 import { Menu } from "lucide-react";
 import Image from "next/image";
@@ -53,13 +54,17 @@ const Header = () => {
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-6 flex h-14 items-center justify-between sm:mx-12">
-        <Image
-          src={siteLogo}
-          width={70}
-          height={70}
-          alt="siteLogo"
-          className={`${theme === "light" && "icon_light"}`}
-        />
+        <Link href="/card" title="card">
+          <Image
+            src={siteLogo}
+            width={70}
+            height={70}
+            alt="siteLogo"
+            className={`${
+              theme === "light" && "icon_light"
+            }  duration-150 hover:scale-95`}
+          />
+        </Link>
         <div className="flex">
           <NavigationMenu className="hidden sm:block">
             <NavigationMenuList>
@@ -161,6 +166,16 @@ const Header = () => {
             </Button>
             <Button variant="ghost" size="icon">
               <Link
+                href="https://discord.gg/7t7rSU2f"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+              >
+                <SiDiscord className="size-[1.0rem]" />
+              </Link>
+            </Button>
+            <Button variant="ghost" size="icon">
+              <Link
                 href="https://twitter.com/273Do"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -169,7 +184,7 @@ const Header = () => {
                 <SiX className="size-[1.0rem]" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon">
+            {/* <Button variant="ghost" size="icon">
               <Link
                 href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
                 target="_blank"
@@ -178,7 +193,8 @@ const Header = () => {
               >
                 <SiInstagram className="size-[1.0rem]" />
               </Link>
-            </Button>
+            </Button> */}
+
             <Button variant="ghost" size="icon">
               <Link
                 href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"

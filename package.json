@@ -48,6 +48,7 @@
     "react-fast-marquee": "^1.6.4",
     "react-github-calendar": "^4.1.2",
     "react-hook-form": "^7.51.2",
+    "react-parallax-tilt": "^1.7.283",
     "react-resizable-panels": "^2.0.13",
     "sonner": "^1.4.41",
     "suspend-react": "^0.1.3",
