@@ -25,7 +25,7 @@ const MyCard = () => {
         className="cursor-pointer"
       >
         <div className="hidden size-full h-[440px] w-[729px] cursor-pointer rounded-2xl border border-border sm:block">
-          <div className="pointer-events-none flex size-full items-center justify-between p-14">
+          <div className="pointer-events-none flex size-full items-center justify-between px-16 py-14">
             <Image
               src={myImg}
               width={260}
@@ -44,20 +44,17 @@ const MyCard = () => {
                 />
                 <div className="my-2">
                   <p className="-mt-4">273* (tuna-sand) / kei.</p>
-                  <div className="text-muted-foreground">
-                    <p>Web Developer / Sensor Analysis</p>
-                    <p>Design / MoGraph / 3DCG</p>
-                  </div>
+                  <p className="text-muted-foreground">
+                    Web Develop / Sensor Analysis / Design
+                  </p>
                 </div>
               </div>
-              <div>
-                <ul className="my-4">
+              <div className="mt-4">
+                <ul className="flex flex-col gap-2">
                   <li className="flex items-center gap-3">
                     <Link />
-                    <p>https://www.273doworks.com</p>
+                    <p>https://273doworks.com</p>
                   </li>
-                </ul>
-                <ul className="flex flex-col gap-2">
                   <li className="flex items-center gap-3">
                     <SiGithub />
                     <p>273Do</p>
