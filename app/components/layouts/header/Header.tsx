@@ -7,7 +7,6 @@ import {
   SiX,
   SiGithub,
   SiYoutube,
-  SiInstagram,
   SiDiscord,
 } from "@icons-pack/react-simple-icons";
 import { Menu } from "lucide-react";
@@ -184,17 +183,6 @@ const Header = () => {
                 <SiX className="size-[1.0rem]" />
               </Link>
             </Button>
-            {/* <Button variant="ghost" size="icon">
-              <Link
-                href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
-                target="_blank"
-                rel="noopener noreferrer"
-                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-              >
-                <SiInstagram className="size-[1.0rem]" />
-              </Link>
-            </Button> */}
-
             <Button variant="ghost" size="icon">
               <Link
                 href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
@@ -348,22 +336,22 @@ const Header = () => {
                 </Button>
                 <Button variant="ghost" size="icon">
                   <Link
+                    href="https://discord.gg/7t7rSU2f"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    <SiDiscord className="size-[1.0rem]" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <Link
                     href="https://twitter.com/273Do"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                   >
                     <SiX className="size-[1.0rem]" />
-                  </Link>
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <Link
-                    href="https://instagram.com/kei310__?igshid=MmIzYWVlNDQ5Yg=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
-                    <SiInstagram className="size-[1.0rem]" />
                   </Link>
                 </Button>
                 <Button variant="ghost" size="icon">
