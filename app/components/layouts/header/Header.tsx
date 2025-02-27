@@ -13,6 +13,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { toast } from "sonner";
 
 import { useAllTool } from "@/app/hooks/tool/useAllTool";
 import { sortedToolArray } from "@/app/utils/function";
@@ -90,7 +91,7 @@ const Header = () => {
                             273* / Kei.
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            趣味でものづくりを楽しんでいる大学生．web開発や映像制作，ピアノやサイクリングを嗜む．
+                            趣味でものづくりを楽しんでいる人．web開発や映像制作，ピアノやサイクリングを嗜んでいる．
                           </p>
                         </a>
                       </NavigationMenuLink>
@@ -163,15 +164,24 @@ const Header = () => {
                 <SiGithub className="size-[1.0rem]" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon">
-              <Link
-                href="https://discord.gg/7t7rSU2f"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-              >
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                toast(
+                  <div className="flex items-center gap-3">
+                    <SiDiscord className="size-[1.4rem]" />
+                    <div>
+                      <p>Discord User ID</p>
+                      <p className="text-muted-foreground">@273</p>
+                    </div>
+                  </div>
+                )
+              }
+            >
+              <span className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                 <SiDiscord className="size-[1.0rem]" />
-              </Link>
+              </span>
             </Button>
             <Button variant="ghost" size="icon">
               <Link
@@ -228,7 +238,7 @@ const Header = () => {
                           273* / Kei.
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          趣味でものづくりを楽しんでいる大学生．web開発や映像制作，ピアノやサイクリングを嗜む．
+                          趣味でものづくりを楽しんでいる人．web開発や映像制作，ピアノやサイクリングを嗜んでいる．
                         </p>
                       </a>
                     </SheetClose>
@@ -334,15 +344,24 @@ const Header = () => {
                     <SiGithub className="size-[1.0rem]" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="icon">
-                  <Link
-                    href="https://discord.gg/7t7rSU2f"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                  >
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() =>
+                    toast(
+                      <div className="flex items-center gap-3">
+                        <SiDiscord className="size-[1.4rem]" />
+                        <div>
+                          <p>Discord User ID</p>
+                          <p className="text-muted-foreground">@273</p>
+                        </div>
+                      </div>
+                    )
+                  }
+                >
+                  <span className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                     <SiDiscord className="size-[1.0rem]" />
-                  </Link>
+                  </span>
                 </Button>
                 <Button variant="ghost" size="icon">
                   <Link

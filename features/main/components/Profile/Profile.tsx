@@ -21,7 +21,7 @@ const Profile = () => {
             273*(ツナサンド) / Kei.
           </h4>
           <p className="text-xs text-muted-foreground sm:text-sm">
-            Department of Information and Computer Science
+            Web Engineer / Designer
           </p>
         </div>
         <Separator className="my-1 sm:my-4" />
@@ -30,7 +30,7 @@ const Profile = () => {
           <Separator orientation="vertical" />
           <div>Sensor Analysis</div>
           <Separator orientation="vertical" />
-          <div>MoGraph</div>
+          <div>Design</div>
           <Separator orientation="vertical" />
           <div>3DCG</div>
         </div>
