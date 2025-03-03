@@ -54,7 +54,7 @@ const Header = () => {
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-6 flex h-14 items-center justify-between sm:mx-12">
-        <Link href="/card" title="card">
+        <Link href="/" title="card">
           <Image
             src={siteLogo}
             width={70}
@@ -78,7 +78,7 @@ const Header = () => {
                       <NavigationMenuLink asChild>
                         <a
                           className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
-                          href="/"
+                          href="/card"
                         >
                           <Image
                             src={myImg}
@@ -225,7 +225,7 @@ const Header = () => {
                     <SheetClose asChild>
                       <a
                         className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
-                        href="/"
+                        href="/card"
                       >
                         <Image
                           src={myImg}
