@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "bwydpccvhcjsycrnaxjq.supabase.co",
       },
+      {
+        protocol: "https",
+        hostname: "github-readme-stats.vercel.app",
+      },
     ],
   },
   async headers() {
