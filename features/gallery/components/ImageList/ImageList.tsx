@@ -15,7 +15,7 @@ const ImageList = ({ galleryData }: { galleryData: GalleryObj[] }) => {
           className="mb-3 duration-150 hover:scale-[1.025] sm:mb-4"
           key={data.id}
         >
-          <div className="relative before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-[''] sm:mb-4">
+          <div className="relative grayscale duration-200 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-[''] hover:grayscale-0 sm:mb-4">
             <Image
               className="rounded-lg"
               // placeholder="blur"

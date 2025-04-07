@@ -2,7 +2,6 @@
 
 // eslint-disable-next-line import/order
 import { Toaster } from "@/components/ui/sonner";
-
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 
@@ -38,10 +37,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* <ReactLenis> */}
           <Layout.Header />
           {children}
           <Toaster />
           <Layout.Footer />
+          {/* </ReactLenis> */}
         </ThemeProvider>
       </body>
     </html>

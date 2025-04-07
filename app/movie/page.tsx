@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import type { Metadata } from "next";
 
@@ -27,9 +27,18 @@ export const metadata: Metadata = {
 };
 
 export default async function page() {
+  return (
+    <>
+      <Suspense fallback={<div className="text-9xl">Loading...</div>}>
+        <MovieComponent />
+      </Suspense>
+    </>
+  );
+}
+
+async function MovieComponent() {
   const movieData: MovieObj[] = await getMovieData();
   const YTProfileData = await getYTProfileData();
-  // console.log(YTProfileData);
 
   return (
     <>

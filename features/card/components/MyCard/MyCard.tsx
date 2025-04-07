@@ -22,7 +22,7 @@ const MyCard = () => {
         glareBorderRadius="16px"
         tiltMaxAngleX={15}
         tiltMaxAngleY={15}
-        className="cursor-pointer"
+        className="cursor-pointer grayscale duration-200 hover:grayscale-0"
       >
         <div className="hidden size-full h-[440px] w-[729px] cursor-pointer rounded-2xl border border-border sm:block">
           <div className="pointer-events-none flex size-full items-center justify-between px-16 py-14">

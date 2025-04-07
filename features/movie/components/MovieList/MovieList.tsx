@@ -10,7 +10,7 @@ const MovieList = ({ movieData }: { movieData: MovieObj[] }) => {
       {movieData.map((data: MovieObj) => (
         <div key={data.id}>
           <iframe
-            className="movie-iframe-rounded h-[180px] w-[321px] sm:h-[280px] sm:w-[500px]"
+            className=" movie-iframe-rounded h-[180px] w-[321px] grayscale duration-200 hover:grayscale-0 sm:h-[280px] sm:w-[500px]"
             // width="500"
             // height="280"
             src={data.url}
