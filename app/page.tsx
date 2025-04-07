@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import type { Metadata } from "next";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,6 +7,7 @@ import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 import type { NoticeObj, TechnologyObj } from "@/features/main/types";
 
+import Loading from "./loading";
 import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
 import { sortedDataArray } from "./utils/function";
@@ -14,6 +17,15 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  return (
+    // TODO: メインコンポーネントのローディングを実装する
+    <Suspense fallback={<Loading />}>
+      <HomeComponent />
+    </Suspense>
+  );
+}
+
+async function HomeComponent() {
   // お知らせの取得
   const noticeAllData = await getNoticeAllData();
   const sortedData: NoticeObj[] = sortedDataArray(noticeAllData) as NoticeObj[];
