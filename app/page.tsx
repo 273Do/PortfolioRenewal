@@ -11,6 +11,8 @@ import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
 import { sortedDataArray } from "./utils/function";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
 };
