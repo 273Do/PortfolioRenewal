@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const Loading = () => {
   return (
@@ -11,7 +12,9 @@ const Loading = () => {
                 <div className="m-3 columns-1 sm:m-4 sm:columns-2 lg:columns-3 xl:columns-4">
                   <Card className="mb-3 border-none p-0 shadow-none sm:mb-4 sm:p-2">
                     <CardHeader className="w-full p-0">
-                      <CardTitle>Loading...</CardTitle>
+                      <CardTitle>
+                        <p className={cn("animate-pulse")}>Loading...</p>
+                      </CardTitle>
                     </CardHeader>
                   </Card>
                 </div>
