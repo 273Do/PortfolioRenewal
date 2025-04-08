@@ -15,7 +15,6 @@ import type { GalleryObj } from "@/features/gallery/types";
 
 import { getGalleryData } from "../utils/api/Gallery/GalleryApi";
 import { shuffleArray } from "../utils/function";
-
 export const metadata: Metadata = {
   title: "273* Portfolio | Gallery",
 };

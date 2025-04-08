@@ -7,7 +7,7 @@ import myImg from "@/public/myImg.jpg";
 
 const Profile = () => {
   return (
-    <div className="flex flex-row p-2">
+    <div className="flex flex-row p-2  grayscale duration-200 hover:grayscale-0">
       <Image
         src={myImg}
         width={90}

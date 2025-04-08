@@ -77,7 +77,7 @@ const Header = () => {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
+                          className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none grayscale duration-150 hover:scale-95 hover:grayscale-0 focus:shadow-md"
                           href="/card"
                         >
                           <Image

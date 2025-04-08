@@ -100,13 +100,20 @@ const page = async ({
                     </Card>
                   </div>
                   <div className="... col-span-2 col-start-4 row-start-5 flex flex-col items-end justify-end gap-4">
-                    <Card className="bg-transparent p-4">
-                      <CardContent className="p-0">
-                        <p>
-                          {targetIndex + 1}/{toolData.length}
-                        </p>
-                      </CardContent>
-                    </Card>
+                    <div className="flex gap-2">
+                      <Card className="bg-destructive p-4">
+                        <CardContent className="p-0">
+                          <p>近日Toolページをリニューアル予定！</p>
+                        </CardContent>
+                      </Card>
+                      <Card className="bg-transparent p-4">
+                        <CardContent className="p-0">
+                          <p>
+                            {targetIndex + 1}/{toolData.length}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
                     <Card className="bg-transparent p-4">
                       <CardContent className="p-0">
                         <Tool.Annotation />
@@ -169,6 +176,11 @@ const page = async ({
                   </Link>
                 </div>
                 <div>
+                  <Card className="bg-destructive p-4">
+                    <CardContent className="p-0">
+                      <p>近日Toolページをリニューアル予定！</p>
+                    </CardContent>
+                  </Card>
                   <CardContent className="flex items-center justify-between p-2">
                     <p className="text-base">
                       {targetIndex + 1}/{toolData.length}
