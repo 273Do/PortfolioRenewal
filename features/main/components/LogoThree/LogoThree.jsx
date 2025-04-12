@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useReducer, useMemo } from "react";
 
+import { useSpring, animated } from "@react-spring/three";
 import {
   useGLTF,
   MeshTransmissionMaterial,
@@ -8,7 +9,8 @@ import {
   Lightformer,
 } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
+import { DepthOfField as BaseDepthOfField } from "@react-three/postprocessing";
+import { EffectComposer, N8AO, Noise } from "@react-three/postprocessing";
 import {
   CuboidCollider,
   BallCollider,
@@ -20,6 +22,8 @@ import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 const accents = ["#4d4d4d", "#20ffa0", "#ff4060", "#ffcc00"];
+const DepthOfField = animated(BaseDepthOfField);
+
 const shuffle = (accent = 0) => [
   { color: "#7e7e7e", roughness: 0.1 },
   { color: "#7e7e7e", roughness: 0.75 },
@@ -37,6 +41,25 @@ const shuffle = (accent = 0) => [
 // 3Dシーンのコンポーネント
 export default function LogoThree(props) {
   const [accent, click] = useReducer((state) => ++state % accents.length, 0);
+  const connectors = useMemo(() => shuffle(accent), [accent]);
+  const { theme } = useTheme();
+
+  return (
+    <Canvas
+      shadows
+      dpr={[1, 1.5]}
+      gl={{ antialias: false }}
+      camera={{ position: [0, 14, 0], fov: 17.5, near: 1, far: 20 }}
+      {...props}
+      className="pointer-events-auto"
+    >
+      <Scene connectors={connectors} theme={theme} />
+    </Canvas>
+  );
+}
+
+function Scene() {
+  const [accent, click] = useReducer((state) => ++state % accents.length, 0);
   // 各オブジェクトの色や質感をランダム化
   const connectors = useMemo(() => shuffle(accent), [accent]);
   const { theme } = useTheme();
@@ -44,17 +67,19 @@ export default function LogoThree(props) {
   // ガラスマテリアルのモデルの数
   const glass_obj = 4;
 
+  // カメラのボケ効果のスケールを管理
+  const springs = useSpring({
+    from: { bokehScale: 80 },
+    to: { bokehScale: 1 },
+    config: {
+      duration: 600,
+      easing: easing.easeInOutExpo,
+    },
+  });
+
   return (
     // Canvasコンポーネントで3Dシーンを構築
-    <Canvas
-      // onClick={click} // クリック時にアクセント色を変更
-      shadows // シャドウを有効化
-      dpr={[1, 1.5]} // デバイスピクセル比を設定
-      gl={{ antialias: false }} // アンチエイリアスを無効化
-      camera={{ position: [0, 14, 0], fov: 17.5, near: 1, far: 20 }}
-      {...props}
-      className="pointer-events-auto"
-    >
+    <>
       {/* 初期背景 */}
       <color
         attach="background"
@@ -101,6 +126,13 @@ export default function LogoThree(props) {
       <EffectComposer disableNormalPass multisampling={8}>
         {/* N8AOでアンビエントオクルージョン(影の奥行き)を適用 */}
         <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
+        <DepthOfField
+          focusDistance={0}
+          focalLength={0.02}
+          bokehScale={springs.bokehScale}
+          // bokehScale={40}
+        />
+        <Noise opacity={10} premultiply />
       </EffectComposer>
 
       {/* Environmentで環境マップを適用 */}
@@ -136,7 +168,7 @@ export default function LogoThree(props) {
           />
         </group>
       </Environment>
-    </Canvas>
+    </>
   );
 }
 
