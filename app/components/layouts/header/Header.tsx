@@ -127,7 +127,9 @@ const Header = () => {
                     >
                       <Link href="/tool">Summary</Link>
                     </Button>
-                    <p className="mx-7 -mb-2 w-full font-semibold">Pick Up</p>
+                    <p className="mx-7 -mb-2 w-full font-semibold">
+                      Pick Up(メンテナンス中)
+                    </p>
                     <hr className="m-4 -mb-2 h-1 w-[calc(100%-2rem)]" />
                   </div>
 
@@ -308,7 +310,9 @@ const Header = () => {
                       <Button className="mb-0 w-full" variant="secondary">
                         <Link href="/tool">Summary</Link>
                       </Button>
-                      <p className="mx-3 -mb-2 font-semibold">Pick Up</p>
+                      <p className="mx-3 -mb-2 font-semibold">
+                        Pick Up(メンテナンス中)
+                      </p>
                       <hr className="m-4 h-1 w-[calc(100%-2rem)]" />
                     </div>
                     <ul className="h-80 overflow-scroll">
