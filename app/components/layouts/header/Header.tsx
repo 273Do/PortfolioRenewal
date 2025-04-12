@@ -116,9 +116,23 @@ const Header = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent">
-                  Tools
+                  Works
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuContent className="w-full">
+                  <div className="flex w-full flex-col items-start">
+                    <Button
+                      asChild
+                      className="m-4 w-[calc(100%-2rem)]"
+                      variant="secondary"
+                    >
+                      <Link href="/tool">Summary</Link>
+                    </Button>
+                    <p className="mx-7 -mb-2 w-full font-semibold">
+                      Pick Up(メンテナンス中)
+                    </p>
+                    <hr className="m-4 -mb-2 h-1 w-[calc(100%-2rem)]" />
+                  </div>
+
                   <ul className="grid h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {isLoading ? (
                       <div>Loading...</div>
@@ -290,8 +304,17 @@ const Header = () => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger>Tools</AccordionTrigger>
+                  <AccordionTrigger>Works</AccordionTrigger>
                   <AccordionContent>
+                    <div className="flex w-full flex-col gap-2">
+                      <Button className="mb-0 w-full" variant="secondary">
+                        <Link href="/tool">Summary</Link>
+                      </Button>
+                      <p className="mx-3 -mb-2 font-semibold">
+                        Pick Up(メンテナンス中)
+                      </p>
+                      <hr className="m-4 h-1 w-[calc(100%-2rem)]" />
+                    </div>
                     <ul className="h-80 overflow-scroll">
                       {isLoading ? (
                         <div>Loading...</div>

@@ -28,11 +28,13 @@ export const sortedDataArray = (
 
 // 降順にソートする関数
 export const sortedToolArray = (arr: ToolObj[]): ToolObj[] => {
-  return arr.sort((a, b) => {
-    const dateA = new Date(a.createdAt);
-    const dateB = new Date(b.createdAt);
-    return dateB.getTime() - dateA.getTime(); // 降順
-  });
+  return arr
+    .sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return dateB.getTime() - dateA.getTime(); // 降順
+    })
+    .slice(0, 4);
 };
 
 // ランダムに順番を入れ替える関数
