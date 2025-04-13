@@ -91,16 +91,16 @@ const Header = () => {
                             273* / Kei.
                           </div>
                           <p className="text-sm leading-tight text-muted-foreground">
-                            趣味でものづくりを楽しんでいる人．web開発や映像制作，ピアノやサイクリングを嗜んでいる．
+                            趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
                     <ListItem href="/movie" title="Movie">
-                      制作した映像作品を紹介しています．YouTubeにて公開しています．
+                      制作した映像作品を紹介しています。YouTubeにて公開しています。
                     </ListItem>
                     <ListItem href="/gallery" title="Gallery">
-                      私の趣味や活動の記録を写真で紹介しています．
+                      私の趣味や活動の記録を写真で紹介しています。
                     </ListItem>
                     <Link
                       href="https://qiita.com/273Do"
@@ -108,7 +108,7 @@ const Header = () => {
                       rel="noopener noreferrer"
                     >
                       <ListItem title="Qiita">
-                        開発したものは，Qiitaにて記事を書いて投稿しています．
+                        開発したものは、Qiitaにて記事を書いて投稿しています。
                       </ListItem>
                     </Link>
                   </ul>
@@ -125,7 +125,7 @@ const Header = () => {
                       className="m-4 w-[calc(100%-2rem)]"
                       variant="secondary"
                     >
-                      <Link href="/tool">Summary</Link>
+                      <Link href="/works">Summary</Link>
                     </Button>
                     <p className="mx-7 -mb-2 w-full font-semibold">
                       Pick Up(メンテナンス中)
@@ -147,7 +147,7 @@ const Header = () => {
                             <ListItem
                               key={component.id}
                               title={component.name.replace("\\n", " ")}
-                              href={`/tool?id=${component.id}`}
+                              href={`/works?id=${component.id}`}
                             >
                               {component.description}
                             </ListItem>
@@ -252,7 +252,7 @@ const Header = () => {
                           273* / Kei.
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          趣味でものづくりを楽しんでいる人．web開発や映像制作，ピアノやサイクリングを嗜んでいる．
+                          趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                         </p>
                       </a>
                     </SheetClose>
@@ -266,7 +266,7 @@ const Header = () => {
                           Movie
                         </div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          制作した映像作品を紹介しています．YouTubeにて公開しています．
+                          制作した映像作品を紹介しています。YouTubeにて公開しています。
                         </p>
                       </Link>
                     </SheetClose>
@@ -280,7 +280,7 @@ const Header = () => {
                           Gallery
                         </div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          私の趣味や活動の記録を写真で紹介しています．
+                          私の趣味や活動の記録を写真で紹介しています。
                         </p>
                       </Link>
                     </SheetClose>
@@ -296,7 +296,7 @@ const Header = () => {
                             Qiita
                           </div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            開発したものは，Qiitaにて記事を書いて投稿しています．
+                            開発したものは、Qiitaにて記事を書いて投稿しています。
                           </p>
                         </Label>
                       </Link>
@@ -308,7 +308,7 @@ const Header = () => {
                   <AccordionContent>
                     <div className="flex w-full flex-col gap-2">
                       <Button className="mb-0 w-full" variant="secondary">
-                        <Link href="/tool">Summary</Link>
+                        <Link href="/works">Summary</Link>
                       </Button>
                       <p className="mx-3 -mb-2 font-semibold">
                         Pick Up(メンテナンス中)
@@ -328,7 +328,7 @@ const Header = () => {
                             }) => (
                               <SheetClose asChild key={component.id}>
                                 <Link
-                                  href={`/tool?id=${component.id}`}
+                                  href={`/works?id=${component.id}`}
                                   className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                                 >
                                   <div className="text-sm font-medium leading-none">

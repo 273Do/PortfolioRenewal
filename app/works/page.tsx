@@ -1,7 +1,5 @@
 import React from "react";
 
-import type { Metadata } from "next";
-
 import {
   Card,
   CardContent,
@@ -10,19 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import * as FAQ from "@/features/faq/components/index";
-import type { FAQObj } from "@/features/faq/types";
-
-import { getFAQData } from "../utils/api/FAQ/FAQApi";
-import { sortedDataArray } from "../utils/function";
-export const metadata: Metadata = {
-  title: "273* Portfolio | FAQ",
-};
-
-const page = async () => {
-  const faqAllData = await getFAQData();
-  const sortedData: FAQObj[] = sortedDataArray(faqAllData) as FAQObj[];
-
+const page = () => {
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
@@ -32,15 +18,16 @@ const page = async () => {
               <CardHeader className="p-3 sm:p-6">
                 <div className="flex justify-between">
                   <div>
-                    <CardTitle>Frequently Asked Question</CardTitle>
+                    <CardTitle>Works</CardTitle>
                     <CardDescription className="mt-[6px]">
-                      よくある質問をまとめました。
+                      これまでに製作したものをまとめました。
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <Separator />
-              <FAQ.FAQList FAQData={sortedData} />
+              {/* <FAQ.FAQList FAQData={sortedData} /> */}
+              <p>hello</p>
             </CardContent>
           </Card>
         </div>

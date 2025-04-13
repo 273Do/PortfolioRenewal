@@ -49,7 +49,7 @@ export default async function page() {
                           <div>
                             <CardTitle>Movie</CardTitle>
                             <CardDescription className="mt-[6px]">
-                              制作した映像作品を紹介しています．YouTubeにて公開しています．
+                              制作した映像作品を紹介しています。YouTubeにて公開しています。
                             </CardDescription>
                           </div>
                         </div>
@@ -88,7 +88,7 @@ export default async function page() {
                                     </CardContent>
                                     <CardFooter>
                                       <p>
-                                        モーショングラフィックスはAviUtl，3D映像はBlenderで制作しています．
+                                        モーショングラフィックスはAviUtl、3D映像はBlenderで制作しています。
                                       </p>
                                     </CardFooter>
                                   </CardContent>
@@ -126,7 +126,7 @@ export default async function page() {
                           <div>
                             <CardTitle>Movie</CardTitle>
                             <CardDescription className="mt-[6px]">
-                              制作した映像作品を紹介しています．
+                              制作した映像作品を紹介しています。
                             </CardDescription>
                           </div>
                         </div>
@@ -165,7 +165,7 @@ export default async function page() {
                                     </CardContent>
                                     <CardFooter className="px-3 sm:px-4">
                                       <p>
-                                        モーショングラフィックスはAviUtl，3D映像はBlenderで制作しています．
+                                        モーショングラフィックスはAviUtl、3D映像はBlenderで制作しています。
                                       </p>
                                     </CardFooter>
                                   </CardContent>
