@@ -117,6 +117,11 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent">
                   Works
+                  {tools && (
+                    <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
+                      ({tools.length})
+                    </p>
+                  )}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
@@ -138,21 +143,23 @@ const Header = () => {
                       <div>Loading...</div>
                     ) : (
                       <>
-                        {sortedToolArray(tools).map(
-                          (component: {
-                            id: number;
-                            name: string;
-                            description: string;
-                          }) => (
-                            <ListItem
-                              key={component.id}
-                              title={component.name.replace("\\n", " ")}
-                              href={`/works?id=${component.id}`}
-                            >
-                              {component.description}
-                            </ListItem>
-                          )
-                        )}
+                        {sortedToolArray(tools)
+                          .slice(0, 4)
+                          .map(
+                            (component: {
+                              id: number;
+                              name: string;
+                              description: string;
+                            }) => (
+                              <ListItem
+                                key={component.id}
+                                title={component.name.replace("\\n", " ")}
+                                href={`/works?id=${component.id}`}
+                              >
+                                {component.description}
+                              </ListItem>
+                            )
+                          )}
                       </>
                     )}
                   </ul>
@@ -304,7 +311,16 @@ const Header = () => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger>Works</AccordionTrigger>
+                  <AccordionTrigger className="">
+                    <div className="flex">
+                      <p>Works</p>
+                      {tools && (
+                        <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
+                          ({tools.length})
+                        </p>
+                      )}
+                    </div>
+                  </AccordionTrigger>
                   <AccordionContent>
                     <div className="flex w-full flex-col gap-2">
                       <Button className="mb-0 w-full" variant="secondary">
@@ -320,27 +336,29 @@ const Header = () => {
                         <div>Loading...</div>
                       ) : (
                         <>
-                          {sortedToolArray(tools).map(
-                            (component: {
-                              id: number;
-                              name: string;
-                              description: string;
-                            }) => (
-                              <SheetClose asChild key={component.id}>
-                                <Link
-                                  href={`/works?id=${component.id}`}
-                                  className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                                >
-                                  <div className="text-sm font-medium leading-none">
-                                    {component.name.replace("\\n", " ")}
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                    {component.description}
-                                  </p>
-                                </Link>
-                              </SheetClose>
-                            )
-                          )}
+                          {sortedToolArray(tools)
+                            .slice(0, 4)
+                            .map(
+                              (component: {
+                                id: number;
+                                name: string;
+                                description: string;
+                              }) => (
+                                <SheetClose asChild key={component.id}>
+                                  <Link
+                                    href={`/works?id=${component.id}`}
+                                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                  >
+                                    <div className="text-sm font-medium leading-none">
+                                      {component.name.replace("\\n", " ")}
+                                    </div>
+                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                      {component.description}
+                                    </p>
+                                  </Link>
+                                </SheetClose>
+                              )
+                            )}
                         </>
                       )}
                     </ul>

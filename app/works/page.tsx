@@ -8,6 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import * as Works from "@/features/works/components/index";
+import { sortedWorksData } from "@/features/works/types/demoWorksData";
+
 const page = () => {
   return (
     <main className="h-screen">
@@ -26,8 +29,7 @@ const page = () => {
                 </div>
               </CardHeader>
               <Separator />
-              {/* <FAQ.FAQList FAQData={sortedData} /> */}
-              <p>hello</p>
+              <Works.WorkList worksData={sortedWorksData} />
             </CardContent>
           </Card>
         </div>

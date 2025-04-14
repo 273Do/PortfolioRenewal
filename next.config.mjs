@@ -10,6 +10,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "bwydpccvhcjsycrnaxjq.supabase.co",
       },
+
+      // MEMO: テスト用の画像
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
     ],
   },
   async headers() {
