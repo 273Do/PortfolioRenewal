@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useReducer, useMemo } from "react";
 
-import { useSpring, animated } from "@react-spring/three";
+import { useSpring, animated, easings } from "@react-spring/three";
 import {
   useGLTF,
   MeshTransmissionMaterial,
@@ -72,8 +72,8 @@ function Scene() {
     from: { bokehScale: 80 },
     to: { bokehScale: 1 },
     config: {
-      duration: 600,
-      easing: easing.easeInOutExpo,
+      duration: 750,
+      easing: easings.easeInExpo,
     },
   });
 
