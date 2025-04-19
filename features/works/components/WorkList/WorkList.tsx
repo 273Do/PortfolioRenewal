@@ -1,6 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -17,9 +18,10 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
 
           const imageUrl = `https://picsum.photos/seed/${randomNumber}/${width}/${height}`;
           return (
-            <div
+            <Link
               key={work.id}
-              className="mb-4 flex w-1/2 cursor-pointer flex-col gap-2 p-2 grayscale duration-200 hover:grayscale-0"
+              href={`/works/${work.id}`}
+              className="mb-6 flex w-full cursor-pointer flex-col gap-3 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
             >
               <div>
                 <p className="text-xl font-bold">{work.title}</p>
@@ -39,7 +41,7 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
                   </Badge>
                 ))}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -28,7 +28,7 @@ export default async function page() {
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
         <div className="flex h-full items-center justify-center">
-          <Card className="flex size-full flex-col">
+          <Card className="flex size-full flex-col overflow-y-scroll">
             <CardHeader className="p-3 sm:p-6">
               <CardTitle>Gallery</CardTitle>
               <CardDescription>
@@ -36,7 +36,7 @@ export default async function page() {
               </CardDescription>
             </CardHeader>
             <Separator />
-            <CardContent className="size-full overflow-y-scroll p-0">
+            <CardContent className="size-full p-0 sm:overflow-y-scroll">
               <div className="m-3 columns-1 sm:m-4 sm:columns-2 lg:columns-3 xl:columns-4">
                 <Gallery.ImageList galleryData={shuffleGalleryData} />
               </div>
