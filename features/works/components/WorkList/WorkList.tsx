@@ -21,11 +21,13 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
             <Link
               key={work.id}
               href={`/works/${work.id}`}
-              className="mb-6 flex w-full cursor-pointer flex-col gap-3 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
+              className="mb-4 flex w-full cursor-pointer flex-col gap-3 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
             >
               <div>
                 <p className="text-xl font-bold">{work.title}</p>
-                <p className="text-muted-foreground">{work.description}</p>
+                <p className="truncate text-muted-foreground">
+                  {work.description}
+                </p>
               </div>
               <Image
                 src={imageUrl}

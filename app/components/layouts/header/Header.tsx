@@ -70,7 +70,7 @@ const Header = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent">
-                  My activities
+                  Activities
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[480px] lg:grid-cols-[.75fr_1fr]">
@@ -241,7 +241,7 @@ const Header = () => {
               </SheetHeader>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
-                  <AccordionTrigger>My activities</AccordionTrigger>
+                  <AccordionTrigger>Activities</AccordionTrigger>
                   <AccordionContent>
                     <SheetClose asChild>
                       <a
