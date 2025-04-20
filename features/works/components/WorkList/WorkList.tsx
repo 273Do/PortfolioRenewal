@@ -21,7 +21,7 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
             <Link
               key={work.id}
               href={`/works/${work.id}`}
-              className="mb-4 flex w-full cursor-pointer flex-col gap-3 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
+              className="mb-4 flex w-full cursor-pointer flex-col gap-2 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
             >
               <div>
                 <p className="text-xl font-bold">{work.title}</p>
@@ -38,7 +38,7 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
               />
               <div>
                 {work.tags.map((tag: string) => (
-                  <Badge key={tag} className="mr-2">
+                  <Badge variant="secondary" key={tag} className="mr-2">
                     {tag}
                   </Badge>
                 ))}

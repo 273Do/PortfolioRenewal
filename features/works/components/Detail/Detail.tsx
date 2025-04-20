@@ -1,23 +1,38 @@
 import React from "react";
 
-import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import MarqueeWidget from "@/features/Marquee/components/Marquee";
+
+const demoData = [
+  {
+    id: 1,
+    name: "React",
+    description: "JavaScript library for building user interfaces",
+  },
+  {
+    id: 2,
+    name: "Next.js",
+    description: "React framework for server-rendered applications",
+  },
+  {
+    id: 3,
+    name: "Tailwind CSS",
+    description: "Utility-first CSS framework for rapid UI development",
+  },
+];
 
 const Detail = () => {
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className="m-3 flex w-full max-w-[700px] flex-wrap sm:m-4">
         {/* MEMO: 本文 */}
-        <div className="flex size-full flex-col gap-10">
-          <div className="mt-4 flex items-center justify-between">
-            <p className="text-muted-foreground">2024/04/01</p>
-            <div className="flex items-center gap-2">
-              <Badge>test</Badge>
-              <Badge>test</Badge>
-              <Badge>test</Badge>
-            </div>
-          </div>
+        <div className="flex size-full flex-col gap-5">
           <div>
-            <p className="mb-4">
+            <div className="flex items-center justify-between text-muted-foreground">
+              <p>2024/04/01</p>
+              <p>期間：3ヶ月</p>
+            </div>
+            <p className="mt-4">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Consequatur repellat tempore nesciunt voluptatum magni nemo animi
               odio accusamus dolor, perspiciatis ullam iste reprehenderit
@@ -138,6 +153,13 @@ const Detail = () => {
               consequatur eos aspernatur, optio eius beatae nihil? Error
               delectus harum ab dolore natus, facere aliquam minus.
             </p>
+          </div>
+          <Separator />
+          <div>
+            <div className="flex items-center justify-between"></div>
+            <div className="mb-6">
+              <MarqueeWidget technologyData={demoData} />
+            </div>
           </div>
         </div>
       </div>
