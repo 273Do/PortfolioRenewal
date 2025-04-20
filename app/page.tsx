@@ -87,7 +87,9 @@ async function HomeComponentWrapper({
         </main>
 
         <main className="block h-screen sm:hidden">
-          <Main.LogoThree />
+          <Suspense>
+            <Main.LogoThree />
+          </Suspense>
 
           <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px]">
             <div className="flex h-full items-center justify-center">

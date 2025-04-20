@@ -1,5 +1,6 @@
 <p align="center">
-<img width="1506" alt="スクリーンショット 2024-08-25 11 16 52" src="https://github.com/user-attachments/assets/9b55b543-c158-45a1-b7be-25edfd95e12f">
+<!-- <img width="1506" alt="スクリーンショット 2024-08-25 11 16 52" src="https://github.com/user-attachments/assets/9b55b543-c158-45a1-b7be-25edfd95e12f"> -->
+<img width="1506" src="https://github.com/user-attachments/assets/8fac123b-598b-460b-82ff-d9a452b968b8">
 </p>
 
 # Portfolio
