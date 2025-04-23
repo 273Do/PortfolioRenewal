@@ -16,10 +16,7 @@ export const metadata: Metadata = {
   title: "273* Portfolio | FAQ",
 };
 
-const page = async () => {
-  // const faqAllData = await getFAQData();
-  // const sortedData: FAQObj[] = sortedDataArray(faqAllData) as FAQObj[];
-
+export default async function page() {
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
@@ -44,6 +41,4 @@ const page = async () => {
       </div>
     </main>
   );
-};
-
-export default page;
+}

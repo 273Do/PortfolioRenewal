@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 import {
@@ -8,6 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import type { FAQObj } from "@/features/faq/types";
+import { fetchFAQ } from "@/lib/contentful";
 
 // const chat_tool_icon = [
 //   {
@@ -94,21 +94,25 @@ import {
 //   { title: "デザイン", icons: design_tool_icon },
 //   { title: "ナレッジ", icons: knowledge_tool_icon },
 // ];
-const FAQList = () => {
+
+const FAQList = async () => {
+  const faq = await fetchFAQ();
+  console.log(faq.items);
+
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className="m-3 w-full max-w-[700px] sm:m-4">
         <Accordion type="single" collapsible className="w-full">
-          {/* {FAQData.map((data: FAQObj) => (
-            <AccordionItem value={`item-${data.id}`} key={data.id}>
+          {faq.items.map((data: FAQObj) => (
+            <AccordionItem value={`item-${data.sys.id}`} key={data.sys.id}>
               <AccordionTrigger className="text-start text-lg">
-                {data.question}
+                {data.title}
               </AccordionTrigger>
               <AccordionContent className="whitespace-pre-wrap">
-                {data.answer}
+                {data.description}
               </AccordionContent>
             </AccordionItem>
-          ))} */}
+          ))}
           <AccordionItem value="test">
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>

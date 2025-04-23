@@ -38,6 +38,7 @@
     "date-fns": "^3.6.0",
     "eslint-plugin-unused-imports": "^4.0.0",
     "geist": "^1.2.2",
+    "graphql-request": "^7.1.2",
     "lenis": "^1.2.3",
     "leva": "^0.9.35",
     "lucide-react": "^0.353.0",

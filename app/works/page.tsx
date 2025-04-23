@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "273* Portfolio | Works",
 };
 
-const page = () => {
+export default async function page() {
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
@@ -38,6 +38,4 @@ const page = () => {
       </div>
     </main>
   );
-};
-
-export default page;
+}
