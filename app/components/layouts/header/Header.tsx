@@ -174,7 +174,7 @@ const Header = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <nav className="flex hidden items-center justify-end sm:block">
+          <nav className="hidden items-center justify-end sm:flex">
             <Button variant="ghost" size="icon">
               <Link
                 href="https://github.com/273Do"
@@ -227,11 +227,7 @@ const Header = () => {
           </nav>
           <Sheet>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="block pl-2 sm:hidden"
-              >
+              <Button variant="ghost" size="icon" className="pl-2 sm:hidden">
                 <Menu />
               </Button>
             </SheetTrigger>

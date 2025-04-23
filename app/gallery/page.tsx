@@ -36,8 +36,8 @@ export default async function page() {
               </CardDescription>
             </CardHeader>
             <Separator />
-            <CardContent className="size-full p-0 sm:overflow-y-scroll">
-              <div className="m-3 columns-1 sm:m-4 sm:columns-2 lg:columns-3 xl:columns-4">
+            <CardContent className="size-full p-3 sm:overflow-y-scroll sm:p-6">
+              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4">
                 <Gallery.ImageList galleryData={shuffleGalleryData} />
               </div>
             </CardContent>

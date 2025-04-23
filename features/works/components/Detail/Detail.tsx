@@ -23,8 +23,8 @@ const demoData = [
 
 const Detail = () => {
   return (
-    <div className="flex size-full flex-row items-start justify-center">
-      <div className="m-3 flex w-full max-w-[700px] flex-wrap sm:m-4">
+    <div className="flex size-full flex-row items-start justify-center p-3 sm:p-0">
+      <div className="m-0 flex w-full max-w-[700px] flex-wrap sm:m-6">
         {/* MEMO: 本文 */}
         <div className="flex size-full flex-col gap-5">
           <div>

@@ -40,7 +40,7 @@
 
 /* 垂直スクロールバーのスクロール部分 */
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--card-foreground));
+  background: hsl(var(--muted-foreground));
   border-radius: 20px;
 }
 
@@ -57,7 +57,7 @@
 
 /* 横スクロールバーのスクロール部分 */
 ::-webkit-scrollbar-x-thumb {
-  background: hsl(var(--card-foreground));
+  background: hsl(var(--muted-foreground));
   border-radius: 20px;
 }
 

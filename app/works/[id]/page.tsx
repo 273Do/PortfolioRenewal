@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { BookText, Ellipsis, SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +13,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import * as Works from "@/features/works/components/index";
 
@@ -37,9 +44,84 @@ const page = ({ params }: { params: { id: string } }) => {
                   </div>
                 </CardDescription>
               </CardHeader>
-              <Button className="mr-3 sm:mr-6" variant="secondary">
-                <Link href="/works">Close</Link>
-              </Button>
+              <nav className="flex items-center justify-center gap-2">
+                <div className="sm:hidden">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Button variant="outline" size="icon">
+                        <Ellipsis className="size-[1.0rem]" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="flex flex-row gap-2 p-2">
+                      <Button variant="outline" size="icon">
+                        <Link
+                          href="https://github.com/273Do"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <SiGithub className="size-[1.0rem]" />
+                        </Link>
+                      </Button>
+                      <Button variant="outline" size="icon">
+                        <Link
+                          href="https://github.com/273Do"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <BookText className="size-[1.0rem]" />
+                        </Link>
+                      </Button>
+                      <Button variant="default" size="icon">
+                        <Link
+                          href="https://github.com/273Do"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <SquareArrowOutUpRight className="size-[1.0rem]" />
+                        </Link>
+                      </Button>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+                <div className="hidden items-center justify-center gap-2 sm:flex">
+                  <Button variant="outline" size="icon">
+                    <Link
+                      href="https://github.com/273Do"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <SiGithub className="size-[1.0rem]" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="icon">
+                    <Link
+                      href="https://github.com/273Do"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <BookText className="size-[1.0rem]" />
+                    </Link>
+                  </Button>
+                  <Button variant="default" size="icon">
+                    <Link
+                      href="https://github.com/273Do"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <SquareArrowOutUpRight className="size-[1.0rem]" />
+                    </Link>
+                  </Button>
+                </div>
+                <Button className="mr-3 sm:mr-6" variant="secondary">
+                  <Link href="/works">Close</Link>
+                </Button>
+              </nav>
             </div>
             <Separator />
             <CardContent className="size-full p-0">
