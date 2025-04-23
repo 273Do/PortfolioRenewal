@@ -3,124 +3,103 @@
 import React from "react";
 
 import {
-  SiAdobexd,
-  SiArc,
-  SiDiscord,
-  SiFigma,
-  SiGithub,
-  SiGithubcopilot,
-  SiGooglechrome,
-  SiLine,
-  SiNotion,
-  SiObsidian,
-  SiQiita,
-  SiSlack,
-  SiTodoist,
-  SiVisualstudiocode,
-  SiZenn,
-} from "@icons-pack/react-simple-icons";
-
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
 
-import type { FAQObj } from "../../types";
+// const chat_tool_icon = [
+//   {
+//     icon: <SiDiscord className="size-8" />,
+//     label: "discord",
+//   },
+//   {
+//     icon: <SiLine className="size-8" />,
+//     label: "line",
+//   },
+//   {
+//     icon: <SiSlack className="size-8" />,
+//     label: "slack",
+//   },
+// ];
 
-const chat_tool_icon = [
-  {
-    icon: <SiDiscord className="size-8" />,
-    label: "discord",
-  },
-  {
-    icon: <SiLine className="size-8" />,
-    label: "line",
-  },
-  {
-    icon: <SiSlack className="size-8" />,
-    label: "slack",
-  },
-];
+// const browser_tool_icon = [
+//   {
+//     icon: <SiArc className="size-8" />,
+//     label: "arc",
+//   },
+//   {
+//     icon: <SiGooglechrome className="size-8" />,
+//     label: "googlechrome",
+//   },
+// ];
 
-const browser_tool_icon = [
-  {
-    icon: <SiArc className="size-8" />,
-    label: "arc",
-  },
-  {
-    icon: <SiGooglechrome className="size-8" />,
-    label: "googlechrome",
-  },
-];
+// const task_tool_icon = [
+//   {
+//     icon: <SiObsidian className="size-8" />,
+//     label: "obsidian",
+//   },
+//   {
+//     icon: <SiNotion className="size-8" />,
+//     label: "notion",
+//   },
+//   {
+//     icon: <SiTodoist className="size-8" />,
+//     label: "todoist",
+//   },
+// ];
 
-const task_tool_icon = [
-  {
-    icon: <SiObsidian className="size-8" />,
-    label: "obsidian",
-  },
-  {
-    icon: <SiNotion className="size-8" />,
-    label: "notion",
-  },
-  {
-    icon: <SiTodoist className="size-8" />,
-    label: "todoist",
-  },
-];
+// const editor_tool_icon = [
+//   {
+//     icon: <SiVisualstudiocode className="size-8" />,
+//     label: "visualstudiocode",
+//   },
+//   {
+//     icon: <SiGithub className="size-8" />,
+//     label: "github",
+//   },
+//   {
+//     icon: <SiGithubcopilot className="size-8" />,
+//     label: "githubcopilot",
+//   },
+// ];
 
-const editor_tool_icon = [
-  {
-    icon: <SiVisualstudiocode className="size-8" />,
-    label: "visualstudiocode",
-  },
-  {
-    icon: <SiGithub className="size-8" />,
-    label: "github",
-  },
-  {
-    icon: <SiGithubcopilot className="size-8" />,
-    label: "githubcopilot",
-  },
-];
+// const design_tool_icon = [
+//   {
+//     icon: <SiFigma className="size-8" />,
+//     label: "figma",
+//   },
+//   {
+//     icon: <SiAdobexd className="size-8" />,
+//     label: "adobexd",
+//   },
+// ];
 
-const design_tool_icon = [
-  {
-    icon: <SiFigma className="size-8" />,
-    label: "figma",
-  },
-  {
-    icon: <SiAdobexd className="size-8" />,
-    label: "adobexd",
-  },
-];
-
-const knowledge_tool_icon = [
-  {
-    icon: <SiQiita className="size-8" />,
-    label: "qiita",
-  },
-  {
-    icon: <SiZenn className="size-8" />,
-    label: "zenn",
-  },
-];
-const toolCategories = [
-  { title: "チャットツール", icons: chat_tool_icon },
-  { title: "ブラウザ", icons: browser_tool_icon },
-  { title: "タスク管理", icons: task_tool_icon },
-  { title: "開発", icons: editor_tool_icon },
-  { title: "デザイン", icons: design_tool_icon },
-  { title: "ナレッジ", icons: knowledge_tool_icon },
-];
-const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
+// const knowledge_tool_icon = [
+//   {
+//     icon: <SiQiita className="size-8" />,
+//     label: "qiita",
+//   },
+//   {
+//     icon: <SiZenn className="size-8" />,
+//     label: "zenn",
+//   },
+// ];
+// const toolCategories = [
+//   { title: "チャットツール", icons: chat_tool_icon },
+//   { title: "ブラウザ", icons: browser_tool_icon },
+//   { title: "タスク管理", icons: task_tool_icon },
+//   { title: "開発", icons: editor_tool_icon },
+//   { title: "デザイン", icons: design_tool_icon },
+//   { title: "ナレッジ", icons: knowledge_tool_icon },
+// ];
+const FAQList = () => {
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className="m-3 w-full max-w-[700px] sm:m-4">
         <Accordion type="single" collapsible className="w-full">
-          {FAQData.map((data: FAQObj) => (
+          {/* {FAQData.map((data: FAQObj) => (
             <AccordionItem value={`item-${data.id}`} key={data.id}>
               <AccordionTrigger className="text-start text-lg">
                 {data.question}
@@ -129,12 +108,12 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                 {data.answer}
               </AccordionContent>
             </AccordionItem>
-          ))}
+          ))} */}
           <AccordionItem value="test">
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>
               <div className="mb-2 flex w-full flex-wrap justify-center">
-                {toolCategories.map((category, index) => (
+                {/* {toolCategories.map((category, index) => (
                   <div key={category.title} className="mb-2 flex">
                     <div>
                       <p className="text-center text-muted-foreground">
@@ -150,7 +129,7 @@ const FAQList = ({ FAQData }: { FAQData: FAQObj[] }) => {
                       <Separator orientation="vertical" className="m-3" />
                     )}
                   </div>
-                ))}
+                ))} */}
               </div>
             </AccordionContent>
           </AccordionItem>
