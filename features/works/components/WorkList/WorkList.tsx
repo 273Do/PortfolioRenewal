@@ -11,7 +11,7 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className="flex w-full max-w-[700px] flex-wrap">
-        {worksData.map((work: WorkObj) => {
+        {worksData.map((work: WorkObj, i: number) => {
           const randomNumber = Math.floor(Math.random() * 1000);
           const width = 1920;
           const height = 1080;
@@ -21,7 +21,9 @@ const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
             <Link
               key={work.id}
               href={`/works/${work.id}`}
-              className="mb-4 flex w-full cursor-pointer flex-col gap-2 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 sm:p-2"
+              className={`mb-4 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
+                i % 2 === 0 ? "sm:pr-1" : "sm:pl-1"
+              }`}
             >
               <div>
                 <p className="text-xl font-bold">{work.title}</p>
