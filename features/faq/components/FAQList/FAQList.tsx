@@ -1,4 +1,5 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import {
   Accordion,
@@ -100,7 +101,7 @@ const FAQList = async () => {
   console.log(faq.items);
 
   return (
-    <div className="flex size-full flex-row items-start justify-center">
+    <div className="flex w-full flex-row items-start justify-center">
       <div className="m-3 w-full max-w-[700px] sm:m-6">
         <Accordion type="single" collapsible className="w-full">
           {faq.items.map((data: FAQObj) => (
@@ -109,7 +110,9 @@ const FAQList = async () => {
                 {data.title}
               </AccordionTrigger>
               <AccordionContent className="whitespace-pre-wrap">
-                {data.description}
+                <div className="md">
+                  <ReactMarkdown>{data.description}</ReactMarkdown>
+                </div>
               </AccordionContent>
             </AccordionItem>
           ))}
