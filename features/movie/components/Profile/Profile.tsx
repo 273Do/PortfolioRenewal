@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 
 import { Separator } from "@/components/ui/separator";
-import iRwImg from "@/public/iRwLogo.png";
+import iRwImg from "@/public/imgs/iRwLogo.png";
 
 const Profile = () => {
   const { theme } = useTheme();

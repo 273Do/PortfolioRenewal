@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import YTIcon from "@/public/YTIcon.png";
+import YTIcon from "@/public/imgs/YTIcon.png";
 
 import type { YTProfileObj } from "../../types";
 

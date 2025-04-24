@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { Separator } from "@/components/ui/separator";
-import myImg from "@/public/myImg.jpg";
+import myImg from "@/public/imgs/myImg.jpg";
 
 const Profile = () => {
   return (

@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 
 import Error from "@/features/error/components/Error";
-import NFImg from "@/public/imgs/404_NotFound.png";
+import ErrImg from "@/public/imgs/500_InternalServerError.png";
 
 const notFound = () => {
-  return <Error img={NFImg} />;
+  return <Error img={ErrImg} />;
 };
 
 export default notFound;

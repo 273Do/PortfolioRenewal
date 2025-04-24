@@ -7,8 +7,8 @@ import { Link } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
-import siteLogo from "@/public/273*Logo.png";
-import myImg from "@/public/myImg.jpg";
+import siteLogo from "@/public/imgs/273*Logo.png";
+import myImg from "@/public/imgs/myImg.jpg";
 
 const MyCard = () => {
   const { theme } = useTheme();
