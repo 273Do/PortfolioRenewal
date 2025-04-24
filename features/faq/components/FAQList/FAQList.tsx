@@ -101,7 +101,7 @@ const FAQList = async () => {
 
   return (
     <div className="flex size-full flex-row items-start justify-center">
-      <div className="m-3 w-full max-w-[700px] sm:m-4">
+      <div className="m-3 w-full max-w-[700px] sm:m-6">
         <Accordion type="single" collapsible className="w-full">
           {faq.items.map((data: FAQObj) => (
             <AccordionItem value={`item-${data.sys.id}`} key={data.sys.id}>
