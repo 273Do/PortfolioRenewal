@@ -49,7 +49,7 @@ import myImg from "@/public/imgs/myImg.jpg";
 const Header = () => {
   const { theme } = useTheme();
 
-  const { tools, isError, isLoading } = useAllTool();
+  // const { tools, isError, isLoading } = useAllTool();
 
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -117,11 +117,11 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent">
                   Works
-                  {tools && (
+                  {/* {tools && (
                     <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
                       ({tools.length})
                     </p>
-                  )}
+                  )} */}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
@@ -139,7 +139,7 @@ const Header = () => {
                   </div>
 
                   <ul className="grid h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div>Loading...</div>
                     ) : (
                       <>
@@ -161,7 +161,7 @@ const Header = () => {
                             )
                           )}
                       </>
-                    )}
+                    )} */}
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -310,11 +310,11 @@ const Header = () => {
                   <AccordionTrigger className="">
                     <div className="flex">
                       <p>Works</p>
-                      {tools && (
+                      {/* {tools && (
                         <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
                           ({tools.length})
                         </p>
-                      )}
+                      )} */}
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -328,7 +328,7 @@ const Header = () => {
                       <hr className="m-4 h-1 w-[calc(100%-2rem)]" />
                     </div>
                     <ul className="h-80 overflow-scroll">
-                      {isLoading ? (
+                      {/* {isLoading ? (
                         <div>Loading...</div>
                       ) : (
                         <>
@@ -356,7 +356,7 @@ const Header = () => {
                               )
                             )}
                         </>
-                      )}
+                      )} */}
                     </ul>
                   </AccordionContent>
                 </AccordionItem>

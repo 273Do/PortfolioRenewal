@@ -8,8 +8,10 @@ import * as Main from "@/features/main/components/index";
 import type { NoticeObj, TechnologyObj } from "@/features/main/types";
 
 import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
-import { getAvailableTechnologyData } from "./utils/api/Technology/TechnologyApi";
+
 import { sortedDataArray } from "./utils/function";
+import { fetchTechnology } from "@/lib/contentful";
+import { ToolsResponse } from "@/features/faq/types";
 
 export const dynamic = "force-dynamic";
 
@@ -19,17 +21,14 @@ export const metadata: Metadata = {
 
 interface HomeProps {
   sortedData: NoticeObj[];
-  availableTechnologyData: TechnologyObj[];
+  technologyData: ToolsResponse;
 }
 
 export default async function Home() {
   return <HomeComponent />;
 }
 
-async function HomeComponentWrapper({
-  sortedData,
-  availableTechnologyData,
-}: HomeProps) {
+async function HomeComponentWrapper({ sortedData, technologyData }: HomeProps) {
   return (
     <Suspense>
       <>
@@ -78,7 +77,7 @@ async function HomeComponentWrapper({
 
               <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                 <CardContent className="p-0">
-                  <MarqueeWidget technologyData={availableTechnologyData} />
+                  <MarqueeWidget technologyData={technologyData} />
                 </CardContent>
               </Card>
             </CardContent>
@@ -134,9 +133,7 @@ async function HomeComponentWrapper({
 
                         <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                           <CardContent className="p-0">
-                            <MarqueeWidget
-                              technologyData={availableTechnologyData}
-                            />
+                            <MarqueeWidget technologyData={technologyData} />
                           </CardContent>
                         </Card>
                       </CardContent>
@@ -154,13 +151,14 @@ async function HomeComponentWrapper({
 
 async function HomeComponent() {
   const noticeAllData = await getNoticeAllData();
-  const availableTechnologyData = await getAvailableTechnologyData();
   const sortedData = sortedDataArray(noticeAllData);
+
+  const technologyData = await fetchTechnology();
 
   return (
     <HomeComponentWrapper
       sortedData={sortedData as NoticeObj[]}
-      availableTechnologyData={availableTechnologyData}
+      technologyData={technologyData.items[0].technologyObj}
     />
   );
 }
