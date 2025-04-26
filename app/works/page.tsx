@@ -31,7 +31,7 @@ export default async function page() {
             </CardHeader>
             <Separator />
             <CardContent className="size-full p-3 sm:overflow-y-scroll sm:p-6">
-              <Works.WorkList worksData={sortedWorksData} />
+              <Works.WorkList />
             </CardContent>
           </Card>
         </div>

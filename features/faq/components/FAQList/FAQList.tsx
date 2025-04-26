@@ -12,14 +12,14 @@ import { fetchFAQ, fetchTools } from "@/lib/contentful";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
 const FAQList = async () => {
-  const faq = await fetchFAQ();
+  const { items: faqs } = await fetchFAQ();
   const tools = await fetchTools();
 
   return (
     <div className="flex w-full flex-row items-start justify-center">
       <div className="m-3 w-full max-w-[700px] sm:m-6">
         <Accordion type="single" collapsible className="w-full">
-          {faq.items.map((data: FAQObj) => (
+          {faqs.map((data: FAQObj) => (
             <AccordionItem value={`item-${data.sys.id}`} key={data.sys.id}>
               <AccordionTrigger className="text-start text-lg">
                 {data.title}

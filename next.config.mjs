@@ -11,10 +11,9 @@ const nextConfig = {
         hostname: "bwydpccvhcjsycrnaxjq.supabase.co",
       },
 
-      // MEMO: テスト用の画像
       {
         protocol: "https",
-        hostname: "picsum.photos",
+        hostname: "images.ctfassets.net",
       },
     ],
   },

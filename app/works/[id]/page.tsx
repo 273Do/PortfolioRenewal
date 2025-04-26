@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import * as Works from "@/features/works/components/index";
+import { fetchWorksDetail } from "@/lib/contentful";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
@@ -27,7 +28,12 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-const page = ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+
+  const workDetailResponse = await fetchWorksDetail(id);
+  const work_detail = workDetailResponse.items[0];
+
   return (
     <main className="h-screen">
       <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
@@ -35,12 +41,14 @@ const page = ({ params }: { params: { id: string } }) => {
           <Card className="flex size-full flex-col overflow-y-scroll">
             <div className="flex w-full items-center justify-between gap-2 lg:gap-10">
               <CardHeader className="w-full p-3 sm:p-6">
-                <CardTitle>タイトル</CardTitle>
+                <CardTitle>{work_detail.name}</CardTitle>
                 <CardDescription className="mt-[6px] ">
                   <div className="flex items-center gap-2">
-                    <Badge variant="secondary">test</Badge>
-                    <Badge variant="secondary">test</Badge>
-                    <Badge variant="secondary">test</Badge>
+                    {work_detail.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 </CardDescription>
               </CardHeader>
@@ -55,7 +63,7 @@ const page = ({ params }: { params: { id: string } }) => {
                     <DropdownMenuContent className="flex flex-row gap-2 p-2">
                       <Button variant="outline" size="icon">
                         <Link
-                          href="https://github.com/273Do"
+                          href={work_detail.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -63,33 +71,37 @@ const page = ({ params }: { params: { id: string } }) => {
                           <SiGithub className="size-[1.0rem]" />
                         </Link>
                       </Button>
-                      <Button variant="outline" size="icon">
-                        <Link
-                          href="https://github.com/273Do"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <BookText className="size-[1.0rem]" />
-                        </Link>
-                      </Button>
-                      <Button variant="default" size="icon">
-                        <Link
-                          href="https://github.com/273Do"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <SquareArrowOutUpRight className="size-[1.0rem]" />
-                        </Link>
-                      </Button>
+                      {work_detail.otherUrl && (
+                        <Button variant="outline" size="icon">
+                          <Link
+                            href={work_detail.otherUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <BookText className="size-[1.0rem]" />
+                          </Link>
+                        </Button>
+                      )}
+                      {work_detail.appUrl && (
+                        <Button variant="default" size="icon">
+                          <Link
+                            href={work_detail.appUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <SquareArrowOutUpRight className="size-[1.0rem]" />
+                          </Link>
+                        </Button>
+                      )}
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
                 <div className="hidden items-center justify-center gap-2 sm:flex">
                   <Button variant="outline" size="icon">
                     <Link
-                      href="https://github.com/273Do"
+                      href={work_detail.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -97,35 +109,41 @@ const page = ({ params }: { params: { id: string } }) => {
                       <SiGithub className="size-[1.0rem]" />
                     </Link>
                   </Button>
-                  <Button variant="outline" size="icon">
-                    <Link
-                      href="https://github.com/273Do"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <BookText className="size-[1.0rem]" />
-                    </Link>
-                  </Button>
-                  <Button variant="default" size="icon">
-                    <Link
-                      href="https://github.com/273Do"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <SquareArrowOutUpRight className="size-[1.0rem]" />
-                    </Link>
-                  </Button>
+                  {work_detail.otherUrl && (
+                    <Button variant="outline" size="icon">
+                      <Link
+                        href={work_detail.otherUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <BookText className="size-[1.0rem]" />
+                      </Link>
+                    </Button>
+                  )}
+                  {work_detail.appUrl && (
+                    <Button variant="default" size="icon">
+                      <Link
+                        href={work_detail.appUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                      >
+                        <SquareArrowOutUpRight className="size-[1.0rem]" />
+                      </Link>
+                    </Button>
+                  )}
                 </div>
-                <Button className="mr-3 sm:mr-6" variant="secondary">
-                  <Link href="/works">Close</Link>
-                </Button>
+                <Link href="/works">
+                  <Button className="mr-3 sm:mr-6" variant="secondary">
+                    Close
+                  </Button>
+                </Link>
               </nav>
             </div>
             <Separator />
             <CardContent className="size-full p-0">
-              <Works.Detail />
+              <Works.Detail detail={work_detail} />
             </CardContent>
           </Card>
         </div>

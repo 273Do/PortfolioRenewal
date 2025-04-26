@@ -6,36 +6,34 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
 import type { WorkObj } from "../../types";
+import { fetchWorks } from "@/lib/contentful";
 
-const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
+const WorkList = async () => {
+  const { items: works } = await fetchWorks();
+
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className="flex w-full max-w-[700px] flex-wrap">
-        {worksData.map((work: WorkObj, i: number) => {
-          const randomNumber = Math.floor(Math.random() * 1000);
-          const width = 1920;
-          const height = 1080;
-
-          const imageUrl = `https://picsum.photos/seed/${randomNumber}/${width}/${height}`;
+        {works.map((work: WorkObj, i: number) => {
           return (
             <Link
-              key={work.id}
-              href={`/works/${work.id}`}
+              key={work.sys.id}
+              href={`/works/${work.sys.id}`}
               className={`mb-4 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
                 i % 2 === 0 ? "sm:pr-1" : "sm:pl-1"
               }`}
             >
               <div>
-                <p className="text-xl font-bold">{work.title}</p>
+                <p className="text-xl font-bold">{work.name}</p>
                 <p className="truncate text-muted-foreground">
                   {work.description}
                 </p>
               </div>
               <Image
-                src={imageUrl}
-                alt={work.title}
-                width={300}
-                height={200}
+                src={work.thumbnail.url}
+                alt={work.name}
+                width={1920}
+                height={1080}
                 className="w-full rounded-lg"
               />
               <div>
