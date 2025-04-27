@@ -248,3 +248,11 @@
   border: 1px solid hsl(var(--primary));
   font-weight: bold;
 }
+
+.md img {
+  border-radius: var(--radius);
+}
+
+.md hr {
+  padding-top: 10px;
+}

@@ -3,7 +3,7 @@ import React from "react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { BookText, Ellipsis, SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
-
+import * as Works from "@/features/works/components/index";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +19,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
-import * as Works from "@/features/works/components/index";
 import { fetchWorksDetail } from "@/lib/contentful";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
@@ -42,7 +41,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <div className="flex w-full items-center justify-between gap-2 lg:gap-10">
               <CardHeader className="w-full p-3 sm:p-6">
                 <CardTitle>{work_detail.name}</CardTitle>
-                <CardDescription className="mt-[6px] ">
+                <CardDescription className="mt-[6px]">
                   <div className="flex items-center gap-2">
                     {work_detail.tags.map((tag, index) => (
                       <Badge key={index} variant="secondary">
