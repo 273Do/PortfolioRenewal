@@ -1,7 +1,9 @@
 import type { FAQResponse, ToolsResponse } from "@/features/faq/types";
+import { GalleriesResponse } from "@/features/gallery/types";
 import { WorksResponse } from "@/features/works/types";
 import client from "@/graphql/client";
 import { GET_FAQ } from "@/graphql/queries/FAQ/getFAQ";
+import { GET_Galleries } from "@/graphql/queries/Gallery/getGalleries";
 import { GET_Technologies } from "@/graphql/queries/Technology/getTechnology";
 import { GET_Tools } from "@/graphql/queries/Tool/getTools";
 import { GET_WorkDetail, GET_Works } from "@/graphql/queries/Work/getWorks";
@@ -38,4 +40,22 @@ async function fetchWorksDetail(id: string) {
   return data.worksCollection;
 }
 
-export { fetchFAQ, fetchTools, fetchTechnology, fetchWorks, fetchWorksDetail };
+// Galleryを取得する関数
+async function fetchGalleries() {
+  const data = await client.request<GalleriesResponse>(GET_Galleries);
+
+  // ランダムに順番を入れ替える
+  const shuffledData = data.galleriesCollection.items.sort(
+    () => Math.random() - 0.5
+  );
+  return shuffledData;
+}
+
+export {
+  fetchFAQ,
+  fetchTools,
+  fetchTechnology,
+  fetchWorks,
+  fetchWorksDetail,
+  fetchGalleries,
+};
