@@ -17,20 +17,12 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import * as Movie from "@/features/movie/components/index";
-import type { MovieObj } from "@/features/movie/types";
-
-import { getMovieData, getYTProfileData } from "../utils/api/Movie/MovieApi";
-import { shuffleArray } from "../utils/function";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | Movie",
 };
 
 export default async function page() {
-  const movieData: MovieObj[] = await getMovieData();
-  const YTProfileData = await getYTProfileData();
-  // console.log(YTProfileData);
-
   return (
     <>
       <main className="hidden h-screen sm:block">
@@ -69,9 +61,7 @@ export default async function page() {
                               <Card className="... col-span-3 col-start-1 row-span-2 row-start-4">
                                 <CardContent className="size-full p-0">
                                   <CardContent className="flex h-full items-center justify-center p-4">
-                                    <Movie.YTProfile
-                                      YTProfileData={YTProfileData.items[0]}
-                                    />
+                                    <Movie.YTProfile />
                                   </CardContent>
                                 </CardContent>
                               </Card>
@@ -102,7 +92,7 @@ export default async function page() {
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel>
-                    <Movie.MovieList movieData={shuffleArray(movieData)} />
+                    <Movie.MovieList />
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </CardContent>
@@ -146,9 +136,7 @@ export default async function page() {
                               <Card className="... col-span-3 col-start-1 row-span-2 row-start-4">
                                 <CardContent className="size-full p-0">
                                   <CardContent className="flex h-full items-center justify-center p-3 sm:p-4">
-                                    <Movie.YTProfile
-                                      YTProfileData={YTProfileData.items[0]}
-                                    />
+                                    <Movie.YTProfile />
                                   </CardContent>
                                 </CardContent>
                               </Card>
@@ -179,7 +167,7 @@ export default async function page() {
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel>
-                    <Movie.MovieList movieData={shuffleArray(movieData)} />
+                    <Movie.MovieList />
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </CardContent>

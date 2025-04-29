@@ -7,9 +7,9 @@ import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import * as Main from "@/features/main/components/index";
 import type { NoticeObj, TechnologyObj } from "@/features/main/types";
 
-import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
+// import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 
-import { sortedDataArray } from "./utils/function";
+// import { sortedDataArray } from "./utils/function";
 import { fetchTechnology } from "@/lib/contentful";
 import { ToolsResponse } from "@/features/faq/types";
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 interface HomeProps {
-  sortedData: NoticeObj[];
+  // sortedData: NoticeObj[];
   technologyData: ToolsResponse;
 }
 
@@ -28,7 +28,7 @@ export default async function Home() {
   return <HomeComponent />;
 }
 
-async function HomeComponentWrapper({ sortedData, technologyData }: HomeProps) {
+async function HomeComponentWrapper({  technologyData }: HomeProps) {
   return (
     <Suspense>
       <>
@@ -51,7 +51,7 @@ async function HomeComponentWrapper({ sortedData, technologyData }: HomeProps) {
               </Card>
 
               <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-                <Main.Notice noticeData={sortedData} />
+                {/* <Main.Notice noticeData={sortedData} /> */}
               </div>
 
               <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
@@ -107,7 +107,7 @@ async function HomeComponentWrapper({ sortedData, technologyData }: HomeProps) {
                         </Card>
 
                         <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-                          <Main.Notice noticeData={sortedData} />
+                          {/* <Main.Notice noticeData={sortedData} /> */}
                         </div>
 
                         <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
@@ -150,14 +150,14 @@ async function HomeComponentWrapper({ sortedData, technologyData }: HomeProps) {
 }
 
 async function HomeComponent() {
-  const noticeAllData = await getNoticeAllData();
-  const sortedData = sortedDataArray(noticeAllData);
+  // const noticeAllData = await getNoticeAllData();
+  // const sortedData = sortedDataArray(noticeAllData);
 
   const technologyData = await fetchTechnology();
 
   return (
     <HomeComponentWrapper
-      sortedData={sortedData as NoticeObj[]}
+      // sortedData={sortedData as NoticeObj[]}
       technologyData={technologyData.items[0].technologyObj}
     />
   );

@@ -1,9 +1,11 @@
 import type { FAQResponse, ToolsResponse } from "@/features/faq/types";
 import { GalleriesResponse } from "@/features/gallery/types";
+import { MoviesResponse } from "@/features/movie/types";
 import { WorksResponse } from "@/features/works/types";
 import client from "@/graphql/client";
 import { GET_FAQ } from "@/graphql/queries/FAQ/getFAQ";
 import { GET_Galleries } from "@/graphql/queries/Gallery/getGalleries";
+import { GET_Movies } from "@/graphql/queries/Movie/getMovies";
 import { GET_Technologies } from "@/graphql/queries/Technology/getTechnology";
 import { GET_Tools } from "@/graphql/queries/Tool/getTools";
 import { GET_WorkDetail, GET_Works } from "@/graphql/queries/Work/getWorks";
@@ -51,6 +53,17 @@ async function fetchGalleries() {
   return shuffledData;
 }
 
+// Movieを取得する関数
+async function fetchMovies() {
+  const data = await client.request<MoviesResponse>(GET_Movies);
+
+  // ランダムに順番を入れ替える
+  const shuffledData = data.moviesCollection.items.sort(
+    () => Math.random() - 0.5
+  );
+  return shuffledData;
+}
+
 export {
   fetchFAQ,
   fetchTools,
@@ -58,4 +71,5 @@ export {
   fetchWorks,
   fetchWorksDetail,
   fetchGalleries,
+  fetchMovies,
 };

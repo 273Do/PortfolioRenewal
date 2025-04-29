@@ -1,11 +1,19 @@
-export type MovieObj = {
-  id: number;
-  url: string;
+type MovieObj = {
+  sys: {
+    id: string;
+  };
   title: string;
-  description: string;
+  url: string;
+  tags: string[];
 };
 
-export type YTProfileObj = {
+type MoviesResponse = {
+  moviesCollection: {
+    items: MovieObj[];
+  };
+};
+
+type YTProfileObj = {
   kind: string;
   etag: string;
   id: string;
@@ -16,3 +24,5 @@ export type YTProfileObj = {
     videoCount: string;
   };
 };
+
+export type { MovieObj, MoviesResponse, YTProfileObj };

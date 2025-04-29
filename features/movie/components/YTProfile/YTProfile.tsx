@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import YTIcon from "@/public/imgs/YTIcon.png";
 
-import type { YTProfileObj } from "../../types";
+import { fetchYTProfileData } from "@/app/utils/api/Movie/fetchYTProfileData";
 
-const YTProfile = ({ YTProfileData }: { YTProfileData: YTProfileObj }) => {
-  // console.log(YTProfileData);
+const YTProfile = async() => {
+  const fetchYTProfile = await fetchYTProfileData();
+  const YTProfileData = fetchYTProfile.items[0];
+
   return (
     <div className="flex size-full items-center justify-center gap-16">
       <div className="flex flex-row">

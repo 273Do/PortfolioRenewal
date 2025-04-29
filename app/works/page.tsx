@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import * as Works from "@/features/works/components/index";
-import { sortedWorksData } from "@/features/works/types/demoWorksData";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | Works",
