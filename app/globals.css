@@ -27,38 +27,23 @@
 
 /* scroll */
 
-/* 垂直スクロールバー */
-::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
+.after::-webkit-scrollbar {
+  width: calc(0.6rem + 2px);
 }
 
-/* 垂直スクロールバーのトラック */
-::-webkit-scrollbar-track {
-  background: transparent;
+.after::-webkit-scrollbar-track {
+  margin: 1px;
+}
+.after::-webkit-scrollbar-corner {
+  display: none;
 }
 
-/* 垂直スクロールバーのスクロール部分 */
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
-  border-radius: 20px;
-}
-
-/* 横スクロールバー */
-::-webkit-scrollbar-x {
-  width: 1px;
-  height: 1px;
-}
-
-/* 横スクロールバーのトラック */
-::-webkit-scrollbar-x-track {
-  background: transparent;
-}
-
-/* 横スクロールバーのスクロール部分 */
-::-webkit-scrollbar-x-thumb {
-  background: hsl(var(--muted-foreground));
-  border-radius: 20px;
+.after::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 100px;
+  border: solid transparent;
+  background-clip: content-box;
+  border-width: 1px 1px;
 }
 
 @layer base {

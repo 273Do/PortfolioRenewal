@@ -3,19 +3,18 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { fetchYTProfileData } from "@/app/utils/api/Movie/fetchYTProfileData";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import YTIcon from "@/public/imgs/YTIcon.png";
 
-import { fetchYTProfileData } from "@/app/utils/api/Movie/fetchYTProfileData";
-
-const YTProfile = async() => {
+const YTProfile = async () => {
   const fetchYTProfile = await fetchYTProfileData();
   const YTProfileData = fetchYTProfile.items[0];
 
   return (
     <div className="flex size-full items-center justify-center gap-16">
-      <div className="flex flex-row">
+      <div className="flex flex-row grayscale duration-200 hover:grayscale-0">
         <Image
           src={YTIcon}
           width={90}
