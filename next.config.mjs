@@ -8,11 +8,6 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "bwydpccvhcjsycrnaxjq.supabase.co",
-      },
-
-      {
-        protocol: "https",
         hostname: "images.ctfassets.net",
       },
     ],

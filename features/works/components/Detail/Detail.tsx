@@ -1,10 +1,12 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
+
+import { format } from "date-fns";
 
 import { Separator } from "@/components/ui/separator";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
-import { WorkObj } from "../../types";
-import ReactMarkdown from "react-markdown";
-import { format } from "date-fns";
+
+import type { WorkObj } from "../../types";
 
 const Detail = ({ detail }: { detail: WorkObj }) => {
   return (
@@ -14,6 +16,7 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
           <div>
             <div className="flex items-center justify-between text-muted-foreground">
               <p>
+                リリース ：{" "}
                 {format(
                   new Date(detail.createdAt).toLocaleDateString(),
                   "yyyy-MM-dd"
@@ -25,7 +28,7 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
               <MarqueeWidget technologyData={detail.technologiesObj} />
             </div>
             <Separator />
-            <div className="mt-4 mb-3 sm:mb-6 md">
+            <div className="md mb-3 mt-4 sm:mb-6">
               <ReactMarkdown>{detail.body}</ReactMarkdown>
             </div>
           </div>

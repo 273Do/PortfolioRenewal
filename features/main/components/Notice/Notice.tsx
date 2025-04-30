@@ -1,32 +1,21 @@
 "use client";
-import React, { useDeferredValue, useEffect, useState } from "react";
+import React, { useDeferredValue, useState } from "react";
 
+import { useFetchSWR } from "@/app/hooks/useFetchSWR";
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchNotices } from "@/lib/contentful";
-
-import type { NoticeObj } from "../../types";
 
 import NoticeArea from "./NoticeArea";
 import Welcome from "./Welcome";
 
 const Notice = () => {
-  const [notices, setNotices] = useState<{
-    items: NoticeObj[];
-  } | null>(null);
+  const { data: notices } = useFetchSWR("notices", fetchNotices);
 
   const [selectedNoticeDesc, setSelectedNoticeDesc] = useState<string | null>(
     null
   );
 
   const notice_description = useDeferredValue(selectedNoticeDesc);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchNotices();
-      setNotices(data);
-    };
-    fetchData();
-  }, []);
 
   return (
     <>

@@ -6,13 +6,7 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,20 +35,18 @@ const page = async ({ params }: { params: { id: string } }) => {
               <div className="flex w-full items-center justify-between gap-2 lg:gap-10">
                 <CardHeader className="w-full p-3 sm:p-6">
                   <CardTitle>{work_detail.name}</CardTitle>
-                  <CardDescription className="mt-[6px]">
-                    <div className="flex items-center gap-2">
-                      {work_detail.tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardDescription>
+                  <div className="flex items-center gap-2">
+                    {work_detail.tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
                 </CardHeader>
                 <nav className="flex items-center justify-center gap-2">
                   <div className="sm:hidden">
                     <DropdownMenu>
-                      <DropdownMenuTrigger>
+                      <DropdownMenuTrigger asChild>
                         <Button variant="outline" size="icon">
                           <Ellipsis className="size-[1.0rem]" />
                         </Button>

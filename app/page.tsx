@@ -5,12 +5,7 @@ import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { ToolsResponse } from "@/features/faq/types";
-// eslint-disable-next-line import/order
 import * as Main from "@/features/main/components/index";
-
-// import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
-
-// import { sortedDataArray } from "./utils/function";
 import { fetchTechnology } from "@/lib/contentful";
 
 export const dynamic = "force-dynamic";
@@ -43,7 +38,9 @@ async function HomeComponentWrapper({ technologyData }: HomeProps) {
               <CardTitle>About</CardTitle>
             </CardHeader>
             <CardContent className="grid h-[920px] w-[570px] grid-flow-col grid-cols-3 grid-rows-5 gap-4">
-              <Main.Notice />
+              <Suspense>
+                <Main.Notice />
+              </Suspense>
               <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
                 <CardContent className="p-0">
                   <Main.Profile />
@@ -87,7 +84,9 @@ async function HomeComponentWrapper({ technologyData }: HomeProps) {
                         <CardTitle>About</CardTitle>
                       </CardHeader>
                       <CardContent className="grid h-[720px] w-full grid-flow-col grid-cols-3 grid-rows-5 gap-2 px-3 pb-3 pt-0">
-                        <Main.Notice />
+                        <Suspense>
+                          <Main.Notice />
+                        </Suspense>
                         <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
                           <CardContent className="p-0">
                             <Main.Profile />
