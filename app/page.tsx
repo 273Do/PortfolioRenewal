@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MarqueeWidget from "@/features/Marquee/components/Marquee";
+import type { ToolsResponse } from "@/features/faq/types";
+// eslint-disable-next-line import/order
 import * as Main from "@/features/main/components/index";
-import type { NoticeObj, TechnologyObj } from "@/features/main/types";
 
 // import { getNoticeAllData } from "./utils/api/Notice/NoticeApi";
 
 // import { sortedDataArray } from "./utils/function";
 import { fetchTechnology } from "@/lib/contentful";
-import { ToolsResponse } from "@/features/faq/types";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 };
 
 interface HomeProps {
-  // sortedData: NoticeObj[];
   technologyData: ToolsResponse;
 }
 
@@ -28,7 +27,7 @@ export default async function Home() {
   return <HomeComponent />;
 }
 
-async function HomeComponentWrapper({  technologyData }: HomeProps) {
+async function HomeComponentWrapper({ technologyData }: HomeProps) {
   return (
     <Suspense>
       <>
@@ -44,22 +43,12 @@ async function HomeComponentWrapper({  technologyData }: HomeProps) {
               <CardTitle>About</CardTitle>
             </CardHeader>
             <CardContent className="grid h-[920px] w-[570px] grid-flow-col grid-cols-3 grid-rows-5 gap-4">
-              <Card className="... col-span-2 col-start-2 row-span-2 row-start-1 flex items-center justify-center bg-transparent p-0">
-                <CardContent className="p-0">
-                  <Main.Welcome />
-                </CardContent>
-              </Card>
-
-              <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-                {/* <Main.Notice noticeData={sortedData} /> */}
-              </div>
-
+              <Main.Notice />
               <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
                 <CardContent className="p-0">
                   <Main.Profile />
                 </CardContent>
               </Card>
-
               <Card className="... col-span-2 col-start-1 row-start-4 bg-transparent">
                 <CardHeader className="p-4 pb-2">
                   <CardTitle className="text-lg">Hobby</CardTitle>
@@ -68,13 +57,11 @@ async function HomeComponentWrapper({  technologyData }: HomeProps) {
                   <Main.Hobby />
                 </CardContent>
               </Card>
-
               <Card className="... col-span-1 row-span-1 row-start-4 flex items-center justify-center bg-transparent p-0">
                 <CardContent className="p-0">
                   <Main.GitCalendar />
                 </CardContent>
               </Card>
-
               <Card className="... col-span-3 col-start-1 row-start-5 flex items-center justify-center overflow-hidden bg-transparent p-0 py-8">
                 <CardContent className="p-0">
                   <MarqueeWidget technologyData={technologyData} />
@@ -100,16 +87,7 @@ async function HomeComponentWrapper({  technologyData }: HomeProps) {
                         <CardTitle>About</CardTitle>
                       </CardHeader>
                       <CardContent className="grid h-[720px] w-full grid-flow-col grid-cols-3 grid-rows-5 gap-2 px-3 pb-3 pt-0">
-                        <Card className="... col-span-2 col-start-2 row-span-2 row-start-1 flex items-center justify-center bg-transparent p-0">
-                          <CardContent className="p-0">
-                            <Main.Welcome />
-                          </CardContent>
-                        </Card>
-
-                        <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
-                          {/* <Main.Notice noticeData={sortedData} /> */}
-                        </div>
-
+                        <Main.Notice />
                         <Card className="... col-span-3 col-start-1 row-start-3 flex items-center justify-center bg-transparent p-0">
                           <CardContent className="p-0">
                             <Main.Profile />
@@ -150,14 +128,10 @@ async function HomeComponentWrapper({  technologyData }: HomeProps) {
 }
 
 async function HomeComponent() {
-  // const noticeAllData = await getNoticeAllData();
-  // const sortedData = sortedDataArray(noticeAllData);
-
   const technologyData = await fetchTechnology();
 
   return (
     <HomeComponentWrapper
-      // sortedData={sortedData as NoticeObj[]}
       technologyData={technologyData.items[0].technologyObj}
     />
   );

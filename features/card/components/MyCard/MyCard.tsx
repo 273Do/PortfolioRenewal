@@ -45,7 +45,7 @@ const MyCard = () => {
                 <div className="my-2">
                   <p className="-mt-4">273* (tuna-sand) / kei.</p>
                   <p className="text-muted-foreground">
-                    Web Develop / Sensor Analysis / Design
+                    Web Develop / Design / Sensor Analysis
                   </p>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const MyCard = () => {
                 <div className="my-1">
                   <p className="-mt-2">273* (tuna-sand) / kei.</p>
                   <p className="text-muted-foreground">
-                    Web Dev / Sensor Analysis / Design
+                    Web Dev / Design / Sensor Analysis
                   </p>
                 </div>
               </div>

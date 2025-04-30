@@ -1,41 +1,48 @@
-import React from "react";
+"use client";
+import React, { useDeferredValue, useEffect, useState } from "react";
 
-import Link from "next/link";
-
-// import { formatDate } from "@/app/utils/function";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+import { fetchNotices } from "@/lib/contentful";
 
 import type { NoticeObj } from "../../types";
 
-const Notice = ({ noticeData }: { noticeData: NoticeObj[] }) => {
+import NoticeArea from "./NoticeArea";
+import Welcome from "./Welcome";
+
+const Notice = () => {
+  const [notices, setNotices] = useState<{
+    items: NoticeObj[];
+  } | null>(null);
+
+  const [selectedNoticeDesc, setSelectedNoticeDesc] = useState<string | null>(
+    null
+  );
+
+  const notice_description = useDeferredValue(selectedNoticeDesc);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchNotices();
+      setNotices(data);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <ScrollArea className="h-full rounded-md border">
-      <div className="p-4">
-        <h4 className="mb-4 text-lg font-medium leading-none">Notice</h4>
-        <div className="flex flex-col">
-          {noticeData.map((data: NoticeObj) => (
-            // <div key={data.id} style={{ order: -data.id }}>
-            <div key={data.id}>
-              <p className="mb-1 text-xs text-muted-foreground">
-                {formatDate(data.event_date)}
-              </p>
-              {data.url !== undefined && data.url !== "" ? (
-                <Link href={data.url} target="_blank" rel="noopener noreferrer">
-                  <div className="text-sm underline duration-200 hover:opacity-75">
-                    <p>{data.content}</p>
-                    {/* <ExternalLink size={15} /> */}
-                  </div>
-                </Link>
-              ) : (
-                <div className="text-sm">{data.content}</div>
-              )}
-              <Separator className="my-2" />
-            </div>
-          ))}
-        </div>
+    <>
+      <Card className="... col-span-2 col-start-2 row-span-2 row-start-1 flex items-center justify-center bg-transparent p-0">
+        <CardContent className="p-0">
+          <Welcome notice_description={notice_description} />
+        </CardContent>
+      </Card>
+
+      <div className="... col-span-1 row-span-2 row-start-1 flex items-center justify-center p-0">
+        <NoticeArea
+          noticeData={notices?.items}
+          handleHover={setSelectedNoticeDesc}
+        />
       </div>
-    </ScrollArea>
+    </>
   );
 };
 

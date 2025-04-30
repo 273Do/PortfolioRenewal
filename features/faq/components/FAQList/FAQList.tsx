@@ -7,9 +7,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { FAQObj } from "@/features/faq/types";
 import { fetchFAQ, fetchTools } from "@/lib/contentful";
-import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
 const FAQList = async () => {
   const { items: faqs } = await fetchFAQ();

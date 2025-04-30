@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useEffect, useState } from "react";
 
 import {
   SiX,
@@ -39,13 +40,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import type { WorkObj } from "@/features/works/types";
+import { fetchWorks } from "@/lib/contentful";
 import { cn } from "@/lib/utils";
 import siteLogo from "@/public/imgs/273*Logo.png";
 import myImg from "@/public/imgs/myImg.jpg";
-import { fetchWorks } from "@/lib/contentful";
-import { WorkObj } from "@/features/works/types";
-
-import { useEffect, useState } from "react";
 
 const Header = () => {
   const { theme } = useTheme();
@@ -354,7 +353,7 @@ const Header = () => {
                 <Link
                   href="/faq"
                   title="faq"
-                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all transition-colors hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   FAQ
                 </Link>

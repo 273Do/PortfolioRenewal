@@ -1,11 +1,13 @@
 import type { FAQResponse, ToolsResponse } from "@/features/faq/types";
-import { GalleriesResponse } from "@/features/gallery/types";
-import { MoviesResponse } from "@/features/movie/types";
-import { WorksResponse } from "@/features/works/types";
+import type { GalleriesResponse } from "@/features/gallery/types";
+import type { NoticesResponse } from "@/features/main/types";
+import type { MoviesResponse } from "@/features/movie/types";
+import type { WorksResponse } from "@/features/works/types";
 import client from "@/graphql/client";
 import { GET_FAQ } from "@/graphql/queries/FAQ/getFAQ";
 import { GET_Galleries } from "@/graphql/queries/Gallery/getGalleries";
 import { GET_Movies } from "@/graphql/queries/Movie/getMovies";
+import { GET_Notices } from "@/graphql/queries/Notice/getNotices";
 import { GET_Technologies } from "@/graphql/queries/Technology/getTechnology";
 import { GET_Tools } from "@/graphql/queries/Tool/getTools";
 import { GET_WorkDetail, GET_Works } from "@/graphql/queries/Work/getWorks";
@@ -64,6 +66,12 @@ async function fetchMovies() {
   return shuffledData;
 }
 
+// Noticeを取得する関数
+async function fetchNotices() {
+  const data = await client.request<NoticesResponse>(GET_Notices);
+  return data.noticesCollection;
+}
+
 export {
   fetchFAQ,
   fetchTools,
@@ -72,4 +80,5 @@ export {
   fetchWorksDetail,
   fetchGalleries,
   fetchMovies,
+  fetchNotices,
 };
