@@ -1,9 +1,11 @@
 import React from "react";
 
-import Image from "next/image";
 import { format } from "date-fns";
-import type { GalleryObj } from "../../types";
+import Image from "next/image";
+
 import { fetchGalleries } from "@/lib/contentful";
+
+import type { GalleryObj } from "../../types";
 
 const ImageList = async () => {
   const galleryData = await fetchGalleries();
@@ -25,7 +27,7 @@ const ImageList = async () => {
               height={1000}
               // blurDataURL={data.blurDataURL}
             />
-            <div className="test__body absolute inset-0 flex flex-col justify-between p-3 text-white">
+            <div className="absolute inset-0 flex flex-col justify-between p-3 text-white">
               <div className="relative">
                 <h1 className="text-3xl font-bold">{data.title}</h1>
                 <p className="font-sm font-light">{data.description}</p>

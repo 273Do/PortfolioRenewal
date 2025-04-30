@@ -2,9 +2,10 @@ import React from "react";
 
 import Link from "next/link";
 
-import type { MovieObj } from "../../types";
-import { fetchMovies } from "@/lib/contentful";
 import { Badge } from "@/components/ui/badge";
+import { fetchMovies } from "@/lib/contentful";
+
+import type { MovieObj } from "../../types";
 
 const MovieList = async () => {
   const movieData = await fetchMovies();
@@ -23,7 +24,6 @@ const MovieList = async () => {
               </Badge>
             ))}
           </div>
-          {/* <p className="mb-2 text-muted-foreground">{data.description}</p> */}
           <iframe
             className=" movie-iframe-rounded h-[180px] w-[321px] grayscale duration-200 hover:grayscale-0 sm:h-[280px] sm:w-[500px]"
             // width="500"

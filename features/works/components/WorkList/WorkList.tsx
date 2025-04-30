@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { fetchWorks } from "@/lib/contentful";
 
 import type { WorkObj } from "../../types";
-import { fetchWorks } from "@/lib/contentful";
 
 const WorkList = async () => {
   const { items: works } = await fetchWorks();
@@ -20,7 +20,7 @@ const WorkList = async () => {
               key={work.sys.id}
               href={`/works/${work.sys.id}`}
               className={`mb-4 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
-                i % 2 === 0 ? "sm:pr-1" : "sm:pl-1"
+                i % 2 === 0 ? "sm:pr-2" : "sm:pl-2"
               }`}
             >
               <div>
