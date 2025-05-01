@@ -43,7 +43,7 @@ const MyCard = () => {
                   className={`${theme === "light" && "icon_light"} -mt-7`}
                 />
                 <div className="my-2">
-                  <p className="-mt-4">273* (tuna-sand) / kei.</p>
+                  <p className="-mt-4">273* (tuna-sand) </p>
                   <p className="text-muted-foreground">
                     Web Develop / Design / Sensor Analysis
                   </p>
@@ -91,7 +91,7 @@ const MyCard = () => {
                   className={`${theme === "light" && "icon_light"} -mt-3`}
                 />
                 <div className="my-1">
-                  <p className="-mt-2">273* (tuna-sand) / kei.</p>
+                  <p className="-mt-2">273* (tuna-sand) </p>
                   <p className="text-muted-foreground">
                     Web Dev / Design / Sensor Analysis
                   </p>

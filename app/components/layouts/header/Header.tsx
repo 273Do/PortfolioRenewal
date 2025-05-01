@@ -90,9 +90,7 @@ const Header = () => {
                             alt="myImg"
                             className="rounded-full"
                           />
-                          <div className="my-2 text-lg font-medium">
-                            273* / Kei.
-                          </div>
+                          <div className="my-2 text-lg font-medium">273*</div>
                           <p className="text-sm leading-tight text-muted-foreground">
                             趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                           </p>
@@ -236,9 +234,7 @@ const Header = () => {
                           alt="myImg"
                           className="rounded-full"
                         />
-                        <div className="my-2 text-lg font-medium">
-                          273* / Kei.
-                        </div>
+                        <div className="my-2 text-lg font-medium">273*</div>
                         <p className="text-sm leading-tight text-muted-foreground">
                           趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                         </p>
