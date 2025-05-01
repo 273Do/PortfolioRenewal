@@ -126,11 +126,7 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
-                    <Button
-                      asChild
-                      className="m-4 w-[calc(100%-2rem)]"
-                      variant="secondary"
-                    >
+                    <Button asChild className="m-4 w-[calc(100%-2rem)]">
                       <Link href="/works">All Works</Link>
                     </Button>
                     <p className="mx-7 -mb-2 w-full font-semibold">Pick Up</p>
@@ -229,7 +225,7 @@ const Header = () => {
                   <AccordionTrigger>Activities</AccordionTrigger>
                   <AccordionContent>
                     <SheetClose asChild>
-                      <a
+                      <Link
                         className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
                         href="/card"
                       >
@@ -246,7 +242,7 @@ const Header = () => {
                         <p className="text-sm leading-tight text-muted-foreground">
                           趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                         </p>
-                      </a>
+                      </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
@@ -308,11 +304,11 @@ const Header = () => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="flex w-full flex-col gap-2">
-                      <Button className="mb-0 w-full" variant="secondary">
+                      <Button className="mb-0 w-full">
                         <Link href="/works">All Works</Link>
                       </Button>
                       <p className="mx-3 -mb-2 font-semibold">Pick Up</p>
-                      <hr className="m-4 h-1 w-[calc(100%-2rem)]" />
+                      <hr className="m-1 h-1 w-[calc(100%-2rem)]" />
                     </div>
                     <ul className="h-80 overflow-scroll">
                       {isLoading ? (
