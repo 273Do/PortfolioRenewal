@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-contradicting-classname */
 "use client";
 
 import React from "react";
@@ -15,8 +14,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 
-import { useAllTool } from "@/app/hooks/tool/useAllTool";
-import { sortedToolArray } from "@/app/utils/function";
+import { useFetchSWR } from "@/app/hooks/useFetchSWR";
 import {
   Accordion,
   AccordionContent,
@@ -42,14 +40,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import type { WorkObj } from "@/features/works/types";
+import { fetchWorks } from "@/lib/contentful";
 import { cn } from "@/lib/utils";
-import siteLogo from "@/public/273*Logo.png";
-import myImg from "@/public/myImg.jpg";
+import siteLogo from "@/public/imgs/273*Logo.png";
+import myImg from "@/public/imgs/myImg.jpg";
 
 const Header = () => {
   const { theme } = useTheme();
 
-  const { tools, isError, isLoading } = useAllTool();
+  const { data: pickupWorks, isLoading } = useFetchSWR(
+    "pickupWorks",
+    fetchWorks
+  );
 
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -87,9 +90,7 @@ const Header = () => {
                             alt="myImg"
                             className="rounded-full"
                           />
-                          <div className="my-2 text-lg font-medium">
-                            273* / Kei.
-                          </div>
+                          <div className="my-2 text-lg font-medium">273*</div>
                           <p className="text-sm leading-tight text-muted-foreground">
                             趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                           </p>
@@ -117,50 +118,32 @@ const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent">
                   Works
-                  {tools && (
-                    <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
-                      ({tools.length})
-                    </p>
-                  )}
+                  <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
+                    ({isLoading ? "-" : `${pickupWorks.total}`})
+                  </p>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
-                    <Button
-                      asChild
-                      className="m-4 w-[calc(100%-2rem)]"
-                      variant="secondary"
-                    >
-                      <Link href="/works">Summary</Link>
+                    <Button asChild className="m-4 w-[calc(100%-2rem)]">
+                      <Link href="/works">All Works</Link>
                     </Button>
-                    <p className="mx-7 -mb-2 w-full font-semibold">
-                      Pick Up(メンテナンス中)
-                    </p>
+                    <p className="mx-7 -mb-2 w-full font-semibold">Pick Up</p>
                     <hr className="m-4 -mb-2 h-1 w-[calc(100%-2rem)]" />
                   </div>
 
-                  <ul className="grid h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
+                  <ul className="grid max-h-56 w-[400px] gap-3 overflow-y-scroll p-4 md:w-[480px] md:grid-cols-2 lg:w-[480px] ">
                     {isLoading ? (
-                      <div>Loading...</div>
+                      <div>Loading</div>
                     ) : (
-                      <>
-                        {sortedToolArray(tools)
-                          .slice(0, 4)
-                          .map(
-                            (component: {
-                              id: number;
-                              name: string;
-                              description: string;
-                            }) => (
-                              <ListItem
-                                key={component.id}
-                                title={component.name.replace("\\n", " ")}
-                                href={`/works?id=${component.id}`}
-                              >
-                                {component.description}
-                              </ListItem>
-                            )
-                          )}
-                      </>
+                      pickupWorks.items.map((work: WorkObj) => (
+                        <ListItem
+                          key={work.sys.id}
+                          title={work.name}
+                          href={`/works/${work.sys.id}`}
+                        >
+                          {work.description}
+                        </ListItem>
+                      ))
                     )}
                   </ul>
                 </NavigationMenuContent>
@@ -174,7 +157,7 @@ const Header = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <nav className="flex hidden items-center justify-end sm:block">
+          <nav className="hidden items-center justify-end sm:flex">
             <Button variant="ghost" size="icon">
               <Link
                 href="https://github.com/273Do"
@@ -227,11 +210,7 @@ const Header = () => {
           </nav>
           <Sheet>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="block pl-2 sm:hidden"
-              >
+              <Button variant="ghost" size="icon" className="pl-2 sm:hidden">
                 <Menu />
               </Button>
             </SheetTrigger>
@@ -244,7 +223,7 @@ const Header = () => {
                   <AccordionTrigger>Activities</AccordionTrigger>
                   <AccordionContent>
                     <SheetClose asChild>
-                      <a
+                      <Link
                         className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
                         href="/card"
                       >
@@ -255,13 +234,11 @@ const Header = () => {
                           alt="myImg"
                           className="rounded-full"
                         />
-                        <div className="my-2 text-lg font-medium">
-                          273* / Kei.
-                        </div>
+                        <div className="my-2 text-lg font-medium">273*</div>
                         <p className="text-sm leading-tight text-muted-foreground">
                           趣味でものづくりを楽しんでいる人。web開発や映像制作、ピアノやサイクリングを嗜んでいる。
                         </p>
-                      </a>
+                      </Link>
                     </SheetClose>
                     <SheetClose asChild>
                       <Link
@@ -314,51 +291,41 @@ const Header = () => {
                   <AccordionTrigger className="">
                     <div className="flex">
                       <p>Works</p>
-                      {tools && (
+                      {pickupWorks && (
                         <p className="mb-3 ml-1 text-[9px] text-muted-foreground">
-                          ({tools.length})
+                          ({pickupWorks.total})
                         </p>
                       )}
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="flex w-full flex-col gap-2">
-                      <Button className="mb-0 w-full" variant="secondary">
-                        <Link href="/works">Summary</Link>
+                      <Button className="mb-0 w-full">
+                        <Link href="/works">All Works</Link>
                       </Button>
-                      <p className="mx-3 -mb-2 font-semibold">
-                        Pick Up(メンテナンス中)
-                      </p>
-                      <hr className="m-4 h-1 w-[calc(100%-2rem)]" />
+                      <p className="mx-3 -mb-2 font-semibold">Pick Up</p>
+                      <hr className="m-1 h-1 w-[calc(100%-2rem)]" />
                     </div>
                     <ul className="h-80 overflow-scroll">
                       {isLoading ? (
-                        <div>Loading...</div>
+                        <div>Loading</div>
                       ) : (
                         <>
-                          {sortedToolArray(tools)
-                            .slice(0, 4)
-                            .map(
-                              (component: {
-                                id: number;
-                                name: string;
-                                description: string;
-                              }) => (
-                                <SheetClose asChild key={component.id}>
-                                  <Link
-                                    href={`/works?id=${component.id}`}
-                                    className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                                  >
-                                    <div className="text-sm font-medium leading-none">
-                                      {component.name.replace("\\n", " ")}
-                                    </div>
-                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                      {component.description}
-                                    </p>
-                                  </Link>
-                                </SheetClose>
-                              )
-                            )}
+                          {pickupWorks.items.map((work: WorkObj) => (
+                            <SheetClose asChild key={work.sys.id}>
+                              <Link
+                                href={`/works/${work.sys.id}`}
+                                className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              >
+                                <div className="text-sm font-medium leading-none">
+                                  {work.name}
+                                </div>
+                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                  {work.description}
+                                </p>
+                              </Link>
+                            </SheetClose>
+                          ))}
                         </>
                       )}
                     </ul>
@@ -369,7 +336,7 @@ const Header = () => {
                 <Link
                   href="/faq"
                   title="faq"
-                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all transition-colors hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   FAQ
                 </Link>

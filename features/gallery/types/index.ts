@@ -1,8 +1,19 @@
-export type GalleryObj = {
-  id: number;
-  event_date: Date;
+type GalleryObj = {
+  sys: {
+    id: string;
+  };
   title: string;
   description: string;
-  url: string;
-  blurDataURL: string;
+  image: {
+    url: string;
+  };
+  eventDate: string;
 };
+
+type GalleriesResponse = {
+  galleriesCollection: {
+    items: GalleryObj[];
+  };
+};
+
+export type { GalleryObj, GalleriesResponse };

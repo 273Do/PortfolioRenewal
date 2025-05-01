@@ -7,8 +7,8 @@ import { Link } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
-import siteLogo from "@/public/273*Logo.png";
-import myImg from "@/public/myImg.jpg";
+import siteLogo from "@/public/imgs/273*Logo.png";
+import myImg from "@/public/imgs/myImg.jpg";
 
 const MyCard = () => {
   const { theme } = useTheme();
@@ -43,9 +43,9 @@ const MyCard = () => {
                   className={`${theme === "light" && "icon_light"} -mt-7`}
                 />
                 <div className="my-2">
-                  <p className="-mt-4">273* (tuna-sand) / kei.</p>
+                  <p className="-mt-4">273* (tuna-sand) </p>
                   <p className="text-muted-foreground">
-                    Web Develop / Sensor Analysis / Design
+                    Web Develop / Design / Sensor Analysis
                   </p>
                 </div>
               </div>
@@ -91,9 +91,9 @@ const MyCard = () => {
                   className={`${theme === "light" && "icon_light"} -mt-3`}
                 />
                 <div className="my-1">
-                  <p className="-mt-2">273* (tuna-sand) / kei.</p>
+                  <p className="-mt-2">273* (tuna-sand) </p>
                   <p className="text-muted-foreground">
-                    Web Dev / Sensor Analysis / Design
+                    Web Dev / Design / Sensor Analysis
                   </p>
                 </div>
               </div>

@@ -4,36 +4,36 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { fetchWorks } from "@/lib/contentful";
 
 import type { WorkObj } from "../../types";
 
-const WorkList = ({ worksData }: { worksData: WorkObj[] }) => {
+const WorkList = async () => {
+  const { items: works } = await fetchWorks();
+
   return (
     <div className="flex size-full flex-row items-start justify-center">
-      <div className="m-3 flex w-full max-w-[700px] flex-wrap sm:m-4">
-        {worksData.map((work: WorkObj) => {
-          const randomNumber = Math.floor(Math.random() * 1000);
-          const width = 1920;
-          const height = 1080;
-
-          const imageUrl = `https://picsum.photos/seed/${randomNumber}/${width}/${height}`;
+      <div className="flex w-full max-w-[700px] flex-wrap">
+        {works.map((work: WorkObj, i: number) => {
           return (
             <Link
-              key={work.id}
-              href={`/works/${work.id}`}
-              className="mb-4 flex w-full cursor-pointer flex-col gap-2 p-2 grayscale duration-200 hover:grayscale-0 sm:w-1/2"
+              key={work.sys.id}
+              href={`/works/${work.sys.id}`}
+              className={`mb-4 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
+                i % 2 === 0 ? "sm:pr-2" : "sm:pl-2"
+              }`}
             >
               <div>
-                <p className="text-xl font-bold">{work.title}</p>
+                <p className="text-xl font-bold">{work.name}</p>
                 <p className="truncate text-muted-foreground">
                   {work.description}
                 </p>
               </div>
               <Image
-                src={imageUrl}
-                alt={work.title}
-                width={300}
-                height={200}
+                src={work.thumbnail.url}
+                alt={work.name}
+                width={1920}
+                height={1080}
                 className="w-full rounded-lg"
               />
               <div>

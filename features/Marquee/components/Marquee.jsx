@@ -16,7 +16,7 @@ const MarqueeWidget = ({ technologyData }) => {
   } else {
     iconsData = Array(10)
       .fill()
-      .map((_, index) => technologyData[0][`tech${index}`])
+      .map((_, index) => technologyData[`tech${index}`])
       .filter((icon) => icon !== null);
 
     return (

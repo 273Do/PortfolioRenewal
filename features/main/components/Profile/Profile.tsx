@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { Separator } from "@/components/ui/separator";
-import myImg from "@/public/myImg.jpg";
+import myImg from "@/public/imgs/myImg.jpg";
 
 const Profile = () => {
   return (
@@ -18,7 +18,7 @@ const Profile = () => {
       <div className="ml-2 sm:ml-3">
         <div className="space-y-1">
           <h4 className="text-sm font-medium leading-none">
-            273*(ツナサンド) / Kei.
+            273* (ツナサンド)
           </h4>
           <p className="text-xs text-muted-foreground sm:text-sm">
             Web Engineer / Designer
