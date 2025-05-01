@@ -5,7 +5,7 @@ import { gql } from "graphql-request";
 // limitが設定されている場合はヘッダーに表示するデータのみを取得
 export const GET_Works = gql`
   query GetWorks($limit: Int) {
-    worksCollection(order: createdAt_ASC, limit: $limit) {
+    worksCollection(order: createdAt_DESC, limit: $limit) {
       total
       items {
         sys {
