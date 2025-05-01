@@ -1,4 +1,4 @@
-import { ToolObj } from "@/features/tool/types";
+import type { ToolsObj } from "@/features/faq/types";
 
 type WorkObj = {
   sys: {
@@ -12,7 +12,7 @@ type WorkObj = {
   thumbnail: {
     url: string;
   };
-  technologiesObj: ToolObj;
+  technologiesObj: ToolsObj;
   githubUrl: string;
   appUrl?: string;
   otherUrl?: string;

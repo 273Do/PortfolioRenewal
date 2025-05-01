@@ -34,4 +34,4 @@ type ToolsResponse = {
   };
 };
 
-export type { FAQObj, FAQResponse, ToolsResponse };
+export type { FAQObj, FAQResponse, ToolsObj, ToolsResponse };
