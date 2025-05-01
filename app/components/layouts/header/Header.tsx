@@ -13,8 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
+import useSWR from "swr";
 
-import { useFetchSWR } from "@/app/hooks/useFetchSWR";
 import {
   Accordion,
   AccordionContent,
@@ -46,13 +46,15 @@ import { cn } from "@/lib/utils";
 import siteLogo from "@/public/imgs/273*Logo.png";
 import myImg from "@/public/imgs/myImg.jpg";
 
+const fetcher = async () => {
+  const data = await fetchWorks(4);
+  return data;
+};
+
 const Header = () => {
   const { theme } = useTheme();
 
-  const { data: pickupWorks, isLoading } = useFetchSWR(
-    "pickupWorks",
-    fetchWorks
-  );
+  const { data: pickupWorks, isLoading } = useSWR("pickupWorks", fetcher);
 
   return (
     <div className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

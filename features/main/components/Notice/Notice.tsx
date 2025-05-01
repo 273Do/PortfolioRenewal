@@ -1,15 +1,21 @@
 "use client";
 import React, { useDeferredValue, useState } from "react";
 
-import { useFetchSWR } from "@/app/hooks/useFetchSWR";
+import useSWR from "swr";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchNotices } from "@/lib/contentful";
 
 import NoticeArea from "./NoticeArea";
 import Welcome from "./Welcome";
 
+const fetcher = async () => {
+  const data = await fetchNotices();
+  return data;
+};
+
 const Notice = () => {
-  const { data: notices } = useFetchSWR("notices", fetchNotices);
+  const { data: notices } = useSWR("notices", fetcher);
 
   const [selectedNoticeDesc, setSelectedNoticeDesc] = useState<string | null>(
     null
