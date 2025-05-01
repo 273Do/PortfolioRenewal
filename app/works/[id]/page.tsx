@@ -16,6 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import * as Works from "@/features/works/components/index";
 import { fetchWorksDetail } from "@/lib/contentful";
 
+export const dynamic = "force-dynamic";
+
 const page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const workDetailResponse = await fetchWorksDetail(id);
