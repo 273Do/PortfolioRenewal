@@ -126,9 +126,11 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
-                    <Button asChild className="m-4 w-[calc(100%-2rem)]">
-                      <Link href="/works">All Works</Link>
-                    </Button>
+                    <Link href="/works">
+                      <Button asChild className="m-4 w-[calc(100%-2rem)]">
+                        All Works
+                      </Button>
+                    </Link>
                     <p className="mx-7 -mb-2 w-full font-semibold">Pick Up</p>
                     <hr className="m-4 -mb-2 h-1 w-[calc(100%-2rem)]" />
                   </div>
@@ -302,9 +304,9 @@ const Header = () => {
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="flex w-full flex-col gap-2">
-                      <Button className="mb-0 w-full">
-                        <Link href="/works">All Works</Link>
-                      </Button>
+                      <Link href="/works">
+                        <Button className="mb-0 w-full">All Works</Button>
+                      </Link>
                       <p className="mx-3 -mb-2 font-semibold">Pick Up</p>
                       <hr className="m-1 h-1 w-[calc(100%-2rem)]" />
                     </div>

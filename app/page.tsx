@@ -8,7 +8,7 @@ import type { ToolsResponse } from "@/features/faq/types";
 import * as Main from "@/features/main/components/index";
 import { fetchTechnology } from "@/lib/contentful";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "273* Portfolio | Gallery",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function page() {
   return (
