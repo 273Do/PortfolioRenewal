@@ -126,11 +126,10 @@ const Header = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-full">
                   <div className="flex w-full flex-col items-start">
-                    <Link href="/works">
-                      <Button asChild className="m-4 w-[calc(100%-2rem)]">
-                        All Works
-                      </Button>
+                    <Link href="/works" className="m-4 w-[calc(100%-2rem)]">
+                      <Button asChild>All Works</Button>
                     </Link>
+
                     <p className="mx-7 -mb-2 w-full font-semibold">Pick Up</p>
                     <hr className="m-4 -mb-2 h-1 w-[calc(100%-2rem)]" />
                   </div>
