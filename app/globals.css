@@ -286,3 +286,39 @@
 .md blockquote blockquote {
   border-left-color: #718096;
 }
+
+/* scroll */
+
+/* 垂直スクロールバー */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+/* 垂直スクロールバーのトラック */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 垂直スクロールバーのスクロール部分 */
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 20px;
+}
+
+/* 横スクロールバー */
+::-webkit-scrollbar-x {
+  width: 1px;
+  height: 1px;
+}
+
+/* 横スクロールバーのトラック */
+::-webkit-scrollbar-x-track {
+  background: transparent;
+}
+
+/* 横スクロールバーのスクロール部分 */
+::-webkit-scrollbar-x-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 20px;
+}

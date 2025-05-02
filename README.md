@@ -5,7 +5,7 @@
 
 # Portfolio
 
-273*のポートフォリオサイト
+273\*のポートフォリオサイト
 
 ## 📇 開発環境・使用技術・ツール
 
@@ -17,7 +17,7 @@
 </a>
 <h3>BE
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=prisma,supabase"/>
+    <img src="https://skillicons.dev/icons?i=graphql"/>
   </a>
 <h3>インフラ
 <a href="https://skillicons.dev">
