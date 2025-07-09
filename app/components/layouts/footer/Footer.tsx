@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sparkles, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,14 @@ const Footer = () => {
   return (
     <div className="fixed bottom-0 z-50 flex h-14 w-full items-center justify-center border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <p className="">273DoWorks</p>
-      <div className="fixed right-0 mr-7">
+      <div className="fixed right-0 mr-3 flex gap-2 sm:mr-12">
+        <Button
+          variant="ghost"
+          size="icon"
+          // onClick={handleClick}
+        >
+          <Sparkles className="size-[1.2rem]" />
+        </Button>
         <Button
           variant="ghost"
           size="icon"
