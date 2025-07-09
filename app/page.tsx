@@ -28,9 +28,9 @@ async function HomeComponentWrapper({ technologyData }: HomeProps) {
       <>
         <main className="relative hidden h-screen p-12 sm:block ">
           <div className="pointer-events-auto fixed inset-0 z-0">
-            <Suspense>
+            {/* <Suspense>
               <Main.LogoThree className="pointer-events-auto size-full object-cover " />
-            </Suspense>
+            </Suspense> */}
           </div>
           <div className="h-14"></div>
           <Card className="relative w-[570px] overflow-auto bg-transparent">
@@ -70,9 +70,9 @@ async function HomeComponentWrapper({ technologyData }: HomeProps) {
         </main>
 
         <main className="block h-screen sm:hidden">
-          <Suspense>
+          {/* <Suspense>
             <Main.LogoThree />
-          </Suspense>
+          </Suspense> */}
 
           <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px]">
             <div className="flex h-full items-center justify-center">
