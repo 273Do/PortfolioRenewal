@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const Error = ({ img }: { img: StaticImageData }) => {
   return (
     <main className="h-screen">
-      <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[104px]">
+      <div className="fixed left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
         <div className="flex h-full items-center justify-center">
           <Card className="flex size-full flex-col">
             <CardContent className="size-full p-0">
