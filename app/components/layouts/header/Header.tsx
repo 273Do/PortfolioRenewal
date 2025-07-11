@@ -62,6 +62,12 @@ const fetcher = async () => {
 };
 
 const Header = () => {
+  const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
+  const DISCORD_USER_ID = process.env.NEXT_PUBLIC_DISCORD_USER_ID;
+  const YOUTUBE_URL = process.env.NEXT_PUBLIC_YOUTUBE_URL;
+  const X_URL = process.env.NEXT_PUBLIC_X_URL;
+  const QIITA_URL = process.env.NEXT_PUBLIC_QIITA_URL;
+
   const { data: pickupWorks, isLoading } = useSWR("pickupWorks", fetcher);
 
   return (
@@ -96,8 +102,9 @@ const Header = () => {
 
               <SheetClose asChild>
                 <Link
-                  className="flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
+                  className="mt-2 flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
                   href="/card"
+                  title="Card"
                 >
                   <Image
                     src={myImg}
@@ -140,7 +147,7 @@ const Header = () => {
               <SheetClose asChild>
                 <Link
                   href="/faq"
-                  title="faq"
+                  title="Faq"
                   className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   FAQ
@@ -148,8 +155,10 @@ const Header = () => {
               </SheetClose>
               <SheetClose asChild>
                 <Link
-                  href="/faq"
-                  title="faq"
+                  href={QIITA_URL}
+                  title="Qiita"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   Qiita
@@ -158,7 +167,7 @@ const Header = () => {
               <nav className="mt-2 flex items-center justify-center gap-4">
                 <Button variant="ghost" size="icon">
                   <Link
-                    href="https://github.com/273Do"
+                    href={GITHUB_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -175,7 +184,9 @@ const Header = () => {
                         <SiDiscord className="size-[1.4rem]" />
                         <div>
                           <p>Discord User ID</p>
-                          <p className="text-muted-foreground">@273</p>
+                          <p className="text-muted-foreground">
+                            @{String(DISCORD_USER_ID)}
+                          </p>
                         </div>
                       </div>
                     )
@@ -187,7 +198,7 @@ const Header = () => {
                 </Button>
                 <Button variant="ghost" size="icon">
                   <Link
-                    href="https://twitter.com/273Do"
+                    href={X_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -197,7 +208,7 @@ const Header = () => {
                 </Button>
                 <Button variant="ghost" size="icon">
                   <Link
-                    href="https://www.youtube.com/channel/UCh4boc9_9Dxiz9QP_VkwGww"
+                    href={YOUTUBE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="my-2 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
