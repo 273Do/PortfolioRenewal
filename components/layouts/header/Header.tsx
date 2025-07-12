@@ -71,7 +71,7 @@ const Header = () => {
   const { data: pickupWorks, isLoading } = useSWR("pickupWorks", fetcher);
 
   return (
-    <div className="fixed top-0 z-50 w-full">
+    <div className="fixed top-0 w-full z-[200]">
       <div className="mx-3 flex h-12 items-center justify-between sm:mx-12">
         <Link
           href="/"

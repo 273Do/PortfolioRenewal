@@ -14,7 +14,7 @@ const ContactSection = async () => {
   return (
     <div className=" w-full">
       <AsyncLayout className="h-screen w-full ">
-        <div className="pointer-events-none relative left-1/2 top-1/2 z-[150] size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
+        <div className="relative left-1/2 top-1/2 z-[150] size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex flex-col h-full items-center justify-end">
             <Card className="text-secondary px-2 flex size-full items-end flex-col bg-foreground">
               <div className="w-4/5">
@@ -24,18 +24,16 @@ const ContactSection = async () => {
               </div>
               <div className="w-3/5">
                 <AnimationText.Dynamic className="-mt-12 font-semibold leading-tight">
-                  {/* {MAIL_ADDRESS && ( */}
                   <a href={`mailto:${MAIL_ADDRESS}`}>{MAIL_ADDRESS}</a>
-                  {/* )} */}
                 </AnimationText.Dynamic>
               </div>
               <div className="mt-10 flex w-full items-start justify-between">
                 <ul className="relative z-200 ">
                   <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/works">Works</Link>
                   </li>
                   <li>
-                    <Link href="/works">Works</Link>
+                    <Link href="/movie">Movie</Link>
                   </li>
                   <li>
                     <Link href="/faq">FAQ</Link>

@@ -11,7 +11,7 @@ const Footer = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="fixed bottom-0 z-50 flex h-12 w-full items-center justify-center">
+    <div className="fixed bottom-0 z-[200] flex h-12 w-full items-center justify-center">
       <p className="text-sm">©2023-{thisYear} 273DoWorks</p>
       <div className="fixed right-0 mr-3 flex sm:mr-12">
         <Button
