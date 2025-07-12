@@ -22,7 +22,7 @@ const RandomImageList = () => {
   );
 
   return (
-    <div className="columns-2 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+    <div className="px-2 columns-2 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
       {imageList.map((image) => (
         <div
           key={image.id}

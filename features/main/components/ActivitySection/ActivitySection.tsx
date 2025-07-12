@@ -11,7 +11,7 @@ const ActivitySection = async () => {
           <div className="h-32"></div>
           <SectionTitle />
         </div>
-        <div className="mt-4a mb-10 flex w-full items-end justify-between">
+        <div className="px-2 mb-10 flex w-full items-end justify-between">
           <ul>
             <AnimationText.ScrollCustomReveal
               start="bottom 85%"
@@ -37,9 +37,9 @@ const ActivitySection = async () => {
           </ul>
         </div>
         <ImageList />
-        <div className="sticky bottom-0 z-10 h-[52px] w-full bg-background"></div>
+        <div className="sticky bottom-0 z-10 h-[48px] w-full bg-background"></div>
       </div>
-      <p className="z-100 relative w-3/5 p-12 pt-0">
+      <p className="mx-2 z-100 relative w-3/5 p-12 pt-0">
         I am someone who enjoys making things as a hobby. I also enjoy playing
         the piano, cycling, and exploring ramen restaurants. I like being alone,
         but I also like creating things with friends. My motto is “just give it

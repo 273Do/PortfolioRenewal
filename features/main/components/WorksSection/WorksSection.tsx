@@ -3,7 +3,7 @@ import Skills from "./Skills";
 
 const WorksSection = async () => {
   return (
-    <div className="m-12">
+    <div className="m-12 px-2">
       <Skills />
       <CardList />
     </div>

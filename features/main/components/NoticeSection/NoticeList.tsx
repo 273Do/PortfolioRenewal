@@ -51,7 +51,7 @@ const NoticeList = () => {
   }, [selectNotice.year, prevYear]);
   return (
     <>
-      <div className="w-1/5">
+      <div className="w-1/5 px-2">
         <div className="-mt-2 flex items-center justify-start text-[11vw] font-semibold leading-none">
           <div className="flex">
             <p>`</p>
@@ -70,7 +70,7 @@ const NoticeList = () => {
           </div>
         </div>
       </div>
-      <div className="z-100 flex w-1/2 flex-col gap-5 text-[16px]">
+      <div className="px-2 z-100 flex w-1/2 flex-col gap-5 text-[16px]">
         <div>
           {noticeItems.map((item) => {
             const year = format(new Date(item.createdAt), "yy");
