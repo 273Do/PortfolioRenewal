@@ -8,7 +8,7 @@ const HeroSection = async () => {
         <p className="z-100 relative right-0 mt-1">Scroll</p>
       </AnimationText.ScrollBlinking>
 
-      <AnimationText.Reveal className="-mb-12 font-semibold leading-none">
+      <AnimationText.Reveal className="mb-0 font-semibold leading-none">
         PORTFOLIO
       </AnimationText.Reveal>
     </AsyncLayout>
