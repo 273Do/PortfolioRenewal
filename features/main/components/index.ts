@@ -3,6 +3,7 @@ import CreativeSection from "./CreativeSection/CreativeSection";
 import HeroSection from "./HeroSection/HeroSection";
 import NoticeSection from "./NoticeSection/NoticeSection";
 import WorksSection from "./WorksSection/WorksSection";
+import ContactSection from "./ContactSection/ContactSection";
 
 export {
   HeroSection,
@@ -10,4 +11,5 @@ export {
   CreativeSection,
   WorksSection,
   ActivitySection,
+  ContactSection,
 };

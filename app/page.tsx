@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import * as Main from "@/features/main/components";
 import Layout from "@/features/main/components/Layout/Layout";
 
-import SmoothScroller from "./components/layouts/SmoothScroller";
+import SmoothScroller from "../components/layouts/SmoothScroller";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
@@ -21,6 +21,7 @@ export default async function Home() {
       <Main.CreativeSection />
       <Main.WorksSection />
       <Main.ActivitySection />
+      <Main.ContactSection />
     </>
   );
 }
