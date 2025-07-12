@@ -119,7 +119,7 @@ const CardList = () => {
       ref={ref}
       className="relative flex w-full flex-col items-center justify-center"
     >
-      <div className="translate-[-50%] z-100 pointer-events-none absolute left-1/2 top-1/2 flex flex-col items-center justify-center">
+      <div className="translate-[-50%] z-100 pointer-events-none absolute flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-start gap-20">
           <div className="line">
             <div className="flex flex-col items-center justify-center text-2xl font-semibold">
