@@ -37,7 +37,7 @@ const ActivitySection = async () => {
           </ul>
         </div>
         <ImageList />
-        <div className="sticky bottom-0 z-10 h-[48px] w-full bg-background"></div>
+        <div className="sticky bottom-0 z-10 h-[52px] w-full bg-background"></div>
       </div>
       <p className="mx-2 z-100 relative w-3/5 p-12 pt-0">
         I am someone who enjoys making things as a hobby. I also enjoy playing

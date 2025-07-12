@@ -291,13 +291,15 @@
 
 /* 垂直スクロールバー */
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 5px;
   height: 1px;
 }
 
 /* 垂直スクロールバーのトラック */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: hsl(var(--background));
+  /* mix-blend-mode: difference; */
+  background: none;
 }
 
 /* 垂直スクロールバーのスクロール部分 */
@@ -321,4 +323,16 @@
 ::-webkit-scrollbar-x-thumb {
   background: hsl(var(--muted-foreground));
   border-radius: 20px;
+}
+
+/* ボーダーテキスト */
+.text-stroke {
+  -webkit-text-stroke: 1px hsl(var(--foreground));
+}
+
+/* スプリットテキスト調整 */
+.split-char {
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
 }
