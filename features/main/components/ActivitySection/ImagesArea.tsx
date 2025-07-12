@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { useMemo } from "react";
+
+import Image from "next/image";
 
 const getRandomHeight = () => {
   const heights = [300, 400, 500, 600];
@@ -17,11 +18,11 @@ const RandomImageList = () => {
           height,
         };
       }),
-    [],
+    []
   );
 
   return (
-    <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+    <div className="columns-2 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
       {imageList.map((image) => (
         <div
           key={image.id}

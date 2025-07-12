@@ -1,9 +1,10 @@
 "use client";
+import { useRef } from "react";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,10 +34,16 @@ const CardList = () => {
           onUpdate: (self) => {
             const progress = self.progress;
             if (cardLeft && cardRight) {
-              (cardLeft as HTMLElement).style.transform =
-                `translateX(${leftXValues[index] * progress}px) translateY(${yValues[index] * progress}px) rotate(${leftRotateValues[index] * progress}deg)`;
-              (cardRight as HTMLElement).style.transform =
-                `translateX(${rightXValues[index] * progress}px) translateY(${yValues[index] * progress}px) rotate(${rightRotateValues[index] * progress}deg)`;
+              (cardLeft as HTMLElement).style.transform = `translateX(${
+                leftXValues[index] * progress
+              }px) translateY(${yValues[index] * progress}px) rotate(${
+                leftRotateValues[index] * progress
+              }deg)`;
+              (cardRight as HTMLElement).style.transform = `translateX(${
+                rightXValues[index] * progress
+              }px) translateY(${yValues[index] * progress}px) rotate(${
+                rightRotateValues[index] * progress
+              }deg)`;
             }
           },
         },
@@ -100,7 +107,7 @@ const CardList = () => {
               height={1080}
             />
           </div>
-        </div>,
+        </div>
       );
     }
 
@@ -112,10 +119,10 @@ const CardList = () => {
       ref={ref}
       className="relative flex w-full flex-col items-center justify-center"
     >
-      <div className="translate-[-50%] pointer-events-none absolute top-1/2 left-1/2 z-100 flex flex-col items-center justify-center">
+      <div className="translate-[-50%] z-100 pointer-events-none absolute left-1/2 top-1/2 flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-start gap-20">
           <div className="line">
-            <div className="flex flex-col items-center justify-center font-semibold text-2xl">
+            <div className="flex flex-col items-center justify-center text-2xl font-semibold">
               <p> I don't have</p>
               <p>any specific area of expertise.</p>
             </div>
@@ -129,7 +136,7 @@ const CardList = () => {
           <div className="line">
             <p>I enjoy making Production.</p>
           </div>
-          <div className="mt-20 font-semibold text-2xl">
+          <div className="mt-20 text-2xl font-semibold">
             <p>NO CREATIVE, NO LIFE</p>
           </div>
         </div>

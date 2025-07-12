@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
 import ClientLayout from "@/components/ContentScreenLayout/ClientLayout";
 import * as AnimationText from "@/components/TextAnimation";
 
@@ -21,7 +22,7 @@ const CreativeSection = () => {
   }, []);
   // TODO: pinの時にz-indexが効かない問題を解決する
   return (
-    <ClientLayout className="creative-section m-10">
+    <ClientLayout className="creative-section m-12">
       <div className="w-full">
         <div className="layer flex w-full items-center justify-between">
           <AnimationText.ScrollBlinking start="top center">
@@ -35,14 +36,14 @@ const CreativeSection = () => {
           <AnimationText.ScrollReveal
             start="top bottom"
             end="bottom 20%"
-            className="pointer-events-none absolute top-0 left-0 font-semibold text-stroke text-transparent leading-none"
+            className="text-stroke text-transparent pointer-events-none absolute left-0 top-0 font-semibold leading-none"
           >
             CREATIVE
           </AnimationText.ScrollReveal>
           <AnimationText.ScrollCustomReveal
             start="bottom 85%"
             end="bottom center"
-            className="relative font-semibold text-foreground leading-none"
+            className="relative font-semibold leading-none text-foreground"
             clipPath={["inset(0 100% 0 0)", "inset(0 0% 0 0)"]}
             trigger=".creative-section"
           >
@@ -82,14 +83,14 @@ const CreativeSection = () => {
             <AnimationText.ScrollReveal
               start="top bottom"
               end="bottom 70%"
-              className="-mb-12 absolute top-0 left-0 font-semibold text-stroke text-transparent leading-none"
+              className="text-stroke absolute left-0 top-0 -mb-12 font-semibold leading-none text-transparent"
             >
               WORK
             </AnimationText.ScrollReveal>
             <AnimationText.ScrollCustomReveal
               start="bottom center"
               end="bottom top"
-              className="-mb-12 relative font-semibold leading-none"
+              className="relative -mb-12 font-semibold leading-none"
               clipPath={["inset(0 100% 0 0)", "inset(0 0% 0 0)"]}
               trigger=".creative-section"
             >
