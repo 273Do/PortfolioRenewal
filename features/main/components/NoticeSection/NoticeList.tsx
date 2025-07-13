@@ -18,19 +18,26 @@ gsap.registerPlugin(SplitText);
 const NoticeList = () => {
   const [selectNotice, setSelectNotice] = useState({
     year: 25,
+    month: Number(format(new Date(noticeItems[0].createdAt), "MM")),
     description: noticeItems[0].description,
   });
 
   const [prevYear, setPrevYear] = useState<number>(25);
-  const digitRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const [prevMonth, setPrevMonth] = useState<number>(
+    Number(format(new Date(noticeItems[0].createdAt), "MM"))
+  );
+
+  const yearDigitRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const monthDigitRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useGSAP(() => {
-    const oldDigits = splitNumber(prevYear);
-    const newDigits = splitNumber(selectNotice.year);
+    // Year animation
+    const oldYearDigits = splitNumber(prevYear);
+    const newYearDigits = splitNumber(selectNotice.year);
 
-    newDigits.forEach((digit, i) => {
-      if (digit !== oldDigits[i] && digitRefs.current[i]) {
-        const target = digitRefs.current[i];
+    newYearDigits.forEach((digit, i) => {
+      if (digit !== oldYearDigits[i] && yearDigitRefs.current[i]) {
+        const target = yearDigitRefs.current[i];
         if (!target) return;
 
         const textInstance = SplitText.create(target, {
@@ -48,7 +55,33 @@ const NoticeList = () => {
         return () => textInstance.revert();
       }
     });
-  }, [selectNotice.year, prevYear]);
+
+    // Month animation
+    const oldMonthDigits = splitNumber(prevMonth);
+    const newMonthDigits = splitNumber(selectNotice.month);
+
+    newMonthDigits.forEach((digit, i) => {
+      if (digit !== oldMonthDigits[i] && monthDigitRefs.current[i]) {
+        const target = monthDigitRefs.current[i];
+        if (!target) return;
+
+        const textInstance = SplitText.create(target, {
+          type: "chars",
+          onSplit: (self) => {
+            gsap.from(self.chars, {
+              duration: 0.6,
+              yPercent: 20,
+              ease: "power2.out",
+              stagger: 0.05,
+            });
+          },
+        });
+
+        return () => textInstance.revert();
+      }
+    });
+  }, [selectNotice.year, selectNotice.month, prevYear, prevMonth]);
+
   return (
     <>
       <div className="w-1/5 px-2">
@@ -57,10 +90,21 @@ const NoticeList = () => {
             <p>`</p>
             {splitNumber(selectNotice.year).map((digit, i) => (
               <p
-                // biome-ignore lint/suspicious/noArrayIndexKey: using index as key is acceptable here due to static digit rendering
                 key={i}
                 ref={(el) => {
-                  digitRefs.current[i] = el;
+                  yearDigitRefs.current[i] = el;
+                }}
+                className="inline-block"
+              >
+                {digit}
+              </p>
+            ))}
+            <p>.</p>
+            {splitNumber(selectNotice.month).map((digit, i) => (
+              <p
+                key={i}
+                ref={(el) => {
+                  monthDigitRefs.current[i] = el;
                 }}
                 className="inline-block"
               >
@@ -74,6 +118,7 @@ const NoticeList = () => {
         <div>
           {noticeItems.map((item) => {
             const year = format(new Date(item.createdAt), "yy");
+            const month = format(new Date(item.createdAt), "MM");
             const createdAt = format(new Date(item.createdAt), "yyyy-MM-dd");
             return (
               <ul
@@ -85,11 +130,18 @@ const NoticeList = () => {
                 key={item.sys.id}
                 onMouseEnter={() => {
                   const newYear = Number(year);
+                  const newMonth = Number(month);
+
                   if (newYear !== selectNotice.year) {
                     setPrevYear(selectNotice.year);
                   }
+                  if (newMonth !== selectNotice.month) {
+                    setPrevMonth(selectNotice.month);
+                  }
+
                   setSelectNotice({
                     year: newYear,
+                    month: newMonth,
                     description: item.description,
                   });
                 }}
