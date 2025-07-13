@@ -1,46 +1,41 @@
-import { useMemo } from "react";
-
+import { format } from "date-fns";
 import Image from "next/image";
 
+import type { GalleryObj } from "@/features/gallery/types";
+import { fetchGalleries } from "@/lib/contentful";
 const getRandomHeight = () => {
   const heights = [300, 400, 500, 600];
   return heights[Math.floor(Math.random() * heights.length)];
 };
 
-const RandomImageList = () => {
-  const imageList = useMemo(
-    () =>
-      Array.from({ length: 12 }, (_, i) => {
-        const height = getRandomHeight();
-        return {
-          id: i,
-          src: `https://picsum.photos/id/${i * 7}/600/${height}`,
-          height,
-        };
-      }),
-    []
-  );
+const RandomImageList = async () => {
+  const galleryData = await fetchGalleries();
 
   return (
-    <div className="px-2 columns-2 gap-2 sm:gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-      {imageList.map((image) => (
+    <div className="columns-2 gap-2 px-2 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">
+      {galleryData.map((data: GalleryObj) => (
         <div
-          key={image.id}
-          className="mb-2 sm:mb-4 break-inside-avoid overflow-hidden rounded-lg"
+          className="group relative grayscale duration-200 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-[''] hover:grayscale-0 sm:mb-4"
+          key={data.sys.id}
         >
-          <div
-            className="relative w-full grayscale transition-all duration-300 hover:grayscale-0"
-            style={{ aspectRatio: `600 / ${image.height}` }}
-          >
-            <Image
-              src={image.src}
-              alt={`Image ${image.id}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw,
-                     (max-width: 1200px) 50vw,
-                     33vw"
-            />
+          <Image
+            className="rounded-lg"
+            src={data.image.url}
+            alt="img"
+            width={1000}
+            height={1000}
+          />
+          <div className="absolute inset-0 hidden flex-col justify-between p-3 text-white duration-200 group-hover:flex">
+            <div className="relative">
+              <h1 className="text-3xl font-bold">{data.title}</h1>
+              <p className="font-sm font-light">{data.description}</p>
+            </div>
+            <p className="text-xs font-light">
+              {format(
+                new Date(data.eventDate).toLocaleDateString(),
+                "yyyy-MM-dd"
+              )}
+            </p>
           </div>
         </div>
       ))}

@@ -22,7 +22,7 @@ const CreativeSection = () => {
   }, []);
   // TODO: pinの時にz-indexが効かない問題を解決する
   return (
-    <ClientLayout className="pb-4 px-2 pt-10 sm:py-2 creative-section m-3 sm:m-12 text-xs sm:text-base">
+    <ClientLayout className="creative-section m-3 px-2 pb-4 pt-10 text-xs sm:m-12 sm:py-2 sm:text-base">
       <div className="w-full">
         <div className="layer flex w-full items-center justify-between">
           <AnimationText.ScrollBlinking start="top center">
@@ -36,7 +36,7 @@ const CreativeSection = () => {
           <AnimationText.ScrollReveal
             start="top bottom"
             end="bottom 20%"
-            className="text-stroke text-transparent pointer-events-none absolute left-0 top-0 font-semibold leading-none"
+            className="text-stroke pointer-events-none absolute left-0 top-0 font-semibold leading-none text-transparent"
           >
             CREATIVE
           </AnimationText.ScrollReveal>

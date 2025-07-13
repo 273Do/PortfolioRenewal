@@ -3,7 +3,7 @@ import MarqueeWidget from "@/components/Marquee/Marquee";
 const Skills = async () => {
   return (
     <div className="my-2 sm:my-4">
-      <p className="z-100 text-xs relative">Favorite Technology</p>
+      <p className="z-100 relative text-xs">Favorite Technology</p>
       <MarqueeWidget
         iconName={[
           "React",

@@ -13,7 +13,7 @@ const MarqueeWidget = ({
 }) => {
   return (
     <Marquee
-      className="items-center sm:py-3 text-foreground"
+      className="items-center text-foreground sm:py-3"
       gradient={true}
       gradientColor="hsl(var(--background))"
       loop={0}
@@ -27,7 +27,7 @@ const MarqueeWidget = ({
 
         if (typeof IconComponent === "undefined")
           return (
-            <div key={icon} className="sm:px-6 px-0">
+            <div key={icon} className="px-0 sm:px-6">
               <Slot className="h-12 w-1/2 sm:w-full">
                 <CircleX color="red" />
               </Slot>
@@ -35,7 +35,7 @@ const MarqueeWidget = ({
           );
 
         return (
-          <div key={icon} className="sm:px-6 px-0">
+          <div key={icon} className="px-0 sm:px-6">
             <Slot className="h-12 w-1/2 sm:w-full">
               <IconComponent />
             </Slot>
