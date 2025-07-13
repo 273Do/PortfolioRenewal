@@ -22,11 +22,11 @@ const RandomImageList = () => {
   );
 
   return (
-    <div className="px-2 columns-2 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+    <div className="px-2 columns-2 gap-2 sm:gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
       {imageList.map((image) => (
         <div
           key={image.id}
-          className="mb-4 break-inside-avoid overflow-hidden rounded-lg"
+          className="mb-2 sm:mb-4 break-inside-avoid overflow-hidden rounded-lg"
         >
           <div
             className="relative w-full grayscale transition-all duration-300 hover:grayscale-0"

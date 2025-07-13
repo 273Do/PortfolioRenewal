@@ -13,7 +13,7 @@ const ContactSection = async () => {
 
   return (
     <div className=" w-full">
-      <AsyncLayout className="h-screen w-full ">
+      <AsyncLayout className="h-screen w-full">
         <div className="relative left-1/2 top-1/2 z-[150] size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex flex-col h-full items-center justify-end">
             <Card className="text-secondary px-2 flex size-full items-end flex-col bg-foreground">

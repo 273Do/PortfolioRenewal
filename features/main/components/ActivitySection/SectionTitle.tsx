@@ -13,7 +13,7 @@ const SectionTitle = () => {
   return (
     <AnimationText.ScrollBlinking
       start="center bottom"
-      className="-mt-20 font-semibold leading-none"
+      className="-mt-14 sm:-mt-20 font-semibold leading-none"
     >
       <ReactFitty>ACTIVITIES</ReactFitty>
     </AnimationText.ScrollBlinking>

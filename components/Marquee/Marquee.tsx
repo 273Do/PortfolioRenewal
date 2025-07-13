@@ -27,16 +27,16 @@ const MarqueeWidget = ({
 
         if (typeof IconComponent === "undefined")
           return (
-            <div key={icon} className="px-3">
-              <Slot className="h-12 w-full">
+            <div key={icon} className="sm:px-6 px-0">
+              <Slot className="h-12 w-1/2 sm:w-full">
                 <CircleX color="red" />
               </Slot>
             </div>
           );
 
         return (
-          <div key={icon} className="px-6">
-            <Slot className="h-12 w-full">
+          <div key={icon} className="sm:px-6 px-0">
+            <Slot className="h-12 w-1/2 sm:w-full">
               <IconComponent />
             </Slot>
           </div>

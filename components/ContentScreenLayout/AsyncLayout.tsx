@@ -7,7 +7,7 @@ const AsyncLayout = async ({
 }) => {
   return (
     <div className={`flex h-[calc(100vh-5rem)] items-end ${className}`}>
-      <div className="pt-15 flex size-full flex-col items-end justify-between">
+      <div className="pt-0 flex size-full flex-col items-end justify-between">
         {children}
       </div>
     </div>

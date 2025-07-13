@@ -86,14 +86,14 @@ const CardList = () => {
     for (let i = 1; i <= 3; i++) {
       rows.push(
         <div
-          className="row relative my-6 flex w-full justify-center gap-6"
+          className="row relative my-3 sm:my-6 flex w-full justify-center gap-3 sm:gap-6"
           key={i}
         >
           <div className="card card-left relative overflow-hidden grayscale duration-200 will-change-transform hover:grayscale-0">
             <Image
               src={`https://picsum.photos/id/${i * 7}/1920/1080`}
               alt=""
-              className="h-52 w-96 rounded-lg"
+              className="h-28 w-48 sm:h-52 sm:w-96 rounded-lg"
               width={1920}
               height={1080}
             />
@@ -102,7 +102,7 @@ const CardList = () => {
             <Image
               src={`https://picsum.photos/id/${i * 9}/1920/1080`}
               alt=""
-              className="h-52 w-96 rounded-lg"
+              className="h-28 w-48 sm:h-52 sm:w-96 rounded-lg"
               width={1920}
               height={1080}
             />
@@ -120,9 +120,9 @@ const CardList = () => {
       className="relative flex w-full flex-col items-center justify-center"
     >
       <div className="translate-[-50%] z-100 pointer-events-none absolute flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-start gap-20">
+        <div className="flex flex-col items-center justify-start gap-5 sm:gap-20">
           <div className="line">
-            <div className="flex flex-col items-center justify-center text-2xl font-semibold">
+            <div className="flex flex-col items-center justify-center text-lg sm:text-2xl font-semibold">
               <p> I don't have</p>
               <p>any specific area of expertise.</p>
             </div>
