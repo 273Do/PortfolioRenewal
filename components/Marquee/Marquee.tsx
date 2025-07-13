@@ -13,7 +13,7 @@ const MarqueeWidget = ({
 }) => {
   return (
     <Marquee
-      className="items-center py-3 text-foreground"
+      className="items-center sm:py-3 text-foreground"
       gradient={true}
       gradientColor="hsl(var(--background))"
       loop={0}

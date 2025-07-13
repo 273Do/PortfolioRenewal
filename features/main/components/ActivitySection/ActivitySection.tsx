@@ -6,9 +6,9 @@ import SectionTitle from "./SectionTitle";
 const ActivitySection = async () => {
   return (
     <>
-      <div className="z-100 relative bg-background px-3 sm:px-12 pt-0">
+      <div className="z-[100] relative bg-background px-3 sm:px-12 pt-0">
         <div className="sticky top-0 z-20 w-full bg-background">
-          <div className="h-32"></div>
+          <div className="h-32 px-3"></div>
           <SectionTitle />
         </div>
         <div className="px-2 mb-5 sm:mb-10 flex w-full items-end justify-between">
