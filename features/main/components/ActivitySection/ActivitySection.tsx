@@ -11,7 +11,7 @@ const ActivitySection = async () => {
           <div className="h-32 px-3"></div>
           <SectionTitle />
         </div>
-        <div className="px-2 mb-5 sm:mb-10 flex w-full items-end justify-between">
+        <div className="px-2 mb-5 sm:mb-10 flex w-full items-start justify-between text-xs sm:text-base">
           <ul>
             <AnimationText.ScrollCustomReveal
               start="bottom 85%"

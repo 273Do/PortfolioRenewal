@@ -141,7 +141,8 @@ const CardList = () => {
           </div>
         </div>
       </div>
-      <div className="-z-10">{generateRows()}</div>
+      <div className="-z-10 hidden sm:block">{generateRows()}</div>
+      <div className="block sm:hidden h-[50vh]"></div>
       <div ref={sectionEndRef}></div>
     </div>
   );
