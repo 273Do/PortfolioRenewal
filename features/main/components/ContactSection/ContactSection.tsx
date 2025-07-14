@@ -4,6 +4,8 @@ import AsyncLayout from "@/components/ContentScreenLayout/AsyncLayout";
 import * as AnimationText from "@/components/TextAnimation";
 import { Card } from "@/components/ui/card";
 
+import DiscordToast from "./DiscordToast";
+
 const ContactSection = async () => {
   const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL;
   const DISCORD_USER_ID = process.env.NEXT_PUBLIC_DISCORD_USER_ID;
@@ -53,7 +55,9 @@ const ContactSection = async () => {
                         </Link>
                       )}
                     </li>
-                    <li>Discord</li>
+                    <li>
+                      {DISCORD_USER_ID && <DiscordToast id={DISCORD_USER_ID} />}
+                    </li>
                     <li>
                       {YOUTUBE_URL && (
                         <Link
