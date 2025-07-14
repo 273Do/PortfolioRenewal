@@ -4,16 +4,20 @@ import * as Icons from "@icons-pack/react-simple-icons";
 import { Slot } from "@radix-ui/react-slot";
 import { CircleX } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 const MarqueeWidget = ({
   iconName,
   direction,
+  className,
 }: {
   iconName: string[];
   direction?: "left" | "right";
+  className?: string;
 }) => {
   return (
     <Marquee
-      className="items-center text-foreground sm:py-3"
+      className={cn("items-center text-foreground sm:py-3", className)}
       gradient={true}
       gradientColor="hsl(var(--background))"
       loop={0}
