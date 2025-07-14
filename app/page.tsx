@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
+import SmoothScroller from "@/components/layouts/SmoothScroller";
 import * as Main from "@/features/main/components";
 import Layout from "@/features/main/components/Layout/Layout";
-
-import SmoothScroller from "../components/layouts/SmoothScroller";
 
 export const metadata: Metadata = {
   title: "273* Portfolio | About",
