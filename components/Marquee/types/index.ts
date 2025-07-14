@@ -1,6 +1,6 @@
 type ToolsResponse = {
   toolCollection?: {
-    items: string[];
+    items: { toolNames: string[] };
   };
   technologiesCollection?: {
     items: { techNames: string[] };
