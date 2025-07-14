@@ -15,7 +15,7 @@ const ContactSection = async () => {
   const MAIL_ADDRESS = process.env.MAIL_ADDRESS;
 
   return (
-    <div className=" w-full">
+    <div className="w-full">
       <AsyncLayout className="h-screen w-full">
         <div className="relative left-1/2 top-1/2 z-[150] size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex h-full flex-col items-center justify-end">
@@ -55,9 +55,7 @@ const ContactSection = async () => {
                         </Link>
                       )}
                     </li>
-                    <li>
-                      {DISCORD_USER_ID && <DiscordToast id={DISCORD_USER_ID} />}
-                    </li>
+                    {DISCORD_USER_ID && <DiscordToast id={DISCORD_USER_ID} />}
                     <li>
                       {YOUTUBE_URL && (
                         <Link
@@ -101,6 +99,11 @@ const ContactSection = async () => {
         </div>
       </AsyncLayout>
     </div>
+    // <div className="pointer-events-none relative left-1/2 top-1/2 z-[150] size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
+    //   <div className="flex h-full items-center justify-center">
+    //     <Card className="flex size-full flex-col bg-slate-400" />
+    //   </div>
+    // </div>
   );
 };
 
