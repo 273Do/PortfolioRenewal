@@ -7,8 +7,8 @@ import { Link } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
-import siteLogo from "@/public/imgs/273*Logo.png";
 import myImg from "@/public/imgs/myImg.jpg";
+import siteLogo from "@/public/svg/Logo.svg";
 
 const MyCard = () => {
   const { theme } = useTheme();
@@ -36,11 +36,12 @@ const MyCard = () => {
             <div>
               <div>
                 <Image
-                  src={siteLogo}
+                  className="dark:invert"
+                  src="/svg/Logo.svg"
+                  alt="273* Logo"
                   width={240}
                   height={240}
-                  alt="siteLogo"
-                  className={`${theme === "light" && "icon_light"} -mt-7`}
+                  priority
                 />
                 <div className="my-2">
                   <p className="-mt-4">273* (tuna-sand) </p>

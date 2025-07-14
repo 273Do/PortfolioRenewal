@@ -6,7 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 
 import "./globals.css";
-import * as Layout from "@/app/components/index";
+import * as Layout from "@/components/layouts/index";
 import { ThemeProvider } from "@/components/theme-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
