@@ -8,11 +8,13 @@ import { cn } from "@/lib/utils";
 
 const MarqueeWidget = ({
   iconName,
-  direction,
+  direction = "left",
+  mode = "default",
   className,
 }: {
   iconName: string[];
   direction?: "left" | "right";
+  mode?: "detail" | "default";
   className?: string;
 }) => {
   return (
@@ -21,8 +23,7 @@ const MarqueeWidget = ({
       gradient={true}
       gradientColor="hsl(var(--background))"
       loop={0}
-      delay={2}
-      direction={direction || "left"}
+      direction={direction}
     >
       {iconName.map((icon: string) => {
         const IconComponent = (
@@ -31,7 +32,13 @@ const MarqueeWidget = ({
 
         if (typeof IconComponent === "undefined")
           return (
-            <div key={icon} className="px-0 sm:px-6">
+            <div
+              key={icon}
+              className={cn(
+                `${mode === "default" ? "sm:px-6" : "sm:px-4"}`,
+                "px-0"
+              )}
+            >
               <Slot className="h-12 w-1/2 sm:w-full">
                 <CircleX color="red" />
               </Slot>
@@ -39,7 +46,13 @@ const MarqueeWidget = ({
           );
 
         return (
-          <div key={icon} className="px-0 sm:px-6">
+          <div
+            key={icon}
+            className={cn(
+              `${mode === "default" ? "sm:px-6" : "sm:px-4"}`,
+              "px-0"
+            )}
+          >
             <Slot className="h-12 w-1/2 sm:w-full">
               <IconComponent />
             </Slot>

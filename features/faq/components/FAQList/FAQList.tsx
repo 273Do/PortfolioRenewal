@@ -35,7 +35,11 @@ const FAQList = async () => {
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>
               <div className="mb-2 flex w-full flex-wrap justify-center">
-                <MarqueeWidget iconName={tools[0].toolNames} direction="left" />
+                <MarqueeWidget
+                  iconName={tools[0].toolNames}
+                  direction="left"
+                  mode="detail"
+                />
               </div>
             </AccordionContent>
           </AccordionItem>
