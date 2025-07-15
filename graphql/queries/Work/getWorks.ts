@@ -35,7 +35,7 @@ export const GET_WorkDetail = gql`
         }
         tags
         body
-        technologiesObj
+        techNames
         githubUrl
         appUrl
         otherUrl
