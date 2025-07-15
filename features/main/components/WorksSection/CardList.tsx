@@ -5,12 +5,23 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
+import useSWR from "swr";
+
+import type { WorkObj } from "@/features/works/types";
+import { fetchWorks } from "@/lib/contentful";
+
+const fetcher = async () => {
+  const data = await fetchWorks(6);
+  return data;
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CardList = () => {
   const ref = useRef(null);
   const sectionEndRef = useRef<HTMLDivElement>(null);
+
+  const { data: works, isLoading } = useSWR("workImages", fetcher);
 
   useGSAP(() => {
     const leftXValues = [-400, -450, -200];
@@ -79,10 +90,11 @@ const CardList = () => {
         },
       });
     });
-  }, []);
+  }, [works]);
 
-  const generateRows = () => {
+  const generateRows = (works: WorkObj[]) => {
     const rows = [];
+
     for (let i = 1; i <= 3; i++) {
       rows.push(
         <div
@@ -91,18 +103,18 @@ const CardList = () => {
         >
           <div className="card card-left relative overflow-hidden grayscale duration-200 will-change-transform hover:grayscale-0">
             <Image
-              src={`https://picsum.photos/id/${i * 7}/1920/1080`}
+              src={works[i - 1].thumbnail.url}
               alt=""
-              className="h-28 w-48 rounded-lg sm:h-52 sm:w-96"
+              className="h-28 w-48 rounded-lg border shadow sm:h-52 sm:w-96"
               width={1920}
               height={1080}
             />
           </div>
           <div className="card card-right relative overflow-hidden grayscale duration-200 will-change-transform hover:grayscale-0">
             <Image
-              src={`https://picsum.photos/id/${i * 9}/1920/1080`}
+              src={works[i + 2].thumbnail.url}
               alt=""
-              className="h-28 w-48 rounded-lg sm:h-52 sm:w-96"
+              className="h-28 w-48 rounded-lg border shadow sm:h-52 sm:w-96"
               width={1920}
               height={1080}
             />
@@ -141,7 +153,9 @@ const CardList = () => {
           </div>
         </div>
       </div>
-      <div className="-z-10 hidden sm:block">{generateRows()}</div>
+      {!isLoading && (
+        <div className="-z-10 hidden sm:block">{generateRows(works.items)}</div>
+      )}
       <div className="block h-[50vh] sm:hidden"></div>
       <div ref={sectionEndRef}></div>
     </div>
