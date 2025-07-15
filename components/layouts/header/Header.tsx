@@ -57,7 +57,7 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const fetcher = async () => {
-  const data = await fetchWorks(4);
+  const data = await fetchWorks(1);
   return data;
 };
 
