@@ -2,7 +2,6 @@ import Marquee from "react-fast-marquee";
 
 import * as Icons from "@icons-pack/react-simple-icons";
 import { Slot } from "@radix-ui/react-slot";
-import { CircleX } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -39,8 +38,10 @@ const MarqueeWidget = ({
                 "px-0"
               )}
             >
-              <Slot className="h-12 w-1/2 sm:w-full">
-                <CircleX color="red" />
+              <Slot className="mr-5 h-12 sm:mr-0 ">
+                <p className="pointer-events-none pt-4 text-center text-xs sm:text-base ">
+                  {icon}
+                </p>
               </Slot>
             </div>
           );
