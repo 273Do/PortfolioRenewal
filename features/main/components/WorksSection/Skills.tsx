@@ -9,8 +9,9 @@ const Skills = async () => {
 
   return (
     <div className="my-2 sm:my-4">
-      <p className="z-100 relative text-xs">Favorite Technology</p>
-      {/* 16こ */}
+      <p className="z-100 relative text-xs sm:text-base">
+        Favorite Technologies
+      </p>
       {technologiesArray.map((techNames: string[], i: number) => (
         <MarqueeWidget
           key={i}
