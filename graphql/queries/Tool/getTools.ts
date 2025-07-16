@@ -5,7 +5,7 @@ export const GET_Tools = gql`
   query GetTools {
     toolCollection {
       items {
-        toolObj
+        toolNames
       }
     }
   }

@@ -1,5 +1,3 @@
-import type { ToolsObj } from "@/features/faq/types";
-
 type WorkObj = {
   sys: {
     id: string;
@@ -12,7 +10,7 @@ type WorkObj = {
   thumbnail: {
     url: string;
   };
-  technologiesObj: ToolsObj;
+  techNames: string[];
   githubUrl: string;
   appUrl?: string;
   otherUrl?: string;

@@ -1,19 +1,19 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
+import MarqueeWidget from "@/components/Marquee/Marquee";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import MarqueeWidget from "@/features/Marquee/components/Marquee";
 import type { FAQObj } from "@/features/faq/types";
 import { fetchFAQ, fetchTools } from "@/lib/contentful";
 
 const FAQList = async () => {
   const { items: faqs } = await fetchFAQ();
-  const tools = await fetchTools();
+  const { items: tools } = await fetchTools();
 
   return (
     <div className="flex w-full flex-row items-start justify-center">
@@ -35,7 +35,11 @@ const FAQList = async () => {
             <AccordionTrigger className="text-lg">使用ツール</AccordionTrigger>
             <AccordionContent>
               <div className="mb-2 flex w-full flex-wrap justify-center">
-                <MarqueeWidget technologyData={tools.items[0].toolObj} />
+                <MarqueeWidget
+                  iconName={tools[0].toolNames}
+                  direction="left"
+                  mode="detail"
+                />
               </div>
             </AccordionContent>
           </AccordionItem>

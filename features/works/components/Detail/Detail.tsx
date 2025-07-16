@@ -3,8 +3,8 @@ import ReactMarkdown from "react-markdown";
 
 import { format } from "date-fns";
 
+import MarqueeWidget from "@/components/Marquee/Marquee";
 import { Separator } from "@/components/ui/separator";
-import MarqueeWidget from "@/features/Marquee/components/Marquee";
 
 import type { WorkObj } from "../../types";
 
@@ -25,7 +25,11 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
               <p>期間 ： {detail.period}</p>
             </div>
             <div className="my-4">
-              <MarqueeWidget technologyData={detail.technologiesObj} />
+              <MarqueeWidget
+                iconName={detail.techNames}
+                direction="left"
+                mode="detail"
+              />
             </div>
             <Separator />
             <div className="md mb-3 mt-4 sm:mb-6">

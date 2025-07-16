@@ -7,7 +7,7 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import Link from "next/link";
 
-import { noticeItems } from "@/demo/noticesData";
+import type { NoticeObj } from "../../types";
 
 const splitNumber = (num: number): string[] => {
   return num.toString().padStart(2, "0").split("");
@@ -15,16 +15,16 @@ const splitNumber = (num: number): string[] => {
 
 gsap.registerPlugin(SplitText);
 
-const NoticeList = () => {
+const NoticeList = ({ notices }: { notices: NoticeObj[] }) => {
   const [selectNotice, setSelectNotice] = useState({
     year: 25,
-    month: Number(format(new Date(noticeItems[0].createdAt), "MM")),
-    description: noticeItems[0].description,
+    month: Number(format(new Date(notices[0].createdAt), "MM")),
+    description: notices[0].description,
   });
 
   const [prevYear, setPrevYear] = useState<number>(25);
   const [prevMonth, setPrevMonth] = useState<number>(
-    Number(format(new Date(noticeItems[0].createdAt), "MM"))
+    Number(format(new Date(notices[0].createdAt), "MM"))
   );
 
   const yearDigitRefs = useRef<Array<HTMLSpanElement | null>>([]);
@@ -116,7 +116,7 @@ const NoticeList = () => {
       </div>
       <div className="z-100 flex w-full flex-col gap-5 px-2 text-[16px] sm:w-1/2">
         <div>
-          {noticeItems.map((item) => {
+          {notices.map((item) => {
             const year = format(new Date(item.createdAt), "yy");
             const month = format(new Date(item.createdAt), "MM");
             const createdAt = format(new Date(item.createdAt), "yyyy-MM-dd");

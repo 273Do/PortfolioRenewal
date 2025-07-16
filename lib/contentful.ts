@@ -1,6 +1,6 @@
-import type { FAQResponse, ToolsResponse } from "@/features/faq/types";
-import type { GalleriesResponse } from "@/features/gallery/types";
-import type { NoticesResponse } from "@/features/main/types";
+import type { ToolsResponse } from "@/components/Marquee/types";
+import type { FAQResponse } from "@/features/faq/types";
+import type { GalleriesResponse, NoticesResponse } from "@/features/main/types";
 import type { MoviesResponse } from "@/features/movie/types";
 import type { WorksResponse } from "@/features/works/types";
 import client from "@/graphql/client";
@@ -26,8 +26,8 @@ async function fetchTools() {
   return data.toolCollection;
 }
 
-// Technologyを取得する関数
-async function fetchTechnology() {
+// Technologiesを取得する関数
+async function fetchTechnologies() {
   const data = await client.request<ToolsResponse>(GET_Technologies);
   return data.technologiesCollection;
 }
@@ -75,7 +75,7 @@ async function fetchNotices() {
 export {
   fetchFAQ,
   fetchTools,
-  fetchTechnology,
+  fetchTechnologies,
   fetchWorks,
   fetchWorksDetail,
   fetchGalleries,

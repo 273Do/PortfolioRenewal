@@ -1,15 +1,16 @@
 import { format } from "date-fns";
 import Image from "next/image";
 
-import type { GalleryObj } from "@/features/gallery/types";
 import { fetchGalleries } from "@/lib/contentful";
 
+import type { GalleryObj } from "../../types";
+
 const RandomImageList = async () => {
-  const galleryData = await fetchGalleries();
+  const galleries = await fetchGalleries();
 
   return (
     <div className="columns-2 gap-2 px-2 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">
-      {galleryData.map((data: GalleryObj) => (
+      {galleries.map((data: GalleryObj) => (
         <div
           // eslint-disable-next-line tailwindcss/migration-from-tailwind-2
           className="group relative mb-2 grayscale duration-200 before:absolute before:inset-0 before:rounded-md before:bg-black before:bg-opacity-20 before:content-[''] hover:grayscale-0 sm:mb-4"
