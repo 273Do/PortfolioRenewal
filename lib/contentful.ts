@@ -1,7 +1,6 @@
 import type { ToolsResponse } from "@/components/Marquee/types";
 import type { FAQResponse } from "@/features/faq/types";
-import type { GalleriesResponse } from "@/features/gallery/types";
-import type { NoticesResponse } from "@/features/main/types";
+import type { GalleriesResponse, NoticesResponse } from "@/features/main/types";
 import type { MoviesResponse } from "@/features/movie/types";
 import type { WorksResponse } from "@/features/works/types";
 import client from "@/graphql/client";

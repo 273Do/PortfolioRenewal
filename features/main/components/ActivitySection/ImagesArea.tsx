@@ -1,8 +1,9 @@
 import { format } from "date-fns";
 import Image from "next/image";
 
-import type { GalleryObj } from "@/features/gallery/types";
 import { fetchGalleries } from "@/lib/contentful";
+
+import type { GalleryObj } from "../../types";
 
 const RandomImageList = async () => {
   const galleries = await fetchGalleries();
