@@ -31,7 +31,7 @@ const ContactSection = async () => {
                 </AnimationText.Dynamic>
               </div>
               <div className="mt-10 flex w-full items-start justify-between">
-                <ul className="relative z-[100]">
+                <ul className="relative z-[200]">
                   <li>
                     <Link href="/works">Works</Link>
                   </li>
@@ -43,7 +43,7 @@ const ContactSection = async () => {
                   </li>
                 </ul>
                 <div className="flex flex-col gap-6 text-end">
-                  <ul className="relative z-[100]">
+                  <ul className="relative z-[200]">
                     <li>
                       {X_URL && (
                         <Link
@@ -68,7 +68,7 @@ const ContactSection = async () => {
                       )}
                     </li>
                   </ul>
-                  <ul className="relative z-[100]">
+                  <ul className="relative z-[200]">
                     <li>
                       {GITHUB_URL && (
                         <Link

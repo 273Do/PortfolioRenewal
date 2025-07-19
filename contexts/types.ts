@@ -1,4 +1,4 @@
-type MaterialType = "metal" | "lamina" | "wireframe" | "ascii";
+type MaterialType = "metal" | "wireframe" | "ascii" | "none";
 
 type MaterialContextType = {
   material: MaterialType;

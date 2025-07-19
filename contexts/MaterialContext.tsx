@@ -6,7 +6,7 @@ import type { MaterialContextType, MaterialType } from "./types";
 const MaterialContext = createContext<MaterialContextType | null>(null);
 
 const MaterialProvider = ({ children }: { children: ReactNode }) => {
-  const [material, toggleMaterial] = useState<MaterialType>("wireframe");
+  const [material, toggleMaterial] = useState<MaterialType>("none");
 
   return (
     <MaterialContext.Provider value={{ material, toggleMaterial }}>

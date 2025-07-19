@@ -114,7 +114,7 @@ const NoticeList = ({ notices }: { notices: NoticeObj[] }) => {
           </div>
         </div>
       </div>
-      <div className="z-[100] flex w-full flex-col gap-5 px-2 text-[16px] sm:w-1/2">
+      <div className="z-[170] flex w-full flex-col gap-5 px-2 text-[16px] sm:w-1/2">
         <div>
           {notices.map((item) => {
             const year = format(new Date(item.createdAt), "yy");

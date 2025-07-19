@@ -27,15 +27,15 @@ export const Model = () => {
     camera.lookAt(0, 0, 0);
   });
 
-  const mesh = useRef<THREE.Mesh | null>(null);
+  // const mesh = useRef<THREE.Mesh | null>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const depth = useRef<any>(null);
-  useFrame((state, delta) => {
-    if (mesh.current) mesh.current.rotation.z += delta / 2;
-    if (depth.current?.origin)
-      depth.current.origin.set(-state.mouse.y, state.mouse.x, 0);
-  });
+  // const depth = useRef<any>(null);
+  // useFrame((state, delta) => {
+  //   if (mesh.current) mesh.current.rotation.z += delta / 2;
+  //   if (depth.current?.origin)
+  //     depth.current.origin.set(-state.mouse.y, state.mouse.x, 0);
+  // });
 
   return (
     <>
@@ -48,7 +48,10 @@ export const Model = () => {
         position={[-1.5, -1.2, 0]}
         ref={ref}
       >
-        <ModelMaterial material={material} depth={depth} />
+        <ModelMaterial
+          material={material}
+          //  depth={depth}
+        />
       </mesh>
     </>
   );
