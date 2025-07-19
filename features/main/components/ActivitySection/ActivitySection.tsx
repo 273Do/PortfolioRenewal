@@ -39,7 +39,7 @@ const ActivitySection = async () => {
         <ImageList />
         <div className="sticky bottom-0 z-10 h-[52px] w-full bg-background"></div>
       </div>
-      <p className="z-100 relative mx-2 w-full p-3 pt-0 sm:w-3/5 sm:p-12">
+      <p className="relative z-[100] mx-2 w-full p-3 pt-0 sm:w-3/5 sm:p-12">
         I am someone who enjoys making things as a hobby. I also enjoy playing
         the piano, cycling, and exploring ramen restaurants. I like being alone,
         but I also like creating things with friends. My motto is “just give it

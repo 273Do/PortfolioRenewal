@@ -17,7 +17,7 @@ const ContactSection = async () => {
   return (
     <div className="w-full">
       <AsyncLayout className="h-screen  w-full">
-        <div className="relative left-1/2 top-1/2  size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
+        <div className="relative left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex h-full flex-col items-center justify-end">
             <Card className="flex size-full flex-col items-end bg-foreground px-2 text-secondary">
               <div className="w-4/5">
@@ -31,7 +31,7 @@ const ContactSection = async () => {
                 </AnimationText.Dynamic>
               </div>
               <div className="mt-10 flex w-full items-start justify-between">
-                <ul className="z-200 relative ">
+                <ul className="relative z-[100]">
                   <li>
                     <Link href="/works">Works</Link>
                   </li>
@@ -43,7 +43,7 @@ const ContactSection = async () => {
                   </li>
                 </ul>
                 <div className="flex flex-col gap-6 text-end">
-                  <ul className="z-200 relative ">
+                  <ul className="relative z-[100]">
                     <li>
                       {X_URL && (
                         <Link
@@ -68,7 +68,7 @@ const ContactSection = async () => {
                       )}
                     </li>
                   </ul>
-                  <ul className="z-100 relative">
+                  <ul className="relative z-[100]">
                     <li>
                       {GITHUB_URL && (
                         <Link
