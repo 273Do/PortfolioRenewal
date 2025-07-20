@@ -336,3 +336,23 @@
   vertical-align: baseline;
   line-height: 1;
 }
+
+.gaming {
+  /* アニメーションの長さ */
+  animation: gaming 3s linear infinite;
+}
+@keyframes gaming {
+  /* 色の指定 */
+  0% {
+    color: rgb(159, 111, 159);
+  }
+  33% {
+    color: rgb(155, 155, 102);
+  }
+  66% {
+    color: rgb(94, 147, 147);
+  }
+  100% {
+    color: rgb(159, 111, 159);
+  }
+}

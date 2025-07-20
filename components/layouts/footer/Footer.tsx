@@ -33,7 +33,7 @@ const Footer = () => {
           className="size-8"
           onClick={handleClick}
         >
-          <Sparkles className="size-[1.2rem]" strokeWidth={1.6} />
+          <Sparkles className="gaming size-[1.2rem]" strokeWidth={1.6} />
         </Button>
         <Button
           variant="ghost"

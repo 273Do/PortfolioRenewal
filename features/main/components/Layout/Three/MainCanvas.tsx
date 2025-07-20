@@ -10,9 +10,9 @@ import { Model } from "./Model";
 const MainCanvas = ({ className }: { className?: string }) => {
   const { material } = useMaterial();
   const { theme } = useTheme();
-  return (
-    <div className={`z-[160] h-screen w-screen ${className}`}>
-      {material !== "none" && (
+  if (material !== "none")
+    return (
+      <div className={`z-[160] h-screen w-screen ${className}`}>
         <Canvas
           camera={{ position: [0, 0, 3], fov: 50 }}
           gl={{
@@ -41,7 +41,7 @@ const MainCanvas = ({ className }: { className?: string }) => {
             <AsciiRenderer
               invert={false}
               resolution={0.125}
-              fgColor={theme === "dark" ? "#fff" : "#000000"}
+              fgColor={theme === "dark" ? "#dbdbdb" : "#393939"}
               bgColor="transparent"
               characters=" .:-+*%@#"
             />
@@ -50,9 +50,8 @@ const MainCanvas = ({ className }: { className?: string }) => {
           {/* <OrbitControls /> */}
           {/* <EffectComposer></EffectComposer> */}
         </Canvas>
-      )}
-    </div>
-  );
+      </div>
+    );
 };
 
 export default MainCanvas;
