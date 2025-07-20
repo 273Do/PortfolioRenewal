@@ -19,7 +19,7 @@ const ContactSection = async () => {
       <AsyncLayout className="h-screen  w-full">
         <div className="relative left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex h-full flex-col items-center justify-end">
-            <Card className="flex size-full flex-col items-end bg-foreground px-2 text-secondary">
+            <Card className="flex size-full flex-col items-end bg-foreground px-2 text-background">
               <div className="w-4/5">
                 <AnimationText.Dynamic className="-mt-2 font-semibold leading-tight">
                   CONTACT
