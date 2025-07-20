@@ -95,7 +95,7 @@ const Header = () => {
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent className="asm:w-[200px] w-[300px]">
+            <SheetContent className="flex w-[300px] flex-col gap-2">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
@@ -123,7 +123,7 @@ const Header = () => {
                 <Link
                   href="/works"
                   title="Movie"
-                  className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className="block select-none space-y-1 rounded-md border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   <div className="-mb-2 flex">
                     <p>Works</p>
@@ -139,7 +139,7 @@ const Header = () => {
                 <Link
                   href="/movie"
                   title="Movie"
-                  className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className="block select-none space-y-1 rounded-md border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   Movie
                 </Link>
@@ -148,7 +148,7 @@ const Header = () => {
                 <Link
                   href="/faq"
                   title="Faq"
-                  className="block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className="block select-none space-y-1 rounded-md border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   FAQ
                 </Link>
@@ -159,7 +159,7 @@ const Header = () => {
                   title="Qiita"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className=" block select-none space-y-1 border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
+                  className=" block select-none space-y-1 rounded-md border-b py-4 font-medium leading-none no-underline outline-none transition-all hover:underline focus:bg-accent focus:text-accent-foreground"
                 >
                   Qiita
                 </Link>
