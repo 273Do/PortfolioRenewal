@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 import { useGSAP } from "@gsap/react";
 import { format } from "date-fns";
@@ -163,7 +164,7 @@ const NoticeList = ({ notices }: { notices: NoticeObj[] }) => {
             );
           })}
         </div>
-        <p className="mb-10 h-20">{selectNotice.description}</p>
+        <ReactMarkdown>{selectNotice.description}</ReactMarkdown>
       </div>
     </>
   );
