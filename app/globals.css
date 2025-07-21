@@ -336,3 +336,85 @@
   vertical-align: baseline;
   line-height: 1;
 }
+
+.gaming {
+  /* アニメーションの長さ */
+  animation: gaming 3s linear infinite;
+}
+@keyframes gaming {
+  /* 色の指定 */
+  0% {
+    color: rgb(159, 111, 159);
+  }
+  33% {
+    color: rgb(155, 155, 102);
+  }
+  66% {
+    color: rgb(94, 147, 147);
+  }
+  100% {
+    color: rgb(159, 111, 159);
+  }
+}
+
+body::before {
+  position: fixed;
+  pointer-events: none;
+  content: "";
+  inset: 0;
+  z-index: 900;
+  opacity: 0.4;
+  scale: 1.5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: noiseFloat 2s infinite linear alternate;
+  background-size: 200% 200%;
+  will-change: transform, background-position;
+  backface-visibility: hidden;
+}
+
+@keyframes noiseFloat {
+  0% {
+    background-position: 0% 0%;
+    transform: translate3d(0px, 0px, 0px) rotate(0deg);
+  }
+  12.5% {
+    background-position: 87% 23%;
+    transform: translate3d(-15px, 11px, 0px) rotate(0.8deg);
+  }
+  25% {
+    background-position: 34% 91%;
+    transform: translate3d(12px, -7px, 0px) rotate(-0.4deg);
+  }
+  37.5% {
+    background-position: 71% 8%;
+    transform: translate3d(-9px, 14px, 0px) rotate(1.2deg);
+  }
+  50% {
+    background-position: 19% 66%;
+    transform: translate3d(18px, -3px, 0px) rotate(-0.7deg);
+  }
+  62.5% {
+    background-position: 95% 41%;
+    transform: translate3d(-6px, -12px, 0px) rotate(0.5deg);
+  }
+  75% {
+    background-position: 48% 88%;
+    transform: translate3d(8px, 16px, 0px) rotate(-1.1deg);
+  }
+  87.5% {
+    background-position: 76% 15%;
+    transform: translate3d(-13px, -8px, 0px) rotate(0.9deg);
+  }
+  100% {
+    background-position: 0% 0%;
+    transform: translate3d(0px, 0px, 0px) rotate(0deg);
+  }
+}
+
+/* モバイルデバイスでは無効化 */
+@media (max-width: 768px) {
+  body::before {
+    display: none;
+  }
+}

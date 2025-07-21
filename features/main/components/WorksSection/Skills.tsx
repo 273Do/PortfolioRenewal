@@ -9,7 +9,7 @@ const Skills = async () => {
 
   return (
     <div className="my-2 sm:my-4">
-      <p className="z-100 relative text-xs sm:text-base">
+      <p className="relative z-[100] text-xs sm:text-base">
         Favorite Technologies
       </p>
       {technologiesArray.map((techNames: string[], i: number) => (

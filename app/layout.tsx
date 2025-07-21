@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import * as Layout from "@/components/layouts/index";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MaterialProvider } from "@/contexts/MaterialContext";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -37,12 +38,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <ReactLenis> */}
-          <Layout.Header />
-          {children}
-          <Toaster />
-          <Layout.Footer />
-          {/* </ReactLenis> */}
+          <MaterialProvider>
+            <Layout.Header />
+            {children}
+            <Toaster />
+            <Layout.Footer />
+          </MaterialProvider>
         </ThemeProvider>
       </body>
     </html>

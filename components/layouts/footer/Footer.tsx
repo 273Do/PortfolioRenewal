@@ -1,14 +1,33 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import { Moon, Sparkles, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { useMaterial } from "@/contexts/MaterialContext";
+import type { MaterialType } from "@/contexts/types";
 
 const Footer = () => {
   const thisYear = new Date().getFullYear();
   const { theme, setTheme } = useTheme();
+
+  const { toggleMaterial } = useMaterial();
+  const materialTypes: MaterialType[] = [
+    "none",
+    "metal",
+    "dot",
+    "wireframe",
+    // "ascii",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const handleClick = () => {
+    const nextIndex = (currentIndex + 1) % materialTypes.length;
+    setCurrentIndex(nextIndex);
+    toggleMaterial(materialTypes[nextIndex]);
+  };
 
   return (
     <div className="fixed bottom-0 z-[200] flex h-12 w-full items-center justify-center">
@@ -18,9 +37,9 @@ const Footer = () => {
           variant="ghost"
           size="icon"
           className="size-8"
-          // onClick={handleClick}
+          onClick={handleClick}
         >
-          <Sparkles className="size-[1.2rem]" strokeWidth={1.6} />
+          <Sparkles className="gaming size-[1.2rem]" strokeWidth={1.6} />
         </Button>
         <Button
           variant="ghost"
