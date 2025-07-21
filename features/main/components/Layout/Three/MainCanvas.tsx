@@ -1,6 +1,7 @@
 "use client";
 import { AsciiRenderer, Environment, Lightformer } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { DotScreen, EffectComposer } from "@react-three/postprocessing";
 import { useTheme } from "next-themes";
 
 import { useMaterial } from "@/contexts/MaterialContext";
@@ -37,18 +38,23 @@ const MainCanvas = ({ className }: { className?: string }) => {
               }) => self.lookAt(0, 0, 0)}
             />
           </Environment>
+
+          {material === "dot" && (
+            <EffectComposer>
+              <DotScreen angle={Math.PI * 0.5} scale={2.5} />
+            </EffectComposer>
+          )}
+
           {material === "ascii" && (
             <AsciiRenderer
               invert={false}
-              resolution={0.125}
+              resolution={0.3}
               fgColor={theme === "dark" ? "#dbdbdb" : "#393939"}
               bgColor="transparent"
               characters=" .:-+*%@#"
             />
           )}
-
           {/* <OrbitControls /> */}
-          {/* <EffectComposer></EffectComposer> */}
         </Canvas>
       </div>
     );

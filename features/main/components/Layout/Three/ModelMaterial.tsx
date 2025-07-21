@@ -9,9 +9,10 @@ const ModelMaterial = ({ material, depth }: ModelMaterialProps) => {
   const { theme } = useTheme();
   switch (material) {
     case "metal":
+    case "dot":
       return (
         <>
-          <Edges linewidth={1} scale={1} threshold={10} color="white" />
+          <Edges linewidth={1} scale={1} threshold={10} color="#ffffff" />
           <MeshTransmissionMaterial
             roughness={0.25}
             backside
@@ -23,6 +24,7 @@ const ModelMaterial = ({ material, depth }: ModelMaterialProps) => {
           />
         </>
       );
+    case "ascii":
     default:
       return (
         <meshStandardMaterial

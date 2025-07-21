@@ -13,7 +13,13 @@ const Footer = () => {
   const { theme, setTheme } = useTheme();
 
   const { toggleMaterial } = useMaterial();
-  const materialTypes: MaterialType[] = ["none", "metal", "wireframe", "ascii"];
+  const materialTypes: MaterialType[] = [
+    "none",
+    "metal",
+    "dot",
+    "wireframe",
+    // "ascii",
+  ];
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 

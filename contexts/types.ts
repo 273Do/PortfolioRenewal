@@ -1,4 +1,4 @@
-type MaterialType = "metal" | "wireframe" | "ascii" | "none";
+type MaterialType = "metal" | "dot" | "wireframe" | "ascii" | "none";
 
 type MaterialContextType = {
   material: MaterialType;
