@@ -356,3 +356,55 @@
     color: rgb(159, 111, 159);
   }
 }
+
+body::before {
+  position: fixed;
+  content: "";
+  inset: 0;
+  z-index: 900;
+  opacity: 0.65;
+  scale: 1.5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: noiseFloat 1.5s infinite linear;
+  background-size: 150% 150%;
+}
+
+@keyframes noiseFloat {
+  0% {
+    background-position: 0% 0%;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  12.5% {
+    background-position: 80% 20%;
+    transform: translate(-12px, 8px) rotate(0.5deg);
+  }
+  25% {
+    background-position: 60% 90%;
+    transform: translate(15px, -10px) rotate(-0.3deg);
+  }
+  37.5% {
+    background-position: 10% 70%;
+    transform: translate(-8px, 12px) rotate(0.7deg);
+  }
+  50% {
+    background-position: 95% 45%;
+    transform: translate(10px, -5px) rotate(-0.2deg);
+  }
+  62.5% {
+    background-position: 30% 15%;
+    transform: translate(-15px, -8px) rotate(0.4deg);
+  }
+  75% {
+    background-position: 75% 85%;
+    transform: translate(5px, 15px) rotate(-0.6deg);
+  }
+  87.5% {
+    background-position: 40% 55%;
+    transform: translate(-10px, -12px) rotate(0.3deg);
+  }
+  100% {
+    background-position: 0% 0%;
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
