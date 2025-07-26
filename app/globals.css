@@ -357,7 +357,7 @@
   }
 }
 
-body::before {
+/* body::before {
   position: fixed;
   pointer-events: none;
   content: "";
@@ -410,11 +410,11 @@ body::before {
     background-position: 0% 0%;
     transform: translate3d(0px, 0px, 0px) rotate(0deg);
   }
-}
+} */
 
 /* モバイルデバイスでは無効化 */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   body::before {
     display: none;
   }
-}
+} */
