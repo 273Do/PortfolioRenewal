@@ -10,8 +10,8 @@ import type { WorkObj } from "../../types";
 
 const Detail = ({ detail }: { detail: WorkObj }) => {
   return (
-    <div className="flex size-full flex-row items-start justify-center p-3 sm:p-0">
-      <div className="m-0 flex w-full max-w-[700px] flex-wrap sm:m-6">
+    <div className="flex size-full flex-row items-start justify-center">
+      <div className=" flex w-full max-w-[700px] flex-wrap ">
         <div className="flex size-full flex-col gap-5">
           <div>
             <div className="flex items-center justify-between text-muted-foreground">
