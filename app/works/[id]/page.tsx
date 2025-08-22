@@ -135,7 +135,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 </nav>
               </div>
               <Separator />
-              <CardContent className="size-full p-0">
+              <CardContent className="size-full p-3 sm:p-6">
                 <Works.Detail detail={work_detail} />
               </CardContent>
             </Card>
