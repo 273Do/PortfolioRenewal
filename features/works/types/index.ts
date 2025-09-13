@@ -24,4 +24,12 @@ type WorksResponse = {
   };
 };
 
-export type { WorkObj, WorksResponse };
+type RepositoryDetailObj = {
+  issues: number;
+  commits: number;
+  pullRequests: number;
+  branches: number;
+  contributors: number;
+};
+
+export type { WorkObj, WorksResponse, RepositoryDetailObj };
