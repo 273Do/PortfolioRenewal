@@ -14,7 +14,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import * as Works from "@/features/works/components/index";
+import type { RepositoryDetailObj } from "@/features/works/types";
 import { fetchWorksDetail } from "@/lib/contentful";
+import { getRepoStats } from "@/lib/fetchRepositoryDetail";
 
 export const revalidate = 60;
 
@@ -26,6 +28,10 @@ const page = async ({ params }: { params: { id: string } }) => {
   const metadata = {
     title: `273* Portfolio | ${work_detail.name}`,
   };
+
+  const repo_stats: RepositoryDetailObj = await getRepoStats(
+    work_detail.githubUrl
+  );
 
   return (
     <>
@@ -136,7 +142,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               </div>
               <Separator />
               <CardContent className="size-full p-3 sm:p-6">
-                <Works.Detail detail={work_detail} />
+                <Works.Detail detail={work_detail} repo_stats={repo_stats} />
               </CardContent>
             </Card>
           </div>

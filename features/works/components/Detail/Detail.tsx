@@ -18,9 +18,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import type { WorkObj } from "../../types";
+import type { RepositoryDetailObj, WorkObj } from "../../types";
 
-const Detail = ({ detail }: { detail: WorkObj }) => {
+const Detail = ({
+  detail,
+  repo_stats,
+}: {
+  detail: WorkObj;
+  repo_stats: RepositoryDetailObj;
+}) => {
   return (
     <div className="flex size-full flex-row items-start justify-center">
       <div className=" flex w-full max-w-[700px] flex-wrap ">
@@ -40,7 +46,7 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-1">
                       <GitBranch className="size-[1.0rem]" />
-                      <p className="text-foreground">1</p>
+                      <p className="text-foreground">{repo_stats.branches}</p>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -52,7 +58,7 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-1">
                       <GitCommitVertical className="size-[1.0rem]" />
-                      <p className="text-foreground">1</p>
+                      <p className="text-foreground">{repo_stats.commits}</p>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -63,7 +69,9 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-1">
                       <GitPullRequestArrow className="size-[1.0rem]" />
-                      <p className="text-foreground">1</p>
+                      <p className="text-foreground">
+                        {repo_stats.pullRequests}
+                      </p>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -75,7 +83,7 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-1">
                       <CircleDot className="size-[1.0rem]" />
-                      <p className="text-foreground">1</p>
+                      <p className="text-foreground">{repo_stats.issues}</p>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -87,7 +95,9 @@ const Detail = ({ detail }: { detail: WorkObj }) => {
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-1">
                       <UsersRound className="size-[1.0rem]" />
-                      <p className="text-foreground">1</p>
+                      <p className="text-foreground">
+                        {repo_stats.contributors}
+                      </p>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
