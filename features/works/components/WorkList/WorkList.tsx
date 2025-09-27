@@ -19,8 +19,8 @@ const WorkList = async () => {
             <Link
               key={work.sys.id}
               href={`/works/${work.sys.id}`}
-              className={`mb-4 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
-                i % 2 === 0 ? "sm:pr-2" : "sm:pl-2"
+              className={`mb-6 flex w-full cursor-pointer flex-col gap-1 p-0 grayscale duration-200 hover:grayscale-0 sm:w-1/2 ${
+                i % 2 === 0 ? "sm:pr-3" : "sm:pl-3"
               }`}
             >
               <div>
