@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import { Moon, Sparkles, Sun } from "lucide-react";
+import { Moon, Palette, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -15,10 +15,10 @@ const Footer = () => {
   const { toggleMaterial } = useMaterial();
   const materialTypes: MaterialType[] = [
     "none",
-    "metal",
     "dot",
-    "wireframe",
-    // "ascii",
+    "ascii",
+    // "metal",
+    // "wireframe",
   ];
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -39,7 +39,7 @@ const Footer = () => {
           className="size-8"
           onClick={handleClick}
         >
-          <Sparkles className="gaming size-[1.2rem]" strokeWidth={1.6} />
+          <Palette className="gaming size-[1.2rem]" strokeWidth={2.25} />
         </Button>
         <Button
           variant="ghost"

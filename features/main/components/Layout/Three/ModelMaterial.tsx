@@ -27,10 +27,17 @@ const ModelMaterial = ({ material, depth }: ModelMaterialProps) => {
     case "ascii":
     default:
       return (
-        <meshStandardMaterial
-          wireframe
-          color={theme === "dark" ? "#fff" : "#393939"}
-        />
+        <>
+          <Edges linewidth={1} scale={1} threshold={10} color="#6a6a6a" />
+          <MeshTransmissionMaterial
+            color="##363636"
+            // roughness={0.2}
+            thickness={0.1}
+            // distortion={0}
+            // temporalDistortion={0}
+            resolution={512}
+          />
+        </>
       );
     //   default:
     //     return (
