@@ -11,6 +11,7 @@ import { Model } from "./Model";
 const MainCanvas = ({ className }: { className?: string }) => {
   const { material } = useMaterial();
   const { theme } = useTheme();
+
   if (material !== "none")
     return (
       <div className={`z-[160] h-screen w-screen ${className}`}>
@@ -21,7 +22,7 @@ const MainCanvas = ({ className }: { className?: string }) => {
             antialias: false,
             stencil: false,
             depth: true,
-            preserveDrawingBuffer: false,
+            preserveDrawingBuffer: true,
             failIfMajorPerformanceCaveat: false,
           }}
         >
@@ -32,29 +33,27 @@ const MainCanvas = ({ className }: { className?: string }) => {
               position={[1, 6, 3.6]}
               scale={[10, 50, 1]}
               rotation={[Math.PI / 2, 0, 0]}
-              // scale={[10, 10, 0]}
               onUpdate={(self: {
                 lookAt: (arg0: number, arg1: number, arg2: number) => void;
               }) => self.lookAt(0, 0, 0)}
             />
           </Environment>
 
-          {material === "dot" && (
-            <EffectComposer>
+          <EffectComposer>
+            {material === "dot" && (
               <DotScreen angle={Math.PI * 0.5} scale={2.5} />
-            </EffectComposer>
-          )}
+            )}
 
-          {material === "ascii" && (
-            <AsciiRenderer
-              invert={false}
-              resolution={0.3}
-              fgColor={theme === "dark" ? "#dbdbdb" : "#393939"}
-              bgColor="transparent"
-              characters=" .:-+*%@#"
-            />
-          )}
-          {/* <OrbitControls /> */}
+            {material === "ascii" && (
+              <AsciiRenderer
+                invert={false}
+                resolution={0.1}
+                fgColor={theme === "dark" ? "#bbbbbb" : "#393939"}
+                bgColor="transparent"
+                characters=" .:-+*%@#^"
+              />
+            )}
+          </EffectComposer>
         </Canvas>
       </div>
     );
