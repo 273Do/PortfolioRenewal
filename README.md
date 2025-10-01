@@ -1,8 +1,7 @@
 # Portfolio
 
-<img width="1353" height="827" alt="スクリーンショット 2025-07-21 21 56 19" src="https://github.com/user-attachments/assets/61b2b80a-cea6-4b8e-a5d6-15f42cb7c0cc" />
-<br />
-<img width="1358" height="836" alt="スクリーンショット 2025-07-21 21 57 45" src="https://github.com/user-attachments/assets/615a7cea-c45f-4433-8d86-7b27902bef8b" />
+<img width="6712" height="2384" alt="pf" src="https://github.com/user-attachments/assets/0108a7e6-8bc9-4d6e-a1f9-4b5c7eb3ae3b" />
+
 
 <p align="center">
 <!-- <img width="1506" alt="スクリーンショット 2024-08-25 11 16 52" src="https://github.com/user-attachments/assets/9b55b543-c158-45a1-b7be-25edfd95e12f"> -->
