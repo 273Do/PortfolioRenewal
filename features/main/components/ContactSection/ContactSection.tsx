@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import AsyncLayout from "@/components/ContentScreenLayout/AsyncLayout";
 import * as AnimationText from "@/components/TextAnimation";
 import { Card } from "@/components/ui/card";
 
@@ -15,9 +14,9 @@ const ContactSection = async () => {
   const MAIL_ADDRESS = process.env.MAIL_ADDRESS;
 
   return (
-    <div className="w-full">
-      <AsyncLayout className="h-screen  w-full">
-        <div className="relative left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
+    <div className="w-full ">
+      <div className="h-screen  w-full">
+        <div className="relative left-1/2 top-1/2 z-10 size-full -translate-x-1/2 -translate-y-1/2 p-3 py-[70px] sm:p-12 sm:py-[52px]">
           <div className="flex h-full flex-col items-center justify-end">
             <Card className="flex size-full flex-col items-end bg-foreground px-2 text-background">
               <div className="w-4/5">
@@ -30,8 +29,11 @@ const ContactSection = async () => {
                   <a href={`mailto:${MAIL_ADDRESS}`}>{MAIL_ADDRESS}</a>
                 </AnimationText.Dynamic>
               </div>
-              <div className="mt-10 flex w-full items-start justify-between">
+              <div className="mt-20 flex w-full items-start justify-between sm:hidden">
                 <ul className="relative z-[200]">
+                  <li>
+                    <Link href="/about">About</Link>
+                  </li>
                   <li>
                     <Link href="/works">Works</Link>
                   </li>
@@ -97,7 +99,70 @@ const ContactSection = async () => {
             </Card>
           </div>
         </div>
-      </AsyncLayout>
+        <div className="relative bottom-1/2 left-0 z-[170] hidden w-full items-start justify-between mix-blend-difference sm:flex sm:px-12">
+          <ul className="ml-3">
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/works">Works</Link>
+            </li>
+            <li>
+              <Link href="/movie">Movie</Link>
+            </li>
+            <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
+          </ul>
+          <div className="mr-3 flex flex-col gap-4 text-end">
+            <ul>
+              <li>
+                {X_URL && (
+                  <Link href={X_URL} target="_blank" rel="noopener noreferrer">
+                    Twitter / X
+                  </Link>
+                )}
+              </li>
+              {DISCORD_USER_ID && <DiscordToast id={DISCORD_USER_ID} />}
+              <li>
+                {YOUTUBE_URL && (
+                  <Link
+                    href={YOUTUBE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    YouTube
+                  </Link>
+                )}
+              </li>
+            </ul>
+            <ul>
+              <li>
+                {GITHUB_URL && (
+                  <Link
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </Link>
+                )}
+              </li>
+              <li>
+                {QIITA_URL && (
+                  <Link
+                    href={QIITA_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Qiita
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
