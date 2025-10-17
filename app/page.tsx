@@ -18,7 +18,7 @@ export default async function Home() {
     <>
       <Layout />
       <Suspense>
-        <MainCanvas className="logo-3d fixed top-0" />
+        <MainCanvas className="logo-3d fixed top-0 hidden sm:block" />
       </Suspense>
       <SmoothScroller />
       <Main.HeroSection />

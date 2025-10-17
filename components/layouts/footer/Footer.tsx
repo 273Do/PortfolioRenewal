@@ -14,9 +14,9 @@ const Footer = () => {
 
   const { toggleMaterial } = useMaterial();
   const materialTypes: MaterialType[] = [
-    "none",
     "dot",
     "ascii",
+    "none",
     // "metal",
     // "wireframe",
   ];
@@ -36,7 +36,7 @@ const Footer = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="size-8"
+          className="hidden size-8 sm:block"
           onClick={handleClick}
         >
           <Palette className="gaming size-[1.2rem]" strokeWidth={2.25} />

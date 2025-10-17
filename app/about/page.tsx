@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MyCard } from "@/features/card/components";
+import { MyCard } from "@/features/about/components";
 
 const page = async () => {
   return (
