@@ -103,8 +103,8 @@ const Header = () => {
               <SheetClose asChild>
                 <Link
                   className="mt-2 flex select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none duration-150 hover:scale-95 focus:shadow-md"
-                  href="/card"
-                  title="Card"
+                  href="/about"
+                  title="About"
                 >
                   <Image
                     src={myImg}
